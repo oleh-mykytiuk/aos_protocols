@@ -1,0 +1,3278 @@
+{
+    "$defs": {
+        "AosAlertCore": {
+            "description": "Aos Unit core alert information.",
+            "properties": {
+                "timestamp": {
+                    "description": "Timestamp when alert was triggered in ISO8601 format.",
+                    "format": "date-time",
+                    "title": "Timestamp",
+                    "type": "string"
+                },
+                "tag": {
+                    "const": "coreAlert",
+                    "description": "Type of the alert.",
+                    "enum": [
+                        "coreAlert"
+                    ],
+                    "title": "Tag",
+                    "type": "string"
+                },
+                "nodeId": {
+                    "description": "Unique ID of the node.",
+                    "title": "Node ID",
+                    "type": "string"
+                },
+                "coreComponent": {
+                    "description": "Error information retrieved for the alert.",
+                    "maxLength": 100,
+                    "minLength": 1,
+                    "title": "Corecomponent",
+                    "type": "string"
+                },
+                "message": {
+                    "description": "Error information retrieved for the alert.",
+                    "maxLength": 32768,
+                    "minLength": 1,
+                    "title": "Message",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "timestamp",
+                "tag",
+                "nodeId",
+                "coreComponent",
+                "message"
+            ],
+            "title": "AosAlertCore",
+            "type": "object"
+        },
+        "AosAlertDeviceAllocate": {
+            "description": "Aos Unit device allocation alert information.",
+            "properties": {
+                "timestamp": {
+                    "description": "Timestamp when alert was triggered in ISO8601 format.",
+                    "format": "date-time",
+                    "title": "Timestamp",
+                    "type": "string"
+                },
+                "tag": {
+                    "const": "deviceAllocateAlert",
+                    "description": "Type of the alert.",
+                    "enum": [
+                        "deviceAllocateAlert"
+                    ],
+                    "title": "Tag",
+                    "type": "string"
+                },
+                "serviceID": {
+                    "description": "Service unique identifier in form: UUID4.",
+                    "minLength": 1,
+                    "title": "Serviceid",
+                    "type": "string"
+                },
+                "subjectID": {
+                    "description": "Subject unique identifier.",
+                    "minLength": 1,
+                    "title": "Subjectid",
+                    "type": "string"
+                },
+                "instance": {
+                    "description": "Service instance number (starting from 0).",
+                    "title": "Instance",
+                    "type": "integer"
+                },
+                "nodeId": {
+                    "description": "Unique ID of the node.",
+                    "title": "Node ID",
+                    "type": "string"
+                },
+                "deviceId": {
+                    "description": "Device name on a Unit",
+                    "title": "Deviceid",
+                    "type": "string"
+                },
+                "message": {
+                    "description": "Error information retrieved for the alert.",
+                    "maxLength": 32768,
+                    "minLength": 1,
+                    "title": "Message",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "timestamp",
+                "tag",
+                "serviceID",
+                "subjectID",
+                "instance",
+                "nodeId",
+                "deviceId",
+                "message"
+            ],
+            "title": "AosAlertDeviceAllocate",
+            "type": "object"
+        },
+        "AosAlertDownloadProgress": {
+            "description": "Aos Unit download alert information.",
+            "properties": {
+                "timestamp": {
+                    "description": "Timestamp when alert was triggered in ISO8601 format.",
+                    "format": "date-time",
+                    "title": "Timestamp",
+                    "type": "string"
+                },
+                "tag": {
+                    "const": "downloadProgressAlert",
+                    "description": "Type of the alert.",
+                    "enum": [
+                        "downloadProgressAlert"
+                    ],
+                    "title": "Tag",
+                    "type": "string"
+                },
+                "targetType": {
+                    "decription": "Target type of the file.",
+                    "enum": [
+                        "component",
+                        "layer",
+                        "service"
+                    ],
+                    "title": "Targettype",
+                    "type": "string"
+                },
+                "targetId": {
+                    "decription": "Target ID of the file.",
+                    "title": "Targetid",
+                    "type": "string"
+                },
+                "version": {
+                    "description": "Version in format of the SemVer.",
+                    "title": "Version",
+                    "type": "string"
+                },
+                "message": {
+                    "description": "Error information retrieved for the alert.",
+                    "maxLength": 32768,
+                    "minLength": 1,
+                    "title": "Message",
+                    "type": "string"
+                },
+                "url": {
+                    "description": "URL of the downloading file.",
+                    "title": "Url",
+                    "type": "string"
+                },
+                "downloadedBytes": {
+                    "description": "Downloaded bytes at the specified moment.",
+                    "minimum": 0,
+                    "title": "Downloadedbytes",
+                    "type": "integer"
+                },
+                "totalBytes": {
+                    "description": "Total size in bytes of the file.",
+                    "minimum": 0,
+                    "title": "Totalbytes",
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "timestamp",
+                "tag",
+                "targetType",
+                "targetId",
+                "version",
+                "message",
+                "url",
+                "downloadedBytes",
+                "totalBytes"
+            ],
+            "title": "AosAlertDownloadProgress",
+            "type": "object"
+        },
+        "AosAlertInstanceQuota": {
+            "description": "Aos Unit instance quota alert information.",
+            "properties": {
+                "timestamp": {
+                    "description": "Timestamp when alert was triggered in ISO8601 format.",
+                    "format": "date-time",
+                    "title": "Timestamp",
+                    "type": "string"
+                },
+                "tag": {
+                    "const": "instanceQuotaAlert",
+                    "description": "Type of the alert.",
+                    "enum": [
+                        "instanceQuotaAlert"
+                    ],
+                    "title": "Tag",
+                    "type": "string"
+                },
+                "serviceID": {
+                    "description": "Service unique identifier.",
+                    "minLength": 1,
+                    "title": "Serviceid",
+                    "type": "string"
+                },
+                "subjectID": {
+                    "description": "Subject unique identifier.",
+                    "minLength": 1,
+                    "title": "Subjectid",
+                    "type": "string"
+                },
+                "instance": {
+                    "description": "Instance number (starting from 0).",
+                    "title": "Instance",
+                    "type": "integer"
+                },
+                "parameter": {
+                    "description": "Parameter name of the system quota.",
+                    "maxLength": 100,
+                    "minLength": 1,
+                    "title": "Parameter",
+                    "type": "string"
+                },
+                "value": {
+                    "description": "Triggered value of the parameter.",
+                    "minimum": 0,
+                    "title": "Value",
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "timestamp",
+                "tag",
+                "serviceID",
+                "subjectID",
+                "instance",
+                "parameter",
+                "value"
+            ],
+            "title": "AosAlertInstanceQuota",
+            "type": "object"
+        },
+        "AosAlertResourceValidate": {
+            "description": "Aos Unit resource validation alert information.",
+            "properties": {
+                "timestamp": {
+                    "description": "Timestamp when alert was triggered in ISO8601 format.",
+                    "format": "date-time",
+                    "title": "Timestamp",
+                    "type": "string"
+                },
+                "tag": {
+                    "const": "resourceValidateAlert",
+                    "description": "Type of the alert.",
+                    "enum": [
+                        "resourceValidateAlert"
+                    ],
+                    "title": "Tag",
+                    "type": "string"
+                },
+                "serviceID": {
+                    "description": "Service unique identifier.",
+                    "minLength": 1,
+                    "title": "Serviceid",
+                    "type": "string"
+                },
+                "subjectID": {
+                    "description": "Subject unique identifier.",
+                    "minLength": 1,
+                    "title": "Subjectid",
+                    "type": "string"
+                },
+                "instance": {
+                    "description": "Instance number (starting from 0).",
+                    "title": "Instance",
+                    "type": "integer"
+                },
+                "errors": {
+                    "description": "List of resource validation errors.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "title": "Errors",
+                    "type": "array"
+                }
+            },
+            "required": [
+                "timestamp",
+                "tag",
+                "serviceID",
+                "subjectID",
+                "instance",
+                "errors"
+            ],
+            "title": "AosAlertResourceValidate",
+            "type": "object"
+        },
+        "AosAlertServiceInstance": {
+            "description": "Aos Unit service instance alert information.",
+            "properties": {
+                "timestamp": {
+                    "description": "Timestamp when alert was triggered in ISO8601 format.",
+                    "format": "date-time",
+                    "title": "Timestamp",
+                    "type": "string"
+                },
+                "tag": {
+                    "const": "serviceInstanceAlert",
+                    "enum": [
+                        "serviceInstanceAlert"
+                    ],
+                    "title": "Tag",
+                    "type": "string"
+                },
+                "serviceID": {
+                    "description": "Service unique identifier.",
+                    "minLength": 1,
+                    "title": "Serviceid",
+                    "type": "string"
+                },
+                "subjectID": {
+                    "description": "Subject unique identifier.",
+                    "minLength": 1,
+                    "title": "Subjectid",
+                    "type": "string"
+                },
+                "instance": {
+                    "description": "Instance number (starting from 0).",
+                    "title": "Instance",
+                    "type": "integer"
+                },
+                "version": {
+                    "description": "Version in format of the SemVer.",
+                    "title": "Version",
+                    "type": "string"
+                },
+                "message": {
+                    "description": "Error information retrieved for the alert.",
+                    "maxLength": 32768,
+                    "minLength": 1,
+                    "title": "Message",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "timestamp",
+                "serviceID",
+                "subjectID",
+                "instance",
+                "version",
+                "message"
+            ],
+            "title": "AosAlertServiceInstance",
+            "type": "object"
+        },
+        "AosAlertSystemError": {
+            "description": "Aos Unit system error alert information.",
+            "properties": {
+                "timestamp": {
+                    "description": "Timestamp when alert was triggered in ISO8601 format.",
+                    "format": "date-time",
+                    "title": "Timestamp",
+                    "type": "string"
+                },
+                "tag": {
+                    "const": "systemAlert",
+                    "description": "Type of the alert.",
+                    "enum": [
+                        "systemAlert"
+                    ],
+                    "title": "Tag",
+                    "type": "string"
+                },
+                "nodeId": {
+                    "description": "Unique ID of the node.",
+                    "title": "Node ID",
+                    "type": "string"
+                },
+                "message": {
+                    "description": "Error information retrieved for the alert.",
+                    "maxLength": 32768,
+                    "minLength": 1,
+                    "title": "Message",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "timestamp",
+                "tag",
+                "nodeId",
+                "message"
+            ],
+            "title": "AosAlertSystemError",
+            "type": "object"
+        },
+        "AosAlertSystemQuota": {
+            "description": "Aos Unit system quota alert information.",
+            "properties": {
+                "timestamp": {
+                    "description": "Timestamp when alert was triggered in ISO8601 format.",
+                    "format": "date-time",
+                    "title": "Timestamp",
+                    "type": "string"
+                },
+                "tag": {
+                    "const": "systemQuotaAlert",
+                    "description": "Type of the alert.",
+                    "enum": [
+                        "systemQuotaAlert"
+                    ],
+                    "title": "Tag",
+                    "type": "string"
+                },
+                "nodeId": {
+                    "description": "Unique ID of the node.",
+                    "title": "Node ID",
+                    "type": "string"
+                },
+                "parameter": {
+                    "description": "Parameter name of the system quota.",
+                    "maxLength": 100,
+                    "minLength": 1,
+                    "title": "Parameter",
+                    "type": "string"
+                },
+                "value": {
+                    "description": "Triggered value of the parameter.",
+                    "minimum": 0,
+                    "title": "Value",
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "timestamp",
+                "tag",
+                "nodeId",
+                "parameter",
+                "value"
+            ],
+            "title": "AosAlertSystemQuota",
+            "type": "object"
+        },
+        "AosAlerts": {
+            "properties": {
+                "messageType": {
+                    "const": "alerts",
+                    "description": "message body type",
+                    "enum": [
+                        "alerts"
+                    ],
+                    "title": "Messagetype",
+                    "type": "string"
+                },
+                "items": {
+                    "description": "List of AosEdge alert items.",
+                    "items": {
+                        "discriminator": {
+                            "mapping": {
+                                "coreAlert": "#/$defs/AosAlertCore",
+                                "deviceAllocateAlert": "#/$defs/AosAlertDeviceAllocate",
+                                "downloadProgressAlert": "#/$defs/AosAlertDownloadProgress",
+                                "instanceQuotaAlert": "#/$defs/AosAlertInstanceQuota",
+                                "resourceValidateAlert": "#/$defs/AosAlertResourceValidate",
+                                "serviceInstanceAlert": "#/$defs/AosAlertServiceInstance",
+                                "systemAlert": "#/$defs/AosAlertSystemError",
+                                "systemQuotaAlert": "#/$defs/AosAlertSystemQuota"
+                            },
+                            "propertyName": "tag"
+                        },
+                        "oneOf": [
+                            {
+                                "$ref": "#/$defs/AosAlertCore"
+                            },
+                            {
+                                "$ref": "#/$defs/AosAlertDeviceAllocate"
+                            },
+                            {
+                                "$ref": "#/$defs/AosAlertDownloadProgress"
+                            },
+                            {
+                                "$ref": "#/$defs/AosAlertInstanceQuota"
+                            },
+                            {
+                                "$ref": "#/$defs/AosAlertServiceInstance"
+                            },
+                            {
+                                "$ref": "#/$defs/AosAlertSystemError"
+                            },
+                            {
+                                "$ref": "#/$defs/AosAlertSystemQuota"
+                            },
+                            {
+                                "$ref": "#/$defs/AosAlertResourceValidate"
+                            }
+                        ]
+                    },
+                    "title": "Items",
+                    "type": "array"
+                }
+            },
+            "required": [
+                "messageType",
+                "items"
+            ],
+            "title": "AosAlerts",
+            "type": "object"
+        },
+        "AosCertificateChainInfo": {
+            "description": "Certificate content and fingerprint.",
+            "properties": {
+                "name": {
+                    "description": "Unique name of the certificate chain.",
+                    "title": "Name",
+                    "type": "string"
+                },
+                "fingerprints": {
+                    "description": "Fingerprint list of the certificates included in the chain.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "title": "Fingerprints",
+                    "type": "array"
+                }
+            },
+            "required": [
+                "name",
+                "fingerprints"
+            ],
+            "title": "AosCertificateChainInfo",
+            "type": "object"
+        },
+        "AosCertificateIdentification": {
+            "description": "Certificate identification data.",
+            "properties": {
+                "type": {
+                    "description": "Type of the certificate.",
+                    "enum": [
+                        "offline",
+                        "online",
+                        "um",
+                        "sm",
+                        "cm",
+                        "iam",
+                        "host-device",
+                        "remote-device",
+                        "azure-iot"
+                    ],
+                    "title": "Type of the certificate",
+                    "type": "string"
+                },
+                "nodeId": {
+                    "description": "Unique ID of the node.",
+                    "title": "Node ID",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "type",
+                "nodeId"
+            ],
+            "title": "AosCertificateIdentification",
+            "type": "object"
+        },
+        "AosCertificateInfo": {
+            "description": "Certificate content and fingerprint.",
+            "properties": {
+                "certificate": {
+                    "description": "Base64 encoded certificate in the `der` form.",
+                    "format": "base64",
+                    "title": "Certificate",
+                    "type": "string"
+                },
+                "fingerprint": {
+                    "description": "Fingerprint of the certificate (unique ID)",
+                    "title": "Fingerprint",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "certificate",
+                "fingerprint"
+            ],
+            "title": "AosCertificateInfo",
+            "type": "object"
+        },
+        "AosComponentInfo": {
+            "description": "Aos component info.\n\nAosEdge uses this struct to report information about Unit's components",
+            "properties": {
+                "id": {
+                    "description": "Component unique identifier.",
+                    "title": "Component ID",
+                    "type": "string"
+                },
+                "type": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "type of the component",
+                    "title": "Type"
+                },
+                "version": {
+                    "description": "Version in format of the SemVer.",
+                    "title": "Version",
+                    "type": "string"
+                },
+                "statuses": {
+                    "description": "List of component statuses for each node",
+                    "items": {
+                        "$ref": "#/$defs/AosComponentStatusInfo"
+                    },
+                    "title": "Statuses",
+                    "type": "array"
+                },
+                "annotations": {
+                    "default": null,
+                    "description": "Additional information about this component",
+                    "title": "Annotations",
+                    "type": "object"
+                }
+            },
+            "required": [
+                "id",
+                "version",
+                "statuses"
+            ],
+            "title": "AosComponentInfo",
+            "type": "object"
+        },
+        "AosComponentStatusInfo": {
+            "description": "Aos component status info.\n\nThe structure encapsulates information about the component current status such as:\n- nodes that contain this component\n- component status on each node",
+            "properties": {
+                "nodeId": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "IDs list of nodes this component is part of. Can be omitted for some statuses",
+                    "title": "Nodeid"
+                },
+                "status": {
+                    "description": "current status of the item",
+                    "enum": [
+                        "installed",
+                        "downloading",
+                        "failed",
+                        "error"
+                    ],
+                    "title": "Status",
+                    "type": "string"
+                },
+                "errorInfo": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/AosErrorInfo"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Error information. Absense means no error."
+                }
+            },
+            "required": [
+                "status"
+            ],
+            "title": "AosComponentStatusInfo",
+            "type": "object"
+        },
+        "AosDecryptionInfo": {
+            "description": "Information for the decryption.",
+            "properties": {
+                "blockAlg": {
+                    "const": "AES256/CBC/pkcs7",
+                    "default": "AES256/CBC/pkcs7",
+                    "description": "Used block cipher in form: `cipher/mode/padding`.",
+                    "enum": [
+                        "AES256/CBC/pkcs7"
+                    ],
+                    "title": "Blockalg",
+                    "type": "string"
+                },
+                "blockIv": {
+                    "description": "Initialization vector for encryption/decryption.",
+                    "format": "base64",
+                    "title": "Blockiv",
+                    "type": "string"
+                },
+                "blockKey": {
+                    "description": "Symmetric block key value.",
+                    "format": "base64",
+                    "title": "Blockkey",
+                    "type": "string"
+                },
+                "asymAlg": {
+                    "default": "RSA/PKCS1v1_5",
+                    "description": "Used asymmetric cipher in form: `cipher/padding`.",
+                    "enum": [
+                        "RSA/PKCS1v1_5",
+                        "RSA/PSS"
+                    ],
+                    "title": "Asymalg",
+                    "type": "string"
+                },
+                "receiverInfo": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/AosReceiverInfo"
+                        }
+                    ],
+                    "description": "Receiver info to detect used key."
+                }
+            },
+            "required": [
+                "blockIv",
+                "blockKey",
+                "receiverInfo"
+            ],
+            "title": "AosDecryptionInfo",
+            "type": "object"
+        },
+        "AosDesiredComponentInfo": {
+            "description": "Component info sent from the AosEdge Cloud.",
+            "properties": {
+                "id": {
+                    "description": "Component unique identifier.",
+                    "title": "Component ID",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "Component unique type identifier",
+                    "examples": [
+                        "rootfs",
+                        "bios"
+                    ],
+                    "title": "Component type ID",
+                    "type": "string"
+                },
+                "version": {
+                    "description": "Version in format of the SemVer.",
+                    "title": "Version",
+                    "type": "string"
+                },
+                "annotations": {
+                    "default": null,
+                    "description": "Additional information about this component",
+                    "title": "Annotations",
+                    "type": "object"
+                },
+                "urls": {
+                    "description": "the list of urls pointer to the same target",
+                    "items": {
+                        "type": "string"
+                    },
+                    "minItems": 1,
+                    "title": "Urls",
+                    "type": "array"
+                },
+                "sha256": {
+                    "description": "SHA3-256 digest of the target",
+                    "format": "base64",
+                    "title": "Sha256",
+                    "type": "string"
+                },
+                "size": {
+                    "description": "size of the file in bytes",
+                    "title": "Size",
+                    "type": "integer"
+                },
+                "decryptionInfo": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/AosDecryptionInfo"
+                        }
+                    ],
+                    "description": "Object with information to decrypt the component."
+                }
+            },
+            "required": [
+                "id",
+                "type",
+                "version",
+                "urls",
+                "sha256",
+                "size",
+                "decryptionInfo"
+            ],
+            "title": "AosDesiredComponentInfo",
+            "type": "object"
+        },
+        "AosDesiredInstanceInfo": {
+            "description": "Service info sent from the AosEdge Cloud.",
+            "properties": {
+                "serviceId": {
+                    "description": "Unique ID of the service.",
+                    "title": "Service ID",
+                    "type": "string"
+                },
+                "subjectId": {
+                    "description": "Unique ID of the subject.",
+                    "title": "Subject ID",
+                    "type": "string"
+                },
+                "priority": {
+                    "description": "Priority of the service instance.",
+                    "exclusiveMaximum": 1000000,
+                    "minimum": 0,
+                    "title": "Priority",
+                    "type": "integer"
+                },
+                "numInstances": {
+                    "default": 1,
+                    "description": "Number of service instances to run.",
+                    "exclusiveMinimum": 0,
+                    "title": "Numinstances",
+                    "type": "integer"
+                },
+                "labels": {
+                    "default": null,
+                    "description": "Label list associated with the service.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "title": "Labels",
+                    "type": "array"
+                }
+            },
+            "required": [
+                "serviceId",
+                "subjectId",
+                "priority"
+            ],
+            "title": "AosDesiredInstanceInfo",
+            "type": "object"
+        },
+        "AosDesiredLayerInfo": {
+            "description": "Layer info sent from the AosEdge Cloud.",
+            "properties": {
+                "id": {
+                    "description": "Unique ID of the layer",
+                    "examples": [
+                        "python3.12-libs"
+                    ],
+                    "title": "Id",
+                    "type": "string"
+                },
+                "version": {
+                    "description": "Version in format of the SemVer.",
+                    "title": "Version",
+                    "type": "string"
+                },
+                "digest": {
+                    "description": "Digest of the layer.",
+                    "title": "Digest",
+                    "type": "string"
+                },
+                "urls": {
+                    "description": "the list of urls pointer to the same target",
+                    "items": {
+                        "type": "string"
+                    },
+                    "minItems": 1,
+                    "title": "Urls",
+                    "type": "array"
+                },
+                "sha256": {
+                    "description": "SHA3-256 digest of the target",
+                    "format": "base64",
+                    "title": "Sha256",
+                    "type": "string"
+                },
+                "size": {
+                    "description": "size of the file in bytes",
+                    "title": "Size",
+                    "type": "integer"
+                },
+                "decryptionInfo": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/AosDecryptionInfo"
+                        }
+                    ],
+                    "description": "Object with information for decryption."
+                }
+            },
+            "required": [
+                "id",
+                "version",
+                "digest",
+                "urls",
+                "sha256",
+                "size",
+                "decryptionInfo"
+            ],
+            "title": "AosDesiredLayerInfo",
+            "type": "object"
+        },
+        "AosDesiredServiceInfo": {
+            "description": "Service info sent from the AosEdge Cloud.",
+            "properties": {
+                "id": {
+                    "description": "Unique ID of the service",
+                    "title": "Id",
+                    "type": "string"
+                },
+                "providerId": {
+                    "description": "Unique ID of the service provider",
+                    "title": "Providerid",
+                    "type": "string"
+                },
+                "version": {
+                    "description": "Version in format of the SemVer.",
+                    "title": "Version",
+                    "type": "string"
+                },
+                "urls": {
+                    "description": "the list of urls pointer to the same target",
+                    "items": {
+                        "type": "string"
+                    },
+                    "minItems": 1,
+                    "title": "Urls",
+                    "type": "array"
+                },
+                "sha256": {
+                    "description": "SHA3-256 digest of the target",
+                    "format": "base64",
+                    "title": "Sha256",
+                    "type": "string"
+                },
+                "size": {
+                    "description": "size of the file in bytes",
+                    "title": "Size",
+                    "type": "integer"
+                },
+                "decryptionInfo": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/AosDecryptionInfo"
+                        }
+                    ],
+                    "description": "Object with information for decryption."
+                }
+            },
+            "required": [
+                "id",
+                "providerId",
+                "version",
+                "urls",
+                "sha256",
+                "size",
+                "decryptionInfo"
+            ],
+            "title": "AosDesiredServiceInfo",
+            "type": "object"
+        },
+        "AosDesiredStatus": {
+            "description": "AosUnit protocol: 'desiredStatus' message.\n\nUnit reports all current status information using this message",
+            "properties": {
+                "messageType": {
+                    "const": "desiredStatus",
+                    "description": "Type of the message body.",
+                    "enum": [
+                        "desiredStatus"
+                    ],
+                    "title": "Messagetype",
+                    "type": "string"
+                },
+                "nodes": {
+                    "default": null,
+                    "description": "The list of desired node's status.",
+                    "items": {
+                        "$ref": "#/$defs/AosNodeDesiredState"
+                    },
+                    "title": "Nodes",
+                    "type": "array"
+                },
+                "unitConfig": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/UnitConfig"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Desired unit config dictionary."
+                },
+                "components": {
+                    "default": null,
+                    "description": "List of the desired components.",
+                    "items": {
+                        "$ref": "#/$defs/AosDesiredComponentInfo"
+                    },
+                    "title": "Components",
+                    "type": "array"
+                },
+                "layers": {
+                    "default": null,
+                    "description": "List of the desired layers.",
+                    "items": {
+                        "$ref": "#/$defs/AosDesiredLayerInfo"
+                    },
+                    "title": "Layers",
+                    "type": "array"
+                },
+                "services": {
+                    "default": null,
+                    "description": "List of the desired services. If absent or null - do nothing.",
+                    "items": {
+                        "$ref": "#/$defs/AosDesiredServiceInfo"
+                    },
+                    "title": "Services",
+                    "type": "array"
+                },
+                "instances": {
+                    "default": null,
+                    "description": "List of the desired services instances. If absent or null - do nothing.",
+                    "items": {
+                        "$ref": "#/$defs/AosDesiredInstanceInfo"
+                    },
+                    "title": "Instances",
+                    "type": "array"
+                },
+                "fotaSchedule": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/AosScheduleRule"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Points to rules when FOTA can be applied."
+                },
+                "sotaSchedule": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/AosScheduleRule"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Points to rules when SOTA can be applied."
+                },
+                "certificates": {
+                    "default": null,
+                    "description": "The list of the used certificates",
+                    "items": {
+                        "$ref": "#/$defs/AosCertificateInfo"
+                    },
+                    "title": "Certificates",
+                    "type": "array"
+                },
+                "certificateChains": {
+                    "default": null,
+                    "description": "Certificate chains info for checking signs.",
+                    "items": {
+                        "$ref": "#/$defs/AosCertificateChainInfo"
+                    },
+                    "title": "Certificatechains",
+                    "type": "array"
+                }
+            },
+            "required": [
+                "messageType"
+            ],
+            "title": "AosDesiredStatus",
+            "type": "object"
+        },
+        "AosDeviceInfo": {
+            "properties": {
+                "name": {
+                    "description": "Name of the device.",
+                    "title": "Name",
+                    "type": "string"
+                },
+                "hostDevices": {
+                    "description": "List of host devices.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "title": "Hostdevices",
+                    "type": "array"
+                },
+                "sharedCount": {
+                    "default": null,
+                    "description": "Number of possible shares of the device.",
+                    "exclusiveMinimum": 0,
+                    "title": "Sharedcount",
+                    "type": "integer"
+                },
+                "groups": {
+                    "default": null,
+                    "description": "List of associated groups.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "title": "Groups",
+                    "type": "array"
+                }
+            },
+            "required": [
+                "name",
+                "hostDevices"
+            ],
+            "title": "AosDeviceInfo",
+            "type": "object"
+        },
+        "AosEnvVar": {
+            "properties": {
+                "name": {
+                    "description": "The name of the environment variable.",
+                    "examples": [
+                        "PATH",
+                        "_TMP"
+                    ],
+                    "maxLength": 256,
+                    "minLength": 1,
+                    "title": "Name",
+                    "type": "string"
+                },
+                "value": {
+                    "description": "The value of the environment variable.",
+                    "examples": [
+                        "",
+                        "/tmp"
+                    ],
+                    "maxLength": 10240,
+                    "minLength": 0,
+                    "title": "Value",
+                    "type": "string"
+                },
+                "ttl": {
+                    "default": null,
+                    "description": "Time to live of the variable in form `HH:MM[:SS]`. Optional. Empty or 0 means forever.",
+                    "format": "time",
+                    "title": "TTL",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name",
+                "value"
+            ],
+            "title": "AosEnvVar",
+            "type": "object"
+        },
+        "AosEnvVarStatus": {
+            "description": "The current status of the environment variable.",
+            "properties": {
+                "serviceId": {
+                    "default": null,
+                    "description": "Unique ID of the service.",
+                    "title": "Service ID",
+                    "type": "string"
+                },
+                "subjectId": {
+                    "default": null,
+                    "description": "Unique ID of the subject.",
+                    "title": "Subject ID",
+                    "type": "string"
+                },
+                "instance": {
+                    "default": null,
+                    "description": "The instance number of the service. Starts from 0.",
+                    "title": "Instance no",
+                    "type": "integer"
+                },
+                "id": {
+                    "description": "The unique identifier (name) of the variable.",
+                    "title": "ID (name)",
+                    "type": "string"
+                },
+                "errorInfo": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/AosErrorInfo"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Error information. Absense means no error."
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "AosEnvVarStatus",
+            "type": "object"
+        },
+        "AosErrorInfo": {
+            "description": "AosUnit error info structure.\n\nEncapsulates a structure for AosUnit error info.\nAll fields are optional. In this case treated as no error.",
+            "properties": {
+                "aosCode": {
+                    "default": null,
+                    "description": "AosCore error code.",
+                    "title": "Aos error code",
+                    "type": "integer"
+                },
+                "exitCode": {
+                    "default": null,
+                    "description": "Module error code.",
+                    "title": "Exit code",
+                    "type": "integer"
+                },
+                "message": {
+                    "default": null,
+                    "description": "Text of the error description.",
+                    "title": "Error message",
+                    "type": "string"
+                }
+            },
+            "title": "AosErrorInfo",
+            "type": "object"
+        },
+        "AosFileSystemMount": {
+            "properties": {
+                "destination": {
+                    "description": "The mount's destination.",
+                    "title": "Destination",
+                    "type": "string"
+                },
+                "source": {
+                    "default": null,
+                    "description": "The mount's source.",
+                    "title": "Source",
+                    "type": "string"
+                },
+                "type": {
+                    "default": null,
+                    "description": "The mount's type.",
+                    "title": "Type",
+                    "type": "string"
+                },
+                "options": {
+                    "default": null,
+                    "description": "The mount's options.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "title": "Options",
+                    "type": "array"
+                }
+            },
+            "required": [
+                "destination"
+            ],
+            "title": "AosFileSystemMount",
+            "type": "object"
+        },
+        "AosHostRecord": {
+            "properties": {
+                "ip": {
+                    "description": "IP address.",
+                    "title": "IP address",
+                    "type": "string"
+                },
+                "hostname": {
+                    "description": "The hostname for the IP address.",
+                    "title": "Hostname",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "ip",
+                "hostname"
+            ],
+            "title": "AosHostRecord",
+            "type": "object"
+        },
+        "AosInstallCertData": {
+            "description": "InstallCertData install certificate data.",
+            "properties": {
+                "type": {
+                    "description": "Type of the certificate.",
+                    "enum": [
+                        "offline",
+                        "online",
+                        "um",
+                        "sm",
+                        "cm",
+                        "iam",
+                        "host-device",
+                        "remote-device",
+                        "azure-iot"
+                    ],
+                    "title": "Type of the certificate",
+                    "type": "string"
+                },
+                "nodeId": {
+                    "description": "Unique ID of the node.",
+                    "title": "Node ID",
+                    "type": "string"
+                },
+                "serial": {
+                    "description": "Serial of the Certificate.",
+                    "title": "Serial of the Certificate",
+                    "type": "string"
+                },
+                "status": {
+                    "description": "current status of the item",
+                    "enum": [
+                        "installed",
+                        "downloading",
+                        "failed",
+                        "error"
+                    ],
+                    "title": "Status",
+                    "type": "string"
+                },
+                "description": {
+                    "default": null,
+                    "description": "Description of the Certificate Installation",
+                    "title": "Description",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "type",
+                "nodeId",
+                "serial",
+                "status"
+            ],
+            "title": "AosInstallCertData",
+            "type": "object"
+        },
+        "AosInstallUnitCertificatesConfirmation": {
+            "description": "AosUnit protocol: 'installUnitCertificatesConfirmation' message.\n\nUnit sends confirmation that certificates ware installed.",
+            "properties": {
+                "messageType": {
+                    "const": "installUnitCertificatesConfirmation",
+                    "description": "Message body type.",
+                    "enum": [
+                        "installUnitCertificatesConfirmation"
+                    ],
+                    "title": "Message type",
+                    "type": "string"
+                },
+                "requests": {
+                    "description": "Request to issue certificates.",
+                    "items": {
+                        "$ref": "#/$defs/AosInstallCertData"
+                    },
+                    "title": "Request to issue certificates",
+                    "type": "array"
+                }
+            },
+            "required": [
+                "messageType",
+                "requests"
+            ],
+            "title": "AosInstallUnitCertificatesConfirmation",
+            "type": "object"
+        },
+        "AosInstanceMonitoringData": {
+            "description": "AosEdge unit monitoring data for service.",
+            "properties": {
+                "serviceId": {
+                    "description": "Unique ID of the service.",
+                    "title": "Service ID",
+                    "type": "string"
+                },
+                "subjectId": {
+                    "description": "Unique ID of the subject.",
+                    "title": "Subject ID",
+                    "type": "string"
+                },
+                "instance": {
+                    "description": "The instance number of the service. Starts from 0.",
+                    "title": "Instance no",
+                    "type": "integer"
+                },
+                "nodeId": {
+                    "description": "Unique ID of the node.",
+                    "title": "Node ID",
+                    "type": "string"
+                },
+                "items": {
+                    "description": "List of the monitoring records",
+                    "items": {
+                        "$ref": "#/$defs/AosMonitoringData"
+                    },
+                    "title": "Items",
+                    "type": "array"
+                }
+            },
+            "required": [
+                "serviceId",
+                "subjectId",
+                "instance",
+                "nodeId",
+                "items"
+            ],
+            "title": "AosInstanceMonitoringData",
+            "type": "object"
+        },
+        "AosIssueCertData": {
+            "description": "IssueCertData issue certificate data.",
+            "properties": {
+                "type": {
+                    "description": "Type of the certificate.",
+                    "enum": [
+                        "offline",
+                        "online",
+                        "um",
+                        "sm",
+                        "cm",
+                        "iam",
+                        "host-device",
+                        "remote-device",
+                        "azure-iot"
+                    ],
+                    "title": "Type of the certificate",
+                    "type": "string"
+                },
+                "nodeId": {
+                    "description": "Unique ID of the node.",
+                    "title": "Node ID",
+                    "type": "string"
+                },
+                "csr": {
+                    "description": "Certificate Signing Request.",
+                    "title": "CSR",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "type",
+                "nodeId",
+                "csr"
+            ],
+            "title": "AosIssueCertData",
+            "type": "object"
+        },
+        "AosIssueUnitCertificates": {
+            "description": "AosUnit protocol: 'issueUnitCertificates' message.\n\nUnit sends issue unit certificates request.",
+            "properties": {
+                "messageType": {
+                    "const": "issueUnitCertificates",
+                    "description": "Message body type.",
+                    "enum": [
+                        "issueUnitCertificates"
+                    ],
+                    "title": "Message type",
+                    "type": "string"
+                },
+                "requests": {
+                    "description": "Request to issue certificates.",
+                    "items": {
+                        "$ref": "#/$defs/AosIssueCertData"
+                    },
+                    "title": "Request to issue certificates",
+                    "type": "array"
+                }
+            },
+            "required": [
+                "messageType",
+                "requests"
+            ],
+            "title": "AosIssueUnitCertificates",
+            "type": "object"
+        },
+        "AosIssuedUnitCertificates": {
+            "description": "AosUnit protocol: 'issuedUnitCertificates' message.\n\nCloud sends issued unit certificates info.",
+            "properties": {
+                "messageType": {
+                    "const": "issuedUnitCertificates",
+                    "description": "Message body type.",
+                    "enum": [
+                        "issuedUnitCertificates"
+                    ],
+                    "title": "Message type",
+                    "type": "string"
+                },
+                "certificates": {
+                    "description": "The list of certificates that were issued.",
+                    "items": {
+                        "$ref": "#/$defs/AosIssuedUnitCerts"
+                    },
+                    "title": "Certificates",
+                    "type": "array"
+                }
+            },
+            "required": [
+                "messageType",
+                "certificates"
+            ],
+            "title": "AosIssuedUnitCertificates",
+            "type": "object"
+        },
+        "AosIssuedUnitCerts": {
+            "description": "IssuedUnitCerts issued unit certificates info.",
+            "properties": {
+                "type": {
+                    "description": "Type of the certificate.",
+                    "enum": [
+                        "offline",
+                        "online",
+                        "um",
+                        "sm",
+                        "cm",
+                        "iam",
+                        "host-device",
+                        "remote-device",
+                        "azure-iot"
+                    ],
+                    "title": "Type of the certificate",
+                    "type": "string"
+                },
+                "nodeId": {
+                    "description": "Unique ID of the node.",
+                    "title": "Node ID",
+                    "type": "string"
+                },
+                "certificateChain": {
+                    "description": "Chain of certificates.",
+                    "title": "Chain of certificates",
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "type",
+                "nodeId",
+                "certificateChain"
+            ],
+            "title": "AosIssuedUnitCerts",
+            "type": "object"
+        },
+        "AosLayerStatusInfo": {
+            "description": "Layer status info.",
+            "properties": {
+                "id": {
+                    "description": "Unique ID of the layer",
+                    "examples": [
+                        "python3.12-libs"
+                    ],
+                    "title": "Id",
+                    "type": "string"
+                },
+                "version": {
+                    "description": "Version in format of the SemVer.",
+                    "title": "Version",
+                    "type": "string"
+                },
+                "digest": {
+                    "description": "Digest of the layer.",
+                    "title": "Digest",
+                    "type": "string"
+                },
+                "status": {
+                    "description": "The current (reported) status of the service instance.",
+                    "enum": [
+                        "downloading",
+                        "downloaded"
+                    ],
+                    "title": "Status",
+                    "type": "string"
+                },
+                "errorInfo": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/AosErrorInfo"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Error information. Absense means no error."
+                }
+            },
+            "required": [
+                "id",
+                "version",
+                "digest",
+                "status"
+            ],
+            "title": "AosLayerStatusInfo",
+            "type": "object"
+        },
+        "AosLogFilter": {
+            "description": "The filter options applied to logs.",
+            "properties": {
+                "from": {
+                    "default": null,
+                    "description": "End timestamp of the logs in ISO8601 format. Applied operator: `<`.",
+                    "format": "date-time",
+                    "title": "From",
+                    "type": "string"
+                },
+                "nodeIds": {
+                    "default": null,
+                    "description": "The optional list of the Nodes to look for logs. The absense means all nodes.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "title": "Nodes",
+                    "type": "array"
+                },
+                "serviceId": {
+                    "default": null,
+                    "description": "Unique ID of the service.",
+                    "title": "Service ID",
+                    "type": "string"
+                },
+                "subjectId": {
+                    "default": null,
+                    "description": "Unique ID of the subject.",
+                    "title": "Subject ID",
+                    "type": "string"
+                },
+                "instance": {
+                    "default": null,
+                    "description": "The instance number of the service. Starts from 0.",
+                    "title": "Instance no",
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "from"
+            ],
+            "title": "AosLogFilter",
+            "type": "object"
+        },
+        "AosMonitoring": {
+            "properties": {
+                "messageType": {
+                    "const": "monitoringData",
+                    "description": "message body type",
+                    "enum": [
+                        "monitoringData"
+                    ],
+                    "title": "Messagetype",
+                    "type": "string"
+                },
+                "nodes": {
+                    "description": "List of AosEdge unit monitoring items",
+                    "items": {
+                        "$ref": "#/$defs/AosNodeMonitoringData"
+                    },
+                    "title": "Nodes",
+                    "type": "array"
+                },
+                "serviceInstances": {
+                    "default": null,
+                    "description": "List of AosEdge unit monitoring got from services.",
+                    "items": {
+                        "$ref": "#/$defs/AosInstanceMonitoringData"
+                    },
+                    "title": "Serviceinstances",
+                    "type": "array"
+                }
+            },
+            "required": [
+                "messageType",
+                "nodes"
+            ],
+            "title": "AosMonitoring",
+            "type": "object"
+        },
+        "AosMonitoringData": {
+            "description": "AosEdge monitoring data.",
+            "properties": {
+                "timestamp": {
+                    "description": "Timestamp when unit monitoring was recorded in ISO8601 format",
+                    "format": "date-time",
+                    "title": "Timestamp",
+                    "type": "string"
+                },
+                "ram": {
+                    "description": "RAM Parameter of unit monitoring",
+                    "title": "Ram",
+                    "type": "integer"
+                },
+                "cpu": {
+                    "description": "CPU Parameter of unit monitoring",
+                    "title": "Cpu",
+                    "type": "integer"
+                },
+                "inTraffic": {
+                    "default": null,
+                    "description": "In Traffic Parameter of unit monitoring",
+                    "title": "Intraffic",
+                    "type": "integer"
+                },
+                "outTraffic": {
+                    "default": null,
+                    "description": "Out Traffic Parameter of unit monitoring",
+                    "title": "Outtraffic",
+                    "type": "integer"
+                },
+                "disk": {
+                    "default": null,
+                    "description": "Usage of disk partitions",
+                    "items": {
+                        "$ref": "#/$defs/AosPartitionUsage"
+                    },
+                    "title": "Disk",
+                    "type": "array"
+                }
+            },
+            "required": [
+                "timestamp",
+                "ram",
+                "cpu"
+            ],
+            "title": "AosMonitoringData",
+            "type": "object"
+        },
+        "AosNewState": {
+            "description": "AosUnit protocol: 'newState' message.\n\nUnit reports service state changes using this message.",
+            "properties": {
+                "messageType": {
+                    "const": "newState",
+                    "description": "Message body type.",
+                    "enum": [
+                        "newState"
+                    ],
+                    "title": "Message type",
+                    "type": "string"
+                },
+                "serviceId": {
+                    "description": "Unique ID of the service.",
+                    "title": "Service ID",
+                    "type": "string"
+                },
+                "subjectId": {
+                    "description": "Unique ID of the subject.",
+                    "title": "Subject ID",
+                    "type": "string"
+                },
+                "instance": {
+                    "description": "The instance number of the service. Starts from 0.",
+                    "title": "Instance no",
+                    "type": "integer"
+                },
+                "stateChecksum": {
+                    "description": "The checksum (digest) over state content",
+                    "maxLength": 256,
+                    "minLength": 1,
+                    "title": "State checksum (digest)",
+                    "type": "string"
+                },
+                "state": {
+                    "description": "The state content",
+                    "minLength": 0,
+                    "title": "State content",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "messageType",
+                "serviceId",
+                "subjectId",
+                "instance",
+                "stateChecksum",
+                "state"
+            ],
+            "title": "AosNewState",
+            "type": "object"
+        },
+        "AosNodeCPUInfo": {
+            "properties": {
+                "modelName": {
+                    "default": null,
+                    "title": "Modelname",
+                    "type": "string"
+                },
+                "totalNumCores": {
+                    "default": null,
+                    "title": "Totalnumcores",
+                    "type": "integer"
+                },
+                "totalNumThreads": {
+                    "default": null,
+                    "title": "Totalnumthreads",
+                    "type": "integer"
+                },
+                "arch": {
+                    "enum": [
+                        "x86",
+                        "x86_64",
+                        "arm32",
+                        "arm64"
+                    ],
+                    "title": "Arch",
+                    "type": "string"
+                },
+                "archFamily": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "examples": [
+                        "ARMv7",
+                        "ARMv8",
+                        "ARMv9"
+                    ],
+                    "title": "Archfamily"
+                },
+                "maxDmips": {
+                    "anyOf": [
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Maxdmips"
+                }
+            },
+            "required": [
+                "arch"
+            ],
+            "title": "AosNodeCPUInfo",
+            "type": "object"
+        },
+        "AosNodeDesiredState": {
+            "description": "Desired node status.",
+            "properties": {
+                "nodeId": {
+                    "description": "Unique ID of the node.",
+                    "title": "Node ID",
+                    "type": "string"
+                },
+                "status": {
+                    "description": "The desired status of the node.",
+                    "enum": [
+                        "provisioned",
+                        "paused"
+                    ],
+                    "title": "Status",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "nodeId",
+                "status"
+            ],
+            "title": "AosNodeDesiredState",
+            "type": "object"
+        },
+        "AosNodeMonitoringData": {
+            "description": "AosEdge unit monitoring information.",
+            "properties": {
+                "nodeId": {
+                    "description": "Unique ID of the node.",
+                    "title": "Node ID",
+                    "type": "string"
+                },
+                "items": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/AosMonitoringData"
+                        }
+                    ],
+                    "default": null,
+                    "description": "List of the monitoring records."
+                }
+            },
+            "required": [
+                "nodeId"
+            ],
+            "title": "AosNodeMonitoringData",
+            "type": "object"
+        },
+        "AosNodePartitionInfo": {
+            "description": "Aos node partition info.",
+            "properties": {
+                "name": {
+                    "title": "Name",
+                    "type": "string"
+                },
+                "types": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "title": "List of types",
+                    "type": "array"
+                },
+                "totalSize": {
+                    "title": "Total size",
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "name",
+                "types",
+                "totalSize"
+            ],
+            "title": "AosNodePartitionInfo",
+            "type": "object"
+        },
+        "AosOverrideEnvVarsRequest": {
+            "description": "AosUnit protocol: 'overrideEnvVarsStatus' message.\n\nUnit reports EnvVar changes using this message.",
+            "properties": {
+                "messageType": {
+                    "const": "overrideEnvVar",
+                    "description": "Message body type.",
+                    "enum": [
+                        "overrideEnvVar"
+                    ],
+                    "title": "Message type",
+                    "type": "string"
+                },
+                "items": {
+                    "description": "The list of filters and environment variables to apply.",
+                    "items": {
+                        "$ref": "#/$defs/AosServiceEnvVar"
+                    },
+                    "title": "List of filters and variables",
+                    "type": "array"
+                }
+            },
+            "required": [
+                "messageType",
+                "items"
+            ],
+            "title": "AosOverrideEnvVarsRequest",
+            "type": "object"
+        },
+        "AosOverrideEnvVarsStatuses": {
+            "description": "AosUnit protocol: 'overrideEnvVarsStatus' message.\n\nUnit reports EnvVar changes using this message.",
+            "properties": {
+                "messageType": {
+                    "const": "overrideEnvVarsStatus",
+                    "description": "Message body type.",
+                    "enum": [
+                        "overrideEnvVarsStatus"
+                    ],
+                    "title": "Message type",
+                    "type": "string"
+                },
+                "statuses": {
+                    "description": "The list of environment variables and their statuses.",
+                    "items": {
+                        "$ref": "#/$defs/AosEnvVarStatus"
+                    },
+                    "title": "Statuses list",
+                    "type": "array"
+                }
+            },
+            "required": [
+                "messageType",
+                "statuses"
+            ],
+            "title": "AosOverrideEnvVarsStatuses",
+            "type": "object"
+        },
+        "AosPartitionUsage": {
+            "description": "PartitionUsage partition usage information.",
+            "properties": {
+                "name": {
+                    "description": "Name of disk partition",
+                    "title": "Name",
+                    "type": "string"
+                },
+                "usedSize": {
+                    "description": "Used of disk partition in bytes",
+                    "title": "Usedsize",
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "name",
+                "usedSize"
+            ],
+            "title": "AosPartitionUsage",
+            "type": "object"
+        },
+        "AosPushLog": {
+            "description": "AosUnit protocol: 'pushLog' message.\n\nUnit sends the specified logs to the Cloud.",
+            "properties": {
+                "messageType": {
+                    "const": "pushLog",
+                    "description": "Message body type.",
+                    "enum": [
+                        "pushLog"
+                    ],
+                    "title": "Message type",
+                    "type": "string"
+                },
+                "logId": {
+                    "description": "The unique log request ID. Used to group all results into the single batch.",
+                    "title": "Lod Request ID",
+                    "type": "string"
+                },
+                "nodeId": {
+                    "description": "Unique ID of the node.",
+                    "title": "Node ID",
+                    "type": "string"
+                },
+                "part": {
+                    "default": null,
+                    "description": "The No of the current part. Starts with 0.",
+                    "title": "Part #",
+                    "type": "integer"
+                },
+                "partsCount": {
+                    "default": null,
+                    "description": "The total count of parts.",
+                    "title": "Parts count",
+                    "type": "integer"
+                },
+                "content": {
+                    "default": null,
+                    "description": "The base64 encoded content of the specified part of the log file.",
+                    "format": "base64",
+                    "title": "Content",
+                    "type": "string"
+                },
+                "status": {
+                    "description": "The log status for the specified Node.",
+                    "enum": [
+                        "ok",
+                        "error",
+                        "empty",
+                        "absent"
+                    ],
+                    "title": "Status",
+                    "type": "string"
+                },
+                "error": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/AosErrorInfo"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The error information about getting the log.",
+                    "title": "Error info"
+                }
+            },
+            "required": [
+                "messageType",
+                "logId",
+                "nodeId",
+                "status"
+            ],
+            "title": "AosPushLog",
+            "type": "object"
+        },
+        "AosReceiverInfo": {
+            "description": "Information about receiver certificate.",
+            "properties": {
+                "serial": {
+                    "description": "Certificate serial number.",
+                    "title": "Serial",
+                    "type": "string"
+                },
+                "issuer": {
+                    "description": "Certificate `Issuer DN` field bytes.",
+                    "format": "base64",
+                    "title": "Issuer",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "serial",
+                "issuer"
+            ],
+            "title": "AosReceiverInfo",
+            "type": "object"
+        },
+        "AosRenewCertsNotification": {
+            "description": "AosUnit protocol: 'renewCertificatesNotification' message.\n\nCloud sends renew certificate notification from cloud with unit secrets.",
+            "properties": {
+                "messageType": {
+                    "const": "renewCertificatesNotification",
+                    "description": "Message body type.",
+                    "enum": [
+                        "renewCertificatesNotification"
+                    ],
+                    "title": "Message type",
+                    "type": "string"
+                },
+                "certificates": {
+                    "description": "The list of certificates that were renewed.",
+                    "items": {
+                        "$ref": "#/$defs/AosCertificateIdentification"
+                    },
+                    "title": "Certificates",
+                    "type": "array"
+                },
+                "unitSecret": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/AosUnitSecret"
+                        }
+                    ],
+                    "description": "The unit Secret",
+                    "title": "Unit Secret"
+                }
+            },
+            "required": [
+                "messageType",
+                "certificates",
+                "unitSecret"
+            ],
+            "title": "AosRenewCertsNotification",
+            "type": "object"
+        },
+        "AosRequestLog": {
+            "description": "AosUnit protocol: 'requestLog' message.\n\nCloud requests the specified logs from the Unit.",
+            "properties": {
+                "messageType": {
+                    "const": "requestLog",
+                    "description": "Message body type.",
+                    "enum": [
+                        "requestLog"
+                    ],
+                    "title": "Message type",
+                    "type": "string"
+                },
+                "logId": {
+                    "description": "The unique log request ID. Used to group all results into the single batch.",
+                    "title": "Lod Request ID",
+                    "type": "string"
+                },
+                "logType": {
+                    "description": "The type of requested logs.",
+                    "enum": [
+                        "systemLog",
+                        "serviceLog",
+                        "crashLog"
+                    ],
+                    "title": "Logtype",
+                    "type": "string"
+                },
+                "filter": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/AosLogFilter"
+                        }
+                    ],
+                    "description": "The filters for the requested logs.",
+                    "title": "Filter"
+                },
+                "uploadOptions": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/AosUploadLogOptions"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The upload options. The absense means use AMQPs channel."
+                }
+            },
+            "required": [
+                "messageType",
+                "logId",
+                "logType",
+                "filter"
+            ],
+            "title": "AosRequestLog",
+            "type": "object"
+        },
+        "AosScheduleRule": {
+            "description": "Aos schedule rule.",
+            "properties": {
+                "ttl": {
+                    "description": "TTL of the rule in seconds.",
+                    "title": "Ttl",
+                    "type": "integer"
+                },
+                "type": {
+                    "description": "Type of the Schedule rule.",
+                    "enum": [
+                        "force",
+                        "trigger",
+                        "timetable"
+                    ],
+                    "title": "Type",
+                    "type": "string"
+                },
+                "timetable": {
+                    "default": null,
+                    "description": "Timetable when rule must work (only when the type is `timetable`).",
+                    "items": {
+                        "$ref": "#/$defs/AosTimetableItem"
+                    },
+                    "title": "Timetable",
+                    "type": "array"
+                }
+            },
+            "required": [
+                "ttl",
+                "type"
+            ],
+            "title": "AosScheduleRule",
+            "type": "object"
+        },
+        "AosServiceEnvVar": {
+            "description": "The current status of the environment variable.",
+            "properties": {
+                "serviceId": {
+                    "default": null,
+                    "description": "Unique ID of the service.",
+                    "title": "Service ID",
+                    "type": "string"
+                },
+                "subjectId": {
+                    "default": null,
+                    "description": "Unique ID of the subject.",
+                    "title": "Subject ID",
+                    "type": "string"
+                },
+                "instance": {
+                    "default": null,
+                    "description": "The instance number of the service. Starts from 0.",
+                    "title": "Instance no",
+                    "type": "integer"
+                },
+                "variables": {
+                    "description": "The list of environment variables.",
+                    "items": {
+                        "$ref": "#/$defs/AosEnvVar"
+                    },
+                    "title": "Variables",
+                    "type": "array"
+                }
+            },
+            "required": [
+                "variables"
+            ],
+            "title": "AosServiceEnvVar",
+            "type": "object"
+        },
+        "AosServiceInstanceStatus": {
+            "description": "Reported by a unit service instance status.",
+            "properties": {
+                "serviceId": {
+                    "description": "Unique ID of the service.",
+                    "title": "Service ID",
+                    "type": "string"
+                },
+                "subjectId": {
+                    "description": "Unique ID of the subject.",
+                    "title": "Subject ID",
+                    "type": "string"
+                },
+                "instance": {
+                    "description": "The instance number of the service. Starts from 0.",
+                    "title": "Instance no",
+                    "type": "integer"
+                },
+                "version": {
+                    "description": "Version in format of the SemVer.",
+                    "title": "Version",
+                    "type": "string"
+                },
+                "nodeId": {
+                    "description": "Unique ID of the node.",
+                    "title": "Node ID",
+                    "type": "string"
+                },
+                "status": {
+                    "description": "The current (reported) status of the service instance.",
+                    "enum": [
+                        "activating",
+                        "active",
+                        "failed"
+                    ],
+                    "title": "Status",
+                    "type": "string"
+                },
+                "stateChecksum": {
+                    "default": null,
+                    "description": "The checksum of the state.",
+                    "title": "Statechecksum",
+                    "type": "string"
+                },
+                "errorInfo": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/AosErrorInfo"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Error information. Absense means no error."
+                }
+            },
+            "required": [
+                "serviceId",
+                "subjectId",
+                "instance",
+                "version",
+                "nodeId",
+                "status"
+            ],
+            "title": "AosServiceInstanceStatus",
+            "type": "object"
+        },
+        "AosServiceStatus": {
+            "description": "Reported by a unit service status.",
+            "properties": {
+                "id": {
+                    "description": "Unique ID of the service",
+                    "title": "Id",
+                    "type": "string"
+                },
+                "version": {
+                    "description": "Version in format of the SemVer.",
+                    "title": "Version",
+                    "type": "string"
+                },
+                "status": {
+                    "description": "The current (reported) status of the service.",
+                    "enum": [
+                        "unknown",
+                        "pending",
+                        "downloading",
+                        "downloaded",
+                        "installing",
+                        "installed",
+                        "removing",
+                        "removed",
+                        "error"
+                    ],
+                    "title": "Status",
+                    "type": "string"
+                },
+                "errorInfo": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/AosErrorInfo"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Error information. Absense means no error."
+                }
+            },
+            "required": [
+                "id",
+                "version",
+                "status"
+            ],
+            "title": "AosServiceStatus",
+            "type": "object"
+        },
+        "AosStateAcceptance": {
+            "description": "AosUnit protocol: 'stateAcceptance' message.\n\nCloud reports service state changes using this message.",
+            "properties": {
+                "messageType": {
+                    "const": "stateAcceptance",
+                    "description": "Message body type.",
+                    "enum": [
+                        "stateAcceptance"
+                    ],
+                    "title": "Message type",
+                    "type": "string"
+                },
+                "serviceId": {
+                    "description": "Unique ID of the service.",
+                    "title": "Service ID",
+                    "type": "string"
+                },
+                "subjectId": {
+                    "description": "Unique ID of the subject.",
+                    "title": "Subject ID",
+                    "type": "string"
+                },
+                "instance": {
+                    "description": "The instance number of the service. Starts from 0.",
+                    "title": "Instance no",
+                    "type": "integer"
+                },
+                "checksum": {
+                    "description": "The checksum (digest) over state content",
+                    "maxLength": 256,
+                    "minLength": 1,
+                    "title": "State checksum (digest)",
+                    "type": "string"
+                },
+                "result": {
+                    "description": "The result of applying state change.",
+                    "enum": [
+                        "accepted",
+                        "rejected"
+                    ],
+                    "title": "Result of applying state change",
+                    "type": "string"
+                },
+                "reason": {
+                    "description": "The reason of applying state change.",
+                    "minLength": 0,
+                    "title": "Reason of applying state change",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "messageType",
+                "serviceId",
+                "subjectId",
+                "instance",
+                "checksum",
+                "result",
+                "reason"
+            ],
+            "title": "AosStateAcceptance",
+            "type": "object"
+        },
+        "AosStateRequest": {
+            "description": "AosUnit protocol: 'newState' message.\n\nUnit request service state.\n  - if `default` field is equal to `true` - AosEdge Cloud will return the initial (default) state.\n  - else AosEdge Cloud will return current state (the latest)",
+            "properties": {
+                "messageType": {
+                    "const": "stateRequest",
+                    "description": "Message body type.",
+                    "enum": [
+                        "stateRequest"
+                    ],
+                    "title": "Message type",
+                    "type": "string"
+                },
+                "serviceId": {
+                    "description": "Unique ID of the service.",
+                    "title": "Service ID",
+                    "type": "string"
+                },
+                "subjectId": {
+                    "description": "Unique ID of the subject.",
+                    "title": "Subject ID",
+                    "type": "string"
+                },
+                "instance": {
+                    "description": "The instance number of the service. Starts from 0.",
+                    "title": "Instance no",
+                    "type": "integer"
+                },
+                "default": {
+                    "type": "boolean",
+                    "title": "Is default?",
+                    "description": "Is requested state is the default state?"
+                }
+            },
+            "required": [
+                "messageType",
+                "serviceId",
+                "subjectId",
+                "instance",
+                "default"
+            ],
+            "title": "AosStateRequest",
+            "type": "object"
+        },
+        "AosTimeSlot": {
+            "description": "Timetable time slot.",
+            "properties": {
+                "start": {
+                    "description": "Start time in form `HH:MM[:SS]`.",
+                    "format": "time",
+                    "title": "Start",
+                    "type": "string"
+                },
+                "end": {
+                    "description": "End time in form `HH:MM[:SS]`.",
+                    "format": "time",
+                    "title": "End",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "start",
+                "end"
+            ],
+            "title": "AosTimeSlot",
+            "type": "object"
+        },
+        "AosTimetableItem": {
+            "description": "Timetable signe record.\n\nRepresent one entry of the timetable in form\n`day of week`: [start time:end time]",
+            "properties": {
+                "dayOfWeek": {
+                    "description": "Day of the week: Monday [1] ... Sunday [7].",
+                    "title": "Dayofweek",
+                    "type": "integer"
+                },
+                "timeSlots": {
+                    "description": "List of the time slots for the timetable.",
+                    "items": {
+                        "$ref": "#/$defs/AosTimeSlot"
+                    },
+                    "minItems": 1,
+                    "title": "Timeslots",
+                    "type": "array"
+                }
+            },
+            "required": [
+                "dayOfWeek",
+                "timeSlots"
+            ],
+            "title": "AosTimetableItem",
+            "type": "object"
+        },
+        "AosUnitConfigStatus": {
+            "properties": {
+                "version": {
+                    "default": null,
+                    "description": "Version in format of the SemVer.",
+                    "title": "Version",
+                    "type": "string"
+                },
+                "status": {
+                    "description": "current status of the item",
+                    "enum": [
+                        "installed",
+                        "downloading",
+                        "failed",
+                        "error"
+                    ],
+                    "title": "Status",
+                    "type": "string"
+                },
+                "errorInfo": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/AosErrorInfo"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Error information. Absense means no error."
+                }
+            },
+            "required": [
+                "status"
+            ],
+            "title": "AosUnitConfigStatus",
+            "type": "object"
+        },
+        "AosUnitHeader": {
+            "description": "Aos Unit message header.",
+            "properties": {
+                "version": {
+                    "const": 6,
+                    "description": "The version of Unit-Cloud protocol.",
+                    "enum": [
+                        6
+                    ],
+                    "title": "Protocol version",
+                    "type": "integer"
+                },
+                "systemId": {
+                    "description": "The unique system ID of the unit.",
+                    "title": "",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "version",
+                "systemId"
+            ],
+            "title": "AosUnitHeader",
+            "type": "object"
+        },
+        "AosUnitNodeInfo": {
+            "properties": {
+                "ID": {
+                    "description": "Node unique identifier",
+                    "examples": [
+                        "1398jf391",
+                        "node0"
+                    ],
+                    "maxLength": 256,
+                    "minLength": 1,
+                    "title": "Id",
+                    "type": "string"
+                },
+                "name": {
+                    "anyOf": [
+                        {
+                            "maxLength": 256,
+                            "minLength": 1,
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "User-friendly name of the node",
+                    "examples": [
+                        "Dom0",
+                        "DomD"
+                    ],
+                    "title": "Name"
+                },
+                "type": {
+                    "maxLength": 256,
+                    "minLength": 1,
+                    "title": "Type",
+                    "type": "string"
+                },
+                "maxDmips": {
+                    "minimum": 1,
+                    "title": "Maxdmips",
+                    "type": "integer"
+                },
+                "cpus": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "$ref": "#/$defs/AosNodeCPUInfo"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "title": "Cpus"
+                },
+                "osType": {
+                    "const": "linux",
+                    "enum": [
+                        "linux"
+                    ],
+                    "title": "Ostype",
+                    "type": "string"
+                },
+                "attrs": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "examples": [
+                        [
+                            "dynamic"
+                        ],
+                        [
+                            "static",
+                            "cloud_connection"
+                        ]
+                    ],
+                    "title": "Attrs"
+                },
+                "totalRAM": {
+                    "minimum": 1,
+                    "title": "Totalram",
+                    "type": "integer"
+                },
+                "partitions": {
+                    "default": null,
+                    "description": "List of partitions",
+                    "items": {
+                        "$ref": "#/$defs/AosNodePartitionInfo"
+                    },
+                    "title": "Partitions",
+                    "type": "array"
+                },
+                "status": {
+                    "description": "The current (reported) status of the node.",
+                    "enum": [
+                        "provisioned",
+                        "unprovisioned",
+                        "error",
+                        "paused"
+                    ],
+                    "title": "Status",
+                    "type": "string"
+                },
+                "errorInfo": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/AosErrorInfo"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Error information. Absense means no error."
+                }
+            },
+            "required": [
+                "ID",
+                "type",
+                "maxDmips",
+                "cpus",
+                "osType",
+                "totalRAM",
+                "status"
+            ],
+            "title": "AosUnitNodeInfo",
+            "type": "object"
+        },
+        "AosUnitSecret": {
+            "description": "Keeps the unit secret used to decode secure device information.",
+            "properties": {
+                "version": {
+                    "description": "Version of the unit secrets.",
+                    "title": "Version",
+                    "type": "integer"
+                },
+                "data": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/AosUnitSecretData"
+                        }
+                    ],
+                    "description": "Data of the unit secret.",
+                    "title": "Data of the unit secret."
+                }
+            },
+            "required": [
+                "version",
+                "data"
+            ],
+            "title": "AosUnitSecret",
+            "type": "object"
+        },
+        "AosUnitSecretData": {
+            "description": "Keeps unit secret used to decode secure device password.",
+            "properties": {
+                "ownerPassword": {
+                    "description": "The owner password.",
+                    "format": "base64",
+                    "title": "Owner Password",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "ownerPassword"
+            ],
+            "title": "AosUnitSecretData",
+            "type": "object"
+        },
+        "AosUnitStatus": {
+            "description": "AosUnit protocol: 'unitStatus' message.\n\nUnit reports all current status information using this message",
+            "properties": {
+                "messageType": {
+                    "const": "unitStatus",
+                    "description": "message body type",
+                    "enum": [
+                        "unitStatus"
+                    ],
+                    "title": "Messagetype",
+                    "type": "string"
+                },
+                "isDeltaInfo": {
+                    "anyOf": [
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Flag to indicate if this is a full info message or delta from previous times",
+                    "examples": [
+                        true,
+                        false
+                    ],
+                    "title": "Delta info?"
+                },
+                "unitConfig": {
+                    "default": null,
+                    "description": "Information about the installed unitConfig.",
+                    "items": {
+                        "$ref": "#/$defs/AosUnitConfigStatus"
+                    },
+                    "title": "Unitconfig",
+                    "type": "array"
+                },
+                "nodes": {
+                    "default": null,
+                    "description": "The list of attached to the Unit nodes.",
+                    "items": {
+                        "$ref": "#/$defs/AosUnitNodeInfo"
+                    },
+                    "title": "Nodes",
+                    "type": "array"
+                },
+                "services": {
+                    "default": null,
+                    "desctiption": "Information about the services present in this unit.",
+                    "items": {
+                        "$ref": "#/$defs/AosServiceStatus"
+                    },
+                    "title": "Services",
+                    "type": "array"
+                },
+                "instances": {
+                    "default": null,
+                    "items": {
+                        "$ref": "#/$defs/AosServiceInstanceStatus"
+                    },
+                    "title": "Instances",
+                    "type": "array"
+                },
+                "layers": {
+                    "default": null,
+                    "items": {
+                        "$ref": "#/$defs/AosLayerStatusInfo"
+                    },
+                    "title": "Layers",
+                    "type": "array"
+                },
+                "components": {
+                    "default": null,
+                    "description": "information about all components located on the unit.",
+                    "items": {
+                        "$ref": "#/$defs/AosComponentInfo"
+                    },
+                    "title": "Components",
+                    "type": "array"
+                },
+                "unitSubjects": {
+                    "default": null,
+                    "items": {
+                        "type": "string"
+                    },
+                    "title": "Unitsubjects",
+                    "type": "array"
+                }
+            },
+            "required": [
+                "messageType"
+            ],
+            "title": "AosUnitStatus",
+            "type": "object"
+        },
+        "AosUpdateState": {
+            "description": "AosUnit protocol: 'newState' message.\n\nCloud reports service state changes using this message.",
+            "properties": {
+                "messageType": {
+                    "const": "updateState",
+                    "description": "Message body type.",
+                    "enum": [
+                        "updateState"
+                    ],
+                    "title": "Message type",
+                    "type": "string"
+                },
+                "serviceId": {
+                    "description": "Unique ID of the service.",
+                    "title": "Service ID",
+                    "type": "string"
+                },
+                "subjectId": {
+                    "description": "Unique ID of the subject.",
+                    "title": "Subject ID",
+                    "type": "string"
+                },
+                "instance": {
+                    "description": "The instance number of the service. Starts from 0.",
+                    "title": "Instance no",
+                    "type": "integer"
+                },
+                "stateChecksum": {
+                    "description": "The checksum (digest) over state content",
+                    "maxLength": 256,
+                    "minLength": 1,
+                    "title": "State checksum (digest)",
+                    "type": "string"
+                },
+                "state": {
+                    "description": "The state content",
+                    "minLength": 0,
+                    "title": "State content",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "messageType",
+                "serviceId",
+                "subjectId",
+                "instance",
+                "stateChecksum",
+                "state"
+            ],
+            "title": "AosUpdateState",
+            "type": "object"
+        },
+        "AosUploadLogOptions": {
+            "description": "The description of used channel to upload logs.",
+            "properties": {
+                "type": {
+                    "description": "The channel protocol used to upload logs.",
+                    "enum": [
+                        "amqps",
+                        "https"
+                    ],
+                    "title": "Type of the channel",
+                    "type": "string"
+                },
+                "url": {
+                    "default": null,
+                    "description": "The base URL used to upload.",
+                    "title": "URL",
+                    "type": "string"
+                },
+                "bearerToken": {
+                    "default": null,
+                    "description": "The token to use in the `Authorization` header.",
+                    "title": "Bearer token",
+                    "type": "string"
+                },
+                "bearerTokenTTL": {
+                    "default": null,
+                    "description": "Time to live of the token in ISO8601 format.",
+                    "format": "date-time",
+                    "title": "Bearer token TTL",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "type"
+            ],
+            "title": "AosUploadLogOptions",
+            "type": "object"
+        },
+        "NodeConfig": {
+            "description": "Configuration parameters for a unit's node.",
+            "properties": {
+                "nodeType": {
+                    "description": "The type of the node.",
+                    "examples": [
+                        "DomA",
+                        "DomD"
+                    ],
+                    "title": "Node type",
+                    "type": "string"
+                },
+                "nodeId": {
+                    "default": null,
+                    "description": "Unique ID of the node",
+                    "title": "Nodeid",
+                    "type": "string"
+                },
+                "alertRules": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/NodeThresholdsInfo"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The default thresholds for services running on the node."
+                },
+                "overcommit": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/ResourceOverCommitInfo"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The overcommit info."
+                },
+                "resources": {
+                    "default": null,
+                    "description": "The list of resources available for running services.",
+                    "items": {
+                        "$ref": "#/$defs/ResourceInfo"
+                    },
+                    "title": "Resources",
+                    "type": "array"
+                },
+                "labels": {
+                    "default": null,
+                    "description": "The list of labels for this node.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "title": "Labels",
+                    "type": "array"
+                },
+                "priority": {
+                    "description": "The priority of the node for deploying services.",
+                    "exclusiveMaximum": 4294967295,
+                    "minimum": 0,
+                    "title": "Priority",
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "nodeType",
+                "priority"
+            ],
+            "title": "NodeConfig",
+            "type": "object"
+        },
+        "NodeThresholdsInfo": {
+            "properties": {
+                "cpu": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/ThresholdInfo"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The CPU thresholds for services."
+                },
+                "mem": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/ThresholdInfo"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The memory thresholds for services."
+                },
+                "storage": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/ThresholdInfo"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The storage thresholds for services."
+                }
+            },
+            "title": "NodeThresholdsInfo",
+            "type": "object"
+        },
+        "ResourceInfo": {
+            "properties": {
+                "name": {
+                    "description": "The name of the resource.",
+                    "title": "Name",
+                    "type": "string"
+                },
+                "groups": {
+                    "default": null,
+                    "description": "The group names for the resource.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "title": "Groups",
+                    "type": "array"
+                },
+                "mounts": {
+                    "default": null,
+                    "description": "The mounts list available for running services.",
+                    "items": {
+                        "$ref": "#/$defs/AosFileSystemMount"
+                    },
+                    "title": "Mounts",
+                    "type": "array"
+                },
+                "devices": {
+                    "default": null,
+                    "description": "The devices list available for running services.",
+                    "items": {
+                        "$ref": "#/$defs/AosDeviceInfo"
+                    },
+                    "title": "Devices",
+                    "type": "array"
+                },
+                "envs": {
+                    "default": null,
+                    "description": "The list of environment variables.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "title": "Envs",
+                    "type": "array"
+                },
+                "hosts": {
+                    "default": null,
+                    "description": "The list of hostnames.",
+                    "items": {
+                        "$ref": "#/$defs/AosHostRecord"
+                    },
+                    "title": "Hosts",
+                    "type": "array"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "title": "ResourceInfo",
+            "type": "object"
+        },
+        "ResourceOverCommitInfo": {
+            "properties": {
+                "cpu": {
+                    "default": null,
+                    "description": "The CPU percent overcommit.",
+                    "title": "Cpu",
+                    "type": "number"
+                },
+                "mem": {
+                    "default": null,
+                    "description": "The memory (RAM) percent overcommit.",
+                    "title": "Mem",
+                    "type": "number"
+                },
+                "storage": {
+                    "default": null,
+                    "description": "The storage percent overcommit.",
+                    "title": "Storage",
+                    "type": "number"
+                }
+            },
+            "title": "ResourceOverCommitInfo",
+            "type": "object"
+        },
+        "ThresholdInfo": {
+            "description": "Information about the threshold.\n\nThreshold is treated as a node resource limit for rebalancing.\n\nThe `high` threshold for resource limits must be defined as the upper limit of resource usage.\n  If a node's resource usage exceeds the highThreshold for a continuous period specified\n  by the threshold `timeout`, the system initiates a rebalancing process to redistribute service instances,\n  thereby preventing resource overutilization and maintaining system performance.\n\nOnce rebalancing is triggered due to exceeding the `high` threshold,\n  the system will only consider the rebalancing action complete and cease further rebalancing activities\n  if the resource usage then decreases and stabilizes below the `low` threshold for a continuous period\n  specified by the threshold `timeout`\n\nThe low/high thresholds for resource limits are set in percentages.",
+            "properties": {
+                "low": {
+                    "description": "The lowest percents of a value after which resource can be rebalanced back.",
+                    "minimum": 0.0,
+                    "title": "Low",
+                    "type": "number"
+                },
+                "high": {
+                    "description": "The highest percents of a value after which resource have be rebalanced.",
+                    "minimum": 0.0,
+                    "title": "High",
+                    "type": "number"
+                },
+                "timeout": {
+                    "description": "The timeout in seconds. Fraction of value specifies milliseconds",
+                    "examples": [
+                        0.5,
+                        100
+                    ],
+                    "exclusiveMinimum": 0.0,
+                    "title": "Timeout",
+                    "type": "number"
+                }
+            },
+            "required": [
+                "low",
+                "high",
+                "timeout"
+            ],
+            "title": "ThresholdInfo",
+            "type": "object"
+        },
+        "UnitConfig": {
+            "description": "Configuration parameters for a unit.",
+            "properties": {
+                "formatVersion": {
+                    "description": "Version of the configuration object (this object).",
+                    "title": "Formatversion",
+                    "type": "string"
+                },
+                "version": {
+                    "description": "Version in format of the SemVer.",
+                    "title": "Version",
+                    "type": "string"
+                },
+                "nodes": {
+                    "descitpion": "The list of node configurations.",
+                    "items": {
+                        "$ref": "#/$defs/NodeConfig"
+                    },
+                    "title": "Nodes",
+                    "type": "array"
+                }
+            },
+            "required": [
+                "formatVersion",
+                "version",
+                "nodes"
+            ],
+            "title": "UnitConfig",
+            "type": "object"
+        }
+    },
+    "description": "Unit message model.",
+    "properties": {
+        "header": {
+            "allOf": [
+                {
+                    "$ref": "#/$defs/AosUnitHeader"
+                }
+            ],
+            "description": "Aos Unit-Cloud message header"
+        },
+        "data": {
+            "description": "message payload",
+            "discriminator": {
+                "mapping": {
+                    "alerts": "#/$defs/AosAlerts",
+                    "desiredStatus": "#/$defs/AosDesiredStatus",
+                    "installUnitCertificatesConfirmation": "#/$defs/AosInstallUnitCertificatesConfirmation",
+                    "issueUnitCertificates": "#/$defs/AosIssueUnitCertificates",
+                    "issuedUnitCertificates": "#/$defs/AosIssuedUnitCertificates",
+                    "monitoringData": "#/$defs/AosMonitoring",
+                    "newState": "#/$defs/AosNewState",
+                    "overrideEnvVar": "#/$defs/AosOverrideEnvVarsRequest",
+                    "overrideEnvVarsStatus": "#/$defs/AosOverrideEnvVarsStatuses",
+                    "pushLog": "#/$defs/AosPushLog",
+                    "renewCertificatesNotification": "#/$defs/AosRenewCertsNotification",
+                    "requestLog": "#/$defs/AosRequestLog",
+                    "stateAcceptance": "#/$defs/AosStateAcceptance",
+                    "stateRequest": "#/$defs/AosStateRequest",
+                    "unitStatus": "#/$defs/AosUnitStatus",
+                    "updateState": "#/$defs/AosUpdateState"
+                },
+                "propertyName": "messageType"
+            },
+            "oneOf": [
+                {
+                    "$ref": "#/$defs/AosAlerts"
+                },
+                {
+                    "$ref": "#/$defs/AosMonitoring"
+                },
+                {
+                    "$ref": "#/$defs/AosUnitStatus"
+                },
+                {
+                    "$ref": "#/$defs/AosDesiredStatus"
+                },
+                {
+                    "$ref": "#/$defs/AosNewState"
+                },
+                {
+                    "$ref": "#/$defs/AosStateRequest"
+                },
+                {
+                    "$ref": "#/$defs/AosStateAcceptance"
+                },
+                {
+                    "$ref": "#/$defs/AosUpdateState"
+                },
+                {
+                    "$ref": "#/$defs/AosRequestLog"
+                },
+                {
+                    "$ref": "#/$defs/AosPushLog"
+                },
+                {
+                    "$ref": "#/$defs/AosOverrideEnvVarsRequest"
+                },
+                {
+                    "$ref": "#/$defs/AosOverrideEnvVarsStatuses"
+                },
+                {
+                    "$ref": "#/$defs/AosRenewCertsNotification"
+                },
+                {
+                    "$ref": "#/$defs/AosIssuedUnitCertificates"
+                },
+                {
+                    "$ref": "#/$defs/AosIssueUnitCertificates"
+                },
+                {
+                    "$ref": "#/$defs/AosInstallUnitCertificatesConfirmation"
+                }
+            ],
+            "title": "Data"
+        }
+    },
+    "required": [
+        "header",
+        "data"
+    ],
+    "title": "AosUnitMessage",
+    "type": "object"
+}

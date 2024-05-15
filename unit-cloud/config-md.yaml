@@ -1,0 +1,5 @@
+description_is_markdown: true
+template_name: md
+template_md_options:
+    badge_as_image: true
+    show_heading_numbers: false

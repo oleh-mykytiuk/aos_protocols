@@ -1,0 +1,255 @@
+#
+#  Copyright (c) 2018-2024 Renesas Inc.
+#  Copyright (c) 2018-2024 EPAM Systems Inc.
+#
+from typing import Annotated, Literal
+
+from pydantic import BaseModel, Field
+
+from cloud_common.protocols.unit.common import (
+    AosHostRecord,
+    AosFileSystemMount,
+    AosDeviceInfo,
+)
+from cloud_common.protocols.unit.types import (
+    TypeVersionMandatory,
+    TypeNodeTypeMandatory,
+    TypeNodeIdOptional,
+)
+
+
+class ThresholdInfo(BaseModel):
+    """
+    Information about the threshold.
+
+    Threshold is treated as a node resource limit for rebalancing.
+
+    The `high` threshold for resource limits must be defined as the upper limit of resource usage.
+      If a node's resource usage exceeds the highThreshold for a continuous period specified
+      by the threshold `timeout`, the system initiates a rebalancing process to redistribute service instances,
+      thereby preventing resource overutilization and maintaining system performance.
+
+    Once rebalancing is triggered due to exceeding the `high` threshold,
+      the system will only consider the rebalancing action complete and cease further rebalancing activities
+      if the resource usage then decreases and stabilizes below the `low` threshold for a continuous period
+      specified by the threshold `timeout`
+
+    The low/high thresholds for resource limits are set in percentages.
+    """
+
+    low: Annotated[
+        float,
+        Field(
+            alias="low",
+            description='The lowest percents of a value after which resource can be rebalanced back.',
+            ge=0,
+        ),
+    ]
+
+    high: Annotated[
+        float,
+        Field(
+            alias="high",
+            description='The highest percents of a value after which resource have be rebalanced.',
+            ge=0,
+        ),
+    ]
+
+    timeout: Annotated[
+        float,
+        Field(
+            alias="timeout",
+            description='The timeout in seconds. Fraction of value specifies milliseconds',
+            gt=0,
+            examples=[
+                0.5,
+                100,
+            ],
+        )
+    ]
+
+
+class ResourceOverCommitInfo(BaseModel):
+
+    cpu: Annotated[
+        float,
+        Field(
+            default=None,
+            alias='cpu',
+            description='The CPU percent overcommit.',
+        ),
+    ]
+
+    mem: Annotated[
+        float,
+        Field(
+            default=None,
+            alias='mem',
+            description='The memory (RAM) percent overcommit.',
+        ),
+    ]
+
+    storage: Annotated[
+        float,
+        Field(
+            default=None,
+            alias='storage',
+            description='The storage percent overcommit.',
+        ),
+    ]
+
+
+class NodeThresholdsInfo(BaseModel):
+    cpu: Annotated[
+        ThresholdInfo,
+        Field(
+            default=None,
+            alias='cpu',
+            description='The CPU thresholds for services.',
+        ),
+    ]
+
+    mem: Annotated[
+        ThresholdInfo,
+        Field(
+            default=None,
+            alias='mem',
+            description='The memory thresholds for services.',
+        ),
+    ]
+
+    storage: Annotated[
+        ThresholdInfo,
+        Field(
+            default=None,
+            alias='storage',
+            description='The storage thresholds for services.',
+        ),
+    ]
+
+
+class ResourceInfo(BaseModel):
+
+    name: Annotated[
+        str,
+        Field(
+            alias='name',
+            description='The name of the resource.',
+        ),
+    ]
+
+    groups: Annotated[
+        list[str],
+        Field(
+            default=None,
+            alias='groups',
+            description='The group names for the resource.',
+        )
+    ]
+
+    mounts: Annotated[
+        list[AosFileSystemMount],
+        Field(
+            default=None,
+            alias='mounts',
+            description='The mounts list available for running services.',
+        )
+    ]
+
+    devices: Annotated[
+        list[AosDeviceInfo],
+        Field(
+            default=None,
+            description='The devices list available for running services.',
+        )
+    ]
+
+    envs: Annotated[
+        list[str],
+        Field(
+            default=None,
+            alias='envs',
+            description='The list of environment variables.',
+        ),
+    ]
+
+    hosts: Annotated[
+        list[AosHostRecord],
+        Field(
+            default=None,
+            alias='hosts',
+            description='The list of hostnames.',
+        )
+    ]
+
+
+class NodeConfig(BaseModel):
+    """Configuration parameters for a unit's node."""
+
+    node_type: TypeNodeTypeMandatory
+    node_id: TypeNodeIdOptional
+
+    alert_rules: Annotated[
+        NodeThresholdsInfo,
+        Field(
+            default=None,
+            alias='alertRules',
+            description='The default thresholds for services running on the node.',
+        ),
+    ]
+
+    overcommit: Annotated[
+        ResourceOverCommitInfo,
+        Field(
+            default=None,
+            description='The overcommit info.',
+        ),
+    ]
+
+    resources: Annotated[
+        list[ResourceInfo],
+        Field(
+            default=None,
+            alias="resources",
+            description='The list of resources available for running services.',
+        ),
+    ]
+
+    labels: Annotated[
+        list[str],
+        Field(
+            default=None,
+            description='The list of labels for this node.',
+        ),
+    ]
+
+    priority: Annotated[
+        int,
+        Field(
+            alias='priority',
+            description='The priority of the node for deploying services.',
+            ge=0,
+            lt=(2**32)-1,
+        ),
+    ]
+
+
+class UnitConfig(BaseModel):
+    """Configuration parameters for a unit."""
+
+    format_version: Annotated[
+        str,
+        Field(
+            alias="formatVersion",
+            description="Version of the configuration object (this object).",
+        )
+    ]
+
+    version: TypeVersionMandatory
+
+    nodes: Annotated[
+        list[NodeConfig],
+        Field(
+            descitpion='The list of node configurations.',
+        )
+    ]
