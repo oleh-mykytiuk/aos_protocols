@@ -1,0 +1,7 @@
+# this file can be used as standalone,
+# without dependencies from other requirements*.txt
+
+pydantic>=2.6.0,<3.0
+
+click
+json-schema-for-humans
