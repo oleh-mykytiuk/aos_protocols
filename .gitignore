@@ -1,0 +1,15 @@
+*.pyo
+*.pyc
+*.orig
+*.pid
+*.zip
+*.tgz
+*.tar.gz
+*.bin
+*.swp
+*.bak
+*~
+.idea
+__pycache__
+.tox/
+coverage*
