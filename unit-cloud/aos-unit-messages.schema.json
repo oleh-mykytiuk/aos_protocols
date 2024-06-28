@@ -2961,14 +2961,14 @@
                     "default": null,
                     "description": "The default thresholds for services running on the node."
                 },
-                "overcommit": {
+                "resourceRatios": {
                     "allOf": [
                         {
-                            "$ref": "#/$defs/ResourceOverCommitInfo"
+                            "$ref": "#/$defs/ResourceRatiosInfo"
                         }
                     ],
                     "default": null,
-                    "description": "The overcommit info."
+                    "description": "The requested ratio for each resource."
                 },
                 "resources": {
                     "default": null,
@@ -3095,28 +3095,28 @@
             "title": "ResourceInfo",
             "type": "object"
         },
-        "ResourceOverCommitInfo": {
+        "ResourceRatiosInfo": {
             "properties": {
                 "cpu": {
                     "default": null,
-                    "description": "The CPU percent overcommit.",
+                    "description": "The CPU ratio in percent.",
                     "title": "Cpu",
                     "type": "number"
                 },
                 "mem": {
                     "default": null,
-                    "description": "The memory (RAM) percent overcommit.",
+                    "description": "The memory (RAM) ratio in percent.",
                     "title": "Mem",
                     "type": "number"
                 },
                 "storage": {
                     "default": null,
-                    "description": "The storage percent overcommit.",
+                    "description": "The storage ratio in percent.",
                     "title": "Storage",
                     "type": "number"
                 }
             },
-            "title": "ResourceOverCommitInfo",
+            "title": "ResourceRatiosInfo",
             "type": "object"
         },
         "ThresholdInfo": {
