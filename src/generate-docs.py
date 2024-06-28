@@ -5,6 +5,7 @@ import subprocess
 import click
 
 from cloud_common.protocols.unit import base
+from cloud_common.schemas.service_config.aos_config import AosConfigSchema
 
 DOCS_BASE_DIR = os.path.abspath(os.path.join(
     os.path.dirname(__file__),
@@ -16,6 +17,17 @@ DOCS_BASE_DIR = os.path.abspath(os.path.join(
 def generate_schema() -> str:
     schema = base.AosUnitMessage.model_json_schema()
     schema_filename = os.path.join(DOCS_BASE_DIR, 'aos-unit-messages.schema.json')
+    with open(schema_filename, 'wt') as file_handler:
+        file_handler.write(json.dumps(schema, indent=4))
+        file_handler.write('\n')
+    print(f'Schema generated at {schema_filename}')
+
+    return schema_filename
+
+
+def generate_service_schema() -> str:
+    schema = AosConfigSchema.model_json_schema()
+    schema_filename = os.path.join(DOCS_BASE_DIR, 'aos-service-config.schema.json')
     with open(schema_filename, 'wt') as file_handler:
         file_handler.write(json.dumps(schema, indent=4))
         file_handler.write('\n')
@@ -58,6 +70,27 @@ def md():
 @cli.command()
 def both():
     schema_filename = generate_schema()
+
+    subprocess.run([
+        'generate-schema-doc',
+        '--config-file',
+        os.path.join(DOCS_BASE_DIR, 'config-html.yaml'),
+        schema_filename,
+        os.path.join(DOCS_BASE_DIR, 'html'),
+    ])
+
+    subprocess.run([
+        'generate-schema-doc',
+        '--config-file',
+        os.path.join(DOCS_BASE_DIR, 'config-md.yaml'),
+        schema_filename,
+        os.path.join(DOCS_BASE_DIR, 'md'),
+    ])
+
+
+@cli.command()
+def schemas():
+    schema_filename = generate_service_schema()
 
     subprocess.run([
         'generate-schema-doc',

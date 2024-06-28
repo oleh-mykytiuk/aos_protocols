@@ -69,14 +69,14 @@ class ThresholdInfo(BaseModel):
     ]
 
 
-class ResourceOverCommitInfo(BaseModel):
+class ResourceRatiosInfo(BaseModel):
 
     cpu: Annotated[
         float,
         Field(
             default=None,
             alias='cpu',
-            description='The CPU percent overcommit.',
+            description='The CPU ratio in percent.',
         ),
     ]
 
@@ -85,7 +85,7 @@ class ResourceOverCommitInfo(BaseModel):
         Field(
             default=None,
             alias='mem',
-            description='The memory (RAM) percent overcommit.',
+            description='The memory (RAM) ratio in percent.',
         ),
     ]
 
@@ -94,7 +94,7 @@ class ResourceOverCommitInfo(BaseModel):
         Field(
             default=None,
             alias='storage',
-            description='The storage percent overcommit.',
+            description='The storage ratio in percent.',
         ),
     ]
 
@@ -198,11 +198,12 @@ class NodeConfig(BaseModel):
         ),
     ]
 
-    overcommit: Annotated[
-        ResourceOverCommitInfo,
+    resource_ratios: Annotated[
+        ResourceRatiosInfo,
         Field(
+            alias='resourceRatios',
             default=None,
-            description='The overcommit info.',
+            description='The requested ratio for each resource.',
         ),
     ]
 
