@@ -2638,10 +2638,10 @@
                 "attrs": {
                     "anyOf": [
                         {
-                            "items": {
+                            "additionalProperties": {
                                 "type": "string"
                             },
-                            "type": "array"
+                            "type": "object"
                         },
                         {
                             "type": "null"
@@ -2652,10 +2652,11 @@
                         [
                             "dynamic"
                         ],
-                        [
-                            "static",
-                            "cloud_connection"
-                        ]
+                        {
+                            "cloud_connection": null,
+                            "name1": "value1",
+                            "static": null
+                        }
                     ],
                     "title": "Attrs"
                 },
