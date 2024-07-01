@@ -2,7 +2,7 @@
 #  Copyright (c) 2018-2024 Renesas Inc.
 #  Copyright (c) 2018-2024 EPAM Systems Inc.
 #
-from typing import Annotated, Literal, Optional
+from typing import Annotated, Dict, Literal, Optional
 
 from pydantic import BaseModel, Field
 
@@ -163,11 +163,11 @@ class AosUnitNodeInfo(BaseModel):
     ]
 
     attrs: Annotated[
-        Optional[list[str]],
+        Optional[Dict[str, str]],
         Field(
             default=None,
             alias='attrs',
-            examples=[['dynamic'], ['static', 'cloud_connection']],
+            examples=[{'dynamic'}, {'static': None, 'cloud_connection': None, 'name1': 'value1'}],
         ),
     ]
 
