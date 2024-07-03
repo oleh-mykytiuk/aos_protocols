@@ -7,6 +7,7 @@ from typing import Annotated, Literal, Union
 
 from pydantic import BaseModel, Discriminator, Field
 
+from cloud_common.protocols.unit.common import AosErrorInfo
 from cloud_common.protocols.unit.constants import DataSizes
 from cloud_common.protocols.unit.types import (
     TypeAlertMessageMandatory,
@@ -86,10 +87,11 @@ class AosAlertResourceValidate(AosBaseAlert):
     ]
 
     errors: Annotated[
-        list[str],
+        list[AosErrorInfo],
         Field(
-            description='List of resource validation errors.',
-        ),
+            alias='errors',
+            description='Error information. One error info instance per one caught error.',
+        )
     ]
 
 

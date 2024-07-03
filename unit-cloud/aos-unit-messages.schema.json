@@ -288,9 +288,9 @@
                     "type": "integer"
                 },
                 "errors": {
-                    "description": "List of resource validation errors.",
+                    "description": "Error information. One error info instance per one caught error.",
                     "items": {
-                        "type": "string"
+                        "$ref": "#/$defs/AosErrorInfo"
                     },
                     "title": "Errors",
                     "type": "array"
