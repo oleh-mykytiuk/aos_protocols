@@ -97,6 +97,15 @@ class AosDecryptionInfo(BaseModel):
         return base64.b64encode(struct_value.get_secret_value())
 
 
+TypeAosDecryptionInfo = Annotated[
+        AosDecryptionInfo,
+        Field(
+            alias='decryptionInfo',
+            description='Object with information to decrypt the component.',
+        ),
+    ]
+
+
 class AosCertificateInfo(BaseModel):
     """Certificate content and fingerprint."""
 
@@ -133,7 +142,7 @@ class AosCertificateChainInfo(BaseModel):
     ]
 
 
-class AosSign(BaseModel):
+class AosSignInfo(BaseModel):
     """Aos sign information."""
 
     chain_name: Annotated[
@@ -174,6 +183,15 @@ class AosSign(BaseModel):
             description='OCSP value of the signature.',
         ),
     ]
+
+
+TypeAosSignInfo = Annotated[
+    AosSignInfo,
+    Field(
+        alias='signs',
+        description='Sign values of the file.',
+    ),
+]
 
 
 class AosTimeSlot(BaseModel):
@@ -256,14 +274,8 @@ class AosDesiredComponentInfo(BaseModel):
     urls: TypeAosUrlsList
     sha256: TypeAosSha256
     size: TypeAosFileSize
-
-    decryption_info: Annotated[
-        AosDecryptionInfo,
-        Field(
-            alias='decryptionInfo',
-            description='Object with information to decrypt the component.',
-        ),
-    ]
+    decryption_info: TypeAosDecryptionInfo
+    signs: TypeAosSignInfo
 
 
 class AosDesiredLayerInfo(BaseModel):
@@ -275,14 +287,8 @@ class AosDesiredLayerInfo(BaseModel):
     urls: TypeAosUrlsList
     sha256: TypeAosSha256
     size: TypeAosFileSize
-
-    decryption_info: Annotated[
-        AosDecryptionInfo,
-        Field(
-            alias='decryptionInfo',
-            description='Object with information for decryption.',
-        ),
-    ]
+    decryption_info: TypeAosDecryptionInfo
+    signs: TypeAosSignInfo
 
 
 class AosDesiredServiceInfo(BaseModel):
@@ -291,18 +297,11 @@ class AosDesiredServiceInfo(BaseModel):
     service_id: TypeServiceIdMandatory
     provider_id: TypeProviderIdMandatory
     version: TypeVersionMandatory
-
     urls: TypeAosUrlsList
     sha256: TypeAosSha256
     size: TypeAosFileSize
-
-    decryption_info: Annotated[
-        AosDecryptionInfo,
-        Field(
-            alias='decryptionInfo',
-            description='Object with information for decryption.',
-        ),
-    ]
+    decryption_info: TypeAosDecryptionInfo
+    signs: TypeAosSignInfo
 
 
 class AosDesiredInstanceInfo(BaseModel):
