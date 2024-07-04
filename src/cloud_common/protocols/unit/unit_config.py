@@ -251,6 +251,6 @@ class UnitConfig(BaseModel):
     nodes: Annotated[
         list[NodeConfig],
         Field(
-            descitpion='The list of node configurations.',
+            description='The list of node configurations.',
         )
     ]
