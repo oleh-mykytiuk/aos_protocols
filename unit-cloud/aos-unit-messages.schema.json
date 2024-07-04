@@ -735,9 +735,17 @@
             "description": "Component info sent from the AosEdge Cloud.",
             "properties": {
                 "id": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
                     "description": "Component unique identifier.",
-                    "title": "Component ID",
-                    "type": "string"
+                    "title": "Component ID"
                 },
                 "type": {
                     "description": "Component unique type identifier",
@@ -789,7 +797,6 @@
                 }
             },
             "required": [
-                "id",
                 "type",
                 "version",
                 "urls",
@@ -3159,7 +3166,7 @@
                     "type": "string"
                 },
                 "nodes": {
-                    "descitpion": "The list of node configurations.",
+                    "description": "The list of node configurations.",
                     "items": {
                         "$ref": "#/$defs/NodeConfig"
                     },

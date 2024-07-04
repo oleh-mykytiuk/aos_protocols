@@ -19,7 +19,7 @@ from cloud_common.protocols.unit.types import (
     TypeProviderIdMandatory,
     TypeServiceIdMandatory,
     TypeVersionMandatory,
-    TypeComponentId,
+    TypeComponentIdOptional,
     TypeServiceServiceIdMandatory,
     TypeNodeIdMandatory,
     TypeNodeDesiredStatus,
@@ -249,7 +249,7 @@ class AosScheduleRule(BaseModel):
 class AosDesiredComponentInfo(BaseModel):
     """Component info sent from the AosEdge Cloud."""
 
-    id: TypeComponentId
+    id: TypeComponentIdOptional
     type: TypeComponentType
     version: TypeVersionMandatory
     annotations: TypeComponentAnnotationsOptional

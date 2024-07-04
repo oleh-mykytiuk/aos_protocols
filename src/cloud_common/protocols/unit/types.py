@@ -228,6 +228,16 @@ TypeComponentId = Annotated[
     ),
 ]
 
+TypeComponentIdOptional = Annotated[
+    Optional[str],
+    Field(
+        alias='id',
+        default=None,
+        title='Component ID',
+        description='Component unique identifier.',
+    ),
+]
+
 TypeComponentType = Annotated[
     str,
     Field(
