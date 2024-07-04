@@ -270,39 +270,31 @@
                     "title": "Tag",
                     "type": "string"
                 },
-                "serviceID": {
-                    "description": "Service unique identifier.",
-                    "minLength": 1,
-                    "title": "Serviceid",
+                "nodeId": {
+                    "description": "Unique ID of the node.",
+                    "title": "Node ID",
                     "type": "string"
                 },
-                "subjectID": {
-                    "description": "Subject unique identifier.",
-                    "minLength": 1,
-                    "title": "Subjectid",
+                "name": {
+                    "description": "Name of the resource.",
+                    "title": "Name",
                     "type": "string"
                 },
-                "instance": {
-                    "description": "Instance number (starting from 0).",
-                    "title": "Instance",
-                    "type": "integer"
-                },
-                "errorInfo": {
-                    "allOf": [
-                        {
-                            "$ref": "#/$defs/AosErrorInfo"
-                        }
-                    ],
-                    "default": null,
-                    "description": "Error information. Absense means no error."
+                "errors": {
+                    "description": "The list of caught errors",
+                    "items": {
+                        "$ref": "#/$defs/AosErrorInfo"
+                    },
+                    "title": "Errors",
+                    "type": "array"
                 }
             },
             "required": [
                 "timestamp",
                 "tag",
-                "serviceID",
-                "subjectID",
-                "instance"
+                "nodeId",
+                "name",
+                "errors"
             ],
             "title": "AosAlertResourceValidate",
             "type": "object"

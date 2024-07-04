@@ -7,7 +7,7 @@ from typing import Annotated, Literal, Union
 
 from pydantic import BaseModel, Discriminator, Field
 
-from cloud_common.protocols.unit.common import TypeAosErrorInfoOptional
+from cloud_common.protocols.unit.common import TypeAosErrorInfoOptional, AosErrorInfo
 from cloud_common.protocols.unit.constants import DataSizes
 from cloud_common.protocols.unit.types import (
     TypeAlertMessageMandatory,
@@ -61,32 +61,23 @@ class AosAlertResourceValidate(AosBaseAlert):
         Field(description='Type of the alert.'),
     ]
 
-    service_id: Annotated[
+    node_id: TypeNodeIdMandatory
+
+    name: Annotated[
         str,
         Field(
-            alias='serviceID',
-            description='Service unique identifier.',
-            min_length=1,
+            alias='name',
+            description='Name of the resource.',
         ),
     ]
 
-    subject_id: Annotated[
-        str,
+    errors: Annotated[
+        list[AosErrorInfo],
         Field(
-            alias='subjectID',
-            description='Subject unique identifier.',
-            min_length=1,
+            alias='errors',
+            description='The list of caught errors',
         ),
     ]
-
-    instance: Annotated[
-        int,
-        Field(
-            description='Instance number (starting from 0).',
-        ),
-    ]
-
-    error_info: TypeAosErrorInfoOptional
 
 
 class AosAlertDeviceAllocate(AosBaseAlert):
