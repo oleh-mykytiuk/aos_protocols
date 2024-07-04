@@ -794,6 +794,14 @@
                         }
                     ],
                     "description": "Object with information to decrypt the component."
+                },
+                "signs": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/AosSignInfo"
+                        }
+                    ],
+                    "description": "Sign values of the file."
                 }
             },
             "required": [
@@ -802,7 +810,8 @@
                 "urls",
                 "sha256",
                 "size",
-                "decryptionInfo"
+                "decryptionInfo",
+                "signs"
             ],
             "title": "AosDesiredComponentInfo",
             "type": "object"
@@ -899,7 +908,15 @@
                             "$ref": "#/$defs/AosDecryptionInfo"
                         }
                     ],
-                    "description": "Object with information for decryption."
+                    "description": "Object with information to decrypt the component."
+                },
+                "signs": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/AosSignInfo"
+                        }
+                    ],
+                    "description": "Sign values of the file."
                 }
             },
             "required": [
@@ -909,7 +926,8 @@
                 "urls",
                 "sha256",
                 "size",
-                "decryptionInfo"
+                "decryptionInfo",
+                "signs"
             ],
             "title": "AosDesiredLayerInfo",
             "type": "object"
@@ -958,7 +976,15 @@
                             "$ref": "#/$defs/AosDecryptionInfo"
                         }
                     ],
-                    "description": "Object with information for decryption."
+                    "description": "Object with information to decrypt the component."
+                },
+                "signs": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/AosSignInfo"
+                        }
+                    ],
+                    "description": "Sign values of the file."
                 }
             },
             "required": [
@@ -968,7 +994,8 @@
                 "urls",
                 "sha256",
                 "size",
-                "decryptionInfo"
+                "decryptionInfo",
+                "signs"
             ],
             "title": "AosDesiredServiceInfo",
             "type": "object"
@@ -2354,6 +2381,52 @@
                 "status"
             ],
             "title": "AosServiceStatus",
+            "type": "object"
+        },
+        "AosSignInfo": {
+            "description": "Aos sign information.",
+            "properties": {
+                "chainName": {
+                    "description": "chain name from the list of `certificateChains`.",
+                    "title": "Chainname",
+                    "type": "string"
+                },
+                "alg": {
+                    "description": "Used algorithm for signing in the form `alg/hash`.",
+                    "enum": [
+                        "RSA/SHA256",
+                        "EC/SHA256"
+                    ],
+                    "title": "Alg",
+                    "type": "string"
+                },
+                "value": {
+                    "description": "Base64 encoded value of the signature.",
+                    "format": "base64",
+                    "title": "Value",
+                    "type": "string"
+                },
+                "trustedTimestamp": {
+                    "description": "Timestamp of the signature in ISO8601 format.",
+                    "format": "date-time",
+                    "title": "Trustedtimestamp",
+                    "type": "string"
+                },
+                "ocspValues": {
+                    "default": null,
+                    "description": "OCSP value of the signature.",
+                    "format": "base64",
+                    "title": "Ocspvalues",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "chainName",
+                "alg",
+                "value",
+                "trustedTimestamp"
+            ],
+            "title": "AosSignInfo",
             "type": "object"
         },
         "AosStateAcceptance": {
