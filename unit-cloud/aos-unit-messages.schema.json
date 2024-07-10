@@ -509,6 +509,31 @@
             "title": "AosAlerts",
             "type": "object"
         },
+        "AosCSR": {
+            "description": "Aos Certificate Sign Request.",
+            "properties": {
+                "type": {
+                    "description": "Type of the CSR",
+                    "examples": [
+                        "online",
+                        "offline"
+                    ],
+                    "title": "Type",
+                    "type": "string"
+                },
+                "csr": {
+                    "description": "CSR in the PEM format",
+                    "title": "Csr",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "type",
+                "csr"
+            ],
+            "title": "AosCSR",
+            "type": "object"
+        },
         "AosCertificateChainInfo": {
             "description": "Certificate content and fingerprint.",
             "properties": {
@@ -1300,6 +1325,80 @@
                 "destination"
             ],
             "title": "AosFileSystemMount",
+            "type": "object"
+        },
+        "AosFinishProvisioningRequest": {
+            "description": "AosUnit protocol: 'finishProvisioningRequest' message.\n\nCloud begins provisioning process with this message",
+            "properties": {
+                "messageType": {
+                    "const": "finishProvisioningRequest",
+                    "description": "message body type",
+                    "enum": [
+                        "finishProvisioningRequest"
+                    ],
+                    "title": "Messagetype",
+                    "type": "string"
+                },
+                "nodeId": {
+                    "description": "Unique ID of the node.",
+                    "title": "Node ID",
+                    "type": "string"
+                },
+                "certificates": {
+                    "description": "The list of issued certificates",
+                    "items": {
+                        "type": "string"
+                    },
+                    "title": "Certificates",
+                    "type": "array"
+                },
+                "password": {
+                    "description": "Admin (secure officer) password for the node TPM.",
+                    "title": "Password",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "messageType",
+                "nodeId",
+                "certificates",
+                "password"
+            ],
+            "title": "AosFinishProvisioningRequest",
+            "type": "object"
+        },
+        "AosFinishProvisioningResponse": {
+            "description": "AosUnit protocol: 'finishProvisioningResponse' message.",
+            "properties": {
+                "messageType": {
+                    "const": "finishProvisioningResponse",
+                    "description": "message body type",
+                    "enum": [
+                        "finishProvisioningResponse"
+                    ],
+                    "title": "Messagetype",
+                    "type": "string"
+                },
+                "nodeId": {
+                    "description": "Unique ID of the node.",
+                    "title": "Node ID",
+                    "type": "string"
+                },
+                "errorInfo": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/AosErrorInfo"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Error information. Absense means no error."
+                }
+            },
+            "required": [
+                "messageType",
+                "nodeId"
+            ],
+            "title": "AosFinishProvisioningResponse",
             "type": "object"
         },
         "AosHostRecord": {
@@ -2452,6 +2551,80 @@
             "title": "AosSignInfo",
             "type": "object"
         },
+        "AosStartProvisioningRequest": {
+            "description": "AosUnit protocol: 'startProvisioningRequest' message.\n\nCloud begins provisioning process with this message",
+            "properties": {
+                "messageType": {
+                    "const": "startProvisioningRequest",
+                    "description": "message body type",
+                    "enum": [
+                        "startProvisioningRequest"
+                    ],
+                    "title": "Messagetype",
+                    "type": "string"
+                },
+                "nodeId": {
+                    "description": "Unique ID of the node.",
+                    "title": "Node ID",
+                    "type": "string"
+                },
+                "password": {
+                    "description": "Admin (secure officer) password for the node TPM.",
+                    "title": "Password",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "messageType",
+                "nodeId",
+                "password"
+            ],
+            "title": "AosStartProvisioningRequest",
+            "type": "object"
+        },
+        "AosStartProvisioningResponse": {
+            "description": "AosUnit protocol: 'startProvisioningResponse' message.",
+            "properties": {
+                "messageType": {
+                    "const": "startProvisioningResponse",
+                    "description": "message body type",
+                    "enum": [
+                        "startProvisioningResponse"
+                    ],
+                    "title": "Messagetype",
+                    "type": "string"
+                },
+                "nodeId": {
+                    "description": "Unique ID of the node.",
+                    "title": "Node ID",
+                    "type": "string"
+                },
+                "errorInfo": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/AosErrorInfo"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Error information. Absense means no error."
+                },
+                "csrs": {
+                    "description": "List of the CSRs.",
+                    "items": {
+                        "$ref": "#/$defs/AosCSR"
+                    },
+                    "title": "Csrs",
+                    "type": "array"
+                }
+            },
+            "required": [
+                "messageType",
+                "nodeId",
+                "csrs"
+            ],
+            "title": "AosStartProvisioningResponse",
+            "type": "object"
+        },
         "AosStateAcceptance": {
             "description": "AosUnit protocol: 'stateAcceptance' message.\n\nCloud reports service state changes using this message.",
             "properties": {
@@ -3294,6 +3467,8 @@
                 "mapping": {
                     "alerts": "#/$defs/AosAlerts",
                     "desiredStatus": "#/$defs/AosDesiredStatus",
+                    "finishProvisioningRequest": "#/$defs/AosFinishProvisioningRequest",
+                    "finishProvisioningResponse": "#/$defs/AosFinishProvisioningResponse",
                     "installUnitCertificatesConfirmation": "#/$defs/AosInstallUnitCertificatesConfirmation",
                     "issueUnitCertificates": "#/$defs/AosIssueUnitCertificates",
                     "issuedUnitCertificates": "#/$defs/AosIssuedUnitCertificates",
@@ -3304,6 +3479,8 @@
                     "pushLog": "#/$defs/AosPushLog",
                     "renewCertificatesNotification": "#/$defs/AosRenewCertsNotification",
                     "requestLog": "#/$defs/AosRequestLog",
+                    "startProvisioningRequest": "#/$defs/AosStartProvisioningRequest",
+                    "startProvisioningResponse": "#/$defs/AosStartProvisioningResponse",
                     "stateAcceptance": "#/$defs/AosStateAcceptance",
                     "stateRequest": "#/$defs/AosStateRequest",
                     "unitStatus": "#/$defs/AosUnitStatus",
@@ -3359,6 +3536,18 @@
                 },
                 {
                     "$ref": "#/$defs/AosInstallUnitCertificatesConfirmation"
+                },
+                {
+                    "$ref": "#/$defs/AosStartProvisioningRequest"
+                },
+                {
+                    "$ref": "#/$defs/AosStartProvisioningResponse"
+                },
+                {
+                    "$ref": "#/$defs/AosFinishProvisioningRequest"
+                },
+                {
+                    "$ref": "#/$defs/AosFinishProvisioningResponse"
                 }
             ],
             "title": "Data"
