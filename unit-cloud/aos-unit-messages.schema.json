@@ -699,6 +699,71 @@
             "title": "AosComponentInfo",
             "type": "object"
         },
+        "AosDeProvisioningRequest": {
+            "description": "AosUnit protocol: 'deprovisioningRequest' message.",
+            "properties": {
+                "messageType": {
+                    "const": "deprovisioningRequest",
+                    "description": "message body type",
+                    "enum": [
+                        "deprovisioningRequest"
+                    ],
+                    "title": "Messagetype",
+                    "type": "string"
+                },
+                "nodeId": {
+                    "description": "Unique ID of the node.",
+                    "title": "Node ID",
+                    "type": "string"
+                },
+                "password": {
+                    "description": "Admin (secure officer) password for the node TPM.",
+                    "title": "Password",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "messageType",
+                "nodeId",
+                "password"
+            ],
+            "title": "AosDeProvisioningRequest",
+            "type": "object"
+        },
+        "AosDeProvisioningResponse": {
+            "description": "AosUnit protocol: 'deprovisioningResponse' message.",
+            "properties": {
+                "messageType": {
+                    "const": "deprovisioningResponse",
+                    "description": "message body type",
+                    "enum": [
+                        "deprovisioningResponse"
+                    ],
+                    "title": "Messagetype",
+                    "type": "string"
+                },
+                "nodeId": {
+                    "description": "Unique ID of the node.",
+                    "title": "Node ID",
+                    "type": "string"
+                },
+                "errorInfo": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/AosErrorInfo"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Error information. Absense means no error."
+                }
+            },
+            "required": [
+                "messageType",
+                "nodeId"
+            ],
+            "title": "AosDeProvisioningResponse",
+            "type": "object"
+        },
         "AosDecryptionInfo": {
             "description": "Information for the decryption.",
             "properties": {
@@ -3466,6 +3531,8 @@
             "discriminator": {
                 "mapping": {
                     "alerts": "#/$defs/AosAlerts",
+                    "deprovisioningRequest": "#/$defs/AosDeProvisioningRequest",
+                    "deprovisioningResponse": "#/$defs/AosDeProvisioningResponse",
                     "desiredStatus": "#/$defs/AosDesiredStatus",
                     "finishProvisioningRequest": "#/$defs/AosFinishProvisioningRequest",
                     "finishProvisioningResponse": "#/$defs/AosFinishProvisioningResponse",
@@ -3548,6 +3615,12 @@
                 },
                 {
                     "$ref": "#/$defs/AosFinishProvisioningResponse"
+                },
+                {
+                    "$ref": "#/$defs/AosDeProvisioningRequest"
+                },
+                {
+                    "$ref": "#/$defs/AosDeProvisioningResponse"
                 }
             ],
             "title": "Data"

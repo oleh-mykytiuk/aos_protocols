@@ -131,3 +131,44 @@ class AosFinishProvisioningResponse(BaseModel):
 
     node_id: TypeNodeIdMandatory
     error_info: TypeAosErrorInfoOptional
+
+
+class AosDeProvisioningRequest(BaseModel):
+    """
+    AosUnit protocol: 'deprovisioningRequest' message.
+    """
+
+    message_type: Annotated[
+        Literal['deprovisioningRequest'],
+        Field(
+            alias='messageType',
+            description='message body type',
+        ),
+    ]
+
+    node_id: TypeNodeIdMandatory
+
+    password: Annotated[
+        str,
+        Field(
+            alias='password',
+            description='Admin (secure officer) password for the node TPM.',
+        ),
+    ]
+
+
+class AosDeProvisioningResponse(BaseModel):
+    """
+    AosUnit protocol: 'deprovisioningResponse' message.
+    """
+
+    message_type: Annotated[
+        Literal['deprovisioningResponse'],
+        Field(
+            alias='messageType',
+            description='message body type',
+        ),
+    ]
+
+    node_id: TypeNodeIdMandatory
+    error_info: TypeAosErrorInfoOptional

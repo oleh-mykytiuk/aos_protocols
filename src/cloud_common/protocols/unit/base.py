@@ -26,6 +26,8 @@ from cloud_common.protocols.unit.provisioning import (
     AosStartProvisioningResponse,
     AosFinishProvisioningResponse,
     AosFinishProvisioningRequest,
+    AosDeProvisioningResponse,
+    AosDeProvisioningRequest,
 )
 from cloud_common.protocols.unit.state import (
     AosNewState,
@@ -68,6 +70,8 @@ class AosUnitMessage(BaseModel):
             AosStartProvisioningResponse,
             AosFinishProvisioningRequest,
             AosFinishProvisioningResponse,
+            AosDeProvisioningRequest,
+            AosDeProvisioningResponse,
         ],
         Field(
             description='message payload',
