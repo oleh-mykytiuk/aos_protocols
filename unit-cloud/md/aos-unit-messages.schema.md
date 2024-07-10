@@ -488,6 +488,17 @@
       - [Property `AosUnitMessage > data > oneOf > AosAlerts > items > items items > oneOf > AosAlertResourceValidate > errors > AosErrorInfo > aosCode`](#data_oneOf_i0_items_items_oneOf_i7_errors_items_aosCode)
       - [Property `AosUnitMessage > data > oneOf > AosAlerts > items > items items > oneOf > AosAlertResourceValidate > errors > AosErrorInfo > exitCode`](#data_oneOf_i0_items_items_oneOf_i7_errors_items_exitCode)
       - [Property `AosUnitMessage > data > oneOf > AosAlerts > items > items items > oneOf > AosAlertResourceValidate > errors > AosErrorInfo > message`](#data_oneOf_i0_items_items_oneOf_i7_errors_items_message)
+  - [Property `AosUnitMessage > data > oneOf > AosDeProvisioningRequest`](#data_oneOf_i20)
+    - [Property `AosUnitMessage > data > oneOf > AosDeProvisioningRequest > messageType`](#data_oneOf_i20_messageType)
+    - [Property `AosUnitMessage > data > oneOf > AosDeProvisioningRequest > nodeId`](#data_oneOf_i20_nodeId)
+    - [Property `AosUnitMessage > data > oneOf > AosDeProvisioningRequest > password`](#data_oneOf_i20_password)
+  - [Property `AosUnitMessage > data > oneOf > AosDeProvisioningResponse`](#data_oneOf_i21)
+    - [Property `AosUnitMessage > data > oneOf > AosDeProvisioningResponse > messageType`](#data_oneOf_i21_messageType)
+    - [Property `AosUnitMessage > data > oneOf > AosDeProvisioningResponse > nodeId`](#data_oneOf_i21_nodeId)
+    - [Property `AosUnitMessage > data > oneOf > AosDeProvisioningResponse > errorInfo`](#data_oneOf_i21_errorInfo)
+      - [Property `AosUnitMessage > data > oneOf > AosAlerts > items > items items > oneOf > AosAlertResourceValidate > errors > AosErrorInfo > aosCode`](#data_oneOf_i0_items_items_oneOf_i7_errors_items_aosCode)
+      - [Property `AosUnitMessage > data > oneOf > AosAlerts > items > items items > oneOf > AosAlertResourceValidate > errors > AosErrorInfo > exitCode`](#data_oneOf_i0_items_items_oneOf_i7_errors_items_exitCode)
+      - [Property `AosUnitMessage > data > oneOf > AosAlerts > items > items items > oneOf > AosAlertResourceValidate > errors > AosErrorInfo > message`](#data_oneOf_i0_items_items_oneOf_i7_errors_items_message)
 
 **Title:** AosUnitMessage
 
@@ -573,6 +584,8 @@ Specific value: `6`
 | [AosStartProvisioningResponse](#data_oneOf_i17)           |
 | [AosFinishProvisioningRequest](#data_oneOf_i18)           |
 | [AosFinishProvisioningResponse](#data_oneOf_i19)          |
+| [AosDeProvisioningRequest](#data_oneOf_i20)               |
+| [AosDeProvisioningResponse](#data_oneOf_i21)              |
 
 ### <a name="data_oneOf_i0"></a>Property `AosUnitMessage > data > oneOf > AosAlerts`
 
@@ -7420,5 +7433,145 @@ Specific value: `"finishProvisioningResponse"`
 
 **Description:** Text of the error description.
 
+### <a name="data_oneOf_i20"></a>Property `AosUnitMessage > data > oneOf > AosDeProvisioningRequest`
+
+|                           |                                                                                                                                   |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                                                                          |
+| **Additional properties** | [![Any type: allowed](https://img.shields.io/badge/Any%20type-allowed-green)](# "Additional Properties of any type are allowed.") |
+| **Defined in**            | #/$defs/AosDeProvisioningRequest                                                                                                  |
+
+**Description:** AosUnit protocol: 'deprovisioningRequest' message.
+
+| Property                                      | Pattern | Type   | Deprecated | Definition | Title/Description |
+| --------------------------------------------- | ------- | ------ | ---------- | ---------- | ----------------- |
+| + [messageType](#data_oneOf_i20_messageType ) | No      | const  | No         | -          | Messagetype       |
+| + [nodeId](#data_oneOf_i20_nodeId )           | No      | string | No         | -          | Node ID           |
+| + [password](#data_oneOf_i20_password )       | No      | string | No         | -          | Password          |
+
+#### <a name="data_oneOf_i20_messageType"></a>Property `AosUnitMessage > data > oneOf > AosDeProvisioningRequest > messageType`
+
+**Title:** Messagetype
+
+|          |         |
+| -------- | ------- |
+| **Type** | `const` |
+
+**Description:** message body type
+
+Must be one of:
+* "deprovisioningRequest"
+Specific value: `"deprovisioningRequest"`
+
+#### <a name="data_oneOf_i20_nodeId"></a>Property `AosUnitMessage > data > oneOf > AosDeProvisioningRequest > nodeId`
+
+**Title:** Node ID
+
+|          |          |
+| -------- | -------- |
+| **Type** | `string` |
+
+**Description:** Unique ID of the node.
+
+#### <a name="data_oneOf_i20_password"></a>Property `AosUnitMessage > data > oneOf > AosDeProvisioningRequest > password`
+
+**Title:** Password
+
+|          |          |
+| -------- | -------- |
+| **Type** | `string` |
+
+**Description:** Admin (secure officer) password for the node TPM.
+
+### <a name="data_oneOf_i21"></a>Property `AosUnitMessage > data > oneOf > AosDeProvisioningResponse`
+
+|                           |                                                                                                                                   |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                                                                          |
+| **Additional properties** | [![Any type: allowed](https://img.shields.io/badge/Any%20type-allowed-green)](# "Additional Properties of any type are allowed.") |
+| **Defined in**            | #/$defs/AosDeProvisioningResponse                                                                                                 |
+
+**Description:** AosUnit protocol: 'deprovisioningResponse' message.
+
+| Property                                      | Pattern | Type   | Deprecated | Definition | Title/Description                          |
+| --------------------------------------------- | ------- | ------ | ---------- | ---------- | ------------------------------------------ |
+| + [messageType](#data_oneOf_i21_messageType ) | No      | const  | No         | -          | Messagetype                                |
+| + [nodeId](#data_oneOf_i21_nodeId )           | No      | string | No         | -          | Node ID                                    |
+| - [errorInfo](#data_oneOf_i21_errorInfo )     | No      | object | No         | In         | Error information. Absense means no error. |
+
+#### <a name="data_oneOf_i21_messageType"></a>Property `AosUnitMessage > data > oneOf > AosDeProvisioningResponse > messageType`
+
+**Title:** Messagetype
+
+|          |         |
+| -------- | ------- |
+| **Type** | `const` |
+
+**Description:** message body type
+
+Must be one of:
+* "deprovisioningResponse"
+Specific value: `"deprovisioningResponse"`
+
+#### <a name="data_oneOf_i21_nodeId"></a>Property `AosUnitMessage > data > oneOf > AosDeProvisioningResponse > nodeId`
+
+**Title:** Node ID
+
+|          |          |
+| -------- | -------- |
+| **Type** | `string` |
+
+**Description:** Unique ID of the node.
+
+#### <a name="data_oneOf_i21_errorInfo"></a>Property `AosUnitMessage > data > oneOf > AosDeProvisioningResponse > errorInfo`
+
+|                           |                                                                                                                                   |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                                                                          |
+| **Additional properties** | [![Any type: allowed](https://img.shields.io/badge/Any%20type-allowed-green)](# "Additional Properties of any type are allowed.") |
+| **Default**               | `null`                                                                                                                            |
+| **Defined in**            |                                                                                                                                   |
+
+**Description:** Error information. Absense means no error.
+
+| Property                                                                 | Pattern | Type    | Deprecated | Definition | Title/Description |
+| ------------------------------------------------------------------------ | ------- | ------- | ---------- | ---------- | ----------------- |
+| - [aosCode](#data_oneOf_i0_items_items_oneOf_i7_errors_items_aosCode )   | No      | integer | No         | -          | Aos error code    |
+| - [exitCode](#data_oneOf_i0_items_items_oneOf_i7_errors_items_exitCode ) | No      | integer | No         | -          | Exit code         |
+| - [message](#data_oneOf_i0_items_items_oneOf_i7_errors_items_message )   | No      | string  | No         | -          | Error message     |
+
+##### <a name="data_oneOf_i0_items_items_oneOf_i7_errors_items_aosCode"></a>Property `AosUnitMessage > data > oneOf > AosAlerts > items > items items > oneOf > AosAlertResourceValidate > errors > AosErrorInfo > aosCode`
+
+**Title:** Aos error code
+
+|             |           |
+| ----------- | --------- |
+| **Type**    | `integer` |
+| **Default** | `null`    |
+
+**Description:** AosCore error code.
+
+##### <a name="data_oneOf_i0_items_items_oneOf_i7_errors_items_exitCode"></a>Property `AosUnitMessage > data > oneOf > AosAlerts > items > items items > oneOf > AosAlertResourceValidate > errors > AosErrorInfo > exitCode`
+
+**Title:** Exit code
+
+|             |           |
+| ----------- | --------- |
+| **Type**    | `integer` |
+| **Default** | `null`    |
+
+**Description:** Module error code.
+
+##### <a name="data_oneOf_i0_items_items_oneOf_i7_errors_items_message"></a>Property `AosUnitMessage > data > oneOf > AosAlerts > items > items items > oneOf > AosAlertResourceValidate > errors > AosErrorInfo > message`
+
+**Title:** Error message
+
+|             |          |
+| ----------- | -------- |
+| **Type**    | `string` |
+| **Default** | `null`   |
+
+**Description:** Text of the error description.
+
 ----------------------------------------------------------------------------------------------------------------------------
-Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-07-10 at 13:39:48 +0300
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-07-10 at 14:09:56 +0300
