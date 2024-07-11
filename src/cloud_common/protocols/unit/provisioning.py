@@ -6,6 +6,7 @@ from typing import Annotated, Literal
 
 from pydantic import BaseModel, Field
 
+from cloud_common.protocols.unit.certificates import AosIssuedUnitCerts
 from cloud_common.protocols.unit.common import TypeAosErrorInfoOptional
 from cloud_common.protocols.unit.types import TypeNodeIdMandatory
 
@@ -100,7 +101,7 @@ class AosFinishProvisioningRequest(BaseModel):
     node_id: TypeNodeIdMandatory
 
     certificates: Annotated[
-        list[str],
+        list[AosIssuedUnitCerts],
         Field(
             alias='certificates',
             description='The list of issued certificates',

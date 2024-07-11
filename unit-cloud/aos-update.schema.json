@@ -1,0 +1,245 @@
+{
+    "$defs": {
+        "AosComponent": {
+            "description": "AosEdge Component schema description.\n\nContains description and dependencies information.",
+            "properties": {
+                "type": {
+                    "description": "Unique for the AosEdge unit model component identifier.\nNote that components are shared between different unit models.",
+                    "title": "Type",
+                    "type": "string"
+                },
+                "fileName": {
+                    "description": "Path to the component file inside bundle.",
+                    "title": "Filename",
+                    "type": "string"
+                },
+                "version": {
+                    "description": "Component version in SemVer format.",
+                    "title": "Version",
+                    "type": "string"
+                },
+                "description": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Component update description, for information purpose..",
+                    "title": "Description"
+                },
+                "requiredVersion": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Indicates the exact version of the component on which this version should be applied\n   (explicitly means that update incremental) (requiredVersion discards minVersion and maxVersion).\nFormat - SemVer.",
+                    "title": "Requiredversion"
+                },
+                "minVersion": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Indicates minimum version which should the component have before installing this one. Format - SemVer.",
+                    "title": "Minversion"
+                },
+                "maxVersion": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Indicates maximum version which should the component have before installing this one. Format - SemVer.",
+                    "title": "Maxversion"
+                },
+                "downloadTTL": {
+                    "anyOf": [
+                        {
+                            "format": "date-time",
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Download TTL (ISO 8601 duration).\nIn case of the unit is not able to download service or related layer more than TTL time - Service should be deleted.",
+                    "title": "Downloadttl"
+                },
+                "annotations": {
+                    "anyOf": [
+                        {
+                            "type": "object"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Any valid JSON structure, it will be passed directly to the target,\n  used to provide component-specific data required for update on the target.",
+                    "examples": [
+                        {
+                            "type": "full"
+                        }
+                    ],
+                    "title": "Annotations"
+                },
+                "runtimeDependencies": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "$ref": "#/$defs/AosDependency"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "List of components and their versions which should be installed at same time with required component",
+                    "examples": [
+                        [
+                            {
+                                "id": "boot",
+                                "requiredVersion": "1.0.0"
+                            },
+                            {
+                                "id": "bios",
+                                "minVersion": "1.2.0"
+                            }
+                        ]
+                    ],
+                    "title": "Runtimedependencies"
+                }
+            },
+            "required": [
+                "type",
+                "fileName",
+                "version"
+            ],
+            "title": "AosComponent",
+            "type": "object"
+        },
+        "AosDependency": {
+            "description": "Dependency for a component.",
+            "properties": {
+                "type": {
+                    "description": "The type (unique identifier) of the component.",
+                    "title": "Type",
+                    "type": "string"
+                },
+                "requiredVersion": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The exact required version of the component.",
+                    "title": "Requiredversion"
+                },
+                "minVersion": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The minimum required version of the component.",
+                    "title": "Minversion"
+                }
+            },
+            "required": [
+                "type"
+            ],
+            "title": "AosDependency",
+            "type": "object"
+        }
+    },
+    "description": "SOTA/FOTA manifest format.",
+    "properties": {
+        "formatVersion": {
+            "const": 2,
+            "description": "Format version,  used to support future extension and backward compatibility.",
+            "enum": [
+                2
+            ],
+            "title": "Formatversion",
+            "type": "integer"
+        },
+        "components": {
+            "description": "Array of component images this bundle contains.",
+            "examples": [
+                {
+                    "annotations": {
+                        "type": "incremental"
+                    },
+                    "description": "this is rootfs update",
+                    "downloadTTL": "P1M",
+                    "fileName": "component.gz",
+                    "requiredVersion": "2.0.0",
+                    "runtimeDependencies": [
+                        {
+                            "requiredVersion": "1.0.0",
+                            "type": "boot"
+                        },
+                        {
+                            "minVersion": "1.2.0",
+                            "type": "bios"
+                        }
+                    ],
+                    "type": "rootfs",
+                    "version": "2.1.0"
+                },
+                {
+                    "annotations": {
+                        "type": "full"
+                    },
+                    "description": "this is rootfs update",
+                    "downloadTTL": "P1M",
+                    "fileName": "component.gz",
+                    "maxVersion": "2.0.0b99",
+                    "minVersion": "1.0.0",
+                    "type": "rootfs",
+                    "version": "2.0.0"
+                }
+            ],
+            "items": {
+                "$ref": "#/$defs/AosComponent"
+            },
+            "title": "Components",
+            "type": "array"
+        }
+    },
+    "required": [
+        "formatVersion",
+        "components"
+    ],
+    "title": "AosUpdateSchema",
+    "type": "object"
+}
