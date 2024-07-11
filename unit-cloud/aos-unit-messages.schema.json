@@ -1412,7 +1412,7 @@
                 "certificates": {
                     "description": "The list of issued certificates",
                     "items": {
-                        "type": "string"
+                        "$ref": "#/$defs/AosIssuedUnitCerts"
                     },
                     "title": "Certificates",
                     "type": "array"
