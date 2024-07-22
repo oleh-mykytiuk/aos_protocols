@@ -113,9 +113,8 @@ class AosNodeMonitoringData(BaseModel):
     node_id: TypeNodeIdMandatory
 
     items: Annotated[  # noqa: WPS110
-        AosMonitoringData,
+        list[AosMonitoringData],
         Field(
-            default=None,
             alias='items',
             description='List of the monitoring records.',
         ),

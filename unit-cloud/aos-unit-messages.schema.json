@@ -2082,17 +2082,17 @@
                     "type": "string"
                 },
                 "items": {
-                    "allOf": [
-                        {
-                            "$ref": "#/$defs/AosMonitoringData"
-                        }
-                    ],
-                    "default": null,
-                    "description": "List of the monitoring records."
+                    "description": "List of the monitoring records.",
+                    "items": {
+                        "$ref": "#/$defs/AosMonitoringData"
+                    },
+                    "title": "Items",
+                    "type": "array"
                 }
             },
             "required": [
-                "nodeId"
+                "nodeId",
+                "items"
             ],
             "title": "AosNodeMonitoringData",
             "type": "object"
