@@ -152,7 +152,7 @@ class AosAlertConfig(BaseModel):
     ]
 
     min_threshold: Annotated[
-        int,
+        float,
         Field(
             alias='minThreshold',
             description='Minimum threshold to stop alerting.',
@@ -160,7 +160,7 @@ class AosAlertConfig(BaseModel):
     ]
 
     max_threshold: Annotated[
-        int,
+        float,
         Field(
             alias='maxThreshold',
             description='Threshold to trigger the alert.',
