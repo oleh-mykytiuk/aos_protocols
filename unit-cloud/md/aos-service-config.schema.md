@@ -85,28 +85,37 @@
 - [![Optional](https://img.shields.io/badge/Optional-yellow) Property `AosConfigSchema > alertRules`](#alertRules)
   - [Property `AosConfigSchema > alertRules > anyOf > AlertRules`](#alertRules_anyOf_i0)
     - [Property `AosConfigSchema > alertRules > anyOf > AlertRules > ram`](#alertRules_anyOf_i0_ram)
-      - [Property `AosConfigSchema > alertRules > anyOf > AlertRules > ram > anyOf > AlertSettings`](#alertRules_anyOf_i0_ram_anyOf_i0)
-        - [Property `AosConfigSchema > alertRules > anyOf > AlertRules > ram > anyOf > AlertSettings > minTimeout`](#alertRules_anyOf_i0_ram_anyOf_i0_minTimeout)
-          - [Property `AosConfigSchema > alertRules > anyOf > AlertRules > ram > anyOf > AlertSettings > minTimeout > anyOf > item 0`](#alertRules_anyOf_i0_ram_anyOf_i0_minTimeout_anyOf_i0)
-          - [Property `AosConfigSchema > alertRules > anyOf > AlertRules > ram > anyOf > AlertSettings > minTimeout > anyOf > item 1`](#alertRules_anyOf_i0_ram_anyOf_i0_minTimeout_anyOf_i1)
-        - [Property `AosConfigSchema > alertRules > anyOf > AlertRules > ram > anyOf > AlertSettings > minThreshold`](#alertRules_anyOf_i0_ram_anyOf_i0_minThreshold)
-          - [Property `AosConfigSchema > alertRules > anyOf > AlertRules > ram > anyOf > AlertSettings > minThreshold > anyOf > item 0`](#alertRules_anyOf_i0_ram_anyOf_i0_minThreshold_anyOf_i0)
-          - [Property `AosConfigSchema > alertRules > anyOf > AlertRules > ram > anyOf > AlertSettings > minThreshold > anyOf > item 1`](#alertRules_anyOf_i0_ram_anyOf_i0_minThreshold_anyOf_i1)
-        - [Property `AosConfigSchema > alertRules > anyOf > AlertRules > ram > anyOf > AlertSettings > maxThreshold`](#alertRules_anyOf_i0_ram_anyOf_i0_maxThreshold)
-          - [Property `AosConfigSchema > alertRules > anyOf > AlertRules > ram > anyOf > AlertSettings > maxThreshold > anyOf > item 0`](#alertRules_anyOf_i0_ram_anyOf_i0_maxThreshold_anyOf_i0)
-          - [Property `AosConfigSchema > alertRules > anyOf > AlertRules > ram > anyOf > AlertSettings > maxThreshold > anyOf > item 1`](#alertRules_anyOf_i0_ram_anyOf_i0_maxThreshold_anyOf_i1)
+      - [Property `AosConfigSchema > alertRules > anyOf > AlertRules > ram > anyOf > AlertRulePercents`](#alertRules_anyOf_i0_ram_anyOf_i0)
+        - [Property `AosConfigSchema > alertRules > anyOf > AlertRules > ram > anyOf > AlertRulePercents > minTimeout`](#alertRules_anyOf_i0_ram_anyOf_i0_minTimeout)
+          - [Property `AosConfigSchema > alertRules > anyOf > AlertRules > ram > anyOf > AlertRulePercents > minTimeout > anyOf > item 0`](#alertRules_anyOf_i0_ram_anyOf_i0_minTimeout_anyOf_i0)
+          - [Property `AosConfigSchema > alertRules > anyOf > AlertRules > ram > anyOf > AlertRulePercents > minTimeout > anyOf > item 1`](#alertRules_anyOf_i0_ram_anyOf_i0_minTimeout_anyOf_i1)
+        - [Property `AosConfigSchema > alertRules > anyOf > AlertRules > ram > anyOf > AlertRulePercents > minThreshold`](#alertRules_anyOf_i0_ram_anyOf_i0_minThreshold)
+          - [Property `AosConfigSchema > alertRules > anyOf > AlertRules > ram > anyOf > AlertRulePercents > minThreshold > anyOf > item 0`](#alertRules_anyOf_i0_ram_anyOf_i0_minThreshold_anyOf_i0)
+          - [Property `AosConfigSchema > alertRules > anyOf > AlertRules > ram > anyOf > AlertRulePercents > minThreshold > anyOf > item 1`](#alertRules_anyOf_i0_ram_anyOf_i0_minThreshold_anyOf_i1)
+        - [Property `AosConfigSchema > alertRules > anyOf > AlertRules > ram > anyOf > AlertRulePercents > maxThreshold`](#alertRules_anyOf_i0_ram_anyOf_i0_maxThreshold)
+          - [Property `AosConfigSchema > alertRules > anyOf > AlertRules > ram > anyOf > AlertRulePercents > maxThreshold > anyOf > item 0`](#alertRules_anyOf_i0_ram_anyOf_i0_maxThreshold_anyOf_i0)
+          - [Property `AosConfigSchema > alertRules > anyOf > AlertRules > ram > anyOf > AlertRulePercents > maxThreshold > anyOf > item 1`](#alertRules_anyOf_i0_ram_anyOf_i0_maxThreshold_anyOf_i1)
       - [Property `AosConfigSchema > alertRules > anyOf > AlertRules > ram > anyOf > item 1`](#alertRules_anyOf_i0_ram_anyOf_i1)
     - [Property `AosConfigSchema > alertRules > anyOf > AlertRules > cpu`](#alertRules_anyOf_i0_cpu)
-      - [Property `AosConfigSchema > alertRules > anyOf > AlertRules > cpu > anyOf > AlertSettings`](#alertRules_anyOf_i0_cpu_anyOf_i0)
+      - [Property `AosConfigSchema > alertRules > anyOf > AlertRules > cpu > anyOf > AlertRulePercents`](#alertRules_anyOf_i0_cpu_anyOf_i0)
       - [Property `AosConfigSchema > alertRules > anyOf > AlertRules > cpu > anyOf > item 1`](#alertRules_anyOf_i0_cpu_anyOf_i1)
     - [Property `AosConfigSchema > alertRules > anyOf > AlertRules > storage`](#alertRules_anyOf_i0_storage)
-      - [Property `AosConfigSchema > alertRules > anyOf > AlertRules > storage > anyOf > AlertSettings`](#alertRules_anyOf_i0_storage_anyOf_i0)
+      - [Property `AosConfigSchema > alertRules > anyOf > AlertRules > storage > anyOf > AlertRulePercents`](#alertRules_anyOf_i0_storage_anyOf_i0)
       - [Property `AosConfigSchema > alertRules > anyOf > AlertRules > storage > anyOf > item 1`](#alertRules_anyOf_i0_storage_anyOf_i1)
     - [Property `AosConfigSchema > alertRules > anyOf > AlertRules > upload`](#alertRules_anyOf_i0_upload)
-      - [Property `AosConfigSchema > alertRules > anyOf > AlertRules > upload > anyOf > AlertSettings`](#alertRules_anyOf_i0_upload_anyOf_i0)
+      - [Property `AosConfigSchema > alertRules > anyOf > AlertRules > upload > anyOf > AlertRulePoints`](#alertRules_anyOf_i0_upload_anyOf_i0)
+        - [Property `AosConfigSchema > alertRules > anyOf > AlertRules > upload > anyOf > AlertRulePoints > minTimeout`](#alertRules_anyOf_i0_upload_anyOf_i0_minTimeout)
+          - [Property `AosConfigSchema > alertRules > anyOf > AlertRules > upload > anyOf > AlertRulePoints > minTimeout > anyOf > item 0`](#alertRules_anyOf_i0_upload_anyOf_i0_minTimeout_anyOf_i0)
+          - [Property `AosConfigSchema > alertRules > anyOf > AlertRules > upload > anyOf > AlertRulePoints > minTimeout > anyOf > item 1`](#alertRules_anyOf_i0_upload_anyOf_i0_minTimeout_anyOf_i1)
+        - [Property `AosConfigSchema > alertRules > anyOf > AlertRules > upload > anyOf > AlertRulePoints > minThreshold`](#alertRules_anyOf_i0_upload_anyOf_i0_minThreshold)
+          - [Property `AosConfigSchema > alertRules > anyOf > AlertRules > upload > anyOf > AlertRulePoints > minThreshold > anyOf > item 0`](#alertRules_anyOf_i0_upload_anyOf_i0_minThreshold_anyOf_i0)
+          - [Property `AosConfigSchema > alertRules > anyOf > AlertRules > upload > anyOf > AlertRulePoints > minThreshold > anyOf > item 1`](#alertRules_anyOf_i0_upload_anyOf_i0_minThreshold_anyOf_i1)
+        - [Property `AosConfigSchema > alertRules > anyOf > AlertRules > upload > anyOf > AlertRulePoints > maxThreshold`](#alertRules_anyOf_i0_upload_anyOf_i0_maxThreshold)
+          - [Property `AosConfigSchema > alertRules > anyOf > AlertRules > upload > anyOf > AlertRulePoints > maxThreshold > anyOf > item 0`](#alertRules_anyOf_i0_upload_anyOf_i0_maxThreshold_anyOf_i0)
+          - [Property `AosConfigSchema > alertRules > anyOf > AlertRules > upload > anyOf > AlertRulePoints > maxThreshold > anyOf > item 1`](#alertRules_anyOf_i0_upload_anyOf_i0_maxThreshold_anyOf_i1)
       - [Property `AosConfigSchema > alertRules > anyOf > AlertRules > upload > anyOf > item 1`](#alertRules_anyOf_i0_upload_anyOf_i1)
     - [Property `AosConfigSchema > alertRules > anyOf > AlertRules > download`](#alertRules_anyOf_i0_download)
-      - [Property `AosConfigSchema > alertRules > anyOf > AlertRules > download > anyOf > AlertSettings`](#alertRules_anyOf_i0_download_anyOf_i0)
+      - [Property `AosConfigSchema > alertRules > anyOf > AlertRules > download > anyOf > AlertRulePoints`](#alertRules_anyOf_i0_download_anyOf_i0)
       - [Property `AosConfigSchema > alertRules > anyOf > AlertRules > download > anyOf > item 1`](#alertRules_anyOf_i0_download_anyOf_i1)
   - [Property `AosConfigSchema > alertRules > anyOf > item 1`](#alertRules_anyOf_i1)
 - [![Optional](https://img.shields.io/badge/Optional-yellow) Property `AosConfigSchema > permissions`](#permissions)
@@ -1153,20 +1162,20 @@ Each of specified resource ratio is treated as `requested` value.
 
 **Description:** RAM alert settings.
 
-| Any of(Option)                                     |
-| -------------------------------------------------- |
-| [AlertSettings](#alertRules_anyOf_i0_ram_anyOf_i0) |
-| [item 1](#alertRules_anyOf_i0_ram_anyOf_i1)        |
+| Any of(Option)                                         |
+| ------------------------------------------------------ |
+| [AlertRulePercents](#alertRules_anyOf_i0_ram_anyOf_i0) |
+| [item 1](#alertRules_anyOf_i0_ram_anyOf_i1)            |
 
-##### <a name="alertRules_anyOf_i0_ram_anyOf_i0"></a>Property `AosConfigSchema > alertRules > anyOf > AlertRules > ram > anyOf > AlertSettings`
+##### <a name="alertRules_anyOf_i0_ram_anyOf_i0"></a>Property `AosConfigSchema > alertRules > anyOf > AlertRules > ram > anyOf > AlertRulePercents`
 
 |                           |                                                                                                                                   |
 | ------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
 | **Type**                  | `object`                                                                                                                          |
 | **Additional properties** | [![Any type: allowed](https://img.shields.io/badge/Any%20type-allowed-green)](# "Additional Properties of any type are allowed.") |
-| **Defined in**            | #/$defs/AlertSettings                                                                                                             |
+| **Defined in**            | #/$defs/AlertRulePercents                                                                                                         |
 
-**Description:** Schema alert triggering procedure.
+**Description:** Schema alert triggering procedure in percents.
 
 | Property                                                          | Pattern | Type        | Deprecated | Definition | Title/Description |
 | ----------------------------------------------------------------- | ------- | ----------- | ---------- | ---------- | ----------------- |
@@ -1174,7 +1183,7 @@ Each of specified resource ratio is treated as `requested` value.
 | + [minThreshold](#alertRules_anyOf_i0_ram_anyOf_i0_minThreshold ) | No      | Combination | No         | -          | Minthreshold      |
 | + [maxThreshold](#alertRules_anyOf_i0_ram_anyOf_i0_maxThreshold ) | No      | Combination | No         | -          | Maxthreshold      |
 
-###### <a name="alertRules_anyOf_i0_ram_anyOf_i0_minTimeout"></a>Property `AosConfigSchema > alertRules > anyOf > AlertRules > ram > anyOf > AlertSettings > minTimeout`
+###### <a name="alertRules_anyOf_i0_ram_anyOf_i0_minTimeout"></a>Property `AosConfigSchema > alertRules > anyOf > AlertRules > ram > anyOf > AlertRulePercents > minTimeout`
 
 **Title:** Mintimeout
 
@@ -1200,20 +1209,20 @@ Each of specified resource ratio is treated as `requested` value.
 | [item 0](#alertRules_anyOf_i0_ram_anyOf_i0_minTimeout_anyOf_i0) |
 | [item 1](#alertRules_anyOf_i0_ram_anyOf_i0_minTimeout_anyOf_i1) |
 
-###### <a name="alertRules_anyOf_i0_ram_anyOf_i0_minTimeout_anyOf_i0"></a>Property `AosConfigSchema > alertRules > anyOf > AlertRules > ram > anyOf > AlertSettings > minTimeout > anyOf > item 0`
+###### <a name="alertRules_anyOf_i0_ram_anyOf_i0_minTimeout_anyOf_i0"></a>Property `AosConfigSchema > alertRules > anyOf > AlertRules > ram > anyOf > AlertRulePercents > minTimeout > anyOf > item 0`
 
 |            |            |
 | ---------- | ---------- |
 | **Type**   | `string`   |
 | **Format** | `duration` |
 
-###### <a name="alertRules_anyOf_i0_ram_anyOf_i0_minTimeout_anyOf_i1"></a>Property `AosConfigSchema > alertRules > anyOf > AlertRules > ram > anyOf > AlertSettings > minTimeout > anyOf > item 1`
+###### <a name="alertRules_anyOf_i0_ram_anyOf_i0_minTimeout_anyOf_i1"></a>Property `AosConfigSchema > alertRules > anyOf > AlertRules > ram > anyOf > AlertRulePercents > minTimeout > anyOf > item 1`
 
 |          |        |
 | -------- | ------ |
 | **Type** | `null` |
 
-###### <a name="alertRules_anyOf_i0_ram_anyOf_i0_minThreshold"></a>Property `AosConfigSchema > alertRules > anyOf > AlertRules > ram > anyOf > AlertSettings > minThreshold`
+###### <a name="alertRules_anyOf_i0_ram_anyOf_i0_minThreshold"></a>Property `AosConfigSchema > alertRules > anyOf > AlertRules > ram > anyOf > AlertRulePercents > minThreshold`
 
 **Title:** Minthreshold
 
@@ -1229,19 +1238,24 @@ Each of specified resource ratio is treated as `requested` value.
 | [item 0](#alertRules_anyOf_i0_ram_anyOf_i0_minThreshold_anyOf_i0) |
 | [item 1](#alertRules_anyOf_i0_ram_anyOf_i0_minThreshold_anyOf_i1) |
 
-###### <a name="alertRules_anyOf_i0_ram_anyOf_i0_minThreshold_anyOf_i0"></a>Property `AosConfigSchema > alertRules > anyOf > AlertRules > ram > anyOf > AlertSettings > minThreshold > anyOf > item 0`
+###### <a name="alertRules_anyOf_i0_ram_anyOf_i0_minThreshold_anyOf_i0"></a>Property `AosConfigSchema > alertRules > anyOf > AlertRules > ram > anyOf > AlertRulePercents > minThreshold > anyOf > item 0`
 
-|          |           |
-| -------- | --------- |
-| **Type** | `integer` |
+|          |          |
+| -------- | -------- |
+| **Type** | `number` |
 
-###### <a name="alertRules_anyOf_i0_ram_anyOf_i0_minThreshold_anyOf_i1"></a>Property `AosConfigSchema > alertRules > anyOf > AlertRules > ram > anyOf > AlertSettings > minThreshold > anyOf > item 1`
+| Restrictions |     |
+| ------------ | --- |
+| **Minimum**  | N/A |
+| **Maximum**  | N/A |
+
+###### <a name="alertRules_anyOf_i0_ram_anyOf_i0_minThreshold_anyOf_i1"></a>Property `AosConfigSchema > alertRules > anyOf > AlertRules > ram > anyOf > AlertRulePercents > minThreshold > anyOf > item 1`
 
 |          |        |
 | -------- | ------ |
 | **Type** | `null` |
 
-###### <a name="alertRules_anyOf_i0_ram_anyOf_i0_maxThreshold"></a>Property `AosConfigSchema > alertRules > anyOf > AlertRules > ram > anyOf > AlertSettings > maxThreshold`
+###### <a name="alertRules_anyOf_i0_ram_anyOf_i0_maxThreshold"></a>Property `AosConfigSchema > alertRules > anyOf > AlertRules > ram > anyOf > AlertRulePercents > maxThreshold`
 
 **Title:** Maxthreshold
 
@@ -1257,13 +1271,18 @@ Each of specified resource ratio is treated as `requested` value.
 | [item 0](#alertRules_anyOf_i0_ram_anyOf_i0_maxThreshold_anyOf_i0) |
 | [item 1](#alertRules_anyOf_i0_ram_anyOf_i0_maxThreshold_anyOf_i1) |
 
-###### <a name="alertRules_anyOf_i0_ram_anyOf_i0_maxThreshold_anyOf_i0"></a>Property `AosConfigSchema > alertRules > anyOf > AlertRules > ram > anyOf > AlertSettings > maxThreshold > anyOf > item 0`
+###### <a name="alertRules_anyOf_i0_ram_anyOf_i0_maxThreshold_anyOf_i0"></a>Property `AosConfigSchema > alertRules > anyOf > AlertRules > ram > anyOf > AlertRulePercents > maxThreshold > anyOf > item 0`
 
-|          |           |
-| -------- | --------- |
-| **Type** | `integer` |
+|          |          |
+| -------- | -------- |
+| **Type** | `number` |
 
-###### <a name="alertRules_anyOf_i0_ram_anyOf_i0_maxThreshold_anyOf_i1"></a>Property `AosConfigSchema > alertRules > anyOf > AlertRules > ram > anyOf > AlertSettings > maxThreshold > anyOf > item 1`
+| Restrictions |     |
+| ------------ | --- |
+| **Minimum**  | N/A |
+| **Maximum**  | N/A |
+
+###### <a name="alertRules_anyOf_i0_ram_anyOf_i0_maxThreshold_anyOf_i1"></a>Property `AosConfigSchema > alertRules > anyOf > AlertRules > ram > anyOf > AlertRulePercents > maxThreshold > anyOf > item 1`
 
 |          |        |
 | -------- | ------ |
@@ -1285,20 +1304,20 @@ Each of specified resource ratio is treated as `requested` value.
 
 **Description:** CPU alert settings.
 
-| Any of(Option)                                     |
-| -------------------------------------------------- |
-| [AlertSettings](#alertRules_anyOf_i0_cpu_anyOf_i0) |
-| [item 1](#alertRules_anyOf_i0_cpu_anyOf_i1)        |
+| Any of(Option)                                         |
+| ------------------------------------------------------ |
+| [AlertRulePercents](#alertRules_anyOf_i0_cpu_anyOf_i0) |
+| [item 1](#alertRules_anyOf_i0_cpu_anyOf_i1)            |
 
-##### <a name="alertRules_anyOf_i0_cpu_anyOf_i0"></a>Property `AosConfigSchema > alertRules > anyOf > AlertRules > cpu > anyOf > AlertSettings`
+##### <a name="alertRules_anyOf_i0_cpu_anyOf_i0"></a>Property `AosConfigSchema > alertRules > anyOf > AlertRules > cpu > anyOf > AlertRulePercents`
 
 |                           |                                                                                                                                   |
 | ------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
 | **Type**                  | `object`                                                                                                                          |
 | **Additional properties** | [![Any type: allowed](https://img.shields.io/badge/Any%20type-allowed-green)](# "Additional Properties of any type are allowed.") |
-| **Same definition as**    | [AlertSettings](#alertRules_anyOf_i0_ram_anyOf_i0)                                                                                |
+| **Same definition as**    | [AlertRulePercents](#alertRules_anyOf_i0_ram_anyOf_i0)                                                                            |
 
-**Description:** Schema alert triggering procedure.
+**Description:** Schema alert triggering procedure in percents.
 
 ##### <a name="alertRules_anyOf_i0_cpu_anyOf_i1"></a>Property `AosConfigSchema > alertRules > anyOf > AlertRules > cpu > anyOf > item 1`
 
@@ -1316,20 +1335,20 @@ Each of specified resource ratio is treated as `requested` value.
 
 **Description:** Storage alert settings.
 
-| Any of(Option)                                         |
-| ------------------------------------------------------ |
-| [AlertSettings](#alertRules_anyOf_i0_storage_anyOf_i0) |
-| [item 1](#alertRules_anyOf_i0_storage_anyOf_i1)        |
+| Any of(Option)                                             |
+| ---------------------------------------------------------- |
+| [AlertRulePercents](#alertRules_anyOf_i0_storage_anyOf_i0) |
+| [item 1](#alertRules_anyOf_i0_storage_anyOf_i1)            |
 
-##### <a name="alertRules_anyOf_i0_storage_anyOf_i0"></a>Property `AosConfigSchema > alertRules > anyOf > AlertRules > storage > anyOf > AlertSettings`
+##### <a name="alertRules_anyOf_i0_storage_anyOf_i0"></a>Property `AosConfigSchema > alertRules > anyOf > AlertRules > storage > anyOf > AlertRulePercents`
 
 |                           |                                                                                                                                   |
 | ------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
 | **Type**                  | `object`                                                                                                                          |
 | **Additional properties** | [![Any type: allowed](https://img.shields.io/badge/Any%20type-allowed-green)](# "Additional Properties of any type are allowed.") |
-| **Same definition as**    | [AlertSettings](#alertRules_anyOf_i0_ram_anyOf_i0)                                                                                |
+| **Same definition as**    | [AlertRulePercents](#alertRules_anyOf_i0_ram_anyOf_i0)                                                                            |
 
-**Description:** Schema alert triggering procedure.
+**Description:** Schema alert triggering procedure in percents.
 
 ##### <a name="alertRules_anyOf_i0_storage_anyOf_i1"></a>Property `AosConfigSchema > alertRules > anyOf > AlertRules > storage > anyOf > item 1`
 
@@ -1347,20 +1366,121 @@ Each of specified resource ratio is treated as `requested` value.
 
 **Description:** Upload alert settings.
 
-| Any of(Option)                                        |
-| ----------------------------------------------------- |
-| [AlertSettings](#alertRules_anyOf_i0_upload_anyOf_i0) |
-| [item 1](#alertRules_anyOf_i0_upload_anyOf_i1)        |
+| Any of(Option)                                          |
+| ------------------------------------------------------- |
+| [AlertRulePoints](#alertRules_anyOf_i0_upload_anyOf_i0) |
+| [item 1](#alertRules_anyOf_i0_upload_anyOf_i1)          |
 
-##### <a name="alertRules_anyOf_i0_upload_anyOf_i0"></a>Property `AosConfigSchema > alertRules > anyOf > AlertRules > upload > anyOf > AlertSettings`
+##### <a name="alertRules_anyOf_i0_upload_anyOf_i0"></a>Property `AosConfigSchema > alertRules > anyOf > AlertRules > upload > anyOf > AlertRulePoints`
 
 |                           |                                                                                                                                   |
 | ------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
 | **Type**                  | `object`                                                                                                                          |
 | **Additional properties** | [![Any type: allowed](https://img.shields.io/badge/Any%20type-allowed-green)](# "Additional Properties of any type are allowed.") |
-| **Same definition as**    | [AlertSettings](#alertRules_anyOf_i0_ram_anyOf_i0)                                                                                |
+| **Defined in**            | #/$defs/AlertRulePoints                                                                                                           |
 
 **Description:** Schema alert triggering procedure.
+
+| Property                                                             | Pattern | Type        | Deprecated | Definition | Title/Description |
+| -------------------------------------------------------------------- | ------- | ----------- | ---------- | ---------- | ----------------- |
+| + [minTimeout](#alertRules_anyOf_i0_upload_anyOf_i0_minTimeout )     | No      | Combination | No         | -          | Mintimeout        |
+| + [minThreshold](#alertRules_anyOf_i0_upload_anyOf_i0_minThreshold ) | No      | Combination | No         | -          | Minthreshold      |
+| + [maxThreshold](#alertRules_anyOf_i0_upload_anyOf_i0_maxThreshold ) | No      | Combination | No         | -          | Maxthreshold      |
+
+###### <a name="alertRules_anyOf_i0_upload_anyOf_i0_minTimeout"></a>Property `AosConfigSchema > alertRules > anyOf > AlertRules > upload > anyOf > AlertRulePoints > minTimeout`
+
+**Title:** Mintimeout
+
+|                           |                                                                                                                                   |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| **Type**                  | `combining`                                                                                                                       |
+| **Additional properties** | [![Any type: allowed](https://img.shields.io/badge/Any%20type-allowed-green)](# "Additional Properties of any type are allowed.") |
+
+**Description:** The duration in ISO8601 for a time window to check alert rule.
+
+**Examples:** 
+
+```json
+"PT10S"
+```
+
+```json
+"PT1M"
+```
+
+| Any of(Option)                                                     |
+| ------------------------------------------------------------------ |
+| [item 0](#alertRules_anyOf_i0_upload_anyOf_i0_minTimeout_anyOf_i0) |
+| [item 1](#alertRules_anyOf_i0_upload_anyOf_i0_minTimeout_anyOf_i1) |
+
+###### <a name="alertRules_anyOf_i0_upload_anyOf_i0_minTimeout_anyOf_i0"></a>Property `AosConfigSchema > alertRules > anyOf > AlertRules > upload > anyOf > AlertRulePoints > minTimeout > anyOf > item 0`
+
+|            |            |
+| ---------- | ---------- |
+| **Type**   | `string`   |
+| **Format** | `duration` |
+
+###### <a name="alertRules_anyOf_i0_upload_anyOf_i0_minTimeout_anyOf_i1"></a>Property `AosConfigSchema > alertRules > anyOf > AlertRules > upload > anyOf > AlertRulePoints > minTimeout > anyOf > item 1`
+
+|          |        |
+| -------- | ------ |
+| **Type** | `null` |
+
+###### <a name="alertRules_anyOf_i0_upload_anyOf_i0_minThreshold"></a>Property `AosConfigSchema > alertRules > anyOf > AlertRules > upload > anyOf > AlertRulePoints > minThreshold`
+
+**Title:** Minthreshold
+
+|                           |                                                                                                                                   |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| **Type**                  | `combining`                                                                                                                       |
+| **Additional properties** | [![Any type: allowed](https://img.shields.io/badge/Any%20type-allowed-green)](# "Additional Properties of any type are allowed.") |
+
+**Description:** The minimum threshold to stop alert.
+
+| Any of(Option)                                                       |
+| -------------------------------------------------------------------- |
+| [item 0](#alertRules_anyOf_i0_upload_anyOf_i0_minThreshold_anyOf_i0) |
+| [item 1](#alertRules_anyOf_i0_upload_anyOf_i0_minThreshold_anyOf_i1) |
+
+###### <a name="alertRules_anyOf_i0_upload_anyOf_i0_minThreshold_anyOf_i0"></a>Property `AosConfigSchema > alertRules > anyOf > AlertRules > upload > anyOf > AlertRulePoints > minThreshold > anyOf > item 0`
+
+|          |           |
+| -------- | --------- |
+| **Type** | `integer` |
+
+###### <a name="alertRules_anyOf_i0_upload_anyOf_i0_minThreshold_anyOf_i1"></a>Property `AosConfigSchema > alertRules > anyOf > AlertRules > upload > anyOf > AlertRulePoints > minThreshold > anyOf > item 1`
+
+|          |        |
+| -------- | ------ |
+| **Type** | `null` |
+
+###### <a name="alertRules_anyOf_i0_upload_anyOf_i0_maxThreshold"></a>Property `AosConfigSchema > alertRules > anyOf > AlertRules > upload > anyOf > AlertRulePoints > maxThreshold`
+
+**Title:** Maxthreshold
+
+|                           |                                                                                                                                   |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| **Type**                  | `combining`                                                                                                                       |
+| **Additional properties** | [![Any type: allowed](https://img.shields.io/badge/Any%20type-allowed-green)](# "Additional Properties of any type are allowed.") |
+
+**Description:** The maximum threshold value to start alert.
+
+| Any of(Option)                                                       |
+| -------------------------------------------------------------------- |
+| [item 0](#alertRules_anyOf_i0_upload_anyOf_i0_maxThreshold_anyOf_i0) |
+| [item 1](#alertRules_anyOf_i0_upload_anyOf_i0_maxThreshold_anyOf_i1) |
+
+###### <a name="alertRules_anyOf_i0_upload_anyOf_i0_maxThreshold_anyOf_i0"></a>Property `AosConfigSchema > alertRules > anyOf > AlertRules > upload > anyOf > AlertRulePoints > maxThreshold > anyOf > item 0`
+
+|          |           |
+| -------- | --------- |
+| **Type** | `integer` |
+
+###### <a name="alertRules_anyOf_i0_upload_anyOf_i0_maxThreshold_anyOf_i1"></a>Property `AosConfigSchema > alertRules > anyOf > AlertRules > upload > anyOf > AlertRulePoints > maxThreshold > anyOf > item 1`
+
+|          |        |
+| -------- | ------ |
+| **Type** | `null` |
 
 ##### <a name="alertRules_anyOf_i0_upload_anyOf_i1"></a>Property `AosConfigSchema > alertRules > anyOf > AlertRules > upload > anyOf > item 1`
 
@@ -1378,18 +1498,18 @@ Each of specified resource ratio is treated as `requested` value.
 
 **Description:** Download alert settings.
 
-| Any of(Option)                                          |
-| ------------------------------------------------------- |
-| [AlertSettings](#alertRules_anyOf_i0_download_anyOf_i0) |
-| [item 1](#alertRules_anyOf_i0_download_anyOf_i1)        |
+| Any of(Option)                                            |
+| --------------------------------------------------------- |
+| [AlertRulePoints](#alertRules_anyOf_i0_download_anyOf_i0) |
+| [item 1](#alertRules_anyOf_i0_download_anyOf_i1)          |
 
-##### <a name="alertRules_anyOf_i0_download_anyOf_i0"></a>Property `AosConfigSchema > alertRules > anyOf > AlertRules > download > anyOf > AlertSettings`
+##### <a name="alertRules_anyOf_i0_download_anyOf_i0"></a>Property `AosConfigSchema > alertRules > anyOf > AlertRules > download > anyOf > AlertRulePoints`
 
 |                           |                                                                                                                                   |
 | ------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
 | **Type**                  | `object`                                                                                                                          |
 | **Additional properties** | [![Any type: allowed](https://img.shields.io/badge/Any%20type-allowed-green)](# "Additional Properties of any type are allowed.") |
-| **Same definition as**    | [AlertSettings](#alertRules_anyOf_i0_ram_anyOf_i0)                                                                                |
+| **Same definition as**    | [AlertRulePoints](#alertRules_anyOf_i0_upload_anyOf_i0)                                                                           |
 
 **Description:** Schema alert triggering procedure.
 
@@ -1522,4 +1642,4 @@ Must be one of:
 | **Type** | `null` |
 
 ----------------------------------------------------------------------------------------------------------------------------
-Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-07-11 at 17:23:23 +0300
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-07-31 at 11:48:35 +0300

@@ -1,5 +1,118 @@
 {
     "$defs": {
+        "AlertRulePercents": {
+            "description": "Information about the threshold.\n\nThreshold is treated as a node resource limit for rebalancing.\n\nThe `high` threshold for resource limits must be defined as the upper limit of resource usage.\n  If a node's resource usage exceeds the highThreshold for a continuous period specified\n  by the threshold `timeout`, the system initiates a rebalancing process to redistribute service instances,\n  thereby preventing resource overutilization and maintaining system performance.\n\nOnce rebalancing is triggered due to exceeding the `high` threshold,\n  the system will only consider the rebalancing action complete and cease further rebalancing activities\n  if the resource usage then decreases and stabilizes below the `low` threshold for a continuous period\n  specified by the threshold `timeout`\n\nThe low/high thresholds for resource limits are set in percentages.",
+            "properties": {
+                "maxThreshold": {
+                    "description": "The highest percents of a value after which resource have be rebalanced.",
+                    "maximum": 100.0,
+                    "minimum": 0.0,
+                    "title": "Maxthreshold",
+                    "type": "number"
+                },
+                "minTimeout": {
+                    "description": "The timeout in seconds. Fraction of value specifies milliseconds",
+                    "examples": [
+                        0.5,
+                        100
+                    ],
+                    "exclusiveMinimum": 0.0,
+                    "title": "Mintimeout",
+                    "type": "number"
+                }
+            },
+            "required": [
+                "maxThreshold",
+                "minTimeout"
+            ],
+            "title": "AlertRulePercents",
+            "type": "object"
+        },
+        "AlertRulePoints": {
+            "description": "Information about the threshold in points.\n\nPoints can be DMIPs, bytes, etc.",
+            "properties": {
+                "minThreshold": {
+                    "description": "The lowest points (DMIPs, Bytes, etc) of a value after which resource can be rebalanced back.",
+                    "minimum": 0,
+                    "title": "Minthreshold",
+                    "type": "integer"
+                },
+                "maxThreshold": {
+                    "description": "The highest points of a value after which resource have be rebalanced.",
+                    "minimum": 0,
+                    "title": "Maxthreshold",
+                    "type": "integer"
+                },
+                "minTimeout": {
+                    "description": "The timeout in seconds. Fraction of value specifies milliseconds",
+                    "examples": [
+                        0.5,
+                        100
+                    ],
+                    "exclusiveMinimum": 0.0,
+                    "title": "Mintimeout",
+                    "type": "number"
+                }
+            },
+            "required": [
+                "minThreshold",
+                "maxThreshold",
+                "minTimeout"
+            ],
+            "title": "AlertRulePoints",
+            "type": "object"
+        },
+        "AlertRules": {
+            "properties": {
+                "cpu": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/AlertRulePercents"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The CPU thresholds."
+                },
+                "mem": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/AlertRulePercents"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The memory thresholds."
+                },
+                "storage": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/AlertRulePercents"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The storage thresholds."
+                },
+                "download": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/AlertRulePoints"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The incoming to the unit traffic thresholds (in bytes)."
+                },
+                "upload": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/AlertRulePoints"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The outgoing from the unit traffic thresholds (in bytes)."
+                }
+            },
+            "title": "AlertRules",
+            "type": "object"
+        },
         "AosAlertCore": {
             "description": "Aos Unit core alert information.",
             "properties": {
@@ -3280,7 +3393,7 @@
                 "alertRules": {
                     "allOf": [
                         {
-                            "$ref": "#/$defs/NodeThresholdsInfo"
+                            "$ref": "#/$defs/AlertRules"
                         }
                     ],
                     "default": null,
@@ -3335,39 +3448,6 @@
                 "priority"
             ],
             "title": "NodeConfig",
-            "type": "object"
-        },
-        "NodeThresholdsInfo": {
-            "properties": {
-                "cpu": {
-                    "allOf": [
-                        {
-                            "$ref": "#/$defs/ThresholdInfo"
-                        }
-                    ],
-                    "default": null,
-                    "description": "The CPU thresholds for services."
-                },
-                "mem": {
-                    "allOf": [
-                        {
-                            "$ref": "#/$defs/ThresholdInfo"
-                        }
-                    ],
-                    "default": null,
-                    "description": "The memory thresholds for services."
-                },
-                "storage": {
-                    "allOf": [
-                        {
-                            "$ref": "#/$defs/ThresholdInfo"
-                        }
-                    ],
-                    "default": null,
-                    "description": "The storage thresholds for services."
-                }
-            },
-            "title": "NodeThresholdsInfo",
             "type": "object"
         },
         "ResourceInfo": {
@@ -3442,40 +3522,6 @@
                 }
             },
             "title": "ResourceRatiosInfo",
-            "type": "object"
-        },
-        "ThresholdInfo": {
-            "description": "Information about the threshold.\n\nThreshold is treated as a node resource limit for rebalancing.\n\nThe `high` threshold for resource limits must be defined as the upper limit of resource usage.\n  If a node's resource usage exceeds the highThreshold for a continuous period specified\n  by the threshold `timeout`, the system initiates a rebalancing process to redistribute service instances,\n  thereby preventing resource overutilization and maintaining system performance.\n\nOnce rebalancing is triggered due to exceeding the `high` threshold,\n  the system will only consider the rebalancing action complete and cease further rebalancing activities\n  if the resource usage then decreases and stabilizes below the `low` threshold for a continuous period\n  specified by the threshold `timeout`\n\nThe low/high thresholds for resource limits are set in percentages.",
-            "properties": {
-                "low": {
-                    "description": "The lowest percents of a value after which resource can be rebalanced back.",
-                    "minimum": 0.0,
-                    "title": "Low",
-                    "type": "number"
-                },
-                "high": {
-                    "description": "The highest percents of a value after which resource have be rebalanced.",
-                    "minimum": 0.0,
-                    "title": "High",
-                    "type": "number"
-                },
-                "timeout": {
-                    "description": "The timeout in seconds. Fraction of value specifies milliseconds",
-                    "examples": [
-                        0.5,
-                        100
-                    ],
-                    "exclusiveMinimum": 0.0,
-                    "title": "Timeout",
-                    "type": "number"
-                }
-            },
-            "required": [
-                "low",
-                "high",
-                "timeout"
-            ],
-            "title": "ThresholdInfo",
             "type": "object"
         },
         "UnitConfig": {
