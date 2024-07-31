@@ -2016,16 +2016,16 @@
                     "title": "Cpu",
                     "type": "integer"
                 },
-                "inTraffic": {
+                "download": {
                     "default": null,
                     "description": "In Traffic Parameter of unit monitoring",
-                    "title": "Intraffic",
+                    "title": "Download",
                     "type": "integer"
                 },
-                "outTraffic": {
+                "upload": {
                     "default": null,
                     "description": "Out Traffic Parameter of unit monitoring",
-                    "title": "Outtraffic",
+                    "title": "Upload",
                     "type": "integer"
                 },
                 "disk": {
