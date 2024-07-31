@@ -62,20 +62,20 @@ class AosMonitoringData(BaseModel):
         ),
     ]
 
-    in_traffic: Annotated[
+    download: Annotated[
         int,
         Field(
             default=None,
-            alias='inTraffic',
+            alias='download',
             description='In Traffic Parameter of unit monitoring',
         ),
     ]
 
-    out_traffic: Annotated[
+    upload: Annotated[
         int,
         Field(
             default=None,
-            alias='outTraffic',
+            alias='upload',
             description='Out Traffic Parameter of unit monitoring',
         ),
     ]
