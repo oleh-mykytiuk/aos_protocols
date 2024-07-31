@@ -213,17 +213,22 @@
           - [Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > nodeId`](#data_oneOf_i3_unitConfig_nodes_items_nodeId)
           - [Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > alertRules`](#data_oneOf_i3_unitConfig_nodes_items_alertRules)
             - [Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > alertRules > cpu`](#data_oneOf_i3_unitConfig_nodes_items_alertRules_cpu)
-              - [Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > alertRules > cpu > low`](#data_oneOf_i3_unitConfig_nodes_items_alertRules_cpu_low)
-              - [Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > alertRules > cpu > high`](#data_oneOf_i3_unitConfig_nodes_items_alertRules_cpu_high)
-              - [Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > alertRules > cpu > timeout`](#data_oneOf_i3_unitConfig_nodes_items_alertRules_cpu_timeout)
+              - [Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > alertRules > cpu > maxThreshold`](#data_oneOf_i3_unitConfig_nodes_items_alertRules_cpu_maxThreshold)
+              - [Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > alertRules > cpu > minTimeout`](#data_oneOf_i3_unitConfig_nodes_items_alertRules_cpu_minTimeout)
             - [Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > alertRules > mem`](#data_oneOf_i3_unitConfig_nodes_items_alertRules_mem)
-              - [Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > alertRules > cpu > low`](#data_oneOf_i3_unitConfig_nodes_items_alertRules_cpu_low)
-              - [Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > alertRules > cpu > high`](#data_oneOf_i3_unitConfig_nodes_items_alertRules_cpu_high)
-              - [Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > alertRules > cpu > timeout`](#data_oneOf_i3_unitConfig_nodes_items_alertRules_cpu_timeout)
+              - [Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > alertRules > cpu > maxThreshold`](#data_oneOf_i3_unitConfig_nodes_items_alertRules_cpu_maxThreshold)
+              - [Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > alertRules > cpu > minTimeout`](#data_oneOf_i3_unitConfig_nodes_items_alertRules_cpu_minTimeout)
             - [Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > alertRules > storage`](#data_oneOf_i3_unitConfig_nodes_items_alertRules_storage)
-              - [Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > alertRules > cpu > low`](#data_oneOf_i3_unitConfig_nodes_items_alertRules_cpu_low)
-              - [Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > alertRules > cpu > high`](#data_oneOf_i3_unitConfig_nodes_items_alertRules_cpu_high)
-              - [Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > alertRules > cpu > timeout`](#data_oneOf_i3_unitConfig_nodes_items_alertRules_cpu_timeout)
+              - [Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > alertRules > cpu > maxThreshold`](#data_oneOf_i3_unitConfig_nodes_items_alertRules_cpu_maxThreshold)
+              - [Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > alertRules > cpu > minTimeout`](#data_oneOf_i3_unitConfig_nodes_items_alertRules_cpu_minTimeout)
+            - [Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > alertRules > download`](#data_oneOf_i3_unitConfig_nodes_items_alertRules_download)
+              - [Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > alertRules > download > minThreshold`](#data_oneOf_i3_unitConfig_nodes_items_alertRules_download_minThreshold)
+              - [Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > alertRules > download > maxThreshold`](#data_oneOf_i3_unitConfig_nodes_items_alertRules_download_maxThreshold)
+              - [Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > alertRules > download > minTimeout`](#data_oneOf_i3_unitConfig_nodes_items_alertRules_download_minTimeout)
+            - [Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > alertRules > upload`](#data_oneOf_i3_unitConfig_nodes_items_alertRules_upload)
+              - [Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > alertRules > download > minThreshold`](#data_oneOf_i3_unitConfig_nodes_items_alertRules_download_minThreshold)
+              - [Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > alertRules > download > maxThreshold`](#data_oneOf_i3_unitConfig_nodes_items_alertRules_download_maxThreshold)
+              - [Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > alertRules > download > minTimeout`](#data_oneOf_i3_unitConfig_nodes_items_alertRules_download_minTimeout)
           - [Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > resourceRatios`](#data_oneOf_i3_unitConfig_nodes_items_resourceRatios)
             - [Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > resourceRatios > cpu`](#data_oneOf_i3_unitConfig_nodes_items_resourceRatios_cpu)
             - [Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > resourceRatios > mem`](#data_oneOf_i3_unitConfig_nodes_items_resourceRatios_mem)
@@ -3466,11 +3471,13 @@ Must be one of:
 
 **Description:** The default thresholds for services running on the node.
 
-| Property                                                               | Pattern | Type   | Deprecated | Definition | Title/Description                    |
-| ---------------------------------------------------------------------- | ------- | ------ | ---------- | ---------- | ------------------------------------ |
-| - [cpu](#data_oneOf_i3_unitConfig_nodes_items_alertRules_cpu )         | No      | object | No         | In         | The CPU thresholds for services.     |
-| - [mem](#data_oneOf_i3_unitConfig_nodes_items_alertRules_mem )         | No      | object | No         | In         | The memory thresholds for services.  |
-| - [storage](#data_oneOf_i3_unitConfig_nodes_items_alertRules_storage ) | No      | object | No         | In         | The storage thresholds for services. |
+| Property                                                                 | Pattern | Type   | Deprecated | Definition | Title/Description                                         |
+| ------------------------------------------------------------------------ | ------- | ------ | ---------- | ---------- | --------------------------------------------------------- |
+| - [cpu](#data_oneOf_i3_unitConfig_nodes_items_alertRules_cpu )           | No      | object | No         | In         | The CPU thresholds.                                       |
+| - [mem](#data_oneOf_i3_unitConfig_nodes_items_alertRules_mem )           | No      | object | No         | In         | The memory thresholds.                                    |
+| - [storage](#data_oneOf_i3_unitConfig_nodes_items_alertRules_storage )   | No      | object | No         | In         | The storage thresholds.                                   |
+| - [download](#data_oneOf_i3_unitConfig_nodes_items_alertRules_download ) | No      | object | No         | In         | The incoming to the unit traffic thresholds (in bytes).   |
+| - [upload](#data_oneOf_i3_unitConfig_nodes_items_alertRules_upload )     | No      | object | No         | In         | The outgoing from the unit traffic thresholds (in bytes). |
 
 ###### <a name="data_oneOf_i3_unitConfig_nodes_items_alertRules_cpu"></a>Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > alertRules > cpu`
 
@@ -3481,31 +3488,16 @@ Must be one of:
 | **Default**               | `null`                                                                                                                            |
 | **Defined in**            |                                                                                                                                   |
 
-**Description:** The CPU thresholds for services.
+**Description:** The CPU thresholds.
 
-| Property                                                                   | Pattern | Type   | Deprecated | Definition | Title/Description |
-| -------------------------------------------------------------------------- | ------- | ------ | ---------- | ---------- | ----------------- |
-| + [low](#data_oneOf_i3_unitConfig_nodes_items_alertRules_cpu_low )         | No      | number | No         | -          | Low               |
-| + [high](#data_oneOf_i3_unitConfig_nodes_items_alertRules_cpu_high )       | No      | number | No         | -          | High              |
-| + [timeout](#data_oneOf_i3_unitConfig_nodes_items_alertRules_cpu_timeout ) | No      | number | No         | -          | Timeout           |
+| Property                                                                             | Pattern | Type   | Deprecated | Definition | Title/Description |
+| ------------------------------------------------------------------------------------ | ------- | ------ | ---------- | ---------- | ----------------- |
+| + [maxThreshold](#data_oneOf_i3_unitConfig_nodes_items_alertRules_cpu_maxThreshold ) | No      | number | No         | -          | Maxthreshold      |
+| + [minTimeout](#data_oneOf_i3_unitConfig_nodes_items_alertRules_cpu_minTimeout )     | No      | number | No         | -          | Mintimeout        |
 
-###### <a name="data_oneOf_i3_unitConfig_nodes_items_alertRules_cpu_low"></a>Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > alertRules > cpu > low`
+###### <a name="data_oneOf_i3_unitConfig_nodes_items_alertRules_cpu_maxThreshold"></a>Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > alertRules > cpu > maxThreshold`
 
-**Title:** Low
-
-|          |          |
-| -------- | -------- |
-| **Type** | `number` |
-
-**Description:** The lowest percents of a value after which resource can be rebalanced back.
-
-| Restrictions |     |
-| ------------ | --- |
-| **Minimum**  | N/A |
-
-###### <a name="data_oneOf_i3_unitConfig_nodes_items_alertRules_cpu_high"></a>Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > alertRules > cpu > high`
-
-**Title:** High
+**Title:** Maxthreshold
 
 |          |          |
 | -------- | -------- |
@@ -3516,10 +3508,11 @@ Must be one of:
 | Restrictions |     |
 | ------------ | --- |
 | **Minimum**  | N/A |
+| **Maximum**  | N/A |
 
-###### <a name="data_oneOf_i3_unitConfig_nodes_items_alertRules_cpu_timeout"></a>Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > alertRules > cpu > timeout`
+###### <a name="data_oneOf_i3_unitConfig_nodes_items_alertRules_cpu_minTimeout"></a>Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > alertRules > cpu > minTimeout`
 
-**Title:** Timeout
+**Title:** Mintimeout
 
 |          |          |
 | -------- | -------- |
@@ -3550,31 +3543,16 @@ Must be one of:
 | **Default**               | `null`                                                                                                                            |
 | **Defined in**            |                                                                                                                                   |
 
-**Description:** The memory thresholds for services.
+**Description:** The memory thresholds.
 
-| Property                                                                   | Pattern | Type   | Deprecated | Definition | Title/Description |
-| -------------------------------------------------------------------------- | ------- | ------ | ---------- | ---------- | ----------------- |
-| + [low](#data_oneOf_i3_unitConfig_nodes_items_alertRules_cpu_low )         | No      | number | No         | -          | Low               |
-| + [high](#data_oneOf_i3_unitConfig_nodes_items_alertRules_cpu_high )       | No      | number | No         | -          | High              |
-| + [timeout](#data_oneOf_i3_unitConfig_nodes_items_alertRules_cpu_timeout ) | No      | number | No         | -          | Timeout           |
+| Property                                                                             | Pattern | Type   | Deprecated | Definition | Title/Description |
+| ------------------------------------------------------------------------------------ | ------- | ------ | ---------- | ---------- | ----------------- |
+| + [maxThreshold](#data_oneOf_i3_unitConfig_nodes_items_alertRules_cpu_maxThreshold ) | No      | number | No         | -          | Maxthreshold      |
+| + [minTimeout](#data_oneOf_i3_unitConfig_nodes_items_alertRules_cpu_minTimeout )     | No      | number | No         | -          | Mintimeout        |
 
-###### <a name="data_oneOf_i3_unitConfig_nodes_items_alertRules_cpu_low"></a>Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > alertRules > cpu > low`
+###### <a name="data_oneOf_i3_unitConfig_nodes_items_alertRules_cpu_maxThreshold"></a>Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > alertRules > cpu > maxThreshold`
 
-**Title:** Low
-
-|          |          |
-| -------- | -------- |
-| **Type** | `number` |
-
-**Description:** The lowest percents of a value after which resource can be rebalanced back.
-
-| Restrictions |     |
-| ------------ | --- |
-| **Minimum**  | N/A |
-
-###### <a name="data_oneOf_i3_unitConfig_nodes_items_alertRules_cpu_high"></a>Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > alertRules > cpu > high`
-
-**Title:** High
+**Title:** Maxthreshold
 
 |          |          |
 | -------- | -------- |
@@ -3585,10 +3563,11 @@ Must be one of:
 | Restrictions |     |
 | ------------ | --- |
 | **Minimum**  | N/A |
+| **Maximum**  | N/A |
 
-###### <a name="data_oneOf_i3_unitConfig_nodes_items_alertRules_cpu_timeout"></a>Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > alertRules > cpu > timeout`
+###### <a name="data_oneOf_i3_unitConfig_nodes_items_alertRules_cpu_minTimeout"></a>Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > alertRules > cpu > minTimeout`
 
-**Title:** Timeout
+**Title:** Mintimeout
 
 |          |          |
 | -------- | -------- |
@@ -3619,31 +3598,16 @@ Must be one of:
 | **Default**               | `null`                                                                                                                            |
 | **Defined in**            |                                                                                                                                   |
 
-**Description:** The storage thresholds for services.
+**Description:** The storage thresholds.
 
-| Property                                                                   | Pattern | Type   | Deprecated | Definition | Title/Description |
-| -------------------------------------------------------------------------- | ------- | ------ | ---------- | ---------- | ----------------- |
-| + [low](#data_oneOf_i3_unitConfig_nodes_items_alertRules_cpu_low )         | No      | number | No         | -          | Low               |
-| + [high](#data_oneOf_i3_unitConfig_nodes_items_alertRules_cpu_high )       | No      | number | No         | -          | High              |
-| + [timeout](#data_oneOf_i3_unitConfig_nodes_items_alertRules_cpu_timeout ) | No      | number | No         | -          | Timeout           |
+| Property                                                                             | Pattern | Type   | Deprecated | Definition | Title/Description |
+| ------------------------------------------------------------------------------------ | ------- | ------ | ---------- | ---------- | ----------------- |
+| + [maxThreshold](#data_oneOf_i3_unitConfig_nodes_items_alertRules_cpu_maxThreshold ) | No      | number | No         | -          | Maxthreshold      |
+| + [minTimeout](#data_oneOf_i3_unitConfig_nodes_items_alertRules_cpu_minTimeout )     | No      | number | No         | -          | Mintimeout        |
 
-###### <a name="data_oneOf_i3_unitConfig_nodes_items_alertRules_cpu_low"></a>Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > alertRules > cpu > low`
+###### <a name="data_oneOf_i3_unitConfig_nodes_items_alertRules_cpu_maxThreshold"></a>Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > alertRules > cpu > maxThreshold`
 
-**Title:** Low
-
-|          |          |
-| -------- | -------- |
-| **Type** | `number` |
-
-**Description:** The lowest percents of a value after which resource can be rebalanced back.
-
-| Restrictions |     |
-| ------------ | --- |
-| **Minimum**  | N/A |
-
-###### <a name="data_oneOf_i3_unitConfig_nodes_items_alertRules_cpu_high"></a>Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > alertRules > cpu > high`
-
-**Title:** High
+**Title:** Maxthreshold
 
 |          |          |
 | -------- | -------- |
@@ -3654,10 +3618,149 @@ Must be one of:
 | Restrictions |     |
 | ------------ | --- |
 | **Minimum**  | N/A |
+| **Maximum**  | N/A |
 
-###### <a name="data_oneOf_i3_unitConfig_nodes_items_alertRules_cpu_timeout"></a>Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > alertRules > cpu > timeout`
+###### <a name="data_oneOf_i3_unitConfig_nodes_items_alertRules_cpu_minTimeout"></a>Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > alertRules > cpu > minTimeout`
 
-**Title:** Timeout
+**Title:** Mintimeout
+
+|          |          |
+| -------- | -------- |
+| **Type** | `number` |
+
+**Description:** The timeout in seconds. Fraction of value specifies milliseconds
+
+**Examples:** 
+
+```json
+0.5
+```
+
+```json
+100
+```
+
+| Restrictions |     |
+| ------------ | --- |
+| **Minimum**  | N/A |
+
+###### <a name="data_oneOf_i3_unitConfig_nodes_items_alertRules_download"></a>Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > alertRules > download`
+
+|                           |                                                                                                                                   |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                                                                          |
+| **Additional properties** | [![Any type: allowed](https://img.shields.io/badge/Any%20type-allowed-green)](# "Additional Properties of any type are allowed.") |
+| **Default**               | `null`                                                                                                                            |
+| **Defined in**            |                                                                                                                                   |
+
+**Description:** The incoming to the unit traffic thresholds (in bytes).
+
+| Property                                                                                  | Pattern | Type    | Deprecated | Definition | Title/Description |
+| ----------------------------------------------------------------------------------------- | ------- | ------- | ---------- | ---------- | ----------------- |
+| + [minThreshold](#data_oneOf_i3_unitConfig_nodes_items_alertRules_download_minThreshold ) | No      | integer | No         | -          | Minthreshold      |
+| + [maxThreshold](#data_oneOf_i3_unitConfig_nodes_items_alertRules_download_maxThreshold ) | No      | integer | No         | -          | Maxthreshold      |
+| + [minTimeout](#data_oneOf_i3_unitConfig_nodes_items_alertRules_download_minTimeout )     | No      | number  | No         | -          | Mintimeout        |
+
+###### <a name="data_oneOf_i3_unitConfig_nodes_items_alertRules_download_minThreshold"></a>Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > alertRules > download > minThreshold`
+
+**Title:** Minthreshold
+
+|          |           |
+| -------- | --------- |
+| **Type** | `integer` |
+
+**Description:** The lowest points (DMIPs, Bytes, etc) of a value after which resource can be rebalanced back.
+
+| Restrictions |        |
+| ------------ | ------ |
+| **Minimum**  | &ge; 0 |
+
+###### <a name="data_oneOf_i3_unitConfig_nodes_items_alertRules_download_maxThreshold"></a>Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > alertRules > download > maxThreshold`
+
+**Title:** Maxthreshold
+
+|          |           |
+| -------- | --------- |
+| **Type** | `integer` |
+
+**Description:** The highest points of a value after which resource have be rebalanced.
+
+| Restrictions |        |
+| ------------ | ------ |
+| **Minimum**  | &ge; 0 |
+
+###### <a name="data_oneOf_i3_unitConfig_nodes_items_alertRules_download_minTimeout"></a>Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > alertRules > download > minTimeout`
+
+**Title:** Mintimeout
+
+|          |          |
+| -------- | -------- |
+| **Type** | `number` |
+
+**Description:** The timeout in seconds. Fraction of value specifies milliseconds
+
+**Examples:** 
+
+```json
+0.5
+```
+
+```json
+100
+```
+
+| Restrictions |     |
+| ------------ | --- |
+| **Minimum**  | N/A |
+
+###### <a name="data_oneOf_i3_unitConfig_nodes_items_alertRules_upload"></a>Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > alertRules > upload`
+
+|                           |                                                                                                                                   |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                                                                          |
+| **Additional properties** | [![Any type: allowed](https://img.shields.io/badge/Any%20type-allowed-green)](# "Additional Properties of any type are allowed.") |
+| **Default**               | `null`                                                                                                                            |
+| **Defined in**            |                                                                                                                                   |
+
+**Description:** The outgoing from the unit traffic thresholds (in bytes).
+
+| Property                                                                                  | Pattern | Type    | Deprecated | Definition | Title/Description |
+| ----------------------------------------------------------------------------------------- | ------- | ------- | ---------- | ---------- | ----------------- |
+| + [minThreshold](#data_oneOf_i3_unitConfig_nodes_items_alertRules_download_minThreshold ) | No      | integer | No         | -          | Minthreshold      |
+| + [maxThreshold](#data_oneOf_i3_unitConfig_nodes_items_alertRules_download_maxThreshold ) | No      | integer | No         | -          | Maxthreshold      |
+| + [minTimeout](#data_oneOf_i3_unitConfig_nodes_items_alertRules_download_minTimeout )     | No      | number  | No         | -          | Mintimeout        |
+
+###### <a name="data_oneOf_i3_unitConfig_nodes_items_alertRules_download_minThreshold"></a>Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > alertRules > download > minThreshold`
+
+**Title:** Minthreshold
+
+|          |           |
+| -------- | --------- |
+| **Type** | `integer` |
+
+**Description:** The lowest points (DMIPs, Bytes, etc) of a value after which resource can be rebalanced back.
+
+| Restrictions |        |
+| ------------ | ------ |
+| **Minimum**  | &ge; 0 |
+
+###### <a name="data_oneOf_i3_unitConfig_nodes_items_alertRules_download_maxThreshold"></a>Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > alertRules > download > maxThreshold`
+
+**Title:** Maxthreshold
+
+|          |           |
+| -------- | --------- |
+| **Type** | `integer` |
+
+**Description:** The highest points of a value after which resource have be rebalanced.
+
+| Restrictions |        |
+| ------------ | ------ |
+| **Minimum**  | &ge; 0 |
+
+###### <a name="data_oneOf_i3_unitConfig_nodes_items_alertRules_download_minTimeout"></a>Property `AosUnitMessage > data > oneOf > AosDesiredStatus > unitConfig > nodes > NodeConfig > alertRules > download > minTimeout`
+
+**Title:** Mintimeout
 
 |          |          |
 | -------- | -------- |
@@ -7600,4 +7703,4 @@ Specific value: `"deprovisioningResponse"`
 **Description:** Text of the error description.
 
 ----------------------------------------------------------------------------------------------------------------------------
-Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-07-30 at 12:39:12 +0300
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-07-31 at 11:48:44 +0300

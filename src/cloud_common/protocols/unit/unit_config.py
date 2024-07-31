@@ -18,7 +18,7 @@ from cloud_common.protocols.unit.types import (
 )
 
 
-class ThresholdInfo(BaseModel):
+class AlertRulePercents(BaseModel):
     """
     Information about the threshold.
 
@@ -37,28 +37,69 @@ class ThresholdInfo(BaseModel):
     The low/high thresholds for resource limits are set in percentages.
     """
 
-    low: Annotated[
+    min_threshold: Annotated[
         float,
         Field(
-            alias='low',
+            alias='minThreshold',
             description='The lowest percents of a value after which resource can be rebalanced back.',
             ge=0,
+            le=100,
         ),
     ]
 
-    high: Annotated[
+    min_threshold: Annotated[
         float,
         Field(
-            alias='high',
+            alias='maxThreshold',
             description='The highest percents of a value after which resource have be rebalanced.',
+            ge=0,
+            le=100,
+        ),
+    ]
+
+    min_timeout: Annotated[
+        float,
+        Field(
+            alias='minTimeout',
+            description='The timeout in seconds. Fraction of value specifies milliseconds',
+            gt=0,
+            examples=[
+                0.5,
+                100,
+            ],
+        ),
+    ]
+
+
+class AlertRulePoints(BaseModel):
+    """
+    Information about the threshold in points.
+
+    Points can be DMIPs, bytes, etc.
+    """
+
+    min_threshold: Annotated[
+        int,
+        Field(
+            alias='minThreshold',
+            description='The lowest points (DMIPs, Bytes, etc) of a value after which resource can be rebalanced back.',
             ge=0,
         ),
     ]
 
-    timeout: Annotated[
+    max_threshold: Annotated[
+        int,
+        Field(
+            alias='maxThreshold',
+            description='The highest points of a value after which resource have be rebalanced.',
+            ge=0,
+        ),
+    ]
+
+    min_timeout: Annotated[
         float,
         Field(
-            alias='timeout',
+            alias='minTimeout',
             description='The timeout in seconds. Fraction of value specifies milliseconds',
             gt=0,
             examples=[
@@ -99,32 +140,50 @@ class ResourceRatiosInfo(BaseModel):
     ]
 
 
-class NodeThresholdsInfo(BaseModel):
+class AlertRules(BaseModel):
     cpu: Annotated[
-        ThresholdInfo,
+        AlertRulePercents,
         Field(
             default=None,
             alias='cpu',
-            description='The CPU thresholds for services.',
+            description='The CPU thresholds.',
         ),
     ]
 
     mem: Annotated[
-        ThresholdInfo,
+        AlertRulePercents,
         Field(
             default=None,
             alias='mem',
-            description='The memory thresholds for services.',
+            description='The memory thresholds.',
         ),
     ]
 
     storage: Annotated[
-        ThresholdInfo,
+        AlertRulePercents,
         Field(
             default=None,
             alias='storage',
-            description='The storage thresholds for services.',
+            description='The storage thresholds.',
         ),
+    ]
+
+    download: Annotated[
+        AlertRulePoints,
+        Field(
+            default=None,
+            alias='download',
+            description='The incoming to the unit traffic thresholds (in bytes).',
+        )
+    ]
+
+    upload: Annotated[
+        AlertRulePoints,
+        Field(
+            default=None,
+            alias='upload',
+            description='The outgoing from the unit traffic thresholds (in bytes).',
+        )
     ]
 
 
@@ -182,7 +241,7 @@ class NodeConfig(BaseModel):
     node_id: TypeNodeIdOptional
 
     alert_rules: Annotated[
-        NodeThresholdsInfo,
+        AlertRules,
         Field(
             default=None,
             alias='alertRules',

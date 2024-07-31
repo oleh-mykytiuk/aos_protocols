@@ -187,7 +187,7 @@ class ServiceQuotas(BaseModel):
     ]
 
 
-class AlertSettings(BaseModel):
+class AlertRulePoints(BaseModel):
     """Schema alert triggering procedure."""
 
     min_timeout: Annotated[
@@ -216,11 +216,44 @@ class AlertSettings(BaseModel):
     ]
 
 
+class AlertRulePercents(BaseModel):
+    """Schema alert triggering procedure in percents."""
+
+    min_timeout: Annotated[
+        Optional[timedelta],
+        Field(
+            alias='minTimeout',
+            description='The duration in ISO8601 for a time window to check alert rule.',
+            examples=['PT10S', 'PT1M'],
+        ),
+    ]
+
+    min_threshold: Annotated[
+        Optional[float],
+        Field(
+            alias='minThreshold',
+            ge=0,
+            le=100,
+            description='The minimum threshold to stop alert.',
+        ),
+    ]
+
+    max_threshold: Annotated[
+        Optional[float],
+        Field(
+            alias='maxThreshold',
+            ge=0,
+            le=100,
+            description='The maximum threshold value to start alert.',
+        ),
+    ]
+
+
 class AlertRules(BaseModel):
     """Schema for all possible alert rules."""
 
     ram: Annotated[
-        Optional[AlertSettings],
+        Optional[AlertRulePercents],
         Field(
             alias='ram',
             default=None,
@@ -229,7 +262,7 @@ class AlertRules(BaseModel):
     ]
 
     cpu: Annotated[
-        Optional[AlertSettings],
+        Optional[AlertRulePercents],
         Field(
             alias='cpu',
             default=None,
@@ -238,7 +271,7 @@ class AlertRules(BaseModel):
     ]
 
     storage: Annotated[
-        Optional[AlertSettings],
+        Optional[AlertRulePercents],
         Field(
             alias='storage',
             default=None,
@@ -247,7 +280,7 @@ class AlertRules(BaseModel):
     ]
 
     upload: Annotated[
-        Optional[AlertSettings],
+        Optional[AlertRulePoints],
         Field(
             alias='upload',
             default=None,
@@ -256,7 +289,7 @@ class AlertRules(BaseModel):
     ]
 
     download: Annotated[
-        Optional[AlertSettings],
+        Optional[AlertRulePoints],
         Field(
             alias='download',
             default=None,

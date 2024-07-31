@@ -1,73 +1,63 @@
 {
     "$defs": {
-        "AlertRules": {
-            "description": "Schema for all possible alert rules.",
+        "AlertRulePercents": {
+            "description": "Schema alert triggering procedure in percents.",
             "properties": {
-                "ram": {
+                "minTimeout": {
                     "anyOf": [
                         {
-                            "$ref": "#/$defs/AlertSettings"
+                            "format": "duration",
+                            "type": "string"
                         },
                         {
                             "type": "null"
                         }
                     ],
-                    "default": null,
-                    "description": "RAM alert settings."
+                    "description": "The duration in ISO8601 for a time window to check alert rule.",
+                    "examples": [
+                        "PT10S",
+                        "PT1M"
+                    ],
+                    "title": "Mintimeout"
                 },
-                "cpu": {
+                "minThreshold": {
                     "anyOf": [
                         {
-                            "$ref": "#/$defs/AlertSettings"
+                            "maximum": 100.0,
+                            "minimum": 0.0,
+                            "type": "number"
                         },
                         {
                             "type": "null"
                         }
                     ],
-                    "default": null,
-                    "description": "CPU alert settings."
+                    "description": "The minimum threshold to stop alert.",
+                    "title": "Minthreshold"
                 },
-                "storage": {
+                "maxThreshold": {
                     "anyOf": [
                         {
-                            "$ref": "#/$defs/AlertSettings"
+                            "maximum": 100.0,
+                            "minimum": 0.0,
+                            "type": "number"
                         },
                         {
                             "type": "null"
                         }
                     ],
-                    "default": null,
-                    "description": "Storage alert settings."
-                },
-                "upload": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/AlertSettings"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "default": null,
-                    "description": "Upload alert settings."
-                },
-                "download": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/AlertSettings"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "default": null,
-                    "description": "Download alert settings."
+                    "description": "The maximum threshold value to start alert.",
+                    "title": "Maxthreshold"
                 }
             },
-            "title": "AlertRules",
+            "required": [
+                "minTimeout",
+                "minThreshold",
+                "maxThreshold"
+            ],
+            "title": "AlertRulePercents",
             "type": "object"
         },
-        "AlertSettings": {
+        "AlertRulePoints": {
             "description": "Schema alert triggering procedure.",
             "properties": {
                 "minTimeout": {
@@ -117,7 +107,74 @@
                 "minThreshold",
                 "maxThreshold"
             ],
-            "title": "AlertSettings",
+            "title": "AlertRulePoints",
+            "type": "object"
+        },
+        "AlertRules": {
+            "description": "Schema for all possible alert rules.",
+            "properties": {
+                "ram": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/AlertRulePercents"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "RAM alert settings."
+                },
+                "cpu": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/AlertRulePercents"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "CPU alert settings."
+                },
+                "storage": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/AlertRulePercents"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Storage alert settings."
+                },
+                "upload": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/AlertRulePoints"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Upload alert settings."
+                },
+                "download": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/AlertRulePoints"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Download alert settings."
+                }
+            },
+            "title": "AlertRules",
             "type": "object"
         },
         "ResourceRatios": {
