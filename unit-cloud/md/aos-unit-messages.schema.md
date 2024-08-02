@@ -441,8 +441,11 @@
         - [Property `AosUnitMessage > data > oneOf > AosRenewCertsNotification > certificates > AosCertificateIdentificationValidTill > validTill`](#data_oneOf_i12_certificates_items_validTill)
     - [Property `AosUnitMessage > data > oneOf > AosRenewCertsNotification > unitSecret`](#data_oneOf_i12_unitSecret)
       - [Property `AosUnitMessage > data > oneOf > AosRenewCertsNotification > unitSecret > version`](#data_oneOf_i12_unitSecret_version)
-      - [Property `AosUnitMessage > data > oneOf > AosRenewCertsNotification > unitSecret > data`](#data_oneOf_i12_unitSecret_data)
-        - [Property `AosUnitMessage > data > oneOf > AosRenewCertsNotification > unitSecret > data > ownerPassword`](#data_oneOf_i12_unitSecret_data_ownerPassword)
+      - [Property `AosUnitMessage > data > oneOf > AosRenewCertsNotification > unitSecret > nodes`](#data_oneOf_i12_unitSecret_nodes)
+        - [Property `AosUnitMessage > data > oneOf > AosRenewCertsNotification > unitSecret > nodes > anyOf > item 0`](#data_oneOf_i12_unitSecret_nodes_anyOf_i0)
+          - [Property `AosUnitMessage > data > oneOf > AosRenewCertsNotification > unitSecret > nodes > anyOf > item 0 > AosNodePassword`](#data_oneOf_i12_unitSecret_nodes_anyOf_i0_additionalProperties)
+            - [Property `AosUnitMessage > data > oneOf > AosRenewCertsNotification > unitSecret > nodes > anyOf > item 0 > AosNodePassword > ownerPassword`](#data_oneOf_i12_unitSecret_nodes_anyOf_i0_additionalProperties_ownerPassword)
+        - [Property `AosUnitMessage > data > oneOf > AosRenewCertsNotification > unitSecret > nodes > anyOf > item 1`](#data_oneOf_i12_unitSecret_nodes_anyOf_i1)
   - [Property `AosUnitMessage > data > oneOf > AosIssuedUnitCertificates`](#data_oneOf_i13)
     - [Property `AosUnitMessage > data > oneOf > AosIssuedUnitCertificates > messageType`](#data_oneOf_i13_messageType)
     - [Property `AosUnitMessage > data > oneOf > AosIssuedUnitCertificates > certificates`](#data_oneOf_i13_certificates)
@@ -6774,49 +6777,116 @@ Must be one of:
 
 **Description:** The unit Secret
 
-| Property                                         | Pattern | Type    | Deprecated | Definition | Title/Description        |
-| ------------------------------------------------ | ------- | ------- | ---------- | ---------- | ------------------------ |
-| + [version](#data_oneOf_i12_unitSecret_version ) | No      | integer | No         | -          | Version                  |
-| - [data](#data_oneOf_i12_unitSecret_data )       | No      | object  | No         | In         | Data of the unit secret. |
+**Example:** 
+
+```json
+{
+    "nodes": {
+        "Node0": "mega strong secret",
+        "Node1": "super strong secret"
+    },
+    "version": 1
+}
+```
+
+**Example:** 
+
+```json
+{
+    "nodes": {
+        "Node0": "mega strong secret",
+        "Node1": "super strong secret"
+    },
+    "version": 1
+}
+```
+
+| Property                                         | Pattern | Type        | Deprecated | Definition | Title/Description |
+| ------------------------------------------------ | ------- | ----------- | ---------- | ---------- | ----------------- |
+| + [version](#data_oneOf_i12_unitSecret_version ) | No      | const       | No         | -          | Version           |
+| - [nodes](#data_oneOf_i12_unitSecret_nodes )     | No      | Combination | No         | -          | Nodes             |
 
 ##### <a name="data_oneOf_i12_unitSecret_version"></a>Property `AosUnitMessage > data > oneOf > AosRenewCertsNotification > unitSecret > version`
 
 **Title:** Version
 
-|          |           |
-| -------- | --------- |
-| **Type** | `integer` |
+|          |         |
+| -------- | ------- |
+| **Type** | `const` |
 
-**Description:** Version of the unit secrets.
+**Description:** Version of the unit secrets structure.
 
-##### <a name="data_oneOf_i12_unitSecret_data"></a>Property `AosUnitMessage > data > oneOf > AosRenewCertsNotification > unitSecret > data`
+Must be one of:
+* 1
+Specific value: `1`
 
-**Title:** Data of the unit secret.
+##### <a name="data_oneOf_i12_unitSecret_nodes"></a>Property `AosUnitMessage > data > oneOf > AosRenewCertsNotification > unitSecret > nodes`
+
+**Title:** Nodes
+
+|                           |                                                                                                                                   |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| **Type**                  | `combining`                                                                                                                       |
+| **Additional properties** | [![Any type: allowed](https://img.shields.io/badge/Any%20type-allowed-green)](# "Additional Properties of any type are allowed.") |
+| **Default**               | `null`                                                                                                                            |
+
+**Description:** Nodes and password map.
+
+**Example:** 
+
+```json
+{
+    "Node0": "mega strong secret",
+    "Node1": "super strong secret"
+}
+```
+
+| Any of(Option)                                      |
+| --------------------------------------------------- |
+| [item 0](#data_oneOf_i12_unitSecret_nodes_anyOf_i0) |
+| [item 1](#data_oneOf_i12_unitSecret_nodes_anyOf_i1) |
+
+###### <a name="data_oneOf_i12_unitSecret_nodes_anyOf_i0"></a>Property `AosUnitMessage > data > oneOf > AosRenewCertsNotification > unitSecret > nodes > anyOf > item 0`
+
+|                           |                                                                                                                                                                                                       |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                                                                                                                                              |
+| **Additional properties** | [![Should-conform](https://img.shields.io/badge/Should-conform-blue)](#data_oneOf_i12_unitSecret_nodes_anyOf_i0_additionalProperties "Each additional property must conform to the following schema") |
+
+| Property                                                              | Pattern | Type   | Deprecated | Definition                 | Title/Description |
+| --------------------------------------------------------------------- | ------- | ------ | ---------- | -------------------------- | ----------------- |
+| - [](#data_oneOf_i12_unitSecret_nodes_anyOf_i0_additionalProperties ) | No      | object | No         | In #/$defs/AosNodePassword | Owner password.   |
+
+###### <a name="data_oneOf_i12_unitSecret_nodes_anyOf_i0_additionalProperties"></a>Property `AosUnitMessage > data > oneOf > AosRenewCertsNotification > unitSecret > nodes > anyOf > item 0 > AosNodePassword`
 
 |                           |                                                                                                                                   |
 | ------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
 | **Type**                  | `object`                                                                                                                          |
 | **Additional properties** | [![Any type: allowed](https://img.shields.io/badge/Any%20type-allowed-green)](# "Additional Properties of any type are allowed.") |
-| **Default**               | `null`                                                                                                                            |
-| **Defined in**            |                                                                                                                                   |
+| **Defined in**            | #/$defs/AosNodePassword                                                                                                           |
 
-**Description:** Data of the unit secret.
+**Description:** Owner password.
 
-| Property                                                          | Pattern | Type   | Deprecated | Definition | Title/Description |
-| ----------------------------------------------------------------- | ------- | ------ | ---------- | ---------- | ----------------- |
-| - [ownerPassword](#data_oneOf_i12_unitSecret_data_ownerPassword ) | No      | string | No         | -          | Owner Password    |
+| Property                                                                                         | Pattern | Type   | Deprecated | Definition | Title/Description |
+| ------------------------------------------------------------------------------------------------ | ------- | ------ | ---------- | ---------- | ----------------- |
+| + [ownerPassword](#data_oneOf_i12_unitSecret_nodes_anyOf_i0_additionalProperties_ownerPassword ) | No      | string | No         | -          | Owner Password    |
 
-###### <a name="data_oneOf_i12_unitSecret_data_ownerPassword"></a>Property `AosUnitMessage > data > oneOf > AosRenewCertsNotification > unitSecret > data > ownerPassword`
+###### <a name="data_oneOf_i12_unitSecret_nodes_anyOf_i0_additionalProperties_ownerPassword"></a>Property `AosUnitMessage > data > oneOf > AosRenewCertsNotification > unitSecret > nodes > anyOf > item 0 > AosNodePassword > ownerPassword`
 
 **Title:** Owner Password
 
-|             |          |
-| ----------- | -------- |
-| **Type**    | `string` |
-| **Format**  | `base64` |
-| **Default** | `null`   |
+|            |            |
+| ---------- | ---------- |
+| **Type**   | `string`   |
+| **Format** | `password` |
 
-**Description:** The owner password.
+**Description:** Admin (owner) password for the HSM module.
+
+###### <a name="data_oneOf_i12_unitSecret_nodes_anyOf_i1"></a>Property `AosUnitMessage > data > oneOf > AosRenewCertsNotification > unitSecret > nodes > anyOf > item 1`
+
+|          |        |
+| -------- | ------ |
+| **Type** | `null` |
 
 ### <a name="data_oneOf_i13"></a>Property `AosUnitMessage > data > oneOf > AosIssuedUnitCertificates`
 
@@ -7703,4 +7773,4 @@ Specific value: `"deprovisioningResponse"`
 **Description:** Text of the error description.
 
 ----------------------------------------------------------------------------------------------------------------------------
-Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-07-31 at 20:51:41 +0300
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-08-02 at 12:31:51 +0300

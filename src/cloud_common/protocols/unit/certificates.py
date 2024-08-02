@@ -4,9 +4,9 @@
 #
 import base64
 from datetime import datetime
-from typing import Annotated, Literal
+from typing import Annotated, Literal, Optional, Dict
 
-from pydantic import BaseModel, Field, field_serializer
+from pydantic import BaseModel, Field, field_serializer, SecretBytes, SecretStr
 
 from cloud_common.protocols.unit.types import (
     AosSensitiveBytes,
@@ -51,45 +51,47 @@ class AosCertificateIdentificationValidTill(AosCertificateIdentification):
         return valid_till.isoformat()
 
 
-class AosUnitSecretData(BaseModel):
-    """Keeps unit secret used to decode secure device password."""
+class AosNodePassword(BaseModel):
+    """Owner password."""
 
     owner_password: Annotated[
-        AosSensitiveBytes,
+        SecretStr,
         Field(
-            default=None,
             alias='ownerPassword',
             title='Owner Password',
-            description='The owner password.',
+            description='Admin (owner) password for the HSM module.',
         ),
     ]
 
     @field_serializer('owner_password', when_used='json')
     def dump_secret(self, struct_value):
-        if not struct_value:
-            return None
-        return base64.b64encode(struct_value.get_secret_value())
+        return struct_value.get_secret_value()
 
 
-class AosUnitSecret(BaseModel):
+class AosUnitSecretsData(BaseModel):
     """Keeps the unit secret used to decode secure device information."""
 
     version: Annotated[
-        int,
+        Literal[1],
         Field(
             alias='version',
             title='Version',
-            description='Version of the unit secrets.',
+            description='Version of the unit secrets structure.',
         ),
     ]
 
-    data: Annotated[  # noqa: WPS110
-        AosUnitSecretData,
+    nodes: Annotated[
+        Optional[Dict[str, AosNodePassword]],
         Field(
+            alias='nodes',
             default=None,
-            alias='data',
-            title='Data of the unit secret.',
-            description='Data of the unit secret.',
+            description='Nodes and password map.',
+            examples=[
+                {
+                    'Node0': 'mega strong secret',
+                    'Node1': 'super strong secret',
+                },
+            ]
         ),
     ]
 
@@ -120,11 +122,20 @@ class AosRenewCertsNotification(BaseModel):
     ]
 
     unit_secret: Annotated[
-        AosUnitSecret,
+        AosUnitSecretsData,
         Field(
             alias='unitSecret',
             title='Unit Secret',
             description='The unit Secret',
+            examples=[
+                {
+                    'version': 1,
+                    'nodes': {
+                        'Node0': 'mega strong secret',
+                        'Node1': 'super strong secret',
+                    },
+                }
+            ]
         ),
     ]
 
