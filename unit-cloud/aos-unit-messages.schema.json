@@ -2237,6 +2237,23 @@
             "title": "AosNodePartitionInfo",
             "type": "object"
         },
+        "AosNodePassword": {
+            "description": "Owner password.",
+            "properties": {
+                "ownerPassword": {
+                    "description": "Admin (owner) password for the HSM module.",
+                    "format": "password",
+                    "title": "Owner Password",
+                    "type": "string",
+                    "writeOnly": true
+                }
+            },
+            "required": [
+                "ownerPassword"
+            ],
+            "title": "AosNodePassword",
+            "type": "object"
+        },
         "AosOverrideEnvVarsRequest": {
             "description": "AosUnit protocol: 'overrideEnvVars' message.\n\nUnit reports EnvVar changes using this message.",
             "properties": {
@@ -2430,10 +2447,19 @@
                 "unitSecret": {
                     "allOf": [
                         {
-                            "$ref": "#/$defs/AosUnitSecret"
+                            "$ref": "#/$defs/AosUnitSecretsData"
                         }
                     ],
                     "description": "The unit Secret",
+                    "examples": [
+                        {
+                            "nodes": {
+                                "Node0": "mega strong secret",
+                                "Node1": "super strong secret"
+                            },
+                            "version": 1
+                        }
+                    ],
                     "title": "Unit Secret"
                 }
             },
@@ -3147,43 +3173,45 @@
             "title": "AosUnitNodeInfo",
             "type": "object"
         },
-        "AosUnitSecret": {
+        "AosUnitSecretsData": {
             "description": "Keeps the unit secret used to decode secure device information.",
             "properties": {
                 "version": {
-                    "description": "Version of the unit secrets.",
+                    "const": 1,
+                    "description": "Version of the unit secrets structure.",
+                    "enum": [
+                        1
+                    ],
                     "title": "Version",
                     "type": "integer"
                 },
-                "data": {
-                    "allOf": [
+                "nodes": {
+                    "anyOf": [
                         {
-                            "$ref": "#/$defs/AosUnitSecretData"
+                            "additionalProperties": {
+                                "$ref": "#/$defs/AosNodePassword"
+                            },
+                            "type": "object"
+                        },
+                        {
+                            "type": "null"
                         }
                     ],
                     "default": null,
-                    "description": "Data of the unit secret.",
-                    "title": "Data of the unit secret."
+                    "description": "Nodes and password map.",
+                    "examples": [
+                        {
+                            "Node0": "mega strong secret",
+                            "Node1": "super strong secret"
+                        }
+                    ],
+                    "title": "Nodes"
                 }
             },
             "required": [
                 "version"
             ],
-            "title": "AosUnitSecret",
-            "type": "object"
-        },
-        "AosUnitSecretData": {
-            "description": "Keeps unit secret used to decode secure device password.",
-            "properties": {
-                "ownerPassword": {
-                    "default": null,
-                    "description": "The owner password.",
-                    "format": "base64",
-                    "title": "Owner Password",
-                    "type": "string"
-                }
-            },
-            "title": "AosUnitSecretData",
+            "title": "AosUnitSecretsData",
             "type": "object"
         },
         "AosUnitStatus": {
