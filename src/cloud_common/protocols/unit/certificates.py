@@ -51,23 +51,6 @@ class AosCertificateIdentificationValidTill(AosCertificateIdentification):
         return valid_till.isoformat()
 
 
-class AosNodePassword(BaseModel):
-    """Owner password."""
-
-    owner_password: Annotated[
-        SecretStr,
-        Field(
-            alias='ownerPassword',
-            title='Owner Password',
-            description='Admin (owner) password for the HSM module.',
-        ),
-    ]
-
-    @field_serializer('owner_password', when_used='json')
-    def dump_secret(self, struct_value):
-        return struct_value.get_secret_value()
-
-
 class AosUnitSecretsData(BaseModel):
     """Keeps the unit secret used to decode secure device information."""
 
@@ -81,7 +64,7 @@ class AosUnitSecretsData(BaseModel):
     ]
 
     nodes: Annotated[
-        Optional[Dict[str, AosNodePassword]],
+        Optional[Dict[str, str]],
         Field(
             alias='nodes',
             default=None,
