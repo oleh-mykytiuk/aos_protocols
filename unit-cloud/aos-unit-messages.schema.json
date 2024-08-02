@@ -2237,23 +2237,6 @@
             "title": "AosNodePartitionInfo",
             "type": "object"
         },
-        "AosNodePassword": {
-            "description": "Owner password.",
-            "properties": {
-                "ownerPassword": {
-                    "description": "Admin (owner) password for the HSM module.",
-                    "format": "password",
-                    "title": "Owner Password",
-                    "type": "string",
-                    "writeOnly": true
-                }
-            },
-            "required": [
-                "ownerPassword"
-            ],
-            "title": "AosNodePassword",
-            "type": "object"
-        },
         "AosOverrideEnvVarsRequest": {
             "description": "AosUnit protocol: 'overrideEnvVars' message.\n\nUnit reports EnvVar changes using this message.",
             "properties": {
@@ -3189,7 +3172,7 @@
                     "anyOf": [
                         {
                             "additionalProperties": {
-                                "$ref": "#/$defs/AosNodePassword"
+                                "type": "string"
                             },
                             "type": "object"
                         },
