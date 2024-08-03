@@ -2427,13 +2427,13 @@
                     "title": "Certificates",
                     "type": "array"
                 },
-                "unitSecret": {
+                "unitSecrets": {
                     "allOf": [
                         {
                             "$ref": "#/$defs/AosUnitSecretsData"
                         }
                     ],
-                    "description": "The unit Secret",
+                    "description": "The unit secrets",
                     "examples": [
                         {
                             "nodes": {
@@ -2443,13 +2443,13 @@
                             "version": 1
                         }
                     ],
-                    "title": "Unit Secret"
+                    "title": "Unit Secrets"
                 }
             },
             "required": [
                 "messageType",
                 "certificates",
-                "unitSecret"
+                "unitSecrets"
             ],
             "title": "AosRenewCertsNotification",
             "type": "object"

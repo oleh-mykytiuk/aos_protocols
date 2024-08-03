@@ -104,12 +104,12 @@ class AosRenewCertsNotification(BaseModel):
         ),
     ]
 
-    unit_secret: Annotated[
+    unit_secrets: Annotated[
         AosUnitSecretsData,
         Field(
-            alias='unitSecret',
-            title='Unit Secret',
-            description='The unit Secret',
+            alias='unitSecrets',
+            title='Unit Secrets',
+            description='The unit secrets',
             examples=[
                 {
                     'version': 1,

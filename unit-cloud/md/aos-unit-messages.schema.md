@@ -439,12 +439,12 @@
         - [Property `AosUnitMessage > data > oneOf > AosRenewCertsNotification > certificates > AosCertificateIdentificationValidTill > nodeId`](#data_oneOf_i12_certificates_items_nodeId)
         - [Property `AosUnitMessage > data > oneOf > AosRenewCertsNotification > certificates > AosCertificateIdentificationValidTill > serial`](#data_oneOf_i12_certificates_items_serial)
         - [Property `AosUnitMessage > data > oneOf > AosRenewCertsNotification > certificates > AosCertificateIdentificationValidTill > validTill`](#data_oneOf_i12_certificates_items_validTill)
-    - [Property `AosUnitMessage > data > oneOf > AosRenewCertsNotification > unitSecret`](#data_oneOf_i12_unitSecret)
-      - [Property `AosUnitMessage > data > oneOf > AosRenewCertsNotification > unitSecret > version`](#data_oneOf_i12_unitSecret_version)
-      - [Property `AosUnitMessage > data > oneOf > AosRenewCertsNotification > unitSecret > nodes`](#data_oneOf_i12_unitSecret_nodes)
-        - [Property `AosUnitMessage > data > oneOf > AosRenewCertsNotification > unitSecret > nodes > anyOf > item 0`](#data_oneOf_i12_unitSecret_nodes_anyOf_i0)
-          - [Property `AosUnitMessage > data > oneOf > AosRenewCertsNotification > unitSecret > nodes > anyOf > item 0 > additionalProperties`](#data_oneOf_i12_unitSecret_nodes_anyOf_i0_additionalProperties)
-        - [Property `AosUnitMessage > data > oneOf > AosRenewCertsNotification > unitSecret > nodes > anyOf > item 1`](#data_oneOf_i12_unitSecret_nodes_anyOf_i1)
+    - [Property `AosUnitMessage > data > oneOf > AosRenewCertsNotification > unitSecrets`](#data_oneOf_i12_unitSecrets)
+      - [Property `AosUnitMessage > data > oneOf > AosRenewCertsNotification > unitSecrets > version`](#data_oneOf_i12_unitSecrets_version)
+      - [Property `AosUnitMessage > data > oneOf > AosRenewCertsNotification > unitSecrets > nodes`](#data_oneOf_i12_unitSecrets_nodes)
+        - [Property `AosUnitMessage > data > oneOf > AosRenewCertsNotification > unitSecrets > nodes > anyOf > item 0`](#data_oneOf_i12_unitSecrets_nodes_anyOf_i0)
+          - [Property `AosUnitMessage > data > oneOf > AosRenewCertsNotification > unitSecrets > nodes > anyOf > item 0 > additionalProperties`](#data_oneOf_i12_unitSecrets_nodes_anyOf_i0_additionalProperties)
+        - [Property `AosUnitMessage > data > oneOf > AosRenewCertsNotification > unitSecrets > nodes > anyOf > item 1`](#data_oneOf_i12_unitSecrets_nodes_anyOf_i1)
   - [Property `AosUnitMessage > data > oneOf > AosIssuedUnitCertificates`](#data_oneOf_i13)
     - [Property `AosUnitMessage > data > oneOf > AosIssuedUnitCertificates > messageType`](#data_oneOf_i13_messageType)
     - [Property `AosUnitMessage > data > oneOf > AosIssuedUnitCertificates > certificates`](#data_oneOf_i13_certificates)
@@ -6655,7 +6655,7 @@ Cloud sends renew certificate notification from cloud with unit secrets.
 | ----------------------------------------------- | ------- | ------ | ---------- | ---------- | ----------------- |
 | + [messageType](#data_oneOf_i12_messageType )   | No      | const  | No         | -          | Message type      |
 | + [certificates](#data_oneOf_i12_certificates ) | No      | array  | No         | -          | Certificates      |
-| + [unitSecret](#data_oneOf_i12_unitSecret )     | No      | object | No         | In         | Unit Secret       |
+| + [unitSecrets](#data_oneOf_i12_unitSecrets )   | No      | object | No         | In         | Unit Secrets      |
 
 #### <a name="data_oneOf_i12_messageType"></a>Property `AosUnitMessage > data > oneOf > AosRenewCertsNotification > messageType`
 
@@ -6764,9 +6764,9 @@ Must be one of:
 
 **Description:** The valid till of the Certificate.
 
-#### <a name="data_oneOf_i12_unitSecret"></a>Property `AosUnitMessage > data > oneOf > AosRenewCertsNotification > unitSecret`
+#### <a name="data_oneOf_i12_unitSecrets"></a>Property `AosUnitMessage > data > oneOf > AosRenewCertsNotification > unitSecrets`
 
-**Title:** Unit Secret
+**Title:** Unit Secrets
 
 |                           |                                                                                                                                   |
 | ------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
@@ -6774,7 +6774,7 @@ Must be one of:
 | **Additional properties** | [![Any type: allowed](https://img.shields.io/badge/Any%20type-allowed-green)](# "Additional Properties of any type are allowed.") |
 | **Defined in**            |                                                                                                                                   |
 
-**Description:** The unit Secret
+**Description:** The unit secrets
 
 **Example:** 
 
@@ -6800,12 +6800,12 @@ Must be one of:
 }
 ```
 
-| Property                                         | Pattern | Type        | Deprecated | Definition | Title/Description |
-| ------------------------------------------------ | ------- | ----------- | ---------- | ---------- | ----------------- |
-| + [version](#data_oneOf_i12_unitSecret_version ) | No      | const       | No         | -          | Version           |
-| - [nodes](#data_oneOf_i12_unitSecret_nodes )     | No      | Combination | No         | -          | Nodes             |
+| Property                                          | Pattern | Type        | Deprecated | Definition | Title/Description |
+| ------------------------------------------------- | ------- | ----------- | ---------- | ---------- | ----------------- |
+| + [version](#data_oneOf_i12_unitSecrets_version ) | No      | const       | No         | -          | Version           |
+| - [nodes](#data_oneOf_i12_unitSecrets_nodes )     | No      | Combination | No         | -          | Nodes             |
 
-##### <a name="data_oneOf_i12_unitSecret_version"></a>Property `AosUnitMessage > data > oneOf > AosRenewCertsNotification > unitSecret > version`
+##### <a name="data_oneOf_i12_unitSecrets_version"></a>Property `AosUnitMessage > data > oneOf > AosRenewCertsNotification > unitSecrets > version`
 
 **Title:** Version
 
@@ -6819,7 +6819,7 @@ Must be one of:
 * 1
 Specific value: `1`
 
-##### <a name="data_oneOf_i12_unitSecret_nodes"></a>Property `AosUnitMessage > data > oneOf > AosRenewCertsNotification > unitSecret > nodes`
+##### <a name="data_oneOf_i12_unitSecrets_nodes"></a>Property `AosUnitMessage > data > oneOf > AosRenewCertsNotification > unitSecrets > nodes`
 
 **Title:** Nodes
 
@@ -6840,29 +6840,29 @@ Specific value: `1`
 }
 ```
 
-| Any of(Option)                                      |
-| --------------------------------------------------- |
-| [item 0](#data_oneOf_i12_unitSecret_nodes_anyOf_i0) |
-| [item 1](#data_oneOf_i12_unitSecret_nodes_anyOf_i1) |
+| Any of(Option)                                       |
+| ---------------------------------------------------- |
+| [item 0](#data_oneOf_i12_unitSecrets_nodes_anyOf_i0) |
+| [item 1](#data_oneOf_i12_unitSecrets_nodes_anyOf_i1) |
 
-###### <a name="data_oneOf_i12_unitSecret_nodes_anyOf_i0"></a>Property `AosUnitMessage > data > oneOf > AosRenewCertsNotification > unitSecret > nodes > anyOf > item 0`
+###### <a name="data_oneOf_i12_unitSecrets_nodes_anyOf_i0"></a>Property `AosUnitMessage > data > oneOf > AosRenewCertsNotification > unitSecrets > nodes > anyOf > item 0`
 
-|                           |                                                                                                                                                                                                       |
-| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Type**                  | `object`                                                                                                                                                                                              |
-| **Additional properties** | [![Should-conform](https://img.shields.io/badge/Should-conform-blue)](#data_oneOf_i12_unitSecret_nodes_anyOf_i0_additionalProperties "Each additional property must conform to the following schema") |
+|                           |                                                                                                                                                                                                        |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Type**                  | `object`                                                                                                                                                                                               |
+| **Additional properties** | [![Should-conform](https://img.shields.io/badge/Should-conform-blue)](#data_oneOf_i12_unitSecrets_nodes_anyOf_i0_additionalProperties "Each additional property must conform to the following schema") |
 
-| Property                                                              | Pattern | Type   | Deprecated | Definition | Title/Description |
-| --------------------------------------------------------------------- | ------- | ------ | ---------- | ---------- | ----------------- |
-| - [](#data_oneOf_i12_unitSecret_nodes_anyOf_i0_additionalProperties ) | No      | string | No         | -          | -                 |
+| Property                                                               | Pattern | Type   | Deprecated | Definition | Title/Description |
+| ---------------------------------------------------------------------- | ------- | ------ | ---------- | ---------- | ----------------- |
+| - [](#data_oneOf_i12_unitSecrets_nodes_anyOf_i0_additionalProperties ) | No      | string | No         | -          | -                 |
 
-###### <a name="data_oneOf_i12_unitSecret_nodes_anyOf_i0_additionalProperties"></a>Property `AosUnitMessage > data > oneOf > AosRenewCertsNotification > unitSecret > nodes > anyOf > item 0 > additionalProperties`
+###### <a name="data_oneOf_i12_unitSecrets_nodes_anyOf_i0_additionalProperties"></a>Property `AosUnitMessage > data > oneOf > AosRenewCertsNotification > unitSecrets > nodes > anyOf > item 0 > additionalProperties`
 
 |          |          |
 | -------- | -------- |
 | **Type** | `string` |
 
-###### <a name="data_oneOf_i12_unitSecret_nodes_anyOf_i1"></a>Property `AosUnitMessage > data > oneOf > AosRenewCertsNotification > unitSecret > nodes > anyOf > item 1`
+###### <a name="data_oneOf_i12_unitSecrets_nodes_anyOf_i1"></a>Property `AosUnitMessage > data > oneOf > AosRenewCertsNotification > unitSecrets > nodes > anyOf > item 1`
 
 |          |        |
 | -------- | ------ |
@@ -7753,4 +7753,4 @@ Specific value: `"deprovisioningResponse"`
 **Description:** Text of the error description.
 
 ----------------------------------------------------------------------------------------------------------------------------
-Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-08-02 at 16:13:26 +0300
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-08-03 at 11:49:28 +0300
