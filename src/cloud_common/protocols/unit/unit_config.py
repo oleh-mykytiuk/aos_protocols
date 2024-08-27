@@ -47,7 +47,7 @@ class AlertRulePercents(BaseModel):
         ),
     ]
 
-    min_threshold: Annotated[
+    max_threshold: Annotated[
         float,
         Field(
             alias='maxThreshold',
@@ -121,11 +121,11 @@ class ResourceRatiosInfo(BaseModel):
         ),
     ]
 
-    mem: Annotated[
+    ram: Annotated[
         float,
         Field(
             default=None,
-            alias='mem',
+            alias='ram',
             description='The memory (RAM) ratio in percent.',
         ),
     ]
@@ -150,11 +150,11 @@ class AlertRules(BaseModel):
         ),
     ]
 
-    mem: Annotated[
+    ram: Annotated[
         AlertRulePercents,
         Field(
             default=None,
-            alias='mem',
+            alias='ram',
             description='The memory thresholds.',
         ),
     ]

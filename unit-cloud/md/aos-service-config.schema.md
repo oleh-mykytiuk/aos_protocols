@@ -45,6 +45,9 @@
     - [Property `AosConfigSchema > quotas > anyOf > ServiceQuotas > cpuLimit`](#quotas_anyOf_i0_cpuLimit)
       - [Property `AosConfigSchema > quotas > anyOf > ServiceQuotas > cpuLimit > anyOf > item 0`](#quotas_anyOf_i0_cpuLimit_anyOf_i0)
       - [Property `AosConfigSchema > quotas > anyOf > ServiceQuotas > cpuLimit > anyOf > item 1`](#quotas_anyOf_i0_cpuLimit_anyOf_i1)
+    - [Property `AosConfigSchema > quotas > anyOf > ServiceQuotas > cpuDmipsLimit`](#quotas_anyOf_i0_cpuDmipsLimit)
+      - [Property `AosConfigSchema > quotas > anyOf > ServiceQuotas > cpuDmipsLimit > anyOf > item 0`](#quotas_anyOf_i0_cpuDmipsLimit_anyOf_i0)
+      - [Property `AosConfigSchema > quotas > anyOf > ServiceQuotas > cpuDmipsLimit > anyOf > item 1`](#quotas_anyOf_i0_cpuDmipsLimit_anyOf_i1)
     - [Property `AosConfigSchema > quotas > anyOf > ServiceQuotas > ramLimit`](#quotas_anyOf_i0_ramLimit)
       - [Property `AosConfigSchema > quotas > anyOf > ServiceQuotas > ramLimit > anyOf > item 0`](#quotas_anyOf_i0_ramLimit_anyOf_i0)
       - [Property `AosConfigSchema > quotas > anyOf > ServiceQuotas > ramLimit > anyOf > item 1`](#quotas_anyOf_i0_ramLimit_anyOf_i1)
@@ -717,6 +720,7 @@ Format of connection string: {service_uid}/[port|port_range]/[tcp|udp]
 | Property                                           | Pattern | Type        | Deprecated | Definition | Title/Description |
 | -------------------------------------------------- | ------- | ----------- | ---------- | ---------- | ----------------- |
 | - [cpuLimit](#quotas_anyOf_i0_cpuLimit )           | No      | Combination | No         | -          | Cpulimit          |
+| - [cpuDmipsLimit](#quotas_anyOf_i0_cpuDmipsLimit ) | No      | Combination | No         | -          | Cpudmipslimit     |
 | - [ramLimit](#quotas_anyOf_i0_ramLimit )           | No      | Combination | No         | -          | Ramlimit          |
 | - [storageLimit](#quotas_anyOf_i0_storageLimit )   | No      | Combination | No         | -          | Storagelimit      |
 | - [stateLimit](#quotas_anyOf_i0_stateLimit )       | No      | Combination | No         | -          | Statelimit        |
@@ -736,7 +740,7 @@ Format of connection string: {service_uid}/[port|port_range]/[tcp|udp]
 | **Additional properties** | [![Any type: allowed](https://img.shields.io/badge/Any%20type-allowed-green)](# "Additional Properties of any type are allowed.") |
 | **Default**               | `null`                                                                                                                            |
 
-**Description:** CPU limit in DMIPs
+**Description:** CPU limit in percents
 
 | Any of(Option)                               |
 | -------------------------------------------- |
@@ -750,6 +754,35 @@ Format of connection string: {service_uid}/[port|port_range]/[tcp|udp]
 | **Type** | `integer` |
 
 ##### <a name="quotas_anyOf_i0_cpuLimit_anyOf_i1"></a>Property `AosConfigSchema > quotas > anyOf > ServiceQuotas > cpuLimit > anyOf > item 1`
+
+|          |        |
+| -------- | ------ |
+| **Type** | `null` |
+
+#### <a name="quotas_anyOf_i0_cpuDmipsLimit"></a>Property `AosConfigSchema > quotas > anyOf > ServiceQuotas > cpuDmipsLimit`
+
+**Title:** Cpudmipslimit
+
+|                           |                                                                                                                                   |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| **Type**                  | `combining`                                                                                                                       |
+| **Additional properties** | [![Any type: allowed](https://img.shields.io/badge/Any%20type-allowed-green)](# "Additional Properties of any type are allowed.") |
+| **Default**               | `null`                                                                                                                            |
+
+**Description:** CPU limit in DMIPs
+
+| Any of(Option)                                    |
+| ------------------------------------------------- |
+| [item 0](#quotas_anyOf_i0_cpuDmipsLimit_anyOf_i0) |
+| [item 1](#quotas_anyOf_i0_cpuDmipsLimit_anyOf_i1) |
+
+##### <a name="quotas_anyOf_i0_cpuDmipsLimit_anyOf_i0"></a>Property `AosConfigSchema > quotas > anyOf > ServiceQuotas > cpuDmipsLimit > anyOf > item 0`
+
+|          |           |
+| -------- | --------- |
+| **Type** | `integer` |
+
+##### <a name="quotas_anyOf_i0_cpuDmipsLimit_anyOf_i1"></a>Property `AosConfigSchema > quotas > anyOf > ServiceQuotas > cpuDmipsLimit > anyOf > item 1`
 
 |          |        |
 | -------- | ------ |
@@ -1642,4 +1675,4 @@ Must be one of:
 | **Type** | `null` |
 
 ----------------------------------------------------------------------------------------------------------------------------
-Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-07-31 at 11:48:35 +0300
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-08-27 at 17:33:56 +0300

@@ -3,6 +3,13 @@
         "AlertRulePercents": {
             "description": "Information about the threshold.\n\nThreshold is treated as a node resource limit for rebalancing.\n\nThe `high` threshold for resource limits must be defined as the upper limit of resource usage.\n  If a node's resource usage exceeds the highThreshold for a continuous period specified\n  by the threshold `timeout`, the system initiates a rebalancing process to redistribute service instances,\n  thereby preventing resource overutilization and maintaining system performance.\n\nOnce rebalancing is triggered due to exceeding the `high` threshold,\n  the system will only consider the rebalancing action complete and cease further rebalancing activities\n  if the resource usage then decreases and stabilizes below the `low` threshold for a continuous period\n  specified by the threshold `timeout`\n\nThe low/high thresholds for resource limits are set in percentages.",
             "properties": {
+                "minThreshold": {
+                    "description": "The lowest percents of a value after which resource can be rebalanced back.",
+                    "maximum": 100.0,
+                    "minimum": 0.0,
+                    "title": "Minthreshold",
+                    "type": "number"
+                },
                 "maxThreshold": {
                     "description": "The highest percents of a value after which resource have be rebalanced.",
                     "maximum": 100.0,
@@ -22,6 +29,7 @@
                 }
             },
             "required": [
+                "minThreshold",
                 "maxThreshold",
                 "minTimeout"
             ],
@@ -73,7 +81,7 @@
                     "default": null,
                     "description": "The CPU thresholds."
                 },
-                "mem": {
+                "ram": {
                     "allOf": [
                         {
                             "$ref": "#/$defs/AlertRulePercents"
@@ -3108,7 +3116,7 @@
                     ],
                     "title": "Attrs"
                 },
-                "totalRAM": {
+                "totalRam": {
                     "minimum": 1,
                     "title": "Totalram",
                     "type": "integer"
@@ -3150,7 +3158,7 @@
                 "maxDmips",
                 "cpus",
                 "osType",
-                "totalRAM",
+                "totalRam",
                 "status"
             ],
             "title": "AosUnitNodeInfo",
@@ -3519,10 +3527,10 @@
                     "title": "Cpu",
                     "type": "number"
                 },
-                "mem": {
+                "ram": {
                     "default": null,
                     "description": "The memory (RAM) ratio in percent.",
-                    "title": "Mem",
+                    "title": "Ram",
                     "type": "number"
                 },
                 "storage": {
