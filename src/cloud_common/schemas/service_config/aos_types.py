@@ -110,6 +110,14 @@ class ServiceQuotas(BaseModel):
         Field(
             alias='cpuLimit',
             default=None,
+            description='CPU limit in percents',
+        ),
+    ]
+    cpu_dmips_limit: Annotated[
+        Optional[int],
+        Field(
+            alias='cpuDmipsLimit',
+            default=None,
             description='CPU limit in DMIPs',
         ),
     ]

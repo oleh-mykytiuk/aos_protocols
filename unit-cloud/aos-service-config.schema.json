@@ -296,8 +296,21 @@
                         }
                     ],
                     "default": null,
-                    "description": "CPU limit in DMIPs",
+                    "description": "CPU limit in percents",
                     "title": "Cpulimit"
+                },
+                "cpuDmipsLimit": {
+                    "anyOf": [
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "CPU limit in DMIPs",
+                    "title": "Cpudmipslimit"
                 },
                 "ramLimit": {
                     "anyOf": [
