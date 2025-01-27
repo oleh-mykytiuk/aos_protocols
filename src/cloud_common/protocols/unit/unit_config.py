@@ -2,6 +2,7 @@
 #  Copyright (c) 2018-2024 Renesas Inc.
 #  Copyright (c) 2018-2024 EPAM Systems Inc.
 #
+from datetime import timedelta
 from typing import Annotated, Optional
 
 from pydantic import BaseModel, Field
@@ -119,6 +120,14 @@ class AlertRulePoints(BaseModel):
                 0.5,
                 100,
             ],
+        ),
+    ]
+
+    min_duration: Annotated[
+        timedelta,
+        Field(
+            alias='minDuration',
+            description='The duration (timeout) of measurement window',
         ),
     ]
 
