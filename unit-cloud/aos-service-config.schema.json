@@ -218,6 +218,19 @@
                     "default": null,
                     "description": "Storage requested resource (against storageLimit)",
                     "title": "Storage"
+                },
+                "state": {
+                    "anyOf": [
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "State requested resource (against stateLimit)",
+                    "title": "State"
                 }
             },
             "title": "RequestedResources",
@@ -471,6 +484,19 @@
             "default": null,
             "description": "Aos service author.",
             "title": "Author"
+        },
+        "skipResourceLimits": {
+            "anyOf": [
+                {
+                    "type": "boolean"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "default": null,
+            "description": "Use resource limits or not in pre-release versions.",
+            "title": "Skipresourcelimits"
         },
         "balancingPolicy": {
             "default": "enabled",

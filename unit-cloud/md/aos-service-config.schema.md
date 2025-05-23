@@ -4,6 +4,9 @@
 - [![Optional](https://img.shields.io/badge/Optional-yellow) Property `AosConfigSchema > author`](#author)
   - [Property `AosConfigSchema > author > anyOf > item 0`](#author_anyOf_i0)
   - [Property `AosConfigSchema > author > anyOf > item 1`](#author_anyOf_i1)
+- [![Optional](https://img.shields.io/badge/Optional-yellow) Property `AosConfigSchema > skipResourceLimits`](#skipResourceLimits)
+  - [Property `AosConfigSchema > skipResourceLimits > anyOf > item 0`](#skipResourceLimits_anyOf_i0)
+  - [Property `AosConfigSchema > skipResourceLimits > anyOf > item 1`](#skipResourceLimits_anyOf_i1)
 - [![Optional](https://img.shields.io/badge/Optional-yellow) Property `AosConfigSchema > balancingPolicy`](#balancingPolicy)
 - [![Optional](https://img.shields.io/badge/Optional-yellow) Property `AosConfigSchema > hostname`](#hostname)
   - [Property `AosConfigSchema > hostname > anyOf > item 0`](#hostname_anyOf_i0)
@@ -84,6 +87,9 @@
     - [Property `AosConfigSchema > requestedResources > anyOf > RequestedResources > storage`](#requestedResources_anyOf_i0_storage)
       - [Property `AosConfigSchema > requestedResources > anyOf > RequestedResources > storage > anyOf > item 0`](#requestedResources_anyOf_i0_storage_anyOf_i0)
       - [Property `AosConfigSchema > requestedResources > anyOf > RequestedResources > storage > anyOf > item 1`](#requestedResources_anyOf_i0_storage_anyOf_i1)
+    - [Property `AosConfigSchema > requestedResources > anyOf > RequestedResources > state`](#requestedResources_anyOf_i0_state)
+      - [Property `AosConfigSchema > requestedResources > anyOf > RequestedResources > state > anyOf > item 0`](#requestedResources_anyOf_i0_state_anyOf_i0)
+      - [Property `AosConfigSchema > requestedResources > anyOf > RequestedResources > state > anyOf > item 1`](#requestedResources_anyOf_i0_state_anyOf_i1)
   - [Property `AosConfigSchema > requestedResources > anyOf > item 1`](#requestedResources_anyOf_i1)
 - [![Optional](https://img.shields.io/badge/Optional-yellow) Property `AosConfigSchema > alertRules`](#alertRules)
   - [Property `AosConfigSchema > alertRules > anyOf > AlertRules`](#alertRules_anyOf_i0)
@@ -146,6 +152,7 @@ This schema describes the specification of the `aosService` layer in a service.
 | -------------------------------------------- | ------- | ---------------- | ---------- | ---------- | ------------------------------------------- |
 | + [created](#created )                       | No      | string           | No         | -          | Created                                     |
 | - [author](#author )                         | No      | Combination      | No         | -          | Author                                      |
+| - [skipResourceLimits](#skipResourceLimits ) | No      | Combination      | No         | -          | Skipresourcelimits                          |
 | - [balancingPolicy](#balancingPolicy )       | No      | enum (of string) | No         | -          | Balancingpolicy                             |
 | - [hostname](#hostname )                     | No      | Combination      | No         | -          | Hostname                                    |
 | - [runners](#runners )                       | No      | Combination      | No         | -          | Runners                                     |
@@ -195,6 +202,35 @@ This schema describes the specification of the `aosService` layer in a service.
 | **Type** | `string` |
 
 ### <a name="author_anyOf_i1"></a>Property `AosConfigSchema > author > anyOf > item 1`
+
+|          |        |
+| -------- | ------ |
+| **Type** | `null` |
+
+## <a name="skipResourceLimits"></a>![Optional](https://img.shields.io/badge/Optional-yellow) Property `AosConfigSchema > skipResourceLimits`
+
+**Title:** Skipresourcelimits
+
+|                           |                                                                                                                                   |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| **Type**                  | `combining`                                                                                                                       |
+| **Additional properties** | [![Any type: allowed](https://img.shields.io/badge/Any%20type-allowed-green)](# "Additional Properties of any type are allowed.") |
+| **Default**               | `null`                                                                                                                            |
+
+**Description:** Use resource limits or not in pre-release versions.
+
+| Any of(Option)                         |
+| -------------------------------------- |
+| [item 0](#skipResourceLimits_anyOf_i0) |
+| [item 1](#skipResourceLimits_anyOf_i1) |
+
+### <a name="skipResourceLimits_anyOf_i0"></a>Property `AosConfigSchema > skipResourceLimits > anyOf > item 0`
+
+|          |           |
+| -------- | --------- |
+| **Type** | `boolean` |
+
+### <a name="skipResourceLimits_anyOf_i1"></a>Property `AosConfigSchema > skipResourceLimits > anyOf > item 1`
 
 |          |        |
 | -------- | ------ |
@@ -1056,6 +1092,7 @@ Format of connection string: {service_uid}/[port|port_range]/[tcp|udp]
 | - [cpu](#requestedResources_anyOf_i0_cpu )         | No      | Combination | No         | -          | Cpu               |
 | - [ram](#requestedResources_anyOf_i0_ram )         | No      | Combination | No         | -          | Ram               |
 | - [storage](#requestedResources_anyOf_i0_storage ) | No      | Combination | No         | -          | Storage           |
+| - [state](#requestedResources_anyOf_i0_state )     | No      | Combination | No         | -          | State             |
 
 #### <a name="requestedResources_anyOf_i0_cpu"></a>Property `AosConfigSchema > requestedResources > anyOf > RequestedResources > cpu`
 
@@ -1139,6 +1176,35 @@ Format of connection string: {service_uid}/[port|port_range]/[tcp|udp]
 | **Type** | `integer` |
 
 ##### <a name="requestedResources_anyOf_i0_storage_anyOf_i1"></a>Property `AosConfigSchema > requestedResources > anyOf > RequestedResources > storage > anyOf > item 1`
+
+|          |        |
+| -------- | ------ |
+| **Type** | `null` |
+
+#### <a name="requestedResources_anyOf_i0_state"></a>Property `AosConfigSchema > requestedResources > anyOf > RequestedResources > state`
+
+**Title:** State
+
+|                           |                                                                                                                                   |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| **Type**                  | `combining`                                                                                                                       |
+| **Additional properties** | [![Any type: allowed](https://img.shields.io/badge/Any%20type-allowed-green)](# "Additional Properties of any type are allowed.") |
+| **Default**               | `null`                                                                                                                            |
+
+**Description:** State requested resource (against stateLimit)
+
+| Any of(Option)                                        |
+| ----------------------------------------------------- |
+| [item 0](#requestedResources_anyOf_i0_state_anyOf_i0) |
+| [item 1](#requestedResources_anyOf_i0_state_anyOf_i1) |
+
+##### <a name="requestedResources_anyOf_i0_state_anyOf_i0"></a>Property `AosConfigSchema > requestedResources > anyOf > RequestedResources > state > anyOf > item 0`
+
+|          |           |
+| -------- | --------- |
+| **Type** | `integer` |
+
+##### <a name="requestedResources_anyOf_i0_state_anyOf_i1"></a>Property `AosConfigSchema > requestedResources > anyOf > RequestedResources > state > anyOf > item 1`
 
 |          |        |
 | -------- | ------ |
@@ -1673,4 +1739,4 @@ Must be one of:
 | **Type** | `null` |
 
 ----------------------------------------------------------------------------------------------------------------------------
-Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2024-09-03 at 14:58:43 +0300
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2025-05-23 at 16:35:14 +0300

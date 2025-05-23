@@ -1,0 +1,456 @@
+{
+    "$defs": {
+        "AlertRulePercents": {
+            "description": "Information about the threshold.\n\nThreshold is treated as a node resource limit for rebalancing.\n\nThe `high` threshold for resource limits must be defined as the upper limit of resource usage.\n  If a node's resource usage exceeds the highThreshold for a continuous period specified\n  by the threshold `timeout`, the system initiates a rebalancing process to redistribute service instances,\n  thereby preventing resource overutilization and maintaining system performance.\n\nOnce rebalancing is triggered due to exceeding the `high` threshold,\n  the system will only consider the rebalancing action complete and cease further rebalancing activities\n  if the resource usage then decreases and stabilizes below the `low` threshold for a continuous period\n  specified by the threshold `timeout`\n\nThe low/high thresholds for resource limits are set in percentages.",
+            "properties": {
+                "minThreshold": {
+                    "description": "The lowest percents of a value after which resource can be rebalanced back.",
+                    "maximum": 100.0,
+                    "minimum": 0.0,
+                    "title": "Minthreshold",
+                    "type": "number"
+                },
+                "maxThreshold": {
+                    "description": "The highest percents of a value after which resource have be rebalanced.",
+                    "maximum": 100.0,
+                    "minimum": 0.0,
+                    "title": "Maxthreshold",
+                    "type": "number"
+                },
+                "minTimeout": {
+                    "description": "The timeout in seconds. Fraction of value specifies milliseconds",
+                    "examples": [
+                        0.5,
+                        100
+                    ],
+                    "exclusiveMinimum": 0.0,
+                    "title": "Mintimeout",
+                    "type": "number"
+                }
+            },
+            "required": [
+                "minThreshold",
+                "maxThreshold",
+                "minTimeout"
+            ],
+            "title": "AlertRulePercents",
+            "type": "object"
+        },
+        "AlertRulePercentsOfDisk": {
+            "description": "Information about the threshold for disk with names.",
+            "properties": {
+                "minThreshold": {
+                    "description": "The lowest percents of a value after which resource can be rebalanced back.",
+                    "maximum": 100.0,
+                    "minimum": 0.0,
+                    "title": "Minthreshold",
+                    "type": "number"
+                },
+                "maxThreshold": {
+                    "description": "The highest percents of a value after which resource have be rebalanced.",
+                    "maximum": 100.0,
+                    "minimum": 0.0,
+                    "title": "Maxthreshold",
+                    "type": "number"
+                },
+                "minTimeout": {
+                    "description": "The timeout in seconds. Fraction of value specifies milliseconds",
+                    "examples": [
+                        0.5,
+                        100
+                    ],
+                    "exclusiveMinimum": 0.0,
+                    "title": "Mintimeout",
+                    "type": "number"
+                },
+                "name": {
+                    "title": "Name of partition",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "minThreshold",
+                "maxThreshold",
+                "minTimeout",
+                "name"
+            ],
+            "title": "AlertRulePercentsOfDisk",
+            "type": "object"
+        },
+        "AlertRulePoints": {
+            "description": "Information about the threshold in points.\n\nPoints can be DMIPs, bytes, etc.",
+            "properties": {
+                "minThreshold": {
+                    "description": "The lowest points (DMIPs, Bytes, etc) of a value after which resource can be rebalanced back.",
+                    "minimum": 0,
+                    "title": "Minthreshold",
+                    "type": "integer"
+                },
+                "maxThreshold": {
+                    "description": "The highest points of a value after which resource have be rebalanced.",
+                    "minimum": 0,
+                    "title": "Maxthreshold",
+                    "type": "integer"
+                },
+                "minTimeout": {
+                    "description": "The timeout in seconds. Fraction of value specifies milliseconds",
+                    "examples": [
+                        0.5,
+                        100
+                    ],
+                    "exclusiveMinimum": 0.0,
+                    "title": "Mintimeout",
+                    "type": "number"
+                }
+            },
+            "required": [
+                "minThreshold",
+                "maxThreshold",
+                "minTimeout"
+            ],
+            "title": "AlertRulePoints",
+            "type": "object"
+        },
+        "AlertRules": {
+            "description": "The default thresholds for services running on the node.",
+            "properties": {
+                "cpu": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/AlertRulePercents"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The CPU thresholds."
+                },
+                "ram": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/AlertRulePercents"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The RAM thresholds."
+                },
+                "partitions": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "$ref": "#/$defs/AlertRulePercentsOfDisk"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The list of thresholds partitions.",
+                    "title": "Partitions"
+                },
+                "download": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/AlertRulePoints"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Alert rules for incoming network traffic(in bytes)."
+                },
+                "upload": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/AlertRulePoints"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Alert rules for outgoing network traffic(in bytes)."
+                }
+            },
+            "title": "AlertRules",
+            "type": "object"
+        },
+        "AosDeviceInfo": {
+            "properties": {
+                "name": {
+                    "description": "Name of the device.",
+                    "title": "Name",
+                    "type": "string"
+                },
+                "hostDevices": {
+                    "description": "List of files in /dev dir, associated with the device name.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "title": "Hostdevices",
+                    "type": "array"
+                },
+                "sharedCount": {
+                    "default": 0,
+                    "description": "The maximum allowed number of service instances that can use this device simultaneously. 0 means no restrictions.",
+                    "minimum": 0,
+                    "title": "Sharedcount",
+                    "type": "integer"
+                },
+                "groups": {
+                    "default": null,
+                    "description": "List of associated user groups.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "title": "Groups",
+                    "type": "array"
+                }
+            },
+            "required": [
+                "name",
+                "hostDevices"
+            ],
+            "title": "AosDeviceInfo",
+            "type": "object"
+        },
+        "AosFileSystemMount": {
+            "properties": {
+                "destination": {
+                    "description": "The mount's destination.",
+                    "title": "Destination",
+                    "type": "string"
+                },
+                "source": {
+                    "default": null,
+                    "description": "The mount's source.",
+                    "title": "Source",
+                    "type": "string"
+                },
+                "type": {
+                    "default": null,
+                    "description": "The mount's type.",
+                    "title": "Type",
+                    "type": "string"
+                },
+                "options": {
+                    "default": null,
+                    "description": "The mount's options.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "title": "Options",
+                    "type": "array"
+                }
+            },
+            "required": [
+                "destination"
+            ],
+            "title": "AosFileSystemMount",
+            "type": "object"
+        },
+        "AosHostRecord": {
+            "properties": {
+                "ip": {
+                    "description": "IP address.",
+                    "title": "IP address",
+                    "type": "string"
+                },
+                "hostname": {
+                    "description": "The hostname for the IP address.",
+                    "title": "Hostname",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "ip",
+                "hostname"
+            ],
+            "title": "AosHostRecord",
+            "type": "object"
+        },
+        "NodeConfig": {
+            "description": "Node configuration parameters.",
+            "properties": {
+                "nodeType": {
+                    "description": "Group of nodes with identical configuration.",
+                    "title": "Node Type",
+                    "type": "string"
+                },
+                "nodeId": {
+                    "default": null,
+                    "description": "Unique ID of the node",
+                    "title": "Node ID",
+                    "type": "string"
+                },
+                "alertRules": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/AlertRules"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The default thresholds for services running on the node.",
+                    "title": "Alert Rules"
+                },
+                "resourceRatios": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/ResourceRatiosInfo"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The default resource ratio allocated for a service."
+                },
+                "devices": {
+                    "default": null,
+                    "description": "The device list available for running services.",
+                    "examples": [
+                        "Name=\"camera\", host_devices=[\"/dev/camera\"]",
+                        "Name=\"pulseaudio\", host_devices=[\"/dev/pulseaudio\"]"
+                    ],
+                    "items": {
+                        "$ref": "#/$defs/AosDeviceInfo"
+                    },
+                    "title": "Devices",
+                    "type": "array"
+                },
+                "resources": {
+                    "default": null,
+                    "description": "Available resources for services.",
+                    "items": {
+                        "$ref": "#/$defs/ResourceInfo"
+                    },
+                    "title": "Resources",
+                    "type": "array"
+                },
+                "labels": {
+                    "default": null,
+                    "description": "The list of labels for this node.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "title": "Labels",
+                    "type": "array"
+                },
+                "priority": {
+                    "description": "The priority of the node for deploying services.",
+                    "exclusiveMaximum": 4294967295,
+                    "minimum": 0,
+                    "title": "Priority",
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "nodeType",
+                "priority"
+            ],
+            "title": "NodeConfig",
+            "type": "object"
+        },
+        "ResourceInfo": {
+            "properties": {
+                "name": {
+                    "description": "The name of the resource.",
+                    "title": "Name",
+                    "type": "string"
+                },
+                "groups": {
+                    "default": null,
+                    "description": "The group names for the resource.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "title": "Groups",
+                    "type": "array"
+                },
+                "mounts": {
+                    "default": null,
+                    "description": "The mounts list available for running services.",
+                    "items": {
+                        "$ref": "#/$defs/AosFileSystemMount"
+                    },
+                    "title": "Mounts",
+                    "type": "array"
+                },
+                "envs": {
+                    "default": null,
+                    "description": "The list of environment variables.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "title": "Envs",
+                    "type": "array"
+                },
+                "hosts": {
+                    "default": null,
+                    "description": "The list of hostnames.",
+                    "items": {
+                        "$ref": "#/$defs/AosHostRecord"
+                    },
+                    "title": "Hosts",
+                    "type": "array"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "title": "ResourceInfo",
+            "type": "object"
+        },
+        "ResourceRatiosInfo": {
+            "description": "The default resource ratio allocated for a service.",
+            "properties": {
+                "cpu": {
+                    "default": null,
+                    "description": "The CPU ratio in percent.",
+                    "title": "Cpu",
+                    "type": "number"
+                },
+                "ram": {
+                    "default": null,
+                    "description": "The memory (RAM) ratio in percent.",
+                    "title": "Ram",
+                    "type": "number"
+                },
+                "storage": {
+                    "default": null,
+                    "description": "The storage ratio in percent.",
+                    "title": "Storage",
+                    "type": "number"
+                },
+                "state": {
+                    "default": null,
+                    "description": "Requested size of the \"state\" partition (in percents of its capacity).",
+                    "title": "State",
+                    "type": "number"
+                }
+            },
+            "title": "ResourceRatiosInfo",
+            "type": "object"
+        }
+    },
+    "description": "Configuration parameters for a unit.",
+    "properties": {
+        "version": {
+            "description": "Version identifies the configuration itself. It is automatically incremented with every configuration update.",
+            "title": "Version",
+            "type": "string"
+        },
+        "formatVersion": {
+            "description": "JSON format of the unit configuration may change over time. This field identifies current format of unit configuration. Cloud sets it automatically.",
+            "title": "Format Version",
+            "type": "string"
+        },
+        "nodes": {
+            "description": "The list of node configurations.",
+            "items": {
+                "$ref": "#/$defs/NodeConfig"
+            },
+            "title": "Nodes",
+            "type": "array"
+        }
+    },
+    "required": [
+        "version",
+        "formatVersion",
+        "nodes"
+    ],
+    "title": "UnitConfig",
+    "type": "object"
+}
