@@ -40,7 +40,7 @@ class AosConfigSchema(BaseModel):
         Field(
             alias='skipResourceLimits',
             default=None,
-            description='Use resource limits or not in Pre-release versions.',
+            description='Use resource limits or not in pre-release versions.',
         ),
     ]
 
