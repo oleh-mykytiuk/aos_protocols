@@ -177,6 +177,125 @@
             "title": "AlertRules",
             "type": "object"
         },
+        "AosDependency": {
+            "properties": {
+                "identifier": {
+                    "$ref": "#/$defs/AosIdentifier",
+                    "description": "Identifier of the AOS object."
+                },
+                "condition": {
+                    "description": "Condition for dependency of the AOS object.",
+                    "enum": [
+                        "started",
+                        "healthy",
+                        "completed",
+                        "before",
+                        "after"
+                    ],
+                    "title": "Condition",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "identifier",
+                "condition"
+            ],
+            "title": "AosDependency",
+            "type": "object"
+        },
+        "AosIdentifier": {
+            "description": "Aos objects identifier.",
+            "properties": {
+                "id": {
+                    "anyOf": [
+                        {
+                            "format": "uuid4",
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Aos object unique per Aos instance UUID.",
+                    "title": "Aos object UUID identifier. Unique per Aos instance."
+                },
+                "type": {
+                    "anyOf": [
+                        {
+                            "enum": [
+                                "aosComponent",
+                                "aosService",
+                                "aosLayer",
+                                "aosSubject",
+                                "aosOEM"
+                            ],
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Aos object type. E.g.: AosService, AosComponent",
+                    "title": "Aos object type."
+                },
+                "codename": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Aos object codename. Uniqueness depends on object type.",
+                    "title": "Aos object codename."
+                },
+                "title": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Aos object title.",
+                    "title": "Aos object title."
+                },
+                "description": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Aos object description.",
+                    "title": "Aos object description."
+                },
+                "urn": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Aos object URN. Globally unique.",
+                    "title": "Aos object URN."
+                }
+            },
+            "title": "AosIdentifier",
+            "type": "object"
+        },
         "RequestedResources": {
             "description": "Schema for requested resources.",
             "properties": {
@@ -713,6 +832,22 @@
                 }
             ],
             "title": "Sysctl"
+        },
+        "dependencies": {
+            "anyOf": [
+                {
+                    "items": {
+                        "$ref": "#/$defs/AosDependency"
+                    },
+                    "type": "array"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "default": null,
+            "description": "List of dependencies.",
+            "title": "Dependencies"
         }
     },
     "required": [

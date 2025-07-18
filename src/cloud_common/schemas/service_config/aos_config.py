@@ -3,12 +3,17 @@
 #  Copyright (c) 2018-2024 EPAM Systems Inc.
 #
 from datetime import datetime, timedelta
-from typing import Annotated, Optional, Literal, Dict
+from typing import Annotated, Optional, Literal, Dict, List
 
 from pydantic import BaseModel, Field
 
-from cloud_common.schemas.service_config.aos_types import UnitDevice, RunParameters, ServiceQuotas, AlertRules, \
-    RequestedResources
+from cloud_common.schemas.service_config.aos_types import (
+    UnitDevice,
+    RunParameters,
+    ServiceQuotas,
+    AlertRules,
+    RequestedResources, AosDependency,
+)
 
 
 class AosConfigSchema(BaseModel):
@@ -181,3 +186,12 @@ Format of connection string: {service_uid}/[port|port_range]/[tcp|udp]""",
             ]
         ),
     ]
+
+    dependencies: Annotated[
+        Optional[List[AosDependency]],
+        Field(
+            alias='dependencies',
+            default=None,
+            description='List of dependencies.',
+        ),
+    ] = None

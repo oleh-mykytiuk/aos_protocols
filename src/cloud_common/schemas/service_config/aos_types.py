@@ -3,9 +3,11 @@
 #  Copyright (c) 2018-2024 EPAM Systems Inc.
 #
 from datetime import timedelta
-from typing import Annotated, Optional
+from typing import Annotated, Optional, Literal
 
 from pydantic import BaseModel, Field
+
+from cloud_common.protocols.unit.v7.common import AosIdentifier
 
 
 class UnitDevice(BaseModel):
@@ -309,5 +311,30 @@ class AlertRules(BaseModel):
             alias='download',
             default=None,
             description='Download alert settings.',
+        ),
+    ]
+
+
+class AosDependency(BaseModel):
+
+    identifier: Annotated[
+        AosIdentifier,
+        Field(
+            alias='identifier',
+            description='Identifier of the AOS object.',
+        ),
+    ]
+
+    condition: Annotated[
+        Literal[
+            'started',
+            'healthy',
+            'completed',
+            'before',
+            'after',
+        ],
+        Field(
+            alias='condition',
+            description='Condition for dependency of the AOS object.',
         ),
     ]
