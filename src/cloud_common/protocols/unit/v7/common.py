@@ -79,8 +79,30 @@ class AosIdentifier(BaseModel):
     ] = None
 
 
+class AosResourceInfo(BaseModel):
+
+    name: Annotated[
+        str,
+        Field(
+            alias='name',
+            description='The name of the resource.',
+            examples=['camera0', 'shared_folder_1', 'dbus'],
+        ),
+    ]
+
+    shared_count: Annotated[
+        int,
+        Field(
+            alias='sharedCount',
+            ge=0,
+            description='The number of maximum shared usages. 0 mean unlimited',
+        ),
+    ]
+
+
 __all__ = (
     'AosIdentifier',
     'AosErrorInfo',
     'AosHostRecord',
+    'AosResourceInfo',
 )

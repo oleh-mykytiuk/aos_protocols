@@ -1,10 +1,13 @@
 import json
 import os.path
 import subprocess
+import uuid
 
 import click
 
 from cloud_common.protocols.unit import base
+from cloud_common.protocols.unit.v7.base import AosUnitMessageV7
+from cloud_common.protocols.unit.v7.common import AosIdentifier
 from cloud_common.schemas.service_config.aos_config import AosConfigSchema
 from cloud_common.schemas.unit_update.aos_update import AosUpdateSchema
 from cloud_common.protocols.unit.unit_config import UnitConfig
@@ -37,6 +40,17 @@ def generate_schema() -> str:
     return schema_filename
 
 
+def generate_schema_v7() -> str:
+    schema = AosUnitMessageV7.model_json_schema()
+    schema_filename = os.path.join(DOCS_BASE_DIR, 'aos-unit-messages-v7.schema.json')
+    with open(schema_filename, 'wt') as file_handler:
+        file_handler.write(json.dumps(schema, indent=4))
+        file_handler.write('\n')
+    print(f'Schema V7 generated at {schema_filename}')
+
+    return schema_filename
+
+
 def generate_service_schema() -> str:
     schema = AosConfigSchema.model_json_schema()
     schema_filename = os.path.join(DOCS_BASE_DIR, 'aos-service-config.schema.json')
@@ -65,13 +79,19 @@ def cli():
 
 @cli.command()
 def html():
-    schema_filename = generate_schema()
+    subprocess.run([
+        'generate-schema-doc',
+        '--config-file',
+        os.path.join(DOCS_BASE_DIR, 'config-html.yaml'),
+        generate_schema(),
+        os.path.join(DOCS_BASE_DIR, 'html'),
+    ])
 
     subprocess.run([
         'generate-schema-doc',
         '--config-file',
         os.path.join(DOCS_BASE_DIR, 'config-html.yaml'),
-        schema_filename,
+        generate_schema_v7(),
         os.path.join(DOCS_BASE_DIR, 'html'),
     ])
 
@@ -137,4 +157,12 @@ def schemas():
 
 
 if __name__ == '__main__':
+    id_ = AosIdentifier(id=uuid.uuid4(), codename='codename')
+    json_ = id_.model_dump(mode='json', by_alias=True, exclude_none=True)
+    print(json_)
+    print(AosIdentifier.model_validate(json_))
+
+    id_ = AosIdentifier()
+    print(id_.model_dump(mode='json', by_alias=True, exclude_none=True))
+
     cli()

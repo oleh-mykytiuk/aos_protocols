@@ -115,20 +115,12 @@
             "description": "The default thresholds for services running on the node.",
             "properties": {
                 "cpu": {
-                    "allOf": [
-                        {
-                            "$ref": "#/$defs/AlertRulePercents"
-                        }
-                    ],
+                    "$ref": "#/$defs/AlertRulePercents",
                     "default": null,
                     "description": "The CPU thresholds."
                 },
                 "ram": {
-                    "allOf": [
-                        {
-                            "$ref": "#/$defs/AlertRulePercents"
-                        }
-                    ],
+                    "$ref": "#/$defs/AlertRulePercents",
                     "default": null,
                     "description": "The RAM thresholds."
                 },
@@ -149,20 +141,12 @@
                     "title": "Partitions"
                 },
                 "download": {
-                    "allOf": [
-                        {
-                            "$ref": "#/$defs/AlertRulePoints"
-                        }
-                    ],
+                    "$ref": "#/$defs/AlertRulePoints",
                     "default": null,
                     "description": "Alert rules for incoming network traffic(in bytes)."
                 },
                 "upload": {
-                    "allOf": [
-                        {
-                            "$ref": "#/$defs/AlertRulePoints"
-                        }
-                    ],
+                    "$ref": "#/$defs/AlertRulePoints",
                     "default": null,
                     "description": "Alert rules for outgoing network traffic(in bytes)."
                 }
@@ -182,9 +166,6 @@
                 "tag": {
                     "const": "coreAlert",
                     "description": "Type of the alert.",
-                    "enum": [
-                        "coreAlert"
-                    ],
                     "title": "Tag",
                     "type": "string"
                 },
@@ -230,9 +211,6 @@
                 "tag": {
                     "const": "deviceAllocateAlert",
                     "description": "Type of the alert.",
-                    "enum": [
-                        "deviceAllocateAlert"
-                    ],
                     "title": "Tag",
                     "type": "string"
                 },
@@ -296,9 +274,6 @@
                 "tag": {
                     "const": "downloadProgressAlert",
                     "description": "Type of the alert.",
-                    "enum": [
-                        "downloadProgressAlert"
-                    ],
                     "title": "Tag",
                     "type": "string"
                 },
@@ -373,9 +348,6 @@
                 "tag": {
                     "const": "instanceQuotaAlert",
                     "description": "Type of the alert.",
-                    "enum": [
-                        "instanceQuotaAlert"
-                    ],
                     "title": "Tag",
                     "type": "string"
                 },
@@ -434,9 +406,6 @@
                 "tag": {
                     "const": "resourceValidateAlert",
                     "description": "Type of the alert.",
-                    "enum": [
-                        "resourceValidateAlert"
-                    ],
                     "title": "Tag",
                     "type": "string"
                 },
@@ -480,9 +449,6 @@
                 },
                 "tag": {
                     "const": "serviceInstanceAlert",
-                    "enum": [
-                        "serviceInstanceAlert"
-                    ],
                     "title": "Tag",
                     "type": "string"
                 },
@@ -539,9 +505,6 @@
                 "tag": {
                     "const": "systemAlert",
                     "description": "Type of the alert.",
-                    "enum": [
-                        "systemAlert"
-                    ],
                     "title": "Tag",
                     "type": "string"
                 },
@@ -579,9 +542,6 @@
                 "tag": {
                     "const": "systemQuotaAlert",
                     "description": "Type of the alert.",
-                    "enum": [
-                        "systemQuotaAlert"
-                    ],
                     "title": "Tag",
                     "type": "string"
                 },
@@ -619,9 +579,6 @@
                 "messageType": {
                     "const": "alerts",
                     "description": "message body type",
-                    "enum": [
-                        "alerts"
-                    ],
                     "title": "Messagetype",
                     "type": "string"
                 },
@@ -852,11 +809,7 @@
                     "type": "object"
                 },
                 "errorInfo": {
-                    "allOf": [
-                        {
-                            "$ref": "#/$defs/AosErrorInfo"
-                        }
-                    ],
+                    "$ref": "#/$defs/AosErrorInfo",
                     "default": null,
                     "description": "Error information. Absense means no error."
                 }
@@ -875,9 +828,6 @@
                 "messageType": {
                     "const": "deprovisioningRequest",
                     "description": "message body type",
-                    "enum": [
-                        "deprovisioningRequest"
-                    ],
                     "title": "Messagetype",
                     "type": "string"
                 },
@@ -906,9 +856,6 @@
                 "messageType": {
                     "const": "deprovisioningResponse",
                     "description": "message body type",
-                    "enum": [
-                        "deprovisioningResponse"
-                    ],
                     "title": "Messagetype",
                     "type": "string"
                 },
@@ -918,11 +865,7 @@
                     "type": "string"
                 },
                 "errorInfo": {
-                    "allOf": [
-                        {
-                            "$ref": "#/$defs/AosErrorInfo"
-                        }
-                    ],
+                    "$ref": "#/$defs/AosErrorInfo",
                     "default": null,
                     "description": "Error information. Absense means no error."
                 }
@@ -941,9 +884,6 @@
                     "const": "AES256/CBC/pkcs7",
                     "default": "AES256/CBC/pkcs7",
                     "description": "Used block cipher in form: `cipher/mode/padding`.",
-                    "enum": [
-                        "AES256/CBC/pkcs7"
-                    ],
                     "title": "Blockalg",
                     "type": "string"
                 },
@@ -970,11 +910,7 @@
                     "type": "string"
                 },
                 "receiverInfo": {
-                    "allOf": [
-                        {
-                            "$ref": "#/$defs/AosReceiverInfo"
-                        }
-                    ],
+                    "$ref": "#/$defs/AosReceiverInfo",
                     "description": "Receiver info to detect used key."
                 }
             },
@@ -1043,19 +979,11 @@
                     "type": "integer"
                 },
                 "decryptionInfo": {
-                    "allOf": [
-                        {
-                            "$ref": "#/$defs/AosDecryptionInfo"
-                        }
-                    ],
+                    "$ref": "#/$defs/AosDecryptionInfo",
                     "description": "Object with information to decrypt the component."
                 },
                 "signs": {
-                    "allOf": [
-                        {
-                            "$ref": "#/$defs/AosSignInfo"
-                        }
-                    ],
+                    "$ref": "#/$defs/AosSignInfo",
                     "description": "Sign values of the file."
                 }
             },
@@ -1158,19 +1086,11 @@
                     "type": "integer"
                 },
                 "decryptionInfo": {
-                    "allOf": [
-                        {
-                            "$ref": "#/$defs/AosDecryptionInfo"
-                        }
-                    ],
+                    "$ref": "#/$defs/AosDecryptionInfo",
                     "description": "Object with information to decrypt the component."
                 },
                 "signs": {
-                    "allOf": [
-                        {
-                            "$ref": "#/$defs/AosSignInfo"
-                        }
-                    ],
+                    "$ref": "#/$defs/AosSignInfo",
                     "description": "Sign values of the file."
                 }
             },
@@ -1226,19 +1146,11 @@
                     "type": "integer"
                 },
                 "decryptionInfo": {
-                    "allOf": [
-                        {
-                            "$ref": "#/$defs/AosDecryptionInfo"
-                        }
-                    ],
+                    "$ref": "#/$defs/AosDecryptionInfo",
                     "description": "Object with information to decrypt the component."
                 },
                 "signs": {
-                    "allOf": [
-                        {
-                            "$ref": "#/$defs/AosSignInfo"
-                        }
-                    ],
+                    "$ref": "#/$defs/AosSignInfo",
                     "description": "Sign values of the file."
                 }
             },
@@ -1261,9 +1173,6 @@
                 "messageType": {
                     "const": "desiredStatus",
                     "description": "Type of the message body.",
-                    "enum": [
-                        "desiredStatus"
-                    ],
                     "title": "Messagetype",
                     "type": "string"
                 },
@@ -1277,11 +1186,7 @@
                     "type": "array"
                 },
                 "unitConfig": {
-                    "allOf": [
-                        {
-                            "$ref": "#/$defs/UnitConfig"
-                        }
-                    ],
+                    "$ref": "#/$defs/UnitConfig",
                     "default": null,
                     "description": "Desired unit config dictionary."
                 },
@@ -1322,20 +1227,12 @@
                     "type": "array"
                 },
                 "fotaSchedule": {
-                    "allOf": [
-                        {
-                            "$ref": "#/$defs/AosScheduleRule"
-                        }
-                    ],
+                    "$ref": "#/$defs/AosScheduleRule",
                     "default": null,
                     "description": "Points to rules when FOTA can be applied."
                 },
                 "sotaSchedule": {
-                    "allOf": [
-                        {
-                            "$ref": "#/$defs/AosScheduleRule"
-                        }
-                    ],
+                    "$ref": "#/$defs/AosScheduleRule",
                     "default": null,
                     "description": "Points to rules when SOTA can be applied."
                 },
@@ -1487,11 +1384,7 @@
                     "type": "string"
                 },
                 "errorInfo": {
-                    "allOf": [
-                        {
-                            "$ref": "#/$defs/AosErrorInfo"
-                        }
-                    ],
+                    "$ref": "#/$defs/AosErrorInfo",
                     "default": null,
                     "description": "Error information. Absense means no error."
                 }
@@ -1568,9 +1461,6 @@
                 "messageType": {
                     "const": "finishProvisioningRequest",
                     "description": "message body type",
-                    "enum": [
-                        "finishProvisioningRequest"
-                    ],
                     "title": "Messagetype",
                     "type": "string"
                 },
@@ -1608,9 +1498,6 @@
                 "messageType": {
                     "const": "finishProvisioningResponse",
                     "description": "message body type",
-                    "enum": [
-                        "finishProvisioningResponse"
-                    ],
                     "title": "Messagetype",
                     "type": "string"
                 },
@@ -1620,11 +1507,7 @@
                     "type": "string"
                 },
                 "errorInfo": {
-                    "allOf": [
-                        {
-                            "$ref": "#/$defs/AosErrorInfo"
-                        }
-                    ],
+                    "$ref": "#/$defs/AosErrorInfo",
                     "default": null,
                     "description": "Error information. Absense means no error."
                 }
@@ -1718,9 +1601,6 @@
                 "messageType": {
                     "const": "installUnitCertificatesConfirmation",
                     "description": "Message body type.",
-                    "enum": [
-                        "installUnitCertificatesConfirmation"
-                    ],
                     "title": "Message type",
                     "type": "string"
                 },
@@ -1826,9 +1706,6 @@
                 "messageType": {
                     "const": "issueUnitCertificates",
                     "description": "Message body type.",
-                    "enum": [
-                        "issueUnitCertificates"
-                    ],
                     "title": "Message type",
                     "type": "string"
                 },
@@ -1854,9 +1731,6 @@
                 "messageType": {
                     "const": "issuedUnitCertificates",
                     "description": "Message body type.",
-                    "enum": [
-                        "issuedUnitCertificates"
-                    ],
                     "title": "Message type",
                     "type": "string"
                 },
@@ -1952,11 +1826,7 @@
                     "type": "string"
                 },
                 "errorInfo": {
-                    "allOf": [
-                        {
-                            "$ref": "#/$defs/AosErrorInfo"
-                        }
-                    ],
+                    "$ref": "#/$defs/AosErrorInfo",
                     "default": null,
                     "description": "Error information. Absense means no error."
                 }
@@ -2023,9 +1893,6 @@
                 "messageType": {
                     "const": "monitoringData",
                     "description": "message body type",
-                    "enum": [
-                        "monitoringData"
-                    ],
                     "title": "Messagetype",
                     "type": "string"
                 },
@@ -2109,9 +1976,6 @@
                 "messageType": {
                     "const": "newState",
                     "description": "Message body type.",
-                    "enum": [
-                        "newState"
-                    ],
                     "title": "Message type",
                     "type": "string"
                 },
@@ -2300,9 +2164,6 @@
                 "messageType": {
                     "const": "overrideEnvVars",
                     "description": "Message body type.",
-                    "enum": [
-                        "overrideEnvVars"
-                    ],
                     "title": "Message type",
                     "type": "string"
                 },
@@ -2328,9 +2189,6 @@
                 "messageType": {
                     "const": "overrideEnvVarsStatus",
                     "description": "Message body type.",
-                    "enum": [
-                        "overrideEnvVarsStatus"
-                    ],
                     "title": "Message type",
                     "type": "string"
                 },
@@ -2377,9 +2235,6 @@
                 "messageType": {
                     "const": "pushLog",
                     "description": "Message body type.",
-                    "enum": [
-                        "pushLog"
-                    ],
                     "title": "Message type",
                     "type": "string"
                 },
@@ -2424,11 +2279,7 @@
                     "type": "string"
                 },
                 "errorInfo": {
-                    "allOf": [
-                        {
-                            "$ref": "#/$defs/AosErrorInfo"
-                        }
-                    ],
+                    "$ref": "#/$defs/AosErrorInfo",
                     "default": null,
                     "description": "Error information. Absense means no error."
                 }
@@ -2470,9 +2321,6 @@
                 "messageType": {
                     "const": "renewCertificatesNotification",
                     "description": "Message body type.",
-                    "enum": [
-                        "renewCertificatesNotification"
-                    ],
                     "title": "Message type",
                     "type": "string"
                 },
@@ -2485,11 +2333,7 @@
                     "type": "array"
                 },
                 "unitSecrets": {
-                    "allOf": [
-                        {
-                            "$ref": "#/$defs/AosUnitSecretsData"
-                        }
-                    ],
+                    "$ref": "#/$defs/AosUnitSecretsData",
                     "description": "The unit secrets",
                     "examples": [
                         {
@@ -2517,9 +2361,6 @@
                 "messageType": {
                     "const": "requestLog",
                     "description": "Message body type.",
-                    "enum": [
-                        "requestLog"
-                    ],
                     "title": "Message type",
                     "type": "string"
                 },
@@ -2539,20 +2380,12 @@
                     "type": "string"
                 },
                 "filter": {
-                    "allOf": [
-                        {
-                            "$ref": "#/$defs/AosLogFilter"
-                        }
-                    ],
+                    "$ref": "#/$defs/AosLogFilter",
                     "description": "The filters for the requested logs.",
                     "title": "Filter"
                 },
                 "uploadOptions": {
-                    "allOf": [
-                        {
-                            "$ref": "#/$defs/AosUploadLogOptions"
-                        }
-                    ],
+                    "$ref": "#/$defs/AosUploadLogOptions",
                     "default": null,
                     "description": "The upload options. The absense means use AMQPs channel."
                 }
@@ -2683,11 +2516,7 @@
                     "type": "string"
                 },
                 "errorInfo": {
-                    "allOf": [
-                        {
-                            "$ref": "#/$defs/AosErrorInfo"
-                        }
-                    ],
+                    "$ref": "#/$defs/AosErrorInfo",
                     "default": null,
                     "description": "Error information. Absense means no error."
                 }
@@ -2733,11 +2562,7 @@
                     "type": "string"
                 },
                 "errorInfo": {
-                    "allOf": [
-                        {
-                            "$ref": "#/$defs/AosErrorInfo"
-                        }
-                    ],
+                    "$ref": "#/$defs/AosErrorInfo",
                     "default": null,
                     "description": "Error information. Absense means no error."
                 }
@@ -2802,9 +2627,6 @@
                 "messageType": {
                     "const": "startProvisioningRequest",
                     "description": "message body type",
-                    "enum": [
-                        "startProvisioningRequest"
-                    ],
                     "title": "Messagetype",
                     "type": "string"
                 },
@@ -2833,9 +2655,6 @@
                 "messageType": {
                     "const": "startProvisioningResponse",
                     "description": "message body type",
-                    "enum": [
-                        "startProvisioningResponse"
-                    ],
                     "title": "Messagetype",
                     "type": "string"
                 },
@@ -2845,11 +2664,7 @@
                     "type": "string"
                 },
                 "errorInfo": {
-                    "allOf": [
-                        {
-                            "$ref": "#/$defs/AosErrorInfo"
-                        }
-                    ],
+                    "$ref": "#/$defs/AosErrorInfo",
                     "default": null,
                     "description": "Error information. Absense means no error."
                 },
@@ -2876,9 +2691,6 @@
                 "messageType": {
                     "const": "stateAcceptance",
                     "description": "Message body type.",
-                    "enum": [
-                        "stateAcceptance"
-                    ],
                     "title": "Message type",
                     "type": "string"
                 },
@@ -2938,9 +2750,6 @@
                 "messageType": {
                     "const": "stateRequest",
                     "description": "Message body type.",
-                    "enum": [
-                        "stateRequest"
-                    ],
                     "title": "Message type",
                     "type": "string"
                 },
@@ -3043,11 +2852,7 @@
                     "type": "string"
                 },
                 "errorInfo": {
-                    "allOf": [
-                        {
-                            "$ref": "#/$defs/AosErrorInfo"
-                        }
-                    ],
+                    "$ref": "#/$defs/AosErrorInfo",
                     "default": null,
                     "description": "Error information. Absense means no error."
                 }
@@ -3064,9 +2869,6 @@
                 "version": {
                     "const": 6,
                     "description": "The version of Unit-Cloud protocol.",
-                    "enum": [
-                        6
-                    ],
                     "title": "Protocol version",
                     "type": "integer"
                 },
@@ -3192,11 +2994,7 @@
                     "type": "string"
                 },
                 "errorInfo": {
-                    "allOf": [
-                        {
-                            "$ref": "#/$defs/AosErrorInfo"
-                        }
-                    ],
+                    "$ref": "#/$defs/AosErrorInfo",
                     "default": null,
                     "description": "Error information. Absense means no error."
                 }
@@ -3220,9 +3018,6 @@
                 "version": {
                     "const": 1,
                     "description": "Version of the unit secrets structure.",
-                    "enum": [
-                        1
-                    ],
                     "title": "Version",
                     "type": "integer"
                 },
@@ -3261,9 +3056,6 @@
                 "messageType": {
                     "const": "unitStatus",
                     "description": "message body type",
-                    "enum": [
-                        "unitStatus"
-                    ],
                     "title": "Messagetype",
                     "type": "string"
                 },
@@ -3357,9 +3149,6 @@
                 "messageType": {
                     "const": "updateState",
                     "description": "Message body type.",
-                    "enum": [
-                        "updateState"
-                    ],
                     "title": "Message type",
                     "type": "string"
                 },
@@ -3450,29 +3239,26 @@
                     "type": "string"
                 },
                 "nodeId": {
-                    "default": null,
-                    "description": "Unique ID of the node",
-                    "title": "Node ID",
-                    "type": "string"
-                },
-                "alertRules": {
-                    "allOf": [
+                    "anyOf": [
                         {
-                            "$ref": "#/$defs/AlertRules"
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
                         }
                     ],
                     "default": null,
-                    "description": "The default thresholds for services running on the node.",
+                    "description": "Unique ID of the node",
+                    "title": "Node ID"
+                },
+                "alertRules": {
+                    "$ref": "#/$defs/AlertRules",
+                    "default": null,
                     "title": "Alert Rules"
                 },
                 "resourceRatios": {
-                    "allOf": [
-                        {
-                            "$ref": "#/$defs/ResourceRatiosInfo"
-                        }
-                    ],
-                    "default": null,
-                    "description": "The default resource ratio allocated for a service."
+                    "$ref": "#/$defs/ResourceRatiosInfo",
+                    "default": null
                 },
                 "devices": {
                     "default": null,
@@ -3635,11 +3421,7 @@
     "description": "Unit message model.",
     "properties": {
         "header": {
-            "allOf": [
-                {
-                    "$ref": "#/$defs/AosUnitHeader"
-                }
-            ],
+            "$ref": "#/$defs/AosUnitHeader",
             "description": "Aos Unit-Cloud message header"
         },
         "data": {
