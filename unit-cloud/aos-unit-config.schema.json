@@ -115,20 +115,12 @@
             "description": "The default thresholds for services running on the node.",
             "properties": {
                 "cpu": {
-                    "allOf": [
-                        {
-                            "$ref": "#/$defs/AlertRulePercents"
-                        }
-                    ],
+                    "$ref": "#/$defs/AlertRulePercents",
                     "default": null,
                     "description": "The CPU thresholds."
                 },
                 "ram": {
-                    "allOf": [
-                        {
-                            "$ref": "#/$defs/AlertRulePercents"
-                        }
-                    ],
+                    "$ref": "#/$defs/AlertRulePercents",
                     "default": null,
                     "description": "The RAM thresholds."
                 },
@@ -149,20 +141,12 @@
                     "title": "Partitions"
                 },
                 "download": {
-                    "allOf": [
-                        {
-                            "$ref": "#/$defs/AlertRulePoints"
-                        }
-                    ],
+                    "$ref": "#/$defs/AlertRulePoints",
                     "default": null,
                     "description": "Alert rules for incoming network traffic(in bytes)."
                 },
                 "upload": {
-                    "allOf": [
-                        {
-                            "$ref": "#/$defs/AlertRulePoints"
-                        }
-                    ],
+                    "$ref": "#/$defs/AlertRulePoints",
                     "default": null,
                     "description": "Alert rules for outgoing network traffic(in bytes)."
                 }
@@ -279,23 +263,13 @@
                     "type": "string"
                 },
                 "alertRules": {
-                    "allOf": [
-                        {
-                            "$ref": "#/$defs/AlertRules"
-                        }
-                    ],
+                    "$ref": "#/$defs/AlertRules",
                     "default": null,
-                    "description": "The default thresholds for services running on the node.",
                     "title": "Alert Rules"
                 },
                 "resourceRatios": {
-                    "allOf": [
-                        {
-                            "$ref": "#/$defs/ResourceRatiosInfo"
-                        }
-                    ],
-                    "default": null,
-                    "description": "The default resource ratio allocated for a service."
+                    "$ref": "#/$defs/ResourceRatiosInfo",
+                    "default": null
                 },
                 "devices": {
                     "default": null,

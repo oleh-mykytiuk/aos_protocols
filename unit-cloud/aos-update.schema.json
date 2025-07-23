@@ -186,9 +186,6 @@
         "formatVersion": {
             "const": 2,
             "description": "Format version,  used to support future extension and backward compatibility.",
-            "enum": [
-                2
-            ],
             "title": "Formatversion",
             "type": "integer"
         },

@@ -4,9 +4,21 @@
 #
 from typing import Annotated, Literal, Optional
 
-from pydantic import Base64Bytes, Field, Secret
+from pydantic import Base64Bytes, Field, Secret, UUID4
 
 from cloud_common.protocols.unit.constants import DataSizes
+
+
+TypeIdentifierIdOptional = Annotated[
+    UUID4,
+    Field(
+        None,
+        alias='id',
+        title='Identifier ID',
+        description='ID of the object, type: UUID.',
+    ),
+]
+
 
 TypeStatusForNonExecutables = Annotated[
     Literal[
@@ -64,7 +76,7 @@ TypeNodeIdMandatory = Annotated[
 ]
 
 TypeNodeIdOptional = Annotated[
-    Optional[str],
+    str,
     Field(
         default=None,
         alias='nodeId',
@@ -369,5 +381,15 @@ TypeLayerDigest = Annotated[
     Field(
         alias='digest',
         description='Digest of the layer.',
+    ),
+]
+
+
+TypeUrnMandatory = Annotated[
+    str,
+    Field(
+        alias='urn',
+        title='URN of the object',
+        description='Unique URN of the object.',
     ),
 ]
