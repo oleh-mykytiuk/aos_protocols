@@ -109,9 +109,21 @@ TypeAosIdentifierMandatory = Annotated[
 ]
 
 
+TypeAosIdentifierOptional = Annotated[
+    Optional[AosIdentifier],
+    Field(
+        default=None,
+        alias='identifier',
+        description='The identification of the resource.',
+    ),
+]
+
+
 __all__ = (
     'AosIdentifier',
     'AosErrorInfo',
     'AosHostRecord',
     'AosResourceInfo',
+    'TypeAosIdentifierMandatory',
+    'TypeAosIdentifierOptional',
 )

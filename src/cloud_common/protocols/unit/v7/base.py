@@ -7,29 +7,35 @@ from typing import Annotated, Union
 from pydantic import BaseModel, Discriminator, Field
 
 from .alert import AosAlertsV7
-from cloud_common.protocols.unit.envars import (
-    AosOverrideEnvVarsRequest,
-    AosOverrideEnvVarsStatuses,
+from .envars import (
+    AosOverrideEnvVarsRequestV7,
+    AosOverrideEnvVarsStatusesV7,
 )
-from cloud_common.protocols.unit.log import AosPushLog, AosRequestLog
-from cloud_common.protocols.unit.monitoring import AosMonitoring
-from cloud_common.protocols.unit.provisioning import (
-    AosStartProvisioningRequest,
-    AosStartProvisioningResponse,
-    AosFinishProvisioningResponse,
-    AosFinishProvisioningRequest,
-    AosDeProvisioningResponse,
-    AosDeProvisioningRequest,
+from .state import (
+    AosNewStateV7,
+    AosStateAcceptanceV7,
+    AosStateRequestV7,
+    AosUpdateStateV7,
 )
-from cloud_common.protocols.unit.state import (
-    AosNewState,
-    AosStateAcceptance,
-    AosStateRequest,
-    AosUpdateState,
+from .log import AosRequestLogV7, AosPushLogV7
+from .monitoring import AosMonitoringV7
+from .provisioning import (
+    AosStartProvisioningRequestV7,
+    AosStartProvisioningResponseV7,
+    AosFinishProvisioningRequestV7,
+    AosFinishProvisioningResponseV7,
+    AosDeProvisioningRequestV7,
+    AosDeProvisioningResponseV7,
 )
 from .unit_status import AosUnitStatusV7
 from .desired_status import AosDesiredStatusV7
 from .header import AosUnitHeaderV7
+from ..certificates import (
+    AosRenewCertsNotification,
+    AosIssuedUnitCertificates,
+    AosIssueUnitCertificates,
+    AosInstallUnitCertificatesConfirmation,
+)
 
 
 class AosUnitMessageV7(BaseModel):
@@ -44,28 +50,27 @@ class AosUnitMessageV7(BaseModel):
     data: Annotated[  # noqa: WPS110
         Union[
             AosAlertsV7,
-            # AosMonitoring,
+            AosMonitoringV7,
             AosUnitStatusV7,
             AosDesiredStatusV7,
-            # AosNewState,
-            # AosStateRequest,
-            # AosStateAcceptance,
-            # AosUpdateState,
-            # AosRequestLog,
-            # AosPushLog,
-            # AosOverrideEnvVarsRequest,
-            # AosOverrideEnvVarsStatuses,
-            # AosRenewCertsNotification,
-            # AosRenewCertsNotification,
-            # AosIssuedUnitCertificates,
-            # AosIssueUnitCertificates,
-            # AosInstallUnitCertificatesConfirmation,
-            # AosStartProvisioningRequest,
-            # AosStartProvisioningResponse,
-            # AosFinishProvisioningRequest,
-            # AosFinishProvisioningResponse,
-            # AosDeProvisioningRequest,
-            # AosDeProvisioningResponse,
+            AosNewStateV7,
+            AosStateRequestV7,
+            AosStateAcceptanceV7,
+            AosUpdateStateV7,
+            AosRequestLogV7,
+            AosPushLogV7,
+            AosOverrideEnvVarsRequestV7,
+            AosOverrideEnvVarsStatusesV7,
+            AosRenewCertsNotification,
+            AosIssuedUnitCertificates,
+            AosIssueUnitCertificates,
+            AosInstallUnitCertificatesConfirmation,
+            AosStartProvisioningRequestV7,
+            AosStartProvisioningResponseV7,
+            AosFinishProvisioningRequestV7,
+            AosFinishProvisioningResponseV7,
+            AosDeProvisioningRequestV7,
+            AosDeProvisioningResponseV7,
         ],
         Field(
             description='message payload',
