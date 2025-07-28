@@ -154,7 +154,7 @@
             "title": "AlertRules",
             "type": "object"
         },
-        "AosAlertCore": {
+        "AosAlertCoreV7": {
             "description": "Aos Unit core alert information.",
             "properties": {
                 "timestamp": {
@@ -170,9 +170,8 @@
                     "type": "string"
                 },
                 "nodeId": {
-                    "description": "Unique ID of the node.",
-                    "title": "Node ID",
-                    "type": "string"
+                    "$ref": "#/$defs/AosIdentifier",
+                    "description": "Node ID of the alert."
                 },
                 "coreComponent": {
                     "description": "Error information retrieved for the alert.",
@@ -196,70 +195,7 @@
                 "coreComponent",
                 "message"
             ],
-            "title": "AosAlertCore",
-            "type": "object"
-        },
-        "AosAlertDeviceAllocate": {
-            "description": "Aos Unit device allocation alert information.",
-            "properties": {
-                "timestamp": {
-                    "description": "Timestamp when alert was triggered in ISO8601 format.",
-                    "format": "date-time",
-                    "title": "Timestamp",
-                    "type": "string"
-                },
-                "tag": {
-                    "const": "deviceAllocateAlert",
-                    "description": "Type of the alert.",
-                    "title": "Tag",
-                    "type": "string"
-                },
-                "serviceId": {
-                    "description": "Service unique identifier in form: UUID4.",
-                    "minLength": 1,
-                    "title": "Serviceid",
-                    "type": "string"
-                },
-                "subjectId": {
-                    "description": "Subject unique identifier.",
-                    "minLength": 1,
-                    "title": "Subjectid",
-                    "type": "string"
-                },
-                "instance": {
-                    "description": "Service instance number (starting from 0).",
-                    "title": "Instance",
-                    "type": "integer"
-                },
-                "nodeId": {
-                    "description": "Unique ID of the node.",
-                    "title": "Node ID",
-                    "type": "string"
-                },
-                "deviceId": {
-                    "description": "Device name on a Unit",
-                    "title": "Deviceid",
-                    "type": "string"
-                },
-                "message": {
-                    "description": "Error information retrieved for the alert.",
-                    "maxLength": 32768,
-                    "minLength": 1,
-                    "title": "Message",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "timestamp",
-                "tag",
-                "serviceId",
-                "subjectId",
-                "instance",
-                "nodeId",
-                "deviceId",
-                "message"
-            ],
-            "title": "AosAlertDeviceAllocate",
+            "title": "AosAlertCoreV7",
             "type": "object"
         },
         "AosAlertDownloadProgress": {
@@ -336,7 +272,7 @@
             "title": "AosAlertDownloadProgress",
             "type": "object"
         },
-        "AosAlertInstanceQuota": {
+        "AosAlertInstanceQuotaV7": {
             "description": "Aos Unit instance quota alert information.",
             "properties": {
                 "timestamp": {
@@ -352,16 +288,12 @@
                     "type": "string"
                 },
                 "serviceId": {
-                    "description": "Service unique identifier.",
-                    "minLength": 1,
-                    "title": "Serviceid",
-                    "type": "string"
+                    "$ref": "#/$defs/AosIdentifier",
+                    "description": "Service unique identifier."
                 },
                 "subjectId": {
-                    "description": "Subject unique identifier.",
-                    "minLength": 1,
-                    "title": "Subjectid",
-                    "type": "string"
+                    "$ref": "#/$defs/AosIdentifier",
+                    "description": "Subject unique identifier."
                 },
                 "instance": {
                     "description": "Instance number (starting from 0).",
@@ -391,11 +323,11 @@
                 "parameter",
                 "value"
             ],
-            "title": "AosAlertInstanceQuota",
+            "title": "AosAlertInstanceQuotaV7",
             "type": "object"
         },
-        "AosAlertResourceValidate": {
-            "description": "Aos Unit resource validation alert information.",
+        "AosAlertResourceAllocateV7": {
+            "description": "Aos Unit device allocation alert information.",
             "properties": {
                 "timestamp": {
                     "description": "Timestamp when alert was triggered in ISO8601 format.",
@@ -404,41 +336,55 @@
                     "type": "string"
                 },
                 "tag": {
-                    "const": "resourceValidateAlert",
+                    "const": "deviceAllocateAlert",
                     "description": "Type of the alert.",
                     "title": "Tag",
                     "type": "string"
                 },
+                "serviceId": {
+                    "$ref": "#/$defs/AosIdentifier",
+                    "description": "Service unique identifier."
+                },
+                "subjectId": {
+                    "$ref": "#/$defs/AosIdentifier",
+                    "description": "Subject unique identifier."
+                },
+                "instance": {
+                    "description": "Service instance number (starting from 0).",
+                    "title": "Instance",
+                    "type": "integer"
+                },
                 "nodeId": {
-                    "description": "Unique ID of the node.",
-                    "title": "Node ID",
+                    "$ref": "#/$defs/AosIdentifier",
+                    "description": "Node ID of the alert."
+                },
+                "deviceId": {
+                    "description": "Device name on a Unit",
+                    "title": "Deviceid",
                     "type": "string"
                 },
-                "name": {
-                    "description": "Name of the resource.",
-                    "title": "Name",
+                "message": {
+                    "description": "Error information retrieved for the alert.",
+                    "maxLength": 32768,
+                    "minLength": 1,
+                    "title": "Message",
                     "type": "string"
-                },
-                "errors": {
-                    "description": "The list of caught errors",
-                    "items": {
-                        "$ref": "#/$defs/AosErrorInfo"
-                    },
-                    "title": "Errors",
-                    "type": "array"
                 }
             },
             "required": [
                 "timestamp",
                 "tag",
+                "serviceId",
+                "subjectId",
+                "instance",
                 "nodeId",
-                "name",
-                "errors"
+                "deviceId",
+                "message"
             ],
-            "title": "AosAlertResourceValidate",
+            "title": "AosAlertResourceAllocateV7",
             "type": "object"
         },
-        "AosAlertServiceInstance": {
+        "AosAlertServiceInstanceV7": {
             "description": "Aos Unit service instance alert information.",
             "properties": {
                 "timestamp": {
@@ -449,20 +395,18 @@
                 },
                 "tag": {
                     "const": "serviceInstanceAlert",
+                    "description": "Type of the alert.",
                     "title": "Tag",
                     "type": "string"
                 },
                 "serviceId": {
-                    "description": "Service unique identifier.",
-                    "minLength": 1,
-                    "title": "Serviceid",
-                    "type": "string"
+                    "$ref": "#/$defs/AosIdentifier",
+                    "description": "Service ID."
                 },
                 "subjectId": {
+                    "$ref": "#/$defs/AosIdentifier",
                     "description": "Subject unique identifier.",
-                    "minLength": 1,
-                    "title": "Subjectid",
-                    "type": "string"
+                    "minLength": 1
                 },
                 "instance": {
                     "description": "Instance number (starting from 0).",
@@ -484,16 +428,17 @@
             },
             "required": [
                 "timestamp",
+                "tag",
                 "serviceId",
                 "subjectId",
                 "instance",
                 "version",
                 "message"
             ],
-            "title": "AosAlertServiceInstance",
+            "title": "AosAlertServiceInstanceV7",
             "type": "object"
         },
-        "AosAlertSystemError": {
+        "AosAlertSystemErrorV7": {
             "description": "Aos Unit system error alert information.",
             "properties": {
                 "timestamp": {
@@ -509,9 +454,8 @@
                     "type": "string"
                 },
                 "nodeId": {
-                    "description": "Unique ID of the node.",
-                    "title": "Node ID",
-                    "type": "string"
+                    "$ref": "#/$defs/AosIdentifier",
+                    "description": "Node ID of the alert."
                 },
                 "message": {
                     "description": "Error information retrieved for the alert.",
@@ -527,10 +471,10 @@
                 "nodeId",
                 "message"
             ],
-            "title": "AosAlertSystemError",
+            "title": "AosAlertSystemErrorV7",
             "type": "object"
         },
-        "AosAlertSystemQuota": {
+        "AosAlertSystemQuotaV7": {
             "description": "Aos Unit system quota alert information.",
             "properties": {
                 "timestamp": {
@@ -546,9 +490,8 @@
                     "type": "string"
                 },
                 "nodeId": {
-                    "description": "Unique ID of the node.",
-                    "title": "Node ID",
-                    "type": "string"
+                    "$ref": "#/$defs/AosIdentifier",
+                    "description": "Node ID of the alert."
                 },
                 "parameter": {
                     "description": "Parameter name of the system quota.",
@@ -571,10 +514,10 @@
                 "parameter",
                 "value"
             ],
-            "title": "AosAlertSystemQuota",
+            "title": "AosAlertSystemQuotaV7",
             "type": "object"
         },
-        "AosAlerts": {
+        "AosAlertsV7": {
             "properties": {
                 "messageType": {
                     "const": "alerts",
@@ -587,41 +530,37 @@
                     "items": {
                         "discriminator": {
                             "mapping": {
-                                "coreAlert": "#/$defs/AosAlertCore",
-                                "deviceAllocateAlert": "#/$defs/AosAlertDeviceAllocate",
+                                "coreAlert": "#/$defs/AosAlertCoreV7",
+                                "deviceAllocateAlert": "#/$defs/AosAlertResourceAllocateV7",
                                 "downloadProgressAlert": "#/$defs/AosAlertDownloadProgress",
-                                "instanceQuotaAlert": "#/$defs/AosAlertInstanceQuota",
-                                "resourceValidateAlert": "#/$defs/AosAlertResourceValidate",
-                                "serviceInstanceAlert": "#/$defs/AosAlertServiceInstance",
-                                "systemAlert": "#/$defs/AosAlertSystemError",
-                                "systemQuotaAlert": "#/$defs/AosAlertSystemQuota"
+                                "instanceQuotaAlert": "#/$defs/AosAlertInstanceQuotaV7",
+                                "serviceInstanceAlert": "#/$defs/AosAlertServiceInstanceV7",
+                                "systemAlert": "#/$defs/AosAlertSystemErrorV7",
+                                "systemQuotaAlert": "#/$defs/AosAlertSystemQuotaV7"
                             },
                             "propertyName": "tag"
                         },
                         "oneOf": [
                             {
-                                "$ref": "#/$defs/AosAlertCore"
+                                "$ref": "#/$defs/AosAlertCoreV7"
                             },
                             {
-                                "$ref": "#/$defs/AosAlertDeviceAllocate"
+                                "$ref": "#/$defs/AosAlertResourceAllocateV7"
                             },
                             {
                                 "$ref": "#/$defs/AosAlertDownloadProgress"
                             },
                             {
-                                "$ref": "#/$defs/AosAlertInstanceQuota"
+                                "$ref": "#/$defs/AosAlertInstanceQuotaV7"
                             },
                             {
-                                "$ref": "#/$defs/AosAlertServiceInstance"
+                                "$ref": "#/$defs/AosAlertServiceInstanceV7"
                             },
                             {
-                                "$ref": "#/$defs/AosAlertSystemError"
+                                "$ref": "#/$defs/AosAlertSystemErrorV7"
                             },
                             {
-                                "$ref": "#/$defs/AosAlertSystemQuota"
-                            },
-                            {
-                                "$ref": "#/$defs/AosAlertResourceValidate"
+                                "$ref": "#/$defs/AosAlertSystemQuotaV7"
                             }
                         ]
                     },
@@ -633,7 +572,7 @@
                 "messageType",
                 "items"
             ],
-            "title": "AosAlerts",
+            "title": "AosAlertsV7",
             "type": "object"
         },
         "AosArchInfo": {
@@ -1210,10 +1149,9 @@
         "AosNodeDesiredState": {
             "description": "Desired node status.",
             "properties": {
-                "urn": {
-                    "description": "Unique URN of the object.",
-                    "title": "URN of the object",
-                    "type": "string"
+                "identifier": {
+                    "$ref": "#/$defs/AosIdentifier",
+                    "description": "The identification of the resource."
                 },
                 "status": {
                     "description": "The desired status of the node.",
@@ -1226,7 +1164,7 @@
                 }
             },
             "required": [
-                "urn",
+                "identifier",
                 "status"
             ],
             "title": "AosNodeDesiredState",
@@ -2092,7 +2030,7 @@
             "description": "message payload",
             "discriminator": {
                 "mapping": {
-                    "alerts": "#/$defs/AosAlerts",
+                    "alerts": "#/$defs/AosAlertsV7",
                     "desiredStatus": "#/$defs/AosDesiredStatusV7",
                     "unitStatus": "#/$defs/AosUnitStatusV7"
                 },
@@ -2100,7 +2038,7 @@
             },
             "oneOf": [
                 {
-                    "$ref": "#/$defs/AosAlerts"
+                    "$ref": "#/$defs/AosAlertsV7"
                 },
                 {
                     "$ref": "#/$defs/AosUnitStatusV7"

@@ -22,7 +22,7 @@ from cloud_common.protocols.unit.types import (
     TypeVersionMandatory,
 )
 
-from .common import AosIdentifier
+from .common import AosIdentifier, TypeAosIdentifierMandatory
 from .types import TypeUrnMandatory
 from .unit_config import UnitConfigV7
 
@@ -346,7 +346,7 @@ class AosDesiredInstanceInfo(BaseModel):
 class AosNodeDesiredState(BaseModel):
     """Desired node status."""
 
-    urn: TypeUrnMandatory
+    identifier: TypeAosIdentifierMandatory
     state: TypeNodeDesiredStatus
 
 
