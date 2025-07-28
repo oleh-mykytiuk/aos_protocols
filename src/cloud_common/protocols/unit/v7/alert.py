@@ -16,6 +16,7 @@ from cloud_common.protocols.unit.types import (
     TypeNodeIdMandatory,
     TypeVersionMandatory,
 )
+from .common import AosIdentifier
 
 
 class AosBaseAlert(BaseModel):
@@ -28,7 +29,7 @@ class AosBaseAlert(BaseModel):
     ]
 
 
-class AosAlertSystemError(AosBaseAlert):
+class AosAlertSystemErrorV7(AosBaseAlert):
     """Aos Unit system error alert information."""
 
     tag: Annotated[
@@ -36,11 +37,18 @@ class AosAlertSystemError(AosBaseAlert):
         Field(description='Type of the alert.'),
     ]
 
-    node_id: TypeNodeIdMandatory
+    node_id: Annotated[
+        AosIdentifier,
+        Field(
+            alias='nodeId',
+            description='Node ID of the alert.',
+        ),
+    ]
+
     message: TypeAlertMessageMandatory
 
 
-class AosAlertCore(AosBaseAlert):
+class AosAlertCoreV7(AosBaseAlert):
     """Aos Unit core alert information."""
 
     tag: Annotated[
@@ -48,39 +56,19 @@ class AosAlertCore(AosBaseAlert):
         Field(description='Type of the alert.'),
     ]
 
-    node_id: TypeNodeIdMandatory
+    node_id: Annotated[
+        AosIdentifier,
+        Field(
+            alias='nodeId',
+            description='Node ID of the alert.',
+        ),
+    ]
+
     core_component: TypeCoreComponentIdMandatory
     message: TypeAlertMessageMandatory
 
 
-class AosAlertResourceValidate(AosBaseAlert):
-    """Aos Unit resource validation alert information."""
-
-    tag: Annotated[
-        Literal['resourceValidateAlert'],
-        Field(description='Type of the alert.'),
-    ]
-
-    node_id: TypeNodeIdMandatory
-
-    name: Annotated[
-        str,
-        Field(
-            alias='name',
-            description='Name of the resource.',
-        ),
-    ]
-
-    errors: Annotated[
-        list[AosErrorInfo],
-        Field(
-            alias='errors',
-            description='The list of caught errors',
-        ),
-    ]
-
-
-class AosAlertDeviceAllocate(AosBaseAlert):
+class AosAlertResourceAllocateV7(AosBaseAlert):
     """Aos Unit device allocation alert information."""
 
     tag: Annotated[
@@ -89,20 +77,18 @@ class AosAlertDeviceAllocate(AosBaseAlert):
     ]
 
     service_id: Annotated[
-        str,
+        AosIdentifier,
         Field(
             alias='serviceId',
-            description='Service unique identifier in form: UUID4.',
-            min_length=1,
+            description='Service unique identifier.',
         ),
     ]
 
     subject_id: Annotated[
-        str,
+        AosIdentifier,
         Field(
             alias='subjectId',
             description='Subject unique identifier.',
-            min_length=1,
         ),
     ]
 
@@ -113,12 +99,19 @@ class AosAlertDeviceAllocate(AosBaseAlert):
         ),
     ]
 
-    node_id: TypeNodeIdMandatory
-    device: TypeDeviceMandatory
+    node_id: Annotated[
+        AosIdentifier,
+        Field(
+            alias='nodeId',
+            description='Node ID of the alert.',
+        ),
+    ]
+
+    resource: TypeDeviceMandatory
     message: TypeAlertMessageMandatory
 
 
-class AosAlertSystemQuota(AosBaseAlert):
+class AosAlertSystemQuotaV7(AosBaseAlert):
     """Aos Unit system quota alert information."""
 
     tag: Annotated[
@@ -126,7 +119,13 @@ class AosAlertSystemQuota(AosBaseAlert):
         Field(description='Type of the alert.'),
     ]
 
-    node_id: TypeNodeIdMandatory
+    node_id: Annotated[
+        AosIdentifier,
+        Field(
+            alias='nodeId',
+            description='Node ID of the alert.',
+        ),
+    ]
 
     parameter: Annotated[
         str,
@@ -146,7 +145,7 @@ class AosAlertSystemQuota(AosBaseAlert):
     ]
 
 
-class AosAlertInstanceQuota(AosBaseAlert):
+class AosAlertInstanceQuotaV7(AosBaseAlert):
     """Aos Unit instance quota alert information."""
 
     tag: Annotated[
@@ -155,20 +154,18 @@ class AosAlertInstanceQuota(AosBaseAlert):
     ]
 
     service_id: Annotated[
-        str,
+        AosIdentifier,
         Field(
             alias='serviceId',
             description='Service unique identifier.',
-            min_length=1,
         ),
     ]
 
     subject_id: Annotated[
-        str,
+        AosIdentifier,
         Field(
             alias='subjectId',
             description='Subject unique identifier.',
-            min_length=1,
         ),
     ]
 
@@ -250,27 +247,24 @@ class AosAlertDownloadProgress(AosBaseAlert):
     ]
 
 
-class AosAlertServiceInstance(AosBaseAlert):
+class AosAlertServiceInstanceV7(AosBaseAlert):
     """Aos Unit service instance alert information."""
 
     tag: Annotated[
         Literal['serviceInstanceAlert'],
-        Field(
-            Field(description='Type of the alert.'),
-        ),
+        Field(description='Type of the alert.'),
     ]
 
     service_id: Annotated[
-        str,
+        AosIdentifier,
         Field(
             alias='serviceId',
-            description='Service unique identifier.',
-            min_length=1,
+            description='Service ID.',
         ),
     ]
 
     subject_id: Annotated[
-        str,
+        AosIdentifier,
         Field(
             alias='subjectId',
             description='Subject unique identifier.',
@@ -289,7 +283,7 @@ class AosAlertServiceInstance(AosBaseAlert):
     message: TypeAlertMessageMandatory
 
 
-class AosAlerts(BaseModel):
+class AosAlertsV7(BaseModel):
     message_type: Annotated[
         Literal['alerts'],
         Field(
@@ -301,14 +295,13 @@ class AosAlerts(BaseModel):
         list[
             Annotated[
                 Union[
-                    AosAlertCore,
-                    AosAlertDeviceAllocate,
+                    AosAlertCoreV7,
+                    AosAlertResourceAllocateV7,
                     AosAlertDownloadProgress,
-                    AosAlertInstanceQuota,
-                    AosAlertServiceInstance,
-                    AosAlertSystemError,
-                    AosAlertSystemQuota,
-                    AosAlertResourceValidate,
+                    AosAlertInstanceQuotaV7,
+                    AosAlertServiceInstanceV7,
+                    AosAlertSystemErrorV7,
+                    AosAlertSystemQuotaV7,
                 ],
                 Discriminator('tag'),
             ]

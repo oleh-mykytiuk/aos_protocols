@@ -6,13 +6,7 @@ from typing import Annotated, Union
 
 from pydantic import BaseModel, Discriminator, Field
 
-from .alert import AosAlerts
-from cloud_common.protocols.unit.certificates import (
-    AosInstallUnitCertificatesConfirmation,
-    AosIssuedUnitCertificates,
-    AosIssueUnitCertificates,
-    AosRenewCertsNotification,
-)
+from .alert import AosAlertsV7
 from cloud_common.protocols.unit.envars import (
     AosOverrideEnvVarsRequest,
     AosOverrideEnvVarsStatuses,
@@ -49,7 +43,7 @@ class AosUnitMessageV7(BaseModel):
     ]
     data: Annotated[  # noqa: WPS110
         Union[
-            AosAlerts,
+            AosAlertsV7,
             # AosMonitoring,
             AosUnitStatusV7,
             AosDesiredStatusV7,

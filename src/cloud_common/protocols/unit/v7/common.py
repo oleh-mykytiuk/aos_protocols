@@ -100,6 +100,15 @@ class AosResourceInfo(BaseModel):
     ]
 
 
+TypeAosIdentifierMandatory = Annotated[
+    AosIdentifier,
+    Field(
+        alias='identifier',
+        description='The identification of the resource.',
+    ),
+]
+
+
 __all__ = (
     'AosIdentifier',
     'AosErrorInfo',
