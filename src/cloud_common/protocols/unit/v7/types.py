@@ -330,18 +330,17 @@ TypeNodeDesiredStatus = Annotated[
 TypeServiceStatus = Annotated[
     Literal[
         'unknown',
-        'pending',
         'downloading',
-        'downloaded',
+        'pending',
         'installing',
         'installed',
         'removing',
         'removed',
-        'error',
+        'failed',
     ],
     Field(
         alias='status',
-        description='The current (reported) status of the service.',
+        description='The current (reported) status of the update item.',
     ),
 ]
 

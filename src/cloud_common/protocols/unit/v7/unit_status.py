@@ -15,7 +15,6 @@ from .types import (
     TypeServiceInstanceStatus,
     TypeServiceStatus,
     TypeStateChecksumOptional,
-    TypeStatusForNonExecutables,
     TypeVersionMandatory,
     TypeVersionOptional,
 )
@@ -23,7 +22,16 @@ from .types import (
 
 class AosUnitConfigStatus(BaseModel):
     version: TypeVersionOptional
-    status: TypeStatusForNonExecutables
+    status: Annotated[
+        Literal[
+            'absent',
+            'installed',
+            'failed',
+        ],
+        Field(
+            description='current status of the item',
+        ),
+    ]
     error_info: TypeAosErrorInfoOptional
 
 
