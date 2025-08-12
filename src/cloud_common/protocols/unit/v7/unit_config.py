@@ -16,6 +16,7 @@ from cloud_common.protocols.unit.types import (
     TypeNodeTypeMandatory,
     TypeVersionMandatory,
 )
+from cloud_common.protocols.unit.v7.common import AosIdentifier
 
 
 class AlertRulePercents(BaseModel):
@@ -264,20 +265,21 @@ class ResourceInfo(BaseModel):
 class NodeConfig(BaseModel):
     """Node configuration parameters."""
 
-    node_group_subject_urn: Annotated[
-        str,
+    node_group_subject: Annotated[
+        AosIdentifier,
         Field(
-            alias='nodeGroupSubjectUrn',
-            description='The node group subject URN.',
+            alias='nodeGroupSubject',
+            description='Subject of the node group. Previously known as NodeType.',
+            examples=[{"codename": "main-node"}],
         ),
     ]
 
-    node_urn: Annotated[
-        Optional[str],
+    node: Annotated[
+        AosIdentifier,
         Field(
-            default=None,
-            alias='nodeUrn',
-            description='The node URN.',
+            alias='node',
+            description='Node identifier.',
+            examples=[{"codename": "main-node"}],
         ),
     ] = None
 
@@ -297,25 +299,6 @@ class NodeConfig(BaseModel):
             alias='resourceRatios',
             default=None,
             description='The default resource ratio allocated for a service.',
-        ),
-    ]
-
-    devices: Annotated[
-        list[AosDeviceInfo],
-        Field(
-            default=None,
-            alias='devices',
-            description='The device list available for running services.',
-            examples=['Name="camera", host_devices=["/dev/camera"]', 'Name="pulseaudio", host_devices=["/dev/pulseaudio"]']
-        ),
-    ]
-
-    resources: Annotated[
-        list[ResourceInfo],
-        Field(
-            default=None,
-            alias='resources',
-            description='Available resources for services.',
         ),
     ]
 

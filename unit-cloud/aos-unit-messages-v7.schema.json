@@ -945,45 +945,6 @@
             "title": "AosDesiredStatusV7",
             "type": "object"
         },
-        "AosDeviceInfo": {
-            "properties": {
-                "name": {
-                    "description": "Name of the device.",
-                    "title": "Name",
-                    "type": "string"
-                },
-                "hostDevices": {
-                    "description": "List of files in /dev dir, associated with the device name.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "title": "Hostdevices",
-                    "type": "array"
-                },
-                "sharedCount": {
-                    "default": 0,
-                    "description": "The maximum allowed number of service instances that can use this device simultaneously. 0 means no restrictions.",
-                    "minimum": 0,
-                    "title": "Sharedcount",
-                    "type": "integer"
-                },
-                "groups": {
-                    "default": null,
-                    "description": "List of associated user groups.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "title": "Groups",
-                    "type": "array"
-                }
-            },
-            "required": [
-                "name",
-                "hostDevices"
-            ],
-            "title": "AosDeviceInfo",
-            "type": "object"
-        },
         "AosEnvVar": {
             "properties": {
                 "name": {
@@ -1084,41 +1045,6 @@
             "title": "AosErrorInfo",
             "type": "object"
         },
-        "AosFileSystemMount": {
-            "properties": {
-                "destination": {
-                    "description": "The mount's destination.",
-                    "title": "Destination",
-                    "type": "string"
-                },
-                "source": {
-                    "default": null,
-                    "description": "The mount's source.",
-                    "title": "Source",
-                    "type": "string"
-                },
-                "type": {
-                    "default": null,
-                    "description": "The mount's type.",
-                    "title": "Type",
-                    "type": "string"
-                },
-                "options": {
-                    "default": null,
-                    "description": "The mount's options.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "title": "Options",
-                    "type": "array"
-                }
-            },
-            "required": [
-                "destination"
-            ],
-            "title": "AosFileSystemMount",
-            "type": "object"
-        },
         "AosFinishProvisioningRequestV7": {
             "description": "AosUnit protocol: 'finishProvisioningRequest' message.\n\nCloud begins provisioning process with this message",
             "properties": {
@@ -1179,26 +1105,6 @@
                 "nodeId"
             ],
             "title": "AosFinishProvisioningResponseV7",
-            "type": "object"
-        },
-        "AosHostRecord": {
-            "properties": {
-                "ip": {
-                    "description": "IP address.",
-                    "title": "IP address",
-                    "type": "string"
-                },
-                "hostname": {
-                    "description": "The hostname for the IP address.",
-                    "title": "Hostname",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "ip",
-                "hostname"
-            ],
-            "title": "AosHostRecord",
             "type": "object"
         },
         "AosIdentifier": {
@@ -3129,23 +3035,24 @@
         "NodeConfig": {
             "description": "Node configuration parameters.",
             "properties": {
-                "nodeGroupSubjectUrn": {
-                    "description": "The node group subject URN.",
-                    "title": "Nodegroupsubjecturn",
-                    "type": "string"
-                },
-                "nodeUrn": {
-                    "anyOf": [
+                "nodeGroupSubject": {
+                    "$ref": "#/$defs/AosIdentifier",
+                    "description": "Subject of the node group. Previously known as NodeType.",
+                    "examples": [
                         {
-                            "type": "string"
-                        },
-                        {
-                            "type": "null"
+                            "codename": "main-node"
                         }
-                    ],
+                    ]
+                },
+                "node": {
+                    "$ref": "#/$defs/AosIdentifier",
                     "default": null,
-                    "description": "The node URN.",
-                    "title": "Nodeurn"
+                    "description": "Node identifier.",
+                    "examples": [
+                        {
+                            "codename": "main-node"
+                        }
+                    ]
                 },
                 "alertRules": {
                     "$ref": "#/$defs/AlertRules",
@@ -3155,28 +3062,6 @@
                 "resourceRatios": {
                     "$ref": "#/$defs/ResourceRatiosInfo",
                     "default": null
-                },
-                "devices": {
-                    "default": null,
-                    "description": "The device list available for running services.",
-                    "examples": [
-                        "Name=\"camera\", host_devices=[\"/dev/camera\"]",
-                        "Name=\"pulseaudio\", host_devices=[\"/dev/pulseaudio\"]"
-                    ],
-                    "items": {
-                        "$ref": "#/$defs/AosDeviceInfo"
-                    },
-                    "title": "Devices",
-                    "type": "array"
-                },
-                "resources": {
-                    "default": null,
-                    "description": "Available resources for services.",
-                    "items": {
-                        "$ref": "#/$defs/ResourceInfo"
-                    },
-                    "title": "Resources",
-                    "type": "array"
                 },
                 "labels": {
                     "default": null,
@@ -3196,60 +3081,10 @@
                 }
             },
             "required": [
-                "nodeGroupSubjectUrn",
+                "nodeGroupSubject",
                 "priority"
             ],
             "title": "NodeConfig",
-            "type": "object"
-        },
-        "ResourceInfo": {
-            "properties": {
-                "name": {
-                    "description": "The name of the resource.",
-                    "title": "Name",
-                    "type": "string"
-                },
-                "groups": {
-                    "default": null,
-                    "description": "The group names for the resource.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "title": "Groups",
-                    "type": "array"
-                },
-                "mounts": {
-                    "default": null,
-                    "description": "The mounts list available for running services.",
-                    "items": {
-                        "$ref": "#/$defs/AosFileSystemMount"
-                    },
-                    "title": "Mounts",
-                    "type": "array"
-                },
-                "envs": {
-                    "default": null,
-                    "description": "The list of environment variables.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "title": "Envs",
-                    "type": "array"
-                },
-                "hosts": {
-                    "default": null,
-                    "description": "The list of hostnames.",
-                    "items": {
-                        "$ref": "#/$defs/AosHostRecord"
-                    },
-                    "title": "Hosts",
-                    "type": "array"
-                }
-            },
-            "required": [
-                "name"
-            ],
-            "title": "ResourceInfo",
             "type": "object"
         },
         "ResourceRatiosInfo": {
