@@ -1,6 +1,5 @@
 #
-#  Copyright (c) 2018-2024 Renesas Inc.
-#  Copyright (c) 2018-2024 EPAM Systems Inc.
+#  Copyright (c) 2018-2025 EPAM Systems Inc.
 #
 import base64
 from datetime import time
@@ -13,17 +12,11 @@ from cloud_common.protocols.unit.types import (
     TypeAosFileSize,
     TypeAosSha256,
     TypeAosUrlsList,
-    TypeComponentAnnotationsOptional,
-    TypeComponentIdOptional,
-    TypeComponentType,
-    TypeLayerDigest,
-    TypeLayerIdMandatory,
-    TypeNodeDesiredStatus,
     TypeVersionMandatory,
 )
 
 from .common import AosIdentifier, TypeAosIdentifierMandatory
-from .types import TypeUrnMandatory
+from .types import TypeNodeDesiredState
 from .unit_config import UnitConfigV7
 
 
@@ -263,33 +256,6 @@ class AosScheduleRule(BaseModel):
     ]
 
 
-class AosDesiredComponentInfo(BaseModel):
-    """Component info sent from the AosEdge Cloud."""
-
-    id: TypeComponentIdOptional
-    type: TypeComponentType
-    version: TypeVersionMandatory
-    annotations: TypeComponentAnnotationsOptional
-    urls: TypeAosUrlsList
-    sha256: TypeAosSha256
-    size: TypeAosFileSize
-    decryption_info: TypeAosDecryptionInfo
-    signs: TypeAosSignInfo
-
-
-class AosDesiredLayerInfo(BaseModel):
-    """Layer info sent from the AosEdge Cloud."""
-
-    id: TypeLayerIdMandatory
-    version: TypeVersionMandatory
-    digest: TypeLayerDigest
-    urls: TypeAosUrlsList
-    sha256: TypeAosSha256
-    size: TypeAosFileSize
-    decryption_info: TypeAosDecryptionInfo
-    signs: TypeAosSignInfo
-
-
 class AosUpdateItemDownloadInfo(BaseModel):
     """Service info sent from the AosEdge Cloud."""
 
@@ -347,7 +313,7 @@ class AosNodeDesiredState(BaseModel):
     """Desired node status."""
 
     identifier: TypeAosIdentifierMandatory
-    state: TypeNodeDesiredStatus
+    state: TypeNodeDesiredState
 
 
 class AosDesiredStatusV7(BaseModel):

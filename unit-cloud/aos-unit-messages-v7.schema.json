@@ -1761,19 +1761,19 @@
                     "$ref": "#/$defs/AosIdentifier",
                     "description": "The identification of the resource."
                 },
-                "status": {
-                    "description": "The desired status of the node.",
+                "state": {
+                    "description": "The desired state of the node.",
                     "enum": [
                         "provisioned",
                         "paused"
                     ],
-                    "title": "Status",
+                    "title": "State",
                     "type": "string"
                 }
             },
             "required": [
                 "identifier",
-                "status"
+                "state"
             ],
             "title": "AosNodeDesiredState",
             "type": "object"
