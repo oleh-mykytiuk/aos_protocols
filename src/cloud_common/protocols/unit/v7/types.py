@@ -392,3 +392,15 @@ TypeUrnMandatory = Annotated[
         description='Unique URN of the object.',
     ),
 ]
+
+
+TypeNodeDesiredState = Annotated[
+    Literal[
+        'provisioned',
+        'paused',
+    ],
+    Field(
+        alias='state',
+        description='The desired state of the node.',
+    ),
+]
