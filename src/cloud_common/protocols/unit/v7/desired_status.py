@@ -366,24 +366,6 @@ class AosDesiredStatusV7(BaseModel):
         ),
     ]
 
-    fota_schedule: Annotated[
-        AosScheduleRule,
-        Field(
-            alias='fotaSchedule',
-            default=None,
-            description='Points to rules when FOTA can be applied.',
-        ),
-    ]
-
-    sota_schedule: Annotated[
-        AosScheduleRule,
-        Field(
-            alias='sotaSchedule',
-            default=None,
-            description='Points to rules when SOTA can be applied.',
-        ),
-    ]
-
     certificates: Annotated[
         list[AosCertificateInfo],
         Field(

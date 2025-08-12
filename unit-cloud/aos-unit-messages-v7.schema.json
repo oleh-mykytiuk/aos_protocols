@@ -910,16 +910,6 @@
                     "title": "Instances",
                     "type": "array"
                 },
-                "fotaSchedule": {
-                    "$ref": "#/$defs/AosScheduleRule",
-                    "default": null,
-                    "description": "Points to rules when FOTA can be applied."
-                },
-                "sotaSchedule": {
-                    "$ref": "#/$defs/AosScheduleRule",
-                    "default": null,
-                    "description": "Points to rules when SOTA can be applied."
-                },
                 "certificates": {
                     "default": null,
                     "description": "The list of the used certificates",
@@ -2188,41 +2178,6 @@
             "title": "AosRuntimeInfo",
             "type": "object"
         },
-        "AosScheduleRule": {
-            "description": "Aos schedule rule.",
-            "properties": {
-                "ttl": {
-                    "default": null,
-                    "description": "TTL of the rule in seconds.",
-                    "title": "Ttl",
-                    "type": "integer"
-                },
-                "type": {
-                    "description": "Type of the Schedule rule.",
-                    "enum": [
-                        "force",
-                        "trigger",
-                        "timetable"
-                    ],
-                    "title": "Type",
-                    "type": "string"
-                },
-                "timetable": {
-                    "default": null,
-                    "description": "Timetable when rule must work (only when the type is `timetable`).",
-                    "items": {
-                        "$ref": "#/$defs/AosTimetableItem"
-                    },
-                    "title": "Timetable",
-                    "type": "array"
-                }
-            },
-            "required": [
-                "type"
-            ],
-            "title": "AosScheduleRule",
-            "type": "object"
-        },
         "AosServiceEnvVarV7": {
             "description": "The current status of the environment variable.",
             "properties": {
@@ -2496,54 +2451,6 @@
                 "default"
             ],
             "title": "AosStateRequestV7",
-            "type": "object"
-        },
-        "AosTimeSlot": {
-            "description": "Timetable time slot.",
-            "properties": {
-                "start": {
-                    "description": "Start time in form `HH:MM[:SS]`.",
-                    "format": "time",
-                    "title": "Start",
-                    "type": "string"
-                },
-                "end": {
-                    "description": "End time in form `HH:MM[:SS]`.",
-                    "format": "time",
-                    "title": "End",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "start",
-                "end"
-            ],
-            "title": "AosTimeSlot",
-            "type": "object"
-        },
-        "AosTimetableItem": {
-            "description": "Timetable signe record.\n\nRepresent one entry of the timetable in form\n`day of week`: [start time:end time]",
-            "properties": {
-                "dayOfWeek": {
-                    "description": "Day of the week: Monday [1] ... Sunday [7].",
-                    "title": "Dayofweek",
-                    "type": "integer"
-                },
-                "timeSlots": {
-                    "description": "List of the time slots for the timetable.",
-                    "items": {
-                        "$ref": "#/$defs/AosTimeSlot"
-                    },
-                    "minItems": 1,
-                    "title": "Timeslots",
-                    "type": "array"
-                }
-            },
-            "required": [
-                "dayOfWeek",
-                "timeSlots"
-            ],
-            "title": "AosTimetableItem",
             "type": "object"
         },
         "AosUnitConfigStatus": {
