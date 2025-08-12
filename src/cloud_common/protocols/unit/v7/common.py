@@ -1,6 +1,5 @@
 #
-#  Copyright (c) 2018-2024 Renesas Inc.
-#  Copyright (c) 2018-2024 EPAM Systems Inc.
+#  Copyright (c) 2018-2025 EPAM Systems Inc.
 #
 from typing import Annotated, Optional, Literal
 

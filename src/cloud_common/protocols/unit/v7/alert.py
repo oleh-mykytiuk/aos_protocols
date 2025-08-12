@@ -1,19 +1,16 @@
 #
-#  Copyright (c) 2018-2024 Renesas Inc.
-#  Copyright (c) 2018-2024 EPAM Systems Inc.
+#  Copyright (c) 2018-2025 EPAM Systems Inc.
 #
 from datetime import datetime
 from typing import Annotated, Literal, Union
 
 from pydantic import BaseModel, Discriminator, Field
 
-from cloud_common.protocols.unit.common import AosErrorInfo
 from cloud_common.protocols.unit.constants import DataSizes
 from cloud_common.protocols.unit.types import (
     TypeAlertMessageMandatory,
     TypeCoreComponentIdMandatory,
     TypeDeviceMandatory,
-    TypeNodeIdMandatory,
     TypeVersionMandatory,
 )
 from .common import AosIdentifier

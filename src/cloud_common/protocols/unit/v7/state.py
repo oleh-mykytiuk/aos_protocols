@@ -8,8 +8,6 @@ from pydantic import BaseModel, Field
 from cloud_common.protocols.unit.constants import DataSizes
 from cloud_common.protocols.unit.types import (
     TypeInstanceNoMandatory,
-    TypeServiceServiceIdMandatory,
-    TypeSubjectSubjectIdMandatory,
 )
 from .common import AosIdentifier
 
