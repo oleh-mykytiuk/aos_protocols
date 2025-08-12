@@ -7,7 +7,6 @@ from pydantic import BaseModel, Field
 
 from cloud_common.protocols.unit.certificates import AosIssuedUnitCerts
 from cloud_common.protocols.unit.common import TypeAosErrorInfoOptional
-from cloud_common.protocols.unit.types import TypeNodeIdMandatory
 from cloud_common.protocols.unit.v7.common import AosIdentifier
 
 

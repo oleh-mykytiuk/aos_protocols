@@ -1,20 +1,13 @@
 #
-#  Copyright (c) 2018-2024 Renesas Inc.
-#  Copyright (c) 2018-2024 EPAM Systems Inc.
+#  Copyright (c) 2018-2025 EPAM Systems Inc.
 #
 from typing import Annotated, Optional
 
 from pydantic import BaseModel, Field
 
 from cloud_common.protocols.unit.common import (
-    AosDeviceInfo,
     AosFileSystemMount,
     AosHostRecord,
-)
-from cloud_common.protocols.unit.types import (
-    TypeNodeIdOptional,
-    TypeNodeTypeMandatory,
-    TypeVersionMandatory,
 )
 from cloud_common.protocols.unit.v7.common import AosIdentifier
 

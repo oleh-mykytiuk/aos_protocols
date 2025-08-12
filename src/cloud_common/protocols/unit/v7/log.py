@@ -1,5 +1,4 @@
 #
-#  Copyright (c) 2018-2025 Renesas Inc.
 #  Copyright (c) 2018-2025 EPAM Systems Inc.
 #
 from datetime import datetime
