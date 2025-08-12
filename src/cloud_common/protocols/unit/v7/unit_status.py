@@ -7,7 +7,6 @@ from pydantic import BaseModel, Field
 
 from .common import AosIdentifier, AosResourceInfo
 from ..common import TypeAosErrorInfoOptional
-from ..constants import DataSizes
 from .types import (
     TypeInstanceNoMandatory,
     TypeNodeStatus,
