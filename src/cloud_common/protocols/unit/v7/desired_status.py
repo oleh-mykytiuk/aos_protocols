@@ -20,25 +20,7 @@ from .types import TypeNodeDesiredState
 from .unit_config import UnitConfigV7
 
 
-class AosReceiverInfo(BaseModel):
-    """Information about receiver certificate."""
-
-    serial: Annotated[
-        str,
-        Field(
-            description='Certificate serial number.',
-        ),
-    ]
-
-    issuer: Annotated[
-        Base64Bytes,
-        Field(
-            description='Certificate `Issuer DN` field bytes.',
-        ),
-    ]
-
-
-class AosDecryptionInfo(BaseModel):
+class AosDecryptInfo(BaseModel):
     """Information for the decryption."""
 
     block_alg: Annotated[
@@ -66,32 +48,15 @@ class AosDecryptionInfo(BaseModel):
         ),
     ]
 
-    asym_alg: Annotated[
-        Literal['RSA/PKCS1v1_5', 'RSA/PSS'],
-        Field(
-            default='RSA/PKCS1v1_5',
-            alias='asymAlg',
-            description='Used asymmetric cipher in form: `cipher/padding`.',
-        ),
-    ]
-
-    receiver_info: Annotated[
-        AosReceiverInfo,
-        Field(
-            alias='receiverInfo',
-            description='Receiver info to detect used key.',
-        ),
-    ]
-
     @field_serializer('block_key', 'block_iv', when_used='json')
     def dump_secret(self, struct_value):
         return base64.b64encode(struct_value.get_secret_value())
 
 
-TypeAosDecryptionInfo = Annotated[
-    AosDecryptionInfo,
+TypeAosDecryptInfo = Annotated[
+    AosDecryptInfo,
     Field(
-        alias='decryptionInfo',
+        alias='decryptInfo',
         description='Object with information to decrypt the component.',
     ),
 ]
@@ -179,7 +144,7 @@ class AosSignInfo(BaseModel):
 TypeAosSignInfo = Annotated[
     AosSignInfo,
     Field(
-        alias='signs',
+        alias='signInfo',
         description='Sign values of the file.',
     ),
 ]
@@ -264,8 +229,8 @@ class AosUpdateItemDownloadInfo(BaseModel):
     urls: TypeAosUrlsList
     sha256: TypeAosSha256
     size: TypeAosFileSize
-    decryption_info: TypeAosDecryptionInfo
-    signs: TypeAosSignInfo
+    decrypt_info: TypeAosDecryptInfo
+    sign_info: TypeAosSignInfo
 
 
 class AosDesiredInstanceInfo(BaseModel):
@@ -371,6 +336,7 @@ class AosDesiredStatusV7(BaseModel):
         Field(
             default=None,
             description='The list of the used certificates',
+            max_length=32,
         ),
     ]
 
@@ -380,5 +346,6 @@ class AosDesiredStatusV7(BaseModel):
             default=None,
             alias='certificateChains',
             description='Certificate chains info for checking signs.',
+            max_length=8,
         ),
     ]

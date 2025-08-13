@@ -776,7 +776,7 @@
             "title": "AosDeProvisioningResponseV7",
             "type": "object"
         },
-        "AosDecryptionInfo": {
+        "AosDecryptInfo": {
             "description": "Information for the decryption.",
             "properties": {
                 "blockAlg": {
@@ -797,28 +797,13 @@
                     "format": "base64",
                     "title": "Blockkey",
                     "type": "string"
-                },
-                "asymAlg": {
-                    "default": "RSA/PKCS1v1_5",
-                    "description": "Used asymmetric cipher in form: `cipher/padding`.",
-                    "enum": [
-                        "RSA/PKCS1v1_5",
-                        "RSA/PSS"
-                    ],
-                    "title": "Asymalg",
-                    "type": "string"
-                },
-                "receiverInfo": {
-                    "$ref": "#/$defs/AosReceiverInfo",
-                    "description": "Receiver info to detect used key."
                 }
             },
             "required": [
                 "blockIv",
-                "blockKey",
-                "receiverInfo"
+                "blockKey"
             ],
-            "title": "AosDecryptionInfo",
+            "title": "AosDecryptInfo",
             "type": "object"
         },
         "AosDesiredInstanceInfo": {
@@ -916,6 +901,7 @@
                     "items": {
                         "$ref": "#/$defs/AosCertificateInfo"
                     },
+                    "maxItems": 32,
                     "title": "Certificates",
                     "type": "array"
                 },
@@ -925,6 +911,7 @@
                     "items": {
                         "$ref": "#/$defs/AosCertificateChainInfo"
                     },
+                    "maxItems": 8,
                     "title": "Certificatechains",
                     "type": "array"
                 }
@@ -2001,28 +1988,6 @@
             "title": "AosPushLogV7",
             "type": "object"
         },
-        "AosReceiverInfo": {
-            "description": "Information about receiver certificate.",
-            "properties": {
-                "serial": {
-                    "description": "Certificate serial number.",
-                    "title": "Serial",
-                    "type": "string"
-                },
-                "issuer": {
-                    "description": "Certificate `Issuer DN` field bytes.",
-                    "format": "base64",
-                    "title": "Issuer",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "serial",
-                "issuer"
-            ],
-            "title": "AosReceiverInfo",
-            "type": "object"
-        },
         "AosRenewCertsNotification": {
             "description": "AosUnit protocol: 'renewCertificatesNotification' message.\n\nCloud sends renew certificate notification from cloud with unit secrets.",
             "properties": {
@@ -2793,11 +2758,11 @@
                     "title": "Size",
                     "type": "integer"
                 },
-                "decryptionInfo": {
-                    "$ref": "#/$defs/AosDecryptionInfo",
+                "decryptInfo": {
+                    "$ref": "#/$defs/AosDecryptInfo",
                     "description": "Object with information to decrypt the component."
                 },
-                "signs": {
+                "signInfo": {
                     "$ref": "#/$defs/AosSignInfo",
                     "description": "Sign values of the file."
                 }
@@ -2808,8 +2773,8 @@
                 "urls",
                 "sha256",
                 "size",
-                "decryptionInfo",
-                "signs"
+                "decryptInfo",
+                "signInfo"
             ],
             "title": "AosUpdateItemDownloadInfo",
             "type": "object"
@@ -2952,12 +2917,20 @@
                     ]
                 },
                 "node": {
-                    "$ref": "#/$defs/AosIdentifier",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/AosIdentifier"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "default": null,
                     "description": "Node identifier.",
                     "examples": [
                         {
-                            "codename": "main-node"
+                            "codename": "main-289353498",
+                            "title": "Dom0"
                         }
                     ]
                 },
