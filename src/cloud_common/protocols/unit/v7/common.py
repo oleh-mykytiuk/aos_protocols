@@ -1,7 +1,7 @@
 #
 #  Copyright (c) 2018-2025 EPAM Systems Inc.
 #
-from typing import Annotated, Optional, Literal
+from typing import Annotated, Optional, Literal, List
 
 from pydantic import BaseModel, Field, UUID4
 
@@ -99,6 +99,67 @@ class AosResourceInfo(BaseModel):
     ]
 
 
+class AosUpdateItemSystemInfo(BaseModel):
+
+    architecture: Annotated[
+        str,
+        Field(
+            alias='architecture',
+            description='The architecture of the resource.',
+        ),
+    ]
+
+
+class AosOsInfo(BaseModel):
+
+    os: Annotated[
+        str,
+        Field(
+            alias='os',
+            examples=['linux'],
+        ),
+    ]
+
+    version: Annotated[
+        Optional[str],
+        Field(
+            default=None,
+            alias='version',
+            description='The version of the OS.',
+            examples=['6.8.0'],
+        )
+    ] = None
+
+    features: Annotated[
+        Optional[List[str]],
+        Field(
+            default=None,
+            alias='features',
+            description='This OPTIONAL property specifies an array of strings, each specifying a mandatory OS feature.',
+        ),
+    ] = None
+
+
+class AosArchInfo(BaseModel):
+
+    architecture: Annotated[
+        str,
+        Field(
+            alias='architecture',
+            description='The architecture of the CPU. Refer to the "https://github.com/opencontainers/image-spec/blob/main/config.md#properties"',
+            examples=['amd64', 'arm64', 'arm'],
+        ),
+    ]
+
+    variant: Annotated[
+        Optional[str],
+        Field(
+            default=None,
+            alias='variant',
+            description='The variant of the specified CPU architecture. Refer to the "https://github.com/opencontainers/image-spec/blob/main/config.md#properties"'
+        ),
+    ]
+
 TypeAosIdentifierMandatory = Annotated[
     AosIdentifier,
     Field(
@@ -119,6 +180,8 @@ TypeAosIdentifierOptional = Annotated[
 
 
 __all__ = (
+    'AosArchInfo',
+    'AosOsInfo',
     'AosIdentifier',
     'AosErrorInfo',
     'AosHostRecord',

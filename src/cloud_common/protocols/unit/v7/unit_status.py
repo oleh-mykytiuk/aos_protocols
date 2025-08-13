@@ -5,7 +5,7 @@ from typing import Annotated, Dict, Literal, Optional, List
 
 from pydantic import BaseModel, Field
 
-from .common import AosIdentifier, AosResourceInfo
+from .common import AosIdentifier, AosResourceInfo, AosArchInfo, AosOsInfo
 from ..common import TypeAosErrorInfoOptional
 from .types import (
     TypeInstanceNoMandatory,
@@ -61,27 +61,6 @@ class AosNodePartitionInfo(BaseModel):
     ]
 
 
-class AosArchInfo(BaseModel):
-
-    architecture: Annotated[
-        str,
-        Field(
-            alias='architecture',
-            description='The architecture of the CPU. Refer to the "https://github.com/opencontainers/image-spec/blob/main/config.md#properties"',
-            examples=['amd64', 'arm64', 'arm'],
-        ),
-    ]
-
-    variant: Annotated[
-        Optional[str],
-        Field(
-            default=None,
-            alias='variant',
-            description='The variant of the specified CPU architecture. Refer to the "https://github.com/opencontainers/image-spec/blob/main/config.md#properties"'
-        ),
-    ]
-
-
 class AosNodeCPUInfo(BaseModel):
 
     cpu_model_name: Annotated[
@@ -107,6 +86,7 @@ class AosNodeCPUInfo(BaseModel):
             alias='totalNumThreads',
         ),
     ]
+
     arch_info: Annotated[
         AosArchInfo,
         Field(
@@ -118,36 +98,6 @@ class AosNodeCPUInfo(BaseModel):
         Optional[int],
         Field(
             alias='maxDmips',
-        ),
-    ] = None
-
-
-class AosOsInfo(BaseModel):
-
-    os: Annotated[
-        str,
-        Field(
-            alias='os',
-            examples=['linux'],
-        ),
-    ]
-
-    version: Annotated[
-        Optional[str],
-        Field(
-            default=None,
-            alias='version',
-            description='The version of the OS.',
-            examples=['6.8.0'],
-        )
-    ] = None
-
-    features: Annotated[
-        Optional[List[str]],
-        Field(
-            default=None,
-            alias='features',
-            description='This OPTIONAL property specifies an array of strings, each specifying a mandatory OS feature.',
         ),
     ] = None
 
@@ -295,6 +245,27 @@ class AosInstanceInfo(BaseModel):
         AosIdentifier,
         Field(
             alias='node',
+        ),
+    ]
+
+    runtime: Annotated[
+        AosIdentifier,
+        Field(
+            alias='runtime',
+        ),
+    ]
+
+    arch_info: Annotated[
+        AosArchInfo,
+        Field(
+            alias='archInfo',
+        ),
+    ]
+
+    os_info: Annotated[
+        AosOsInfo,
+        Field(
+            alias='osInfo',
         ),
     ]
 
