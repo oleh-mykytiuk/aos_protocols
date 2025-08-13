@@ -268,11 +268,12 @@ class NodeConfig(BaseModel):
     ]
 
     node: Annotated[
-        AosIdentifier,
+        Optional[AosIdentifier],
         Field(
+            default=None,
             alias='node',
             description='Node identifier.',
-            examples=[{"codename": "main-node"}],
+            examples=[{"codename": "main-289353498", "title": "Dom0"}],
         ),
     ] = None
 
