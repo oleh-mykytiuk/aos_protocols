@@ -15,7 +15,7 @@ from cloud_common.protocols.unit.types import (
     TypeVersionMandatory,
 )
 
-from .common import AosIdentifier, TypeAosIdentifierMandatory
+from .common import AosIdentifier, TypeAosIdentifierMandatory, AosArchInfo, AosOsInfo
 from .types import TypeNodeDesiredState
 from .unit_config import UnitConfigV7
 
@@ -231,6 +231,20 @@ class AosUpdateItemDownloadInfo(BaseModel):
     size: TypeAosFileSize
     decrypt_info: TypeAosDecryptInfo
     sign_info: TypeAosSignInfo
+
+    arch_info: Annotated[
+        AosArchInfo,
+        Field(
+            alias='archInfo',
+        ),
+    ]
+
+    os_info: Annotated[
+        AosOsInfo,
+        Field(
+            alias='osInfo',
+        ),
+    ]
 
 
 class AosDesiredInstanceInfo(BaseModel):

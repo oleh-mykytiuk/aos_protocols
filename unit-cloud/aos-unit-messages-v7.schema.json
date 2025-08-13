@@ -1263,6 +1263,15 @@
                 "node": {
                     "$ref": "#/$defs/AosIdentifier"
                 },
+                "runtime": {
+                    "$ref": "#/$defs/AosIdentifier"
+                },
+                "archInfo": {
+                    "$ref": "#/$defs/AosArchInfo"
+                },
+                "osInfo": {
+                    "$ref": "#/$defs/AosOsInfo"
+                },
                 "instance": {
                     "description": "The instance number of the service. Starts from 0.",
                     "title": "Instance no",
@@ -1293,6 +1302,9 @@
             },
             "required": [
                 "node",
+                "runtime",
+                "archInfo",
+                "osInfo",
                 "instance",
                 "status"
             ],
@@ -2765,6 +2777,12 @@
                 "signInfo": {
                     "$ref": "#/$defs/AosSignInfo",
                     "description": "Sign values of the file."
+                },
+                "archInfo": {
+                    "$ref": "#/$defs/AosArchInfo"
+                },
+                "osInfo": {
+                    "$ref": "#/$defs/AosOsInfo"
                 }
             },
             "required": [
@@ -2774,7 +2792,9 @@
                 "sha256",
                 "size",
                 "decryptInfo",
-                "signInfo"
+                "signInfo",
+                "archInfo",
+                "osInfo"
             ],
             "title": "AosUpdateItemDownloadInfo",
             "type": "object"
