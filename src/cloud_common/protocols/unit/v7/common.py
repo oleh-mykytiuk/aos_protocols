@@ -99,17 +99,6 @@ class AosResourceInfo(BaseModel):
     ]
 
 
-class AosUpdateItemSystemInfo(BaseModel):
-
-    architecture: Annotated[
-        str,
-        Field(
-            alias='architecture',
-            description='The architecture of the resource.',
-        ),
-    ]
-
-
 class AosOsInfo(BaseModel):
 
     os: Annotated[
@@ -160,6 +149,34 @@ class AosArchInfo(BaseModel):
         ),
     ]
 
+
+class AosUpdateItemImageInfo(BaseModel):
+
+    id: Annotated[
+        UUID4,
+        Field(
+            alias='id',
+            description='The identification of the update item image.',
+        ),
+    ]
+
+    arch_info: Annotated[
+        AosArchInfo,
+        Field(
+            alias='archInfo',
+            description='The architecture of the update item image.',
+        ),
+    ]
+
+    os_info: Annotated[
+        AosOsInfo,
+        Field(
+            alias='osInfo',
+            description='The OS of the update item image.',
+        ),
+    ]
+
+
 TypeAosIdentifierMandatory = Annotated[
     AosIdentifier,
     Field(
@@ -186,6 +203,7 @@ __all__ = (
     'AosErrorInfo',
     'AosHostRecord',
     'AosResourceInfo',
+    'AosUpdateItemImageInfo',
     'TypeAosIdentifierMandatory',
     'TypeAosIdentifierOptional',
 )

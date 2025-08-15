@@ -2740,14 +2740,41 @@
             "type": "object"
         },
         "AosUpdateItemDownloadInfo": {
-            "description": "Service info sent from the AosEdge Cloud.",
+            "description": "Update item info sent from the AosEdge Cloud.",
             "properties": {
                 "identifier": {
-                    "$ref": "#/$defs/AosIdentifier"
+                    "$ref": "#/$defs/AosIdentifier",
+                    "description": "The identification of the resource."
                 },
                 "version": {
                     "description": "Version in format of the SemVer.",
                     "title": "Version",
+                    "type": "string"
+                },
+                "images": {
+                    "description": "Image infos of the update items.",
+                    "items": {
+                        "$ref": "#/$defs/AosUpdateItemImageDownloadInfo"
+                    },
+                    "minItems": 1,
+                    "title": "Images",
+                    "type": "array"
+                }
+            },
+            "required": [
+                "identifier",
+                "version",
+                "images"
+            ],
+            "title": "AosUpdateItemDownloadInfo",
+            "type": "object"
+        },
+        "AosUpdateItemImageDownloadInfo": {
+            "properties": {
+                "imageId": {
+                    "description": "The identification of the image.",
+                    "format": "uuid4",
+                    "title": "Imageid",
                     "type": "string"
                 },
                 "urls": {
@@ -2777,37 +2804,26 @@
                 "signInfo": {
                     "$ref": "#/$defs/AosSignInfo",
                     "description": "Sign values of the file."
-                },
-                "archInfo": {
-                    "$ref": "#/$defs/AosArchInfo"
-                },
-                "osInfo": {
-                    "$ref": "#/$defs/AosOsInfo"
                 }
             },
             "required": [
-                "identifier",
-                "version",
+                "imageId",
                 "urls",
                 "sha256",
                 "size",
                 "decryptInfo",
-                "signInfo",
-                "archInfo",
-                "osInfo"
+                "signInfo"
             ],
-            "title": "AosUpdateItemDownloadInfo",
+            "title": "AosUpdateItemImageDownloadInfo",
             "type": "object"
         },
-        "AosUpdateItemInfo": {
-            "description": "Update item info sent to the AosEdge Cloud.",
+        "AosUpdateItemImageStatus": {
+            "description": "Update item image status sent to the AosEdge Cloud.",
             "properties": {
-                "identifier": {
-                    "$ref": "#/$defs/AosIdentifier"
-                },
-                "version": {
-                    "description": "Version in format of the SemVer.",
-                    "title": "Version",
+                "imageId": {
+                    "description": "The identification of the image.",
+                    "format": "uuid4",
+                    "title": "Imageid",
                     "type": "string"
                 },
                 "status": {
@@ -2832,9 +2848,37 @@
                 }
             },
             "required": [
+                "imageId",
+                "status"
+            ],
+            "title": "AosUpdateItemImageStatus",
+            "type": "object"
+        },
+        "AosUpdateItemInfo": {
+            "description": "Update item info sent to the AosEdge Cloud.",
+            "properties": {
+                "identifier": {
+                    "$ref": "#/$defs/AosIdentifier"
+                },
+                "version": {
+                    "description": "Version in format of the SemVer.",
+                    "title": "Version",
+                    "type": "string"
+                },
+                "statuses": {
+                    "description": "The list of image statuses.",
+                    "items": {
+                        "$ref": "#/$defs/AosUpdateItemImageStatus"
+                    },
+                    "minItems": 1,
+                    "title": "Statuses",
+                    "type": "array"
+                }
+            },
+            "required": [
                 "identifier",
                 "version",
-                "status"
+                "statuses"
             ],
             "title": "AosUpdateItemInfo",
             "type": "object"

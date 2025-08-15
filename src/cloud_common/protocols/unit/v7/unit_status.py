@@ -3,18 +3,18 @@
 #
 from typing import Annotated, Dict, Literal, Optional, List
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, UUID4
 
 from .common import AosIdentifier, AosResourceInfo, AosArchInfo, AosOsInfo
 from ..common import TypeAosErrorInfoOptional
 from .types import (
     TypeInstanceNoMandatory,
     TypeNodeStatus,
-    TypeServiceInstanceStatus,
-    TypeServiceStatus,
+    TypeUpdateItemInstanceStatus,
     TypeStateChecksumOptional,
     TypeVersionMandatory,
     TypeVersionOptional,
+    TypeUpdateItemStatus,
 )
 
 
@@ -271,7 +271,7 @@ class AosInstanceInfo(BaseModel):
 
     instance: TypeInstanceNoMandatory
     state_checksum: TypeStateChecksumOptional
-    status: TypeServiceInstanceStatus
+    status: TypeUpdateItemInstanceStatus
     error_info: TypeAosErrorInfoOptional
 
 
@@ -303,6 +303,21 @@ class AosInstancesInfo(BaseModel):
     ]
 
 
+class AosUpdateItemImageStatus(BaseModel):
+    """Update item image status sent to the AosEdge Cloud."""
+
+    image_id: Annotated[
+        UUID4,
+        Field(
+            alias='imageId',
+            description='The identification of the image.',
+        ),
+    ]
+
+    status: TypeUpdateItemStatus
+    error_info: TypeAosErrorInfoOptional
+
+
 class AosUpdateItemInfo(BaseModel):
     """Update item info sent to the AosEdge Cloud."""
 
@@ -315,8 +330,14 @@ class AosUpdateItemInfo(BaseModel):
 
     version: TypeVersionMandatory
 
-    status: TypeServiceStatus
-    error_info: TypeAosErrorInfoOptional
+    statuses: Annotated[
+        List[AosUpdateItemImageStatus],
+        Field(
+            alias='statuses',
+            min_length=1,
+            description='The list of image statuses.',
+        ),
+    ]
 
 
 class AosUnitStatusV7(BaseModel):

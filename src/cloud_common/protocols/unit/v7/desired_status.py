@@ -3,9 +3,9 @@
 #
 import base64
 from datetime import time
-from typing import Annotated, Literal, Optional
+from typing import Annotated, Literal, Optional, List
 
-from pydantic import Base64Bytes, BaseModel, Field, field_serializer
+from pydantic import Base64Bytes, BaseModel, Field, field_serializer, UUID4
 
 from cloud_common.protocols.unit.types import (
     AosSensitiveBytes,
@@ -15,7 +15,7 @@ from cloud_common.protocols.unit.types import (
     TypeVersionMandatory,
 )
 
-from .common import AosIdentifier, TypeAosIdentifierMandatory, AosArchInfo, AosOsInfo
+from .common import AosIdentifier, TypeAosIdentifierMandatory, AosArchInfo, AosOsInfo, AosUpdateItemImageInfo
 from .types import TypeNodeDesiredState
 from .unit_config import UnitConfigV7
 
@@ -221,28 +221,35 @@ class AosScheduleRule(BaseModel):
     ]
 
 
-class AosUpdateItemDownloadInfo(BaseModel):
-    """Service info sent from the AosEdge Cloud."""
+class AosUpdateItemImageDownloadInfo(BaseModel):
 
-    identifier: AosIdentifier
-    version: TypeVersionMandatory
+    image_id: Annotated[
+        UUID4,
+        Field(
+            alias='imageId',
+            description='The identification of the image.',
+        ),
+    ]
+
     urls: TypeAosUrlsList
     sha256: TypeAosSha256
     size: TypeAosFileSize
     decrypt_info: TypeAosDecryptInfo
     sign_info: TypeAosSignInfo
 
-    arch_info: Annotated[
-        AosArchInfo,
-        Field(
-            alias='archInfo',
-        ),
-    ]
 
-    os_info: Annotated[
-        AosOsInfo,
+class AosUpdateItemDownloadInfo(BaseModel):
+    """Update item info sent from the AosEdge Cloud."""
+
+    identifier: TypeAosIdentifierMandatory
+    version: TypeVersionMandatory
+
+    images: Annotated[
+        List[AosUpdateItemImageDownloadInfo],
         Field(
-            alias='osInfo',
+            alias='images',
+            min_length=1,
+            description='Image infos of the update items.',
         ),
     ]
 
