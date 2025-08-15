@@ -326,7 +326,7 @@ TypeNodeDesiredStatus = Annotated[
     ),
 ]
 
-TypeServiceStatus = Annotated[
+TypeUpdateItemStatus = Annotated[
     Literal[
         'unknown',
         'downloading',
@@ -343,7 +343,8 @@ TypeServiceStatus = Annotated[
     ),
 ]
 
-TypeServiceInstanceStatus = Annotated[
+
+TypeUpdateItemInstanceStatus = Annotated[
     Literal[
         'activating',
         'active',
@@ -356,23 +357,6 @@ TypeServiceInstanceStatus = Annotated[
     ),
 ]
 
-TypeLayerStatus = Annotated[
-    Literal[
-        'unknown',
-        'pending',
-        'downloading',
-        'downloaded',
-        'installing',
-        'installed',
-        'removing',
-        'removed',
-        'error',
-    ],
-    Field(
-        alias='status',
-        description='The current (reported) status of the service instance.',
-    ),
-]
 
 TypeLayerDigest = Annotated[
     str,
