@@ -2771,11 +2771,9 @@
         },
         "AosUpdateItemImageDownloadInfo": {
             "properties": {
-                "imageId": {
-                    "description": "The identification of the image.",
-                    "format": "uuid4",
-                    "title": "Imageid",
-                    "type": "string"
+                "image": {
+                    "$ref": "#/$defs/AosUpdateItemImageInfo",
+                    "description": "The identification of the image."
                 },
                 "urls": {
                     "description": "the list of urls pointer to the same target",
@@ -2807,7 +2805,7 @@
                 }
             },
             "required": [
-                "imageId",
+                "image",
                 "urls",
                 "sha256",
                 "size",
@@ -2815,6 +2813,31 @@
                 "signInfo"
             ],
             "title": "AosUpdateItemImageDownloadInfo",
+            "type": "object"
+        },
+        "AosUpdateItemImageInfo": {
+            "properties": {
+                "id": {
+                    "description": "The identification of the update item image.",
+                    "format": "uuid4",
+                    "title": "Id",
+                    "type": "string"
+                },
+                "archInfo": {
+                    "$ref": "#/$defs/AosArchInfo",
+                    "description": "The architecture of the update item image."
+                },
+                "osInfo": {
+                    "$ref": "#/$defs/AosOsInfo",
+                    "description": "The OS of the update item image."
+                }
+            },
+            "required": [
+                "id",
+                "archInfo",
+                "osInfo"
+            ],
+            "title": "AosUpdateItemImageInfo",
             "type": "object"
         },
         "AosUpdateItemImageStatus": {

@@ -223,10 +223,10 @@ class AosScheduleRule(BaseModel):
 
 class AosUpdateItemImageDownloadInfo(BaseModel):
 
-    image_id: Annotated[
-        UUID4,
+    image: Annotated[
+        AosUpdateItemImageInfo,
         Field(
-            alias='imageId',
+            alias='image',
             description='The identification of the image.',
         ),
     ]
