@@ -261,16 +261,16 @@ TypeAosSha256 = Annotated[
     Base64Bytes,
     Field(
         alias='sha256',
-        description='SHA3-256 digest of the target',
+        description='SHA256 digest of the target',
     ),
 ]
 
 TypeStateChecksumOptional = Annotated[
-    str,
+    Optional[Base64Bytes],
     Field(
         default=None,
         alias='stateChecksum',
-        description='The checksum of the state.',
+        description='The checksum of the state. This Base64 of sha256 digest over the state.',
     ),
 ]
 
@@ -302,7 +302,7 @@ TypeCertificatesType = Annotated[
     ),
 ]
 
-TypeNodeStatus = Annotated[
+TypeNodeState = Annotated[
     Literal[
         'provisioned',
         'unprovisioned',
@@ -310,7 +310,7 @@ TypeNodeStatus = Annotated[
         'paused',
     ],
     Field(
-        alias='status',
+        alias='state',
         description='The current (reported) status of the node.',
     ),
 ]
@@ -326,7 +326,8 @@ TypeNodeDesiredStatus = Annotated[
     ),
 ]
 
-TypeUpdateItemStatus = Annotated[
+
+TypeUpdateItemState = Annotated[
     Literal[
         'unknown',
         'downloading',
@@ -339,12 +340,12 @@ TypeUpdateItemStatus = Annotated[
     ],
     Field(
         alias='status',
-        description='The current (reported) status of the update item.',
+        description='The current (reported) state of the update item.',
     ),
 ]
 
 
-TypeUpdateItemInstanceStatus = Annotated[
+TypeUpdateItemInstanceState = Annotated[
     Literal[
         'activating',
         'active',
@@ -352,8 +353,8 @@ TypeUpdateItemInstanceStatus = Annotated[
         'failed',
     ],
     Field(
-        alias='status',
-        description='The current (reported) status of the service instance.',
+        alias='state',
+        description='The current (reported) state of the service instance.',
     ),
 ]
 

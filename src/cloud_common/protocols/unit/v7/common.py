@@ -31,6 +31,7 @@ class AosIdentifier(BaseModel):
             'aosLayer',
             'aosSubject',
             'aosOEM',
+            'aosRuntime',
         ]],
         Field(
             default=None,

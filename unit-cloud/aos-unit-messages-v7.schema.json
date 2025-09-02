@@ -1109,7 +1109,8 @@
                                 "aosService",
                                 "aosLayer",
                                 "aosSubject",
-                                "aosOEM"
+                                "aosOEM",
+                                "aosRuntime"
                             ],
                             "type": "string"
                         },
@@ -1278,20 +1279,28 @@
                     "type": "integer"
                 },
                 "stateChecksum": {
+                    "anyOf": [
+                        {
+                            "format": "base64",
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "default": null,
-                    "description": "The checksum of the state.",
-                    "title": "Statechecksum",
-                    "type": "string"
+                    "description": "The checksum of the state. This Base64 of sha256 digest over the state.",
+                    "title": "Statechecksum"
                 },
-                "status": {
-                    "description": "The current (reported) status of the service instance.",
+                "state": {
+                    "description": "The current (reported) state of the service instance.",
                     "enum": [
                         "activating",
                         "active",
                         "inactive",
                         "failed"
                     ],
-                    "title": "Status",
+                    "title": "State",
                     "type": "string"
                 },
                 "errorInfo": {
@@ -1306,7 +1315,7 @@
                 "archInfo",
                 "osInfo",
                 "instance",
-                "status"
+                "state"
             ],
             "title": "AosInstanceInfo",
             "type": "object"
@@ -2115,6 +2124,19 @@
                 "identifier": {
                     "$ref": "#/$defs/AosIdentifier"
                 },
+                "runtimeType": {
+                    "examples": [
+                        "runc",
+                        "crun",
+                        "break_system_controllers_bs351",
+                        "bios",
+                        ""
+                    ],
+                    "maxLength": 64,
+                    "minLength": 1,
+                    "title": "Runtimetype",
+                    "type": "string"
+                },
                 "archInfo": {
                     "$ref": "#/$defs/AosArchInfo"
                 },
@@ -2146,6 +2168,7 @@
             },
             "required": [
                 "identifier",
+                "runtimeType",
                 "archInfo",
                 "osInfo",
                 "maxDmips",
@@ -2438,14 +2461,14 @@
                     "title": "Version",
                     "type": "string"
                 },
-                "status": {
-                    "description": "current status of the item",
+                "state": {
+                    "description": "current state of the item",
                     "enum": [
                         "absent",
                         "installed",
                         "failed"
                     ],
-                    "title": "Status",
+                    "title": "State",
                     "type": "string"
                 },
                 "errorInfo": {
@@ -2455,7 +2478,7 @@
                 }
             },
             "required": [
-                "status"
+                "state"
             ],
             "title": "AosUnitConfigStatus",
             "type": "object"
@@ -2597,7 +2620,7 @@
                     "description": "List of available resources.",
                     "title": "Resources"
                 },
-                "status": {
+                "state": {
                     "description": "The current (reported) status of the node.",
                     "enum": [
                         "provisioned",
@@ -2605,7 +2628,7 @@
                         "error",
                         "paused"
                     ],
-                    "title": "Status",
+                    "title": "State",
                     "type": "string"
                 },
                 "errorInfo": {
@@ -2620,7 +2643,7 @@
                 "maxDmips",
                 "osInfo",
                 "totalRam",
-                "status"
+                "state"
             ],
             "title": "AosUnitNodeInfo",
             "type": "object"
@@ -2690,47 +2713,82 @@
                     "title": "Delta info?"
                 },
                 "unitConfig": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "$ref": "#/$defs/AosUnitConfigStatus"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "default": null,
                     "description": "Information about the installed unitConfig.",
-                    "items": {
-                        "$ref": "#/$defs/AosUnitConfigStatus"
-                    },
-                    "title": "Unitconfig",
-                    "type": "array"
+                    "title": "Unitconfig"
                 },
                 "nodes": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "$ref": "#/$defs/AosUnitNodeInfo"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "default": null,
                     "description": "The list of attached to the Unit nodes.",
-                    "items": {
-                        "$ref": "#/$defs/AosUnitNodeInfo"
-                    },
-                    "title": "Nodes",
-                    "type": "array"
+                    "title": "Nodes"
                 },
                 "updateItems": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "$ref": "#/$defs/AosUpdateItemInfo"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "default": null,
                     "description": "List of the Aos update items.",
-                    "items": {
-                        "$ref": "#/$defs/AosUpdateItemInfo"
-                    },
-                    "title": "Updateitems",
-                    "type": "array"
+                    "title": "Updateitems"
                 },
                 "instances": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "$ref": "#/$defs/AosInstancesInfo"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "default": null,
-                    "items": {
-                        "$ref": "#/$defs/AosInstancesInfo"
-                    },
-                    "title": "Instances",
-                    "type": "array"
+                    "title": "Instances"
                 },
                 "unitSubjects": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "$ref": "#/$defs/AosIdentifier"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "default": null,
-                    "items": {
-                        "type": "string"
-                    },
-                    "title": "Unitsubjects",
-                    "type": "array"
+                    "title": "Unitsubjects"
                 }
             },
             "required": [
@@ -2850,7 +2908,7 @@
                     "type": "string"
                 },
                 "status": {
-                    "description": "The current (reported) status of the update item.",
+                    "description": "The current (reported) state of the update item.",
                     "enum": [
                         "unknown",
                         "downloading",
