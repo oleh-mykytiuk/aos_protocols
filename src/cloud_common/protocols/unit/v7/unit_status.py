@@ -9,25 +9,25 @@ from .common import AosIdentifier, AosResourceInfo, AosArchInfo, AosOsInfo
 from ..common import TypeAosErrorInfoOptional
 from .types import (
     TypeInstanceNoMandatory,
-    TypeNodeStatus,
-    TypeUpdateItemInstanceStatus,
+    TypeNodeState,
+    TypeUpdateItemInstanceState,
     TypeStateChecksumOptional,
     TypeVersionMandatory,
     TypeVersionOptional,
-    TypeUpdateItemStatus,
+    TypeUpdateItemState,
 )
 
 
 class AosUnitConfigStatus(BaseModel):
     version: TypeVersionOptional
-    status: Annotated[
+    state: Annotated[
         Literal[
             'absent',
             'installed',
             'failed',
         ],
         Field(
-            description='current status of the item',
+            description='current state of the item',
         ),
     ]
     error_info: TypeAosErrorInfoOptional
@@ -108,6 +108,22 @@ class AosRuntimeInfo(BaseModel):
         AosIdentifier,
         Field(
             alias='identifier',
+        ),
+    ]
+
+    runtime_type: Annotated[
+        str,
+        Field(
+            alias='runtimeType',
+            min_length=1,
+            max_length=64,
+            examples=[
+                'runc',
+                'crun',
+                'break_system_controllers_bs351',
+                'bios',
+                '',
+            ]
         ),
     ]
 
@@ -235,7 +251,7 @@ class AosUnitNodeInfo(BaseModel):
         ),
     ]
 
-    status: TypeNodeStatus
+    state: TypeNodeState
     error_info: TypeAosErrorInfoOptional
 
 
@@ -271,7 +287,7 @@ class AosInstanceInfo(BaseModel):
 
     instance: TypeInstanceNoMandatory
     state_checksum: TypeStateChecksumOptional
-    status: TypeUpdateItemInstanceStatus
+    state: TypeUpdateItemInstanceState
     error_info: TypeAosErrorInfoOptional
 
 
@@ -314,7 +330,7 @@ class AosUpdateItemImageStatus(BaseModel):
         ),
     ]
 
-    status: TypeUpdateItemStatus
+    state: TypeUpdateItemState
     error_info: TypeAosErrorInfoOptional
 
 
@@ -367,7 +383,7 @@ class AosUnitStatusV7(BaseModel):
     ]
 
     unit_config: Annotated[
-        list[AosUnitConfigStatus],
+        Optional[list[AosUnitConfigStatus]],
         Field(
             default=None,
             alias='unitConfig',
@@ -376,7 +392,7 @@ class AosUnitStatusV7(BaseModel):
     ]
 
     nodes: Annotated[
-        list[AosUnitNodeInfo],
+        Optional[list[AosUnitNodeInfo]],
         Field(
             default=None,
             alias='nodes',
@@ -385,7 +401,7 @@ class AosUnitStatusV7(BaseModel):
     ]
 
     update_items: Annotated[
-        list[AosUpdateItemInfo],
+        Optional[list[AosUpdateItemInfo]],
         Field(
             default=None,
             alias='updateItems',
@@ -394,7 +410,7 @@ class AosUnitStatusV7(BaseModel):
     ]
 
     instances: Annotated[
-        list[AosInstancesInfo],
+        Optional[list[AosInstancesInfo]],
         Field(
             default=None,
             alias='instances',
@@ -402,7 +418,7 @@ class AosUnitStatusV7(BaseModel):
     ]
 
     unit_subjects: Annotated[
-        list[str],
+        Optional[list[AosIdentifier]],
         Field(
             default=None,
             alias='unitSubjects',
