@@ -142,17 +142,36 @@ class AosRuntimeInfo(BaseModel):
     ]
 
     max_dmips: Annotated[
-        int,
+        Optional[int],
         Field(
+            default=None,
             alias='maxDmips',
+        ),
+    ]
+
+    allowed_dmips: Annotated[
+        Optional[int],
+        Field(
+            default=None,
+            alias='allowedDmips',
         ),
     ]
 
     total_ram: Annotated[
         Optional[int],
         Field(
+            default=None,
             alias='totalRam',
-            description='The total RAM in bytes. Optional for AosComponents runtimes.',
+            description='Total memory in bytes. None if runner shares memory with node.',
+        ),
+    ]
+
+    allowed_ram: Annotated[
+        Optional[int],
+        Field(
+            default=None,
+            alias='allowedRam',
+            description='Memory that can be used to run services in bytes. None if no restrictions.',
         ),
     ]
 
@@ -192,6 +211,25 @@ class AosUnitNodeInfo(BaseModel):
         ),
     ]
 
+    physical_ram: Annotated[
+        Optional[int],
+        Field(
+            default=None,
+            alias='physicalRam',
+            description='Total physical node RAM in bytes.',
+            ge=1,
+        ),
+    ]
+
+    total_ram: Annotated[
+        int,
+        Field(
+            alias='totalRam',
+            description='Total node RAM in bytes (physical + swap).',
+            ge=1,
+        ),
+    ]
+
     os_info: Annotated[
         AosOsInfo,
         Field(
@@ -215,15 +253,6 @@ class AosUnitNodeInfo(BaseModel):
             examples=[{'dynamic'}, {'static': '', 'cloud_connection': '', 'name1': 'value1'}],
         ),
     ] = None
-
-    total_ram: Annotated[
-        int,
-        Field(
-            alias='totalRam',
-            description='Total node RAM in bytes.',
-            ge=1,
-        ),
-    ]
 
     partitions: Annotated[
         list[AosNodePartitionInfo],
