@@ -2144,8 +2144,28 @@
                     "$ref": "#/$defs/AosOsInfo"
                 },
                 "maxDmips": {
-                    "title": "Maxdmips",
-                    "type": "integer"
+                    "anyOf": [
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Maxdmips"
+                },
+                "allowedDmips": {
+                    "anyOf": [
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Alloweddmips"
                 },
                 "totalRam": {
                     "anyOf": [
@@ -2156,8 +2176,22 @@
                             "type": "null"
                         }
                     ],
-                    "description": "The total RAM in bytes. Optional for AosComponents runtimes.",
+                    "default": null,
+                    "description": "Total physical memory in bytes. None if runner shares memory with node.",
                     "title": "Totalram"
+                },
+                "allowedRam": {
+                    "anyOf": [
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Memory that can be used to run services in bytes. None if no restrictions.",
+                    "title": "Allowedram"
                 },
                 "maxInstances": {
                     "description": "The maximum number of instances. 0 for unlimited.",
@@ -2171,8 +2205,6 @@
                 "runtimeType",
                 "archInfo",
                 "osInfo",
-                "maxDmips",
-                "totalRam",
                 "maxInstances"
             ],
             "title": "AosRuntimeInfo",
@@ -2530,6 +2562,26 @@
                     "title": "Maxdmips",
                     "type": "integer"
                 },
+                "physicalRam": {
+                    "anyOf": [
+                        {
+                            "minimum": 1,
+                            "type": "integer"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Total physical node RAM in bytes.",
+                    "title": "Physicalram"
+                },
+                "totalRam": {
+                    "description": "Total node RAM in bytes (physical + swap).",
+                    "minimum": 1,
+                    "title": "Totalram",
+                    "type": "integer"
+                },
                 "osInfo": {
                     "$ref": "#/$defs/AosOsInfo"
                 },
@@ -2572,12 +2624,6 @@
                         }
                     ],
                     "title": "Attrs"
-                },
-                "totalRam": {
-                    "description": "Total node RAM in bytes.",
-                    "minimum": 1,
-                    "title": "Totalram",
-                    "type": "integer"
                 },
                 "partitions": {
                     "default": null,
@@ -2641,8 +2687,8 @@
                 "identifier",
                 "nodeGroupSubject",
                 "maxDmips",
-                "osInfo",
                 "totalRam",
+                "osInfo",
                 "state"
             ],
             "title": "AosUnitNodeInfo",
