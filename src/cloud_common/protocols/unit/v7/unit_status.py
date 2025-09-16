@@ -280,6 +280,14 @@ class AosUnitNodeInfo(BaseModel):
         ),
     ]
 
+    provisioned: Annotated[
+        bool,
+        Field(
+            alias='provisioned',
+            description='Flag to indicate if the node is provisioned.',
+        ),
+    ]
+
     state: TypeNodeState
     error_info: TypeAosErrorInfoOptional
 

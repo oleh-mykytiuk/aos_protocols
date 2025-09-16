@@ -2,11 +2,12 @@
 #  Copyright (c) 2018-2025 EPAM Systems Inc.
 #
 from datetime import datetime
-from typing import Annotated, Literal, Union
+from typing import Annotated, Literal, Union, Optional
 
 from pydantic import BaseModel, Field
 
-from ..types import TypeInstanceNoMandatory
+from .types import TypeUpdateItemInstanceState, TypeNodeState
+from ..types import TypeInstanceNoMandatory, TypeNodeIdMandatory
 from .common import AosIdentifier
 
 
@@ -30,7 +31,7 @@ class AosPartitionUsage(BaseModel):
     ]
 
 
-class AosServiceStateData(BaseModel):
+class AosUpdateItemStateData(BaseModel):
     """Service instance state information."""
 
     timestamp: Annotated[
@@ -41,15 +42,7 @@ class AosServiceStateData(BaseModel):
         ),
     ]
 
-    state: Annotated[
-        Literal[
-            'started',
-            'stopped',
-        ],
-        Field(
-            description='State of the unit monitoring service',
-        ),
-    ]
+    state: TypeUpdateItemInstanceState
 
 
 class AosMonitoringData(BaseModel):
@@ -110,10 +103,10 @@ class AosMonitoringData(BaseModel):
 class AosInstanceMonitoringDataV7(BaseModel):
     """AosEdge unit monitoring data for service."""
 
-    service_id: Annotated[
+    item_id: Annotated[
         AosIdentifier,
         Field(
-            alias='serviceId',
+            alias='itemId',
             description='The identification of the service.',
         ),
     ]
@@ -137,7 +130,7 @@ class AosInstanceMonitoringDataV7(BaseModel):
     ]
 
     items: Annotated[  # noqa: WPS110
-        list[Union[AosMonitoringData, AosServiceStateData]],
+        list[AosMonitoringData],
         Field(
             alias='items',
             description='List of the monitoring records',
@@ -165,6 +158,30 @@ class AosNodeMonitoringDataV7(BaseModel):
     ]
 
 
+class AosNodeState(BaseModel):
+    """AosEdge unit monitoring information."""
+
+    node_id: TypeNodeIdMandatory
+
+    timestamp: Annotated[
+        datetime,
+        Field(
+            alias='timestamp',
+            description='Timestamp when the node state change was recorded in ISO8601 format',
+        ),
+    ]
+
+    provisioned: Annotated[
+        bool,
+        Field(
+            alias='provisioned',
+            description='Flag to indicate if the node is provisioned.',
+        ),
+    ]
+
+    state: TypeNodeState
+
+
 class AosMonitoringV7(BaseModel):
 
     message_type: Annotated[
@@ -182,11 +199,29 @@ class AosMonitoringV7(BaseModel):
         ),
     ]
 
-    service_instances: Annotated[
+    node_states: Annotated[
+        Optional[list[AosNodeState]],
+        Field(
+            default=None,
+            alias='nodeStates',
+            description='List of AosEdge unit monitoring got from node states.',
+        ),
+    ]
+
+    item_states: Annotated[
+        Optional[list[AosUpdateItemStateData]],
+        Field(
+            default=None,
+            alias='itemStates',
+            description='List of AosEdge update item state changes.',
+        ),
+    ]
+
+    instances: Annotated[
         list[AosInstanceMonitoringDataV7],
         Field(
             default=None,
-            alias='serviceInstances',
-            description='List of AosEdge unit monitoring got from services.',
+            alias='instances',
+            description='List of AosEdge unit monitoring got from update items.',
         ),
     ]

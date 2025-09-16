@@ -304,8 +304,8 @@ TypeCertificatesType = Annotated[
 
 TypeNodeState = Annotated[
     Literal[
-        'provisioned',
-        'unprovisioned',
+        'offline',
+        'online',
         'error',
         'paused',
     ],
