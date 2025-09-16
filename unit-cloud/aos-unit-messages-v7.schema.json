@@ -1323,7 +1323,7 @@
         "AosInstanceMonitoringDataV7": {
             "description": "AosEdge unit monitoring data for service.",
             "properties": {
-                "serviceId": {
+                "itemId": {
                     "$ref": "#/$defs/AosIdentifier",
                     "description": "The identification of the service."
                 },
@@ -1343,21 +1343,14 @@
                 "items": {
                     "description": "List of the monitoring records",
                     "items": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/$defs/AosMonitoringData"
-                            },
-                            {
-                                "$ref": "#/$defs/AosServiceStateData"
-                            }
-                        ]
+                        "$ref": "#/$defs/AosMonitoringData"
                     },
                     "title": "Items",
                     "type": "array"
                 }
             },
             "required": [
-                "serviceId",
+                "itemId",
                 "subjectId",
                 "instance",
                 "nodeId",
@@ -1649,13 +1642,45 @@
                     "title": "Nodes",
                     "type": "array"
                 },
-                "serviceInstances": {
+                "nodeStates": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "$ref": "#/$defs/AosNodeState"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "default": null,
-                    "description": "List of AosEdge unit monitoring got from services.",
+                    "description": "List of AosEdge unit monitoring got from node states.",
+                    "title": "Nodestates"
+                },
+                "itemStates": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "$ref": "#/$defs/AosUpdateItemStateData"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "List of AosEdge update item state changes.",
+                    "title": "Itemstates"
+                },
+                "instances": {
+                    "default": null,
+                    "description": "List of AosEdge unit monitoring got from update items.",
                     "items": {
                         "$ref": "#/$defs/AosInstanceMonitoringDataV7"
                     },
-                    "title": "Serviceinstances",
+                    "title": "Instances",
                     "type": "array"
                 }
             },
@@ -1824,6 +1849,46 @@
                 "totalSize"
             ],
             "title": "AosNodePartitionInfo",
+            "type": "object"
+        },
+        "AosNodeState": {
+            "description": "AosEdge unit monitoring information.",
+            "properties": {
+                "nodeId": {
+                    "description": "Unique ID of the node.",
+                    "title": "Node ID",
+                    "type": "string"
+                },
+                "timestamp": {
+                    "description": "Timestamp when the node state change was recorded in ISO8601 format",
+                    "format": "date-time",
+                    "title": "Timestamp",
+                    "type": "string"
+                },
+                "provisioned": {
+                    "description": "Flag to indicate if the node is provisioned.",
+                    "title": "Provisioned",
+                    "type": "boolean"
+                },
+                "state": {
+                    "description": "The current (reported) status of the node.",
+                    "enum": [
+                        "offline",
+                        "online",
+                        "error",
+                        "paused"
+                    ],
+                    "title": "State",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "nodeId",
+                "timestamp",
+                "provisioned",
+                "state"
+            ],
+            "title": "AosNodeState",
             "type": "object"
         },
         "AosOsInfo": {
@@ -2177,7 +2242,7 @@
                         }
                     ],
                     "default": null,
-                    "description": "Total physical memory in bytes. None if runner shares memory with node.",
+                    "description": "Total memory in bytes. None if runner shares memory with node.",
                     "title": "Totalram"
                 },
                 "allowedRam": {
@@ -2254,32 +2319,6 @@
                 "variables"
             ],
             "title": "AosServiceEnvVarV7",
-            "type": "object"
-        },
-        "AosServiceStateData": {
-            "description": "Service instance state information.",
-            "properties": {
-                "timestamp": {
-                    "description": "Timestamp when unit monitoring was recorded in ISO8601 format",
-                    "format": "date-time",
-                    "title": "Timestamp",
-                    "type": "string"
-                },
-                "state": {
-                    "description": "State of the unit monitoring service",
-                    "enum": [
-                        "started",
-                        "stopped"
-                    ],
-                    "title": "State",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "timestamp",
-                "state"
-            ],
-            "title": "AosServiceStateData",
             "type": "object"
         },
         "AosSignInfo": {
@@ -2666,11 +2705,16 @@
                     "description": "List of available resources.",
                     "title": "Resources"
                 },
+                "provisioned": {
+                    "description": "Flag to indicate if the node is provisioned.",
+                    "title": "Provisioned",
+                    "type": "boolean"
+                },
                 "state": {
                     "description": "The current (reported) status of the node.",
                     "enum": [
-                        "provisioned",
-                        "unprovisioned",
+                        "offline",
+                        "online",
                         "error",
                         "paused"
                     ],
@@ -2689,6 +2733,7 @@
                 "maxDmips",
                 "totalRam",
                 "osInfo",
+                "provisioned",
                 "state"
             ],
             "title": "AosUnitNodeInfo",
@@ -3008,6 +3053,34 @@
                 "statuses"
             ],
             "title": "AosUpdateItemInfo",
+            "type": "object"
+        },
+        "AosUpdateItemStateData": {
+            "description": "Service instance state information.",
+            "properties": {
+                "timestamp": {
+                    "description": "Timestamp when unit monitoring was recorded in ISO8601 format",
+                    "format": "date-time",
+                    "title": "Timestamp",
+                    "type": "string"
+                },
+                "state": {
+                    "description": "The current (reported) state of the service instance.",
+                    "enum": [
+                        "activating",
+                        "active",
+                        "inactive",
+                        "failed"
+                    ],
+                    "title": "State",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "timestamp",
+                "state"
+            ],
+            "title": "AosUpdateItemStateData",
             "type": "object"
         },
         "AosUpdateStateV7": {
