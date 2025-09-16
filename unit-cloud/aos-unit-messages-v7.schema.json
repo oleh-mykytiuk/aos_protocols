@@ -964,9 +964,9 @@
         "AosEnvVarInstanceStatusV7": {
             "description": "The current status of the environment variable.",
             "properties": {
-                "serviceId": {
+                "itemId": {
                     "$ref": "#/$defs/AosIdentifier",
-                    "description": "The identification of the service."
+                    "description": "The identification of the update item."
                 },
                 "subjectId": {
                     "$ref": "#/$defs/AosIdentifier",
@@ -989,12 +989,59 @@
                 }
             },
             "required": [
-                "serviceId",
+                "itemId",
                 "subjectId",
                 "instance",
                 "name"
             ],
             "title": "AosEnvVarInstanceStatusV7",
+            "type": "object"
+        },
+        "AosEnvVarV7": {
+            "description": "The current status of the environment variable.",
+            "properties": {
+                "itemId": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/AosIdentifier"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "The identification of the update item."
+                },
+                "subjectId": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/AosIdentifier"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null
+                },
+                "instance": {
+                    "default": null,
+                    "description": "The instance number of the service. Starts from 0.",
+                    "title": "Instance no",
+                    "type": "integer"
+                },
+                "variables": {
+                    "description": "The list of environment variables.",
+                    "items": {
+                        "$ref": "#/$defs/AosEnvVar"
+                    },
+                    "title": "Variables",
+                    "type": "array"
+                }
+            },
+            "required": [
+                "variables"
+            ],
+            "title": "AosEnvVarV7",
             "type": "object"
         },
         "AosErrorInfo": {
@@ -1951,7 +1998,7 @@
                 "items": {
                     "description": "The list of filters and environment variables to apply.",
                     "items": {
-                        "$ref": "#/$defs/AosServiceEnvVarV7"
+                        "$ref": "#/$defs/AosEnvVarV7"
                     },
                     "title": "List of filters and variables",
                     "type": "array"
@@ -2273,52 +2320,6 @@
                 "maxInstances"
             ],
             "title": "AosRuntimeInfo",
-            "type": "object"
-        },
-        "AosServiceEnvVarV7": {
-            "description": "The current status of the environment variable.",
-            "properties": {
-                "serviceId": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/AosIdentifier"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "default": null
-                },
-                "subjectId": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/AosIdentifier"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "default": null
-                },
-                "instance": {
-                    "default": null,
-                    "description": "The instance number of the service. Starts from 0.",
-                    "title": "Instance no",
-                    "type": "integer"
-                },
-                "variables": {
-                    "description": "The list of environment variables.",
-                    "items": {
-                        "$ref": "#/$defs/AosEnvVar"
-                    },
-                    "title": "Variables",
-                    "type": "array"
-                }
-            },
-            "required": [
-                "variables"
-            ],
-            "title": "AosServiceEnvVarV7",
             "type": "object"
         },
         "AosSignInfo": {
