@@ -33,11 +33,11 @@ class AosEnvVarStatus(BaseModel):
 class AosEnvVarInstanceStatusV7(BaseModel):
     """The current status of the environment variable."""
 
-    service_id: Annotated[
+    item_id: Annotated[
         AosIdentifier,
         Field(
-            alias='serviceId',
-            description='The identification of the service.',
+            alias='itemId',
+            description='The identification of the update item.',
         ),
     ]
 
@@ -103,14 +103,15 @@ class AosEnvVar(BaseModel):
         return ttl.isoformat()
 
 
-class AosServiceEnvVarV7(BaseModel):
+class AosEnvVarV7(BaseModel):
     """The current status of the environment variable."""
 
-    service_id: Annotated[
+    item_id: Annotated[
         Optional[AosIdentifier],
         Field(
             default=None,
-            alias='serviceId',
+            alias='itemId',
+            description='The identification of the update item.',
         ),
     ]
 
@@ -150,7 +151,7 @@ class AosOverrideEnvVarsRequestV7(BaseModel):
     ]
 
     items: Annotated[  # noqa: WPS110
-        list[AosServiceEnvVarV7],
+        list[AosEnvVarV7],
         Field(
             title='List of filters and variables',
             description='The list of filters and environment variables to apply.',
