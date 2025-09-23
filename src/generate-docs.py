@@ -7,7 +7,7 @@ import click
 
 from cloud_common.protocols.unit import base
 from cloud_common.protocols.unit.v7.base import AosUnitMessageV7
-from cloud_common.protocols.unit.v7.common import AosIdentifier
+from cloud_common.protocols.unit.v7.common import AosIdentity
 from cloud_common.schemas.service_config.aos_config import AosConfigSchema
 from cloud_common.schemas.unit_update.aos_update import AosUpdateSchema
 from cloud_common.protocols.unit.unit_config import UnitConfig
@@ -157,12 +157,12 @@ def schemas():
 
 
 if __name__ == '__main__':
-    id_ = AosIdentifier(id=uuid.uuid4(), codename='codename')
+    id_ = AosIdentity(id=uuid.uuid4(), codename='codename')
     json_ = id_.model_dump(mode='json', by_alias=True, exclude_none=True)
     print(json_)
-    print(AosIdentifier.model_validate(json_))
+    print(AosIdentity.model_validate(json_))
 
-    id_ = AosIdentifier()
+    id_ = AosIdentity()
     print(id_.model_dump(mode='json', by_alias=True, exclude_none=True))
 
     cli()

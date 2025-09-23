@@ -9,7 +9,7 @@ from cloud_common.protocols.unit.common import (
     AosFileSystemMount,
     AosHostRecord,
 )
-from cloud_common.protocols.unit.v7.common import AosIdentifier
+from cloud_common.protocols.unit.v7.common import AosIdentity
 
 
 class AlertRulePercents(BaseModel):
@@ -259,7 +259,7 @@ class NodeConfig(BaseModel):
     """Node configuration parameters."""
 
     node_group_subject: Annotated[
-        AosIdentifier,
+        AosIdentity,
         Field(
             alias='nodeGroupSubject',
             description='Subject of the node group. Previously known as NodeType.',
@@ -268,7 +268,7 @@ class NodeConfig(BaseModel):
     ]
 
     node: Annotated[
-        Optional[AosIdentifier],
+        Optional[AosIdentity],
         Field(
             default=None,
             alias='node',

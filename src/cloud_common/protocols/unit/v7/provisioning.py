@@ -7,7 +7,7 @@ from pydantic import BaseModel, Field
 
 from cloud_common.protocols.unit.certificates import AosIssuedUnitCerts
 from cloud_common.protocols.unit.common import TypeAosErrorInfoOptional
-from cloud_common.protocols.unit.v7.common import AosIdentifier
+from cloud_common.protocols.unit.v7.common import AosIdentity
 
 
 class AosCSR(BaseModel):
@@ -47,7 +47,7 @@ class AosStartProvisioningRequestV7(BaseModel):
     ]
 
     node_id: Annotated[
-        AosIdentifier,
+        AosIdentity,
         Field(
             alias='nodeId',
             description='The identification of the naode.',
@@ -77,7 +77,7 @@ class AosStartProvisioningResponseV7(BaseModel):
     ]
 
     node_id: Annotated[
-        AosIdentifier,
+        AosIdentity,
         Field(
             alias='nodeId',
             description='The identification of the naode.',
@@ -111,7 +111,7 @@ class AosFinishProvisioningRequestV7(BaseModel):
     ]
 
     node_id: Annotated[
-        AosIdentifier,
+        AosIdentity,
         Field(
             alias='nodeId',
             description='The identification of the naode.',
@@ -149,7 +149,7 @@ class AosFinishProvisioningResponseV7(BaseModel):
     ]
 
     node_id: Annotated[
-        AosIdentifier,
+        AosIdentity,
         Field(
             alias='nodeId',
             description='The identification of the naode.',
@@ -173,7 +173,7 @@ class AosDeProvisioningRequestV7(BaseModel):
     ]
 
     node_id: Annotated[
-        AosIdentifier,
+        AosIdentity,
         Field(
             alias='nodeId',
             description='The identification of the naode.',
@@ -203,7 +203,7 @@ class AosDeProvisioningResponseV7(BaseModel):
     ]
 
     node_id: Annotated[
-        AosIdentifier,
+        AosIdentity,
         Field(
             alias='nodeId',
             description='The identification of the naode.',

@@ -5,7 +5,7 @@ from typing import Annotated, Dict, Literal, Optional, List
 
 from pydantic import BaseModel, Field, UUID4
 
-from .common import AosIdentifier, AosResourceInfo, AosArchInfo, AosOsInfo
+from .common import AosIdentity, AosResourceInfo, AosArchInfo, AosOsInfo
 from ..common import TypeAosErrorInfoOptional
 from .types import (
     TypeInstanceNoMandatory,
@@ -105,7 +105,7 @@ class AosNodeCPUInfo(BaseModel):
 class AosRuntimeInfo(BaseModel):
 
     identifier: Annotated[
-        AosIdentifier,
+        AosIdentity,
         Field(
             alias='identifier',
         ),
@@ -188,7 +188,7 @@ class AosRuntimeInfo(BaseModel):
 class AosUnitNodeInfo(BaseModel):
 
     identifier: Annotated[
-        AosIdentifier,
+        AosIdentity,
         Field(
             description='Identifier of the node.',
             examples=[{"codename": "node-1398431", "title": "DomD"}],
@@ -196,7 +196,7 @@ class AosUnitNodeInfo(BaseModel):
     ]
 
     node_group_subject: Annotated[
-        AosIdentifier,
+        AosIdentity,
         Field(
             alias='nodeGroupSubject',
             description='Subject of the node group. Previously known as NodeType.',
@@ -295,14 +295,14 @@ class AosUnitNodeInfo(BaseModel):
 class AosInstanceInfo(BaseModel):
 
     node: Annotated[
-        AosIdentifier,
+        AosIdentity,
         Field(
             alias='node',
         ),
     ]
 
     runtime: Annotated[
-        AosIdentifier,
+        AosIdentity,
         Field(
             alias='runtime',
         ),
@@ -332,14 +332,14 @@ class AosInstancesInfo(BaseModel):
     """Update item info sent to the AosEdge Cloud."""
 
     identifier: Annotated[
-        AosIdentifier,
+        AosIdentity,
         Field(
             alias='identifier',
         )
     ]
 
     subject: Annotated[
-        AosIdentifier,
+        AosIdentity,
         Field(
             alias='subject',
             description='Subject for the update item. Layers have no subject.',
@@ -375,7 +375,7 @@ class AosUpdateItemInfo(BaseModel):
     """Update item info sent to the AosEdge Cloud."""
 
     identifier: Annotated[
-        AosIdentifier,
+        AosIdentity,
         Field(
             alias='identifier',
         )
@@ -455,7 +455,7 @@ class AosUnitStatusV7(BaseModel):
     ]
 
     unit_subjects: Annotated[
-        Optional[list[AosIdentifier]],
+        Optional[list[AosIdentity]],
         Field(
             default=None,
             alias='unitSubjects',
