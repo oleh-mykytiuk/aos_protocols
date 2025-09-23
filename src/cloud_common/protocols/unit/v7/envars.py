@@ -11,7 +11,7 @@ from cloud_common.protocols.unit.constants import DataSizes
 from cloud_common.protocols.unit.types import (
     TypeInstanceNoOptional,
 )
-from .common import AosIdentifier
+from .common import AosIdentity
 from .types import TypeInstanceNoMandatory
 
 
@@ -34,7 +34,7 @@ class AosEnvVarInstanceStatusV7(BaseModel):
     """The current status of the environment variable."""
 
     item_id: Annotated[
-        AosIdentifier,
+        AosIdentity,
         Field(
             alias='itemId',
             description='The identification of the update item.',
@@ -42,7 +42,7 @@ class AosEnvVarInstanceStatusV7(BaseModel):
     ]
 
     subject_id: Annotated[
-        AosIdentifier,
+        AosIdentity,
         Field(
             alias='subjectId',
             description='The identification of the subject.',
@@ -107,7 +107,7 @@ class AosEnvVarV7(BaseModel):
     """The current status of the environment variable."""
 
     item_id: Annotated[
-        Optional[AosIdentifier],
+        Optional[AosIdentity],
         Field(
             default=None,
             alias='itemId',
@@ -116,7 +116,7 @@ class AosEnvVarV7(BaseModel):
     ]
 
     subject_id: Annotated[
-        Optional[AosIdentifier],
+        Optional[AosIdentity],
         Field(
             default=None,
             alias='subjectId',

@@ -12,7 +12,7 @@ from cloud_common.protocols.unit.types import (
     TypeInstanceNoOptional,
     TypeNodeIdMandatory,
 )
-from .common import AosIdentifier
+from .common import AosIdentity
 
 
 class AosLogFilterV7(BaseModel):
@@ -39,7 +39,7 @@ class AosLogFilterV7(BaseModel):
     ]
 
     nodes: Annotated[
-        list[AosIdentifier],
+        list[AosIdentity],
         Field(
             default=None,
             alias='nodeIds',
@@ -49,7 +49,7 @@ class AosLogFilterV7(BaseModel):
     ]
 
     service_id: Annotated[
-        Optional[AosIdentifier],
+        Optional[AosIdentity],
         Field(
             default=None,
             alias='serviceId',
@@ -58,7 +58,7 @@ class AosLogFilterV7(BaseModel):
     ]
 
     subject_id: Annotated[
-        Optional[AosIdentifier],
+        Optional[AosIdentity],
         Field(
             default=None,
             alias='subjectId',

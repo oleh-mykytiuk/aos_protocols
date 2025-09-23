@@ -5,7 +5,7 @@ import base64
 from datetime import time
 from typing import Annotated, Literal, Optional, List
 
-from pydantic import Base64Bytes, BaseModel, Field, field_serializer, UUID4
+from pydantic import Base64Bytes, BaseModel, Field, field_serializer
 
 from cloud_common.protocols.unit.types import (
     AosSensitiveBytes,
@@ -15,7 +15,7 @@ from cloud_common.protocols.unit.types import (
     TypeVersionMandatory,
 )
 
-from .common import AosIdentifier, TypeAosIdentifierMandatory, AosArchInfo, AosOsInfo, AosUpdateItemImageInfo
+from .common import AosIdentity, TypeAosIdentityMandatory, AosUpdateItemImageInfo
 from .types import TypeNodeDesiredState
 from .unit_config import UnitConfigV7
 
@@ -241,7 +241,7 @@ class AosUpdateItemImageDownloadInfo(BaseModel):
 class AosUpdateItemDownloadInfo(BaseModel):
     """Update item info sent from the AosEdge Cloud."""
 
-    identifier: TypeAosIdentifierMandatory
+    identifier: TypeAosIdentityMandatory
     version: TypeVersionMandatory
 
     images: Annotated[
@@ -258,13 +258,13 @@ class AosDesiredInstanceInfo(BaseModel):
     """Update item info sent from the AosEdge Cloud."""
 
     identifier: Annotated[
-        AosIdentifier,
+        AosIdentity,
         Field(
             alias='identifier',
         )
     ]
 
-    subject: AosIdentifier
+    subject: AosIdentity
 
     priority: Annotated[
         int,
@@ -298,7 +298,7 @@ class AosDesiredInstanceInfo(BaseModel):
 class AosNodeDesiredState(BaseModel):
     """Desired node status."""
 
-    identifier: TypeAosIdentifierMandatory
+    identifier: TypeAosIdentityMandatory
     state: TypeNodeDesiredState
 
 

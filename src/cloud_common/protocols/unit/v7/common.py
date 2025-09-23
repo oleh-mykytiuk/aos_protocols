@@ -11,7 +11,7 @@ from ..common import (
 )
 
 
-class AosIdentifier(BaseModel):
+class AosIdentity(BaseModel):
     """Aos objects identifier."""
 
     id:  Annotated[
@@ -26,12 +26,13 @@ class AosIdentifier(BaseModel):
 
     type: Annotated[
         Optional[Literal[
-            'aosComponent',
-            'aosService',
-            'aosLayer',
-            'aosSubject',
-            'aosOEM',
-            'aosRuntime',
+            'component',
+            'service',
+            'layer',
+            'subject',
+            'oem',
+            'sp',
+            'runtime',
         ]],
         Field(
             default=None,
@@ -178,20 +179,20 @@ class AosUpdateItemImageInfo(BaseModel):
     ]
 
 
-TypeAosIdentifierMandatory = Annotated[
-    AosIdentifier,
+TypeAosIdentityMandatory = Annotated[
+    AosIdentity,
     Field(
-        alias='identifier',
+        alias='identity',
         description='The identification of the resource.',
     ),
 ]
 
 
-TypeAosIdentifierOptional = Annotated[
-    Optional[AosIdentifier],
+TypeAosIdentityOptional = Annotated[
+    Optional[AosIdentity],
     Field(
         default=None,
-        alias='identifier',
+        alias='identity',
         description='The identification of the resource.',
     ),
 ]
@@ -200,11 +201,11 @@ TypeAosIdentifierOptional = Annotated[
 __all__ = (
     'AosArchInfo',
     'AosOsInfo',
-    'AosIdentifier',
+    'AosIdentity',
     'AosErrorInfo',
     'AosHostRecord',
     'AosResourceInfo',
     'AosUpdateItemImageInfo',
-    'TypeAosIdentifierMandatory',
-    'TypeAosIdentifierOptional',
+    'TypeAosIdentityMandatory',
+    'TypeAosIdentityOptional',
 )

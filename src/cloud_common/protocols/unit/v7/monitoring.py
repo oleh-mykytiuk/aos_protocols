@@ -8,7 +8,7 @@ from pydantic import BaseModel, Field
 
 from .types import TypeUpdateItemInstanceState, TypeNodeState
 from ..types import TypeInstanceNoMandatory, TypeNodeIdMandatory
-from .common import AosIdentifier
+from .common import AosIdentity
 
 
 class AosPartitionUsage(BaseModel):
@@ -104,7 +104,7 @@ class AosInstanceMonitoringDataV7(BaseModel):
     """AosEdge unit monitoring data for service."""
 
     item_id: Annotated[
-        AosIdentifier,
+        AosIdentity,
         Field(
             alias='itemId',
             description='The identification of the service.',
@@ -112,7 +112,7 @@ class AosInstanceMonitoringDataV7(BaseModel):
     ]
 
     subject_id: Annotated[
-        AosIdentifier,
+        AosIdentity,
         Field(
             alias='subjectId',
             description='The identification of the service.',
@@ -122,7 +122,7 @@ class AosInstanceMonitoringDataV7(BaseModel):
     instance: TypeInstanceNoMandatory
 
     node_id: Annotated[
-        AosIdentifier,
+        AosIdentity,
         Field(
             alias='nodeId',
             description='The identification of the node.',
@@ -142,7 +142,7 @@ class AosNodeMonitoringDataV7(BaseModel):
     """AosEdge unit monitoring information."""
 
     node_id: Annotated[
-        AosIdentifier,
+        AosIdentity,
         Field(
             alias='nodeId',
             description='The identification of the node.',

@@ -9,7 +9,7 @@ from cloud_common.protocols.unit.constants import DataSizes
 from cloud_common.protocols.unit.types import (
     TypeInstanceNoMandatory,
 )
-from .common import AosIdentifier
+from .common import AosIdentity
 
 
 class AosNewStateV7(BaseModel):
@@ -29,7 +29,7 @@ class AosNewStateV7(BaseModel):
     ]
 
     service_id: Annotated[
-        AosIdentifier,
+        AosIdentity,
         Field(
             default=None,
             alias='serviceId',
@@ -38,7 +38,7 @@ class AosNewStateV7(BaseModel):
     ]
 
     subject_id: Annotated[
-        AosIdentifier,
+        AosIdentity,
         Field(
             default=None,
             alias='subjectId',
@@ -104,7 +104,7 @@ class AosStateAcceptanceV7(BaseModel):
     ]
 
     service_id: Annotated[
-        AosIdentifier,
+        AosIdentity,
         Field(
             default=None,
             alias='serviceId',
@@ -113,7 +113,7 @@ class AosStateAcceptanceV7(BaseModel):
     ]
 
     subject_id: Annotated[
-        AosIdentifier,
+        AosIdentity,
         Field(
             default=None,
             alias='subjectId',
@@ -173,7 +173,7 @@ class AosStateRequestV7(BaseModel):
     ]
 
     service_id: Annotated[
-        AosIdentifier,
+        AosIdentity,
         Field(
             default=None,
             alias='serviceId',
@@ -182,7 +182,7 @@ class AosStateRequestV7(BaseModel):
     ]
 
     subject_id: Annotated[
-        AosIdentifier,
+        AosIdentity,
         Field(
             default=None,
             alias='subjectId',

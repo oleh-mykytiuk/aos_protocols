@@ -13,7 +13,7 @@ from cloud_common.protocols.unit.types import (
     TypeDeviceMandatory,
     TypeVersionMandatory,
 )
-from .common import AosIdentifier
+from .common import AosIdentity
 
 
 class AosBaseAlert(BaseModel):
@@ -35,7 +35,7 @@ class AosAlertSystemErrorV7(AosBaseAlert):
     ]
 
     node_id: Annotated[
-        AosIdentifier,
+        AosIdentity,
         Field(
             alias='nodeId',
             description='Node ID of the alert.',
@@ -54,7 +54,7 @@ class AosAlertCoreV7(AosBaseAlert):
     ]
 
     node_id: Annotated[
-        AosIdentifier,
+        AosIdentity,
         Field(
             alias='nodeId',
             description='Node ID of the alert.',
@@ -74,7 +74,7 @@ class AosAlertResourceAllocateV7(AosBaseAlert):
     ]
 
     service_id: Annotated[
-        AosIdentifier,
+        AosIdentity,
         Field(
             alias='serviceId',
             description='Service unique identifier.',
@@ -82,7 +82,7 @@ class AosAlertResourceAllocateV7(AosBaseAlert):
     ]
 
     subject_id: Annotated[
-        AosIdentifier,
+        AosIdentity,
         Field(
             alias='subjectId',
             description='Subject unique identifier.',
@@ -97,7 +97,7 @@ class AosAlertResourceAllocateV7(AosBaseAlert):
     ]
 
     node_id: Annotated[
-        AosIdentifier,
+        AosIdentity,
         Field(
             alias='nodeId',
             description='Node ID of the alert.',
@@ -117,7 +117,7 @@ class AosAlertSystemQuotaV7(AosBaseAlert):
     ]
 
     node_id: Annotated[
-        AosIdentifier,
+        AosIdentity,
         Field(
             alias='nodeId',
             description='Node ID of the alert.',
@@ -151,7 +151,7 @@ class AosAlertInstanceQuotaV7(AosBaseAlert):
     ]
 
     service_id: Annotated[
-        AosIdentifier,
+        AosIdentity,
         Field(
             alias='serviceId',
             description='Service unique identifier.',
@@ -159,7 +159,7 @@ class AosAlertInstanceQuotaV7(AosBaseAlert):
     ]
 
     subject_id: Annotated[
-        AosIdentifier,
+        AosIdentity,
         Field(
             alias='subjectId',
             description='Subject unique identifier.',
@@ -253,7 +253,7 @@ class AosAlertServiceInstanceV7(AosBaseAlert):
     ]
 
     service_id: Annotated[
-        AosIdentifier,
+        AosIdentity,
         Field(
             alias='serviceId',
             description='Service ID.',
@@ -261,7 +261,7 @@ class AosAlertServiceInstanceV7(AosBaseAlert):
     ]
 
     subject_id: Annotated[
-        AosIdentifier,
+        AosIdentity,
         Field(
             alias='subjectId',
             description='Subject unique identifier.',

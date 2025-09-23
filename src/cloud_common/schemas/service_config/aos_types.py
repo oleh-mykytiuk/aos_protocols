@@ -7,7 +7,7 @@ from typing import Annotated, Optional, Literal
 
 from pydantic import BaseModel, Field
 
-from cloud_common.protocols.unit.v7.common import AosIdentifier
+from cloud_common.protocols.unit.v7.common import AosIdentity
 
 
 class UnitDevice(BaseModel):
@@ -318,7 +318,7 @@ class AlertRules(BaseModel):
 class AosDependency(BaseModel):
 
     identifier: Annotated[
-        AosIdentifier,
+        AosIdentity,
         Field(
             alias='identifier',
             description='Identifier of the AOS object.',

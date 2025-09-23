@@ -170,7 +170,7 @@
                     "type": "string"
                 },
                 "nodeId": {
-                    "$ref": "#/$defs/AosIdentifier",
+                    "$ref": "#/$defs/AosIdentity",
                     "description": "Node ID of the alert."
                 },
                 "coreComponent": {
@@ -288,11 +288,11 @@
                     "type": "string"
                 },
                 "serviceId": {
-                    "$ref": "#/$defs/AosIdentifier",
+                    "$ref": "#/$defs/AosIdentity",
                     "description": "Service unique identifier."
                 },
                 "subjectId": {
-                    "$ref": "#/$defs/AosIdentifier",
+                    "$ref": "#/$defs/AosIdentity",
                     "description": "Subject unique identifier."
                 },
                 "instance": {
@@ -342,11 +342,11 @@
                     "type": "string"
                 },
                 "serviceId": {
-                    "$ref": "#/$defs/AosIdentifier",
+                    "$ref": "#/$defs/AosIdentity",
                     "description": "Service unique identifier."
                 },
                 "subjectId": {
-                    "$ref": "#/$defs/AosIdentifier",
+                    "$ref": "#/$defs/AosIdentity",
                     "description": "Subject unique identifier."
                 },
                 "instance": {
@@ -355,7 +355,7 @@
                     "type": "integer"
                 },
                 "nodeId": {
-                    "$ref": "#/$defs/AosIdentifier",
+                    "$ref": "#/$defs/AosIdentity",
                     "description": "Node ID of the alert."
                 },
                 "deviceId": {
@@ -400,11 +400,11 @@
                     "type": "string"
                 },
                 "serviceId": {
-                    "$ref": "#/$defs/AosIdentifier",
+                    "$ref": "#/$defs/AosIdentity",
                     "description": "Service ID."
                 },
                 "subjectId": {
-                    "$ref": "#/$defs/AosIdentifier",
+                    "$ref": "#/$defs/AosIdentity",
                     "description": "Subject unique identifier.",
                     "minLength": 1
                 },
@@ -454,7 +454,7 @@
                     "type": "string"
                 },
                 "nodeId": {
-                    "$ref": "#/$defs/AosIdentifier",
+                    "$ref": "#/$defs/AosIdentity",
                     "description": "Node ID of the alert."
                 },
                 "message": {
@@ -490,7 +490,7 @@
                     "type": "string"
                 },
                 "nodeId": {
-                    "$ref": "#/$defs/AosIdentifier",
+                    "$ref": "#/$defs/AosIdentity",
                     "description": "Node ID of the alert."
                 },
                 "parameter": {
@@ -733,7 +733,7 @@
                     "type": "string"
                 },
                 "nodeId": {
-                    "$ref": "#/$defs/AosIdentifier",
+                    "$ref": "#/$defs/AosIdentity",
                     "description": "The identification of the naode."
                 },
                 "password": {
@@ -760,7 +760,7 @@
                     "type": "string"
                 },
                 "nodeId": {
-                    "$ref": "#/$defs/AosIdentifier",
+                    "$ref": "#/$defs/AosIdentity",
                     "description": "The identification of the naode."
                 },
                 "errorInfo": {
@@ -810,10 +810,10 @@
             "description": "Update item info sent from the AosEdge Cloud.",
             "properties": {
                 "identifier": {
-                    "$ref": "#/$defs/AosIdentifier"
+                    "$ref": "#/$defs/AosIdentity"
                 },
                 "subject": {
-                    "$ref": "#/$defs/AosIdentifier"
+                    "$ref": "#/$defs/AosIdentity"
                 },
                 "priority": {
                     "default": 0,
@@ -965,11 +965,11 @@
             "description": "The current status of the environment variable.",
             "properties": {
                 "itemId": {
-                    "$ref": "#/$defs/AosIdentifier",
+                    "$ref": "#/$defs/AosIdentity",
                     "description": "The identification of the update item."
                 },
                 "subjectId": {
-                    "$ref": "#/$defs/AosIdentifier",
+                    "$ref": "#/$defs/AosIdentity",
                     "description": "The identification of the subject."
                 },
                 "instance": {
@@ -1003,7 +1003,7 @@
                 "itemId": {
                     "anyOf": [
                         {
-                            "$ref": "#/$defs/AosIdentifier"
+                            "$ref": "#/$defs/AosIdentity"
                         },
                         {
                             "type": "null"
@@ -1015,7 +1015,7 @@
                 "subjectId": {
                     "anyOf": [
                         {
-                            "$ref": "#/$defs/AosIdentifier"
+                            "$ref": "#/$defs/AosIdentity"
                         },
                         {
                             "type": "null"
@@ -1079,7 +1079,7 @@
                     "type": "string"
                 },
                 "nodeId": {
-                    "$ref": "#/$defs/AosIdentifier",
+                    "$ref": "#/$defs/AosIdentity",
                     "description": "The identification of the naode."
                 },
                 "certificates": {
@@ -1115,7 +1115,7 @@
                     "type": "string"
                 },
                 "nodeId": {
-                    "$ref": "#/$defs/AosIdentifier",
+                    "$ref": "#/$defs/AosIdentity",
                     "description": "The identification of the naode."
                 },
                 "errorInfo": {
@@ -1131,7 +1131,7 @@
             "title": "AosFinishProvisioningResponseV7",
             "type": "object"
         },
-        "AosIdentifier": {
+        "AosIdentity": {
             "description": "Aos objects identifier.",
             "properties": {
                 "id": {
@@ -1152,12 +1152,13 @@
                     "anyOf": [
                         {
                             "enum": [
-                                "aosComponent",
-                                "aosService",
-                                "aosLayer",
-                                "aosSubject",
-                                "aosOEM",
-                                "aosRuntime"
+                                "component",
+                                "service",
+                                "layer",
+                                "subject",
+                                "oem",
+                                "sp",
+                                "runtime"
                             ],
                             "type": "string"
                         },
@@ -1222,7 +1223,7 @@
                     "title": "Aos object URN."
                 }
             },
-            "title": "AosIdentifier",
+            "title": "AosIdentity",
             "type": "object"
         },
         "AosInstallCertData": {
@@ -1309,10 +1310,10 @@
         "AosInstanceInfo": {
             "properties": {
                 "node": {
-                    "$ref": "#/$defs/AosIdentifier"
+                    "$ref": "#/$defs/AosIdentity"
                 },
                 "runtime": {
-                    "$ref": "#/$defs/AosIdentifier"
+                    "$ref": "#/$defs/AosIdentity"
                 },
                 "archInfo": {
                     "$ref": "#/$defs/AosArchInfo"
@@ -1371,11 +1372,11 @@
             "description": "AosEdge unit monitoring data for service.",
             "properties": {
                 "itemId": {
-                    "$ref": "#/$defs/AosIdentifier",
+                    "$ref": "#/$defs/AosIdentity",
                     "description": "The identification of the service."
                 },
                 "subjectId": {
-                    "$ref": "#/$defs/AosIdentifier",
+                    "$ref": "#/$defs/AosIdentity",
                     "description": "The identification of the service."
                 },
                 "instance": {
@@ -1384,7 +1385,7 @@
                     "type": "integer"
                 },
                 "nodeId": {
-                    "$ref": "#/$defs/AosIdentifier",
+                    "$ref": "#/$defs/AosIdentity",
                     "description": "The identification of the node."
                 },
                 "items": {
@@ -1410,10 +1411,10 @@
             "description": "Update item info sent to the AosEdge Cloud.",
             "properties": {
                 "identifier": {
-                    "$ref": "#/$defs/AosIdentifier"
+                    "$ref": "#/$defs/AosIdentity"
                 },
                 "subject": {
-                    "$ref": "#/$defs/AosIdentifier",
+                    "$ref": "#/$defs/AosIdentity",
                     "description": "Subject for the update item. Layers have no subject."
                 },
                 "version": {
@@ -1585,7 +1586,7 @@
                     "default": null,
                     "description": "The optional list of the Nodes to look for logs. The absense means all nodes.",
                     "items": {
-                        "$ref": "#/$defs/AosIdentifier"
+                        "$ref": "#/$defs/AosIdentity"
                     },
                     "title": "Nodes",
                     "type": "array"
@@ -1593,7 +1594,7 @@
                 "serviceId": {
                     "anyOf": [
                         {
-                            "$ref": "#/$defs/AosIdentifier"
+                            "$ref": "#/$defs/AosIdentity"
                         },
                         {
                             "type": "null"
@@ -1605,7 +1606,7 @@
                 "subjectId": {
                     "anyOf": [
                         {
-                            "$ref": "#/$defs/AosIdentifier"
+                            "$ref": "#/$defs/AosIdentity"
                         },
                         {
                             "type": "null"
@@ -1748,12 +1749,12 @@
                     "type": "string"
                 },
                 "serviceId": {
-                    "$ref": "#/$defs/AosIdentifier",
+                    "$ref": "#/$defs/AosIdentity",
                     "default": null,
                     "description": "The identification of the resource."
                 },
                 "subjectId": {
-                    "$ref": "#/$defs/AosIdentifier",
+                    "$ref": "#/$defs/AosIdentity",
                     "default": null,
                     "description": "The identification of the resource."
                 },
@@ -1827,8 +1828,8 @@
         "AosNodeDesiredState": {
             "description": "Desired node status.",
             "properties": {
-                "identifier": {
-                    "$ref": "#/$defs/AosIdentifier",
+                "identity": {
+                    "$ref": "#/$defs/AosIdentity",
                     "description": "The identification of the resource."
                 },
                 "state": {
@@ -1842,7 +1843,7 @@
                 }
             },
             "required": [
-                "identifier",
+                "identity",
                 "state"
             ],
             "title": "AosNodeDesiredState",
@@ -1852,7 +1853,7 @@
             "description": "AosEdge unit monitoring information.",
             "properties": {
                 "nodeId": {
-                    "$ref": "#/$defs/AosIdentifier",
+                    "$ref": "#/$defs/AosIdentity",
                     "description": "The identification of the node."
                 },
                 "items": {
@@ -2234,7 +2235,7 @@
         "AosRuntimeInfo": {
             "properties": {
                 "identifier": {
-                    "$ref": "#/$defs/AosIdentifier"
+                    "$ref": "#/$defs/AosIdentity"
                 },
                 "runtimeType": {
                     "examples": [
@@ -2378,7 +2379,7 @@
                     "type": "string"
                 },
                 "nodeId": {
-                    "$ref": "#/$defs/AosIdentifier",
+                    "$ref": "#/$defs/AosIdentity",
                     "description": "The identification of the naode."
                 },
                 "password": {
@@ -2405,7 +2406,7 @@
                     "type": "string"
                 },
                 "nodeId": {
-                    "$ref": "#/$defs/AosIdentifier",
+                    "$ref": "#/$defs/AosIdentity",
                     "description": "The identification of the naode."
                 },
                 "errorInfo": {
@@ -2440,12 +2441,12 @@
                     "type": "string"
                 },
                 "serviceId": {
-                    "$ref": "#/$defs/AosIdentifier",
+                    "$ref": "#/$defs/AosIdentity",
                     "default": null,
                     "description": "The identification of the resource."
                 },
                 "subjectId": {
-                    "$ref": "#/$defs/AosIdentifier",
+                    "$ref": "#/$defs/AosIdentity",
                     "default": null,
                     "description": "The identification of the resource."
                 },
@@ -2497,12 +2498,12 @@
                     "type": "string"
                 },
                 "serviceId": {
-                    "$ref": "#/$defs/AosIdentifier",
+                    "$ref": "#/$defs/AosIdentity",
                     "default": null,
                     "description": "The identification of the resource."
                 },
                 "subjectId": {
-                    "$ref": "#/$defs/AosIdentifier",
+                    "$ref": "#/$defs/AosIdentity",
                     "default": null,
                     "description": "The identification of the resource."
                 },
@@ -2580,7 +2581,7 @@
         "AosUnitNodeInfo": {
             "properties": {
                 "identifier": {
-                    "$ref": "#/$defs/AosIdentifier",
+                    "$ref": "#/$defs/AosIdentity",
                     "description": "Identifier of the node.",
                     "examples": [
                         {
@@ -2590,7 +2591,7 @@
                     ]
                 },
                 "nodeGroupSubject": {
-                    "$ref": "#/$defs/AosIdentifier",
+                    "$ref": "#/$defs/AosIdentity",
                     "description": "Subject of the node group. Previously known as NodeType.",
                     "examples": [
                         {
@@ -2871,7 +2872,7 @@
                     "anyOf": [
                         {
                             "items": {
-                                "$ref": "#/$defs/AosIdentifier"
+                                "$ref": "#/$defs/AosIdentity"
                             },
                             "type": "array"
                         },
@@ -2892,8 +2893,8 @@
         "AosUpdateItemDownloadInfo": {
             "description": "Update item info sent from the AosEdge Cloud.",
             "properties": {
-                "identifier": {
-                    "$ref": "#/$defs/AosIdentifier",
+                "identity": {
+                    "$ref": "#/$defs/AosIdentity",
                     "description": "The identification of the resource."
                 },
                 "version": {
@@ -2912,7 +2913,7 @@
                 }
             },
             "required": [
-                "identifier",
+                "identity",
                 "version",
                 "images"
             ],
@@ -3031,7 +3032,7 @@
             "description": "Update item info sent to the AosEdge Cloud.",
             "properties": {
                 "identifier": {
-                    "$ref": "#/$defs/AosIdentifier"
+                    "$ref": "#/$defs/AosIdentity"
                 },
                 "version": {
                     "description": "Version in format of the SemVer.",
@@ -3094,12 +3095,12 @@
                     "type": "string"
                 },
                 "serviceId": {
-                    "$ref": "#/$defs/AosIdentifier",
+                    "$ref": "#/$defs/AosIdentity",
                     "default": null,
                     "description": "The identification of the resource."
                 },
                 "subjectId": {
-                    "$ref": "#/$defs/AosIdentifier",
+                    "$ref": "#/$defs/AosIdentity",
                     "default": null,
                     "description": "The identification of the resource."
                 },
@@ -3173,7 +3174,7 @@
             "description": "Node configuration parameters.",
             "properties": {
                 "nodeGroupSubject": {
-                    "$ref": "#/$defs/AosIdentifier",
+                    "$ref": "#/$defs/AosIdentity",
                     "description": "Subject of the node group. Previously known as NodeType.",
                     "examples": [
                         {
@@ -3184,7 +3185,7 @@
                 "node": {
                     "anyOf": [
                         {
-                            "$ref": "#/$defs/AosIdentifier"
+                            "$ref": "#/$defs/AosIdentity"
                         },
                         {
                             "type": "null"
