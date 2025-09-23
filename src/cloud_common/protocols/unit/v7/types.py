@@ -339,7 +339,7 @@ TypeUpdateItemState = Annotated[
         'failed',
     ],
     Field(
-        alias='status',
+        alias='state',
         description='The current (reported) state of the update item.',
     ),
 ]
