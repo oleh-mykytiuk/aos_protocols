@@ -1388,6 +1388,22 @@
                     "$ref": "#/$defs/AosIdentity",
                     "description": "The identification of the node."
                 },
+                "itemStates": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "$ref": "#/$defs/AosUpdateItemStateData"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "List of AosEdge update item state changes.",
+                    "title": "Itemstates"
+                },
                 "items": {
                     "description": "List of the monitoring records",
                     "items": {
@@ -1705,22 +1721,6 @@
                     "default": null,
                     "description": "List of AosEdge unit monitoring got from node states.",
                     "title": "Nodestates"
-                },
-                "itemStates": {
-                    "anyOf": [
-                        {
-                            "items": {
-                                "$ref": "#/$defs/AosUpdateItemStateData"
-                            },
-                            "type": "array"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "default": null,
-                    "description": "List of AosEdge update item state changes.",
-                    "title": "Itemstates"
                 },
                 "instances": {
                     "default": null,
@@ -3000,7 +3000,7 @@
                     "title": "Imageid",
                     "type": "string"
                 },
-                "status": {
+                "state": {
                     "description": "The current (reported) state of the update item.",
                     "enum": [
                         "unknown",
@@ -3012,7 +3012,7 @@
                         "removed",
                         "failed"
                     ],
-                    "title": "Status",
+                    "title": "State",
                     "type": "string"
                 },
                 "errorInfo": {
@@ -3023,7 +3023,7 @@
             },
             "required": [
                 "imageId",
-                "status"
+                "state"
             ],
             "title": "AosUpdateItemImageStatus",
             "type": "object"

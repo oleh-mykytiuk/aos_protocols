@@ -129,6 +129,15 @@ class AosInstanceMonitoringDataV7(BaseModel):
         ),
     ]
 
+    states: Annotated[
+        Optional[list[AosUpdateItemStateData]],
+        Field(
+            default=None,
+            alias='itemStates',
+            description='List of AosEdge update item state changes.',
+        ),
+    ]
+
     items: Annotated[  # noqa: WPS110
         list[AosMonitoringData],
         Field(
@@ -205,15 +214,6 @@ class AosMonitoringV7(BaseModel):
             default=None,
             alias='nodeStates',
             description='List of AosEdge unit monitoring got from node states.',
-        ),
-    ]
-
-    item_states: Annotated[
-        Optional[list[AosUpdateItemStateData]],
-        Field(
-            default=None,
-            alias='itemStates',
-            description='List of AosEdge update item state changes.',
         ),
     ]
 
