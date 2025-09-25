@@ -4,7 +4,7 @@
 from datetime import datetime
 from typing import Annotated, Literal, Union
 
-from pydantic import BaseModel, Discriminator, Field
+from pydantic import BaseModel, Discriminator, Field, UUID4
 
 from cloud_common.protocols.unit.constants import DataSizes
 from cloud_common.protocols.unit.types import (
@@ -199,29 +199,11 @@ class AosAlertDownloadProgress(AosBaseAlert):
         Field(description='Type of the alert.'),
     ]
 
-    target_type: Annotated[
-        Literal['component', 'layer', 'service'],
+    update_item_image_id: Annotated[
+        UUID4,
         Field(
-            alias='targetType',
-            decription='Target type of the file.',
-        ),
-    ]
-
-    target_id: Annotated[
-        str,
-        Field(
-            alias='targetId',
-            decription='Target ID of the file.',
-        ),
-    ]
-
-    version: TypeVersionMandatory
-    message: TypeAlertMessageMandatory
-
-    url: Annotated[
-        str,
-        Field(
-            description='URL of the downloading file.',
+            alias='updateItemImageId',
+            decription='UUID from AosUpdateItemImageInfo.id',
         ),
     ]
 
@@ -244,7 +226,7 @@ class AosAlertDownloadProgress(AosBaseAlert):
     ]
 
 
-class AosAlertServiceInstanceV7(AosBaseAlert):
+class AosAlertUpdateItemInstanceV7(AosBaseAlert):
     """Aos Unit service instance alert information."""
 
     tag: Annotated[
@@ -252,11 +234,11 @@ class AosAlertServiceInstanceV7(AosBaseAlert):
         Field(description='Type of the alert.'),
     ]
 
-    service_id: Annotated[
+    update_item_id: Annotated[
         AosIdentity,
         Field(
-            alias='serviceId',
-            description='Service ID.',
+            alias='updateItemId',
+            description='Update item identity.',
         ),
     ]
 
@@ -296,7 +278,7 @@ class AosAlertsV7(BaseModel):
                     AosAlertResourceAllocateV7,
                     AosAlertDownloadProgress,
                     AosAlertInstanceQuotaV7,
-                    AosAlertServiceInstanceV7,
+                    AosAlertUpdateItemInstanceV7,
                     AosAlertSystemErrorV7,
                     AosAlertSystemQuotaV7,
                 ],
