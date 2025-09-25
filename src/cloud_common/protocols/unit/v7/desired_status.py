@@ -241,8 +241,16 @@ class AosUpdateItemImageDownloadInfo(BaseModel):
 class AosUpdateItemDownloadInfo(BaseModel):
     """Update item info sent from the AosEdge Cloud."""
 
-    identifier: TypeAosIdentityMandatory
+    identity: TypeAosIdentityMandatory
     version: TypeVersionMandatory
+
+    producer: Annotated[
+        AosIdentity,
+        Field(
+            alias='producer',
+            description='The producer of the update item (OEM or SP identity).',
+        ),
+    ]
 
     images: Annotated[
         List[AosUpdateItemImageDownloadInfo],
