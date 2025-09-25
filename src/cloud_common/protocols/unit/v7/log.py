@@ -81,7 +81,7 @@ class AosUploadLogOptions(BaseModel):
     """The description of used channel to upload logs."""
 
     type: Annotated[
-        Literal['amqps', 'https'],
+        Literal['wss', 'https'],
         Field(
             title='Type of the channel',
             description='The channel protocol used to upload logs.',
@@ -89,7 +89,7 @@ class AosUploadLogOptions(BaseModel):
     ]
 
     url: Annotated[
-        str,
+        Optional[str],
         Field(
             default=None,
             title='URL',
@@ -98,7 +98,7 @@ class AosUploadLogOptions(BaseModel):
     ]
 
     bearer_token: Annotated[
-        str,
+        Optional[str],
         Field(
             default=None,
             alias='bearerToken',
@@ -108,7 +108,7 @@ class AosUploadLogOptions(BaseModel):
     ]
 
     bearer_token_ttl: Annotated[
-        datetime,
+        Optional[datetime],
         Field(
             default=None,
             alias='bearerTokenTtl',
