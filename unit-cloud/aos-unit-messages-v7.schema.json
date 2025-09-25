@@ -2881,6 +2881,10 @@
                     "title": "Version",
                     "type": "string"
                 },
+                "producer": {
+                    "$ref": "#/$defs/AosIdentity",
+                    "description": "The producer of the update item (OEM or SP identity)."
+                },
                 "images": {
                     "description": "Image infos of the update items.",
                     "items": {
@@ -2894,6 +2898,7 @@
             "required": [
                 "identity",
                 "version",
+                "producer",
                 "images"
             ],
             "title": "AosUpdateItemDownloadInfo",
