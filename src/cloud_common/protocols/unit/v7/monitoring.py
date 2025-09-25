@@ -31,7 +31,7 @@ class AosPartitionUsage(BaseModel):
     ]
 
 
-class AosUpdateItemStateData(BaseModel):
+class AosUpdateItemInstanceStateData(BaseModel):
     """Service instance state information."""
 
     timestamp: Annotated[
@@ -100,6 +100,31 @@ class AosMonitoringData(BaseModel):
     ]
 
 
+
+class AosNodeState(BaseModel):
+    """AosEdge unit monitoring information."""
+
+    node_id: TypeNodeIdMandatory
+
+    timestamp: Annotated[
+        datetime,
+        Field(
+            alias='timestamp',
+            description='Timestamp when the node state change was recorded in ISO8601 format',
+        ),
+    ]
+
+    provisioned: Annotated[
+        bool,
+        Field(
+            alias='provisioned',
+            description='Flag to indicate if the node is provisioned.',
+        ),
+    ]
+
+    state: TypeNodeState
+
+
 class AosInstanceMonitoringDataV7(BaseModel):
     """AosEdge unit monitoring data for service."""
 
@@ -130,9 +155,8 @@ class AosInstanceMonitoringDataV7(BaseModel):
     ]
 
     states: Annotated[
-        Optional[list[AosUpdateItemStateData]],
+        list[AosUpdateItemInstanceStateData],
         Field(
-            default=None,
             alias='itemStates',
             description='List of AosEdge update item state changes.',
         ),
@@ -158,6 +182,15 @@ class AosNodeMonitoringDataV7(BaseModel):
         ),
     ]
 
+    states: Annotated[
+        Optional[list[AosNodeState]],
+        Field(
+            default=None,
+            alias='nodeStates',
+            description='List of AosEdge unit monitoring got from node states.',
+        ),
+    ]
+
     items: Annotated[  # noqa: WPS110
         list[AosMonitoringData],
         Field(
@@ -165,30 +198,6 @@ class AosNodeMonitoringDataV7(BaseModel):
             description='List of the monitoring records.',
         ),
     ]
-
-
-class AosNodeState(BaseModel):
-    """AosEdge unit monitoring information."""
-
-    node_id: TypeNodeIdMandatory
-
-    timestamp: Annotated[
-        datetime,
-        Field(
-            alias='timestamp',
-            description='Timestamp when the node state change was recorded in ISO8601 format',
-        ),
-    ]
-
-    provisioned: Annotated[
-        bool,
-        Field(
-            alias='provisioned',
-            description='Flag to indicate if the node is provisioned.',
-        ),
-    ]
-
-    state: TypeNodeState
 
 
 class AosMonitoringV7(BaseModel):

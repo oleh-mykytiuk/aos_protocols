@@ -1389,20 +1389,12 @@
                     "description": "The identification of the node."
                 },
                 "itemStates": {
-                    "anyOf": [
-                        {
-                            "items": {
-                                "$ref": "#/$defs/AosUpdateItemStateData"
-                            },
-                            "type": "array"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "default": null,
                     "description": "List of AosEdge update item state changes.",
-                    "title": "Itemstates"
+                    "items": {
+                        "$ref": "#/$defs/AosUpdateItemInstanceStateData"
+                    },
+                    "title": "Itemstates",
+                    "type": "array"
                 },
                 "items": {
                     "description": "List of the monitoring records",
@@ -1418,6 +1410,7 @@
                 "subjectId",
                 "instance",
                 "nodeId",
+                "itemStates",
                 "items"
             ],
             "title": "AosInstanceMonitoringDataV7",
@@ -1600,7 +1593,7 @@
                 },
                 "nodeIds": {
                     "default": null,
-                    "description": "The optional list of the Nodes to look for logs. The absense means all nodes.",
+                    "description": "The optional list of the Nodes to look for logs. If field ia omitted all nodes are used.",
                     "items": {
                         "$ref": "#/$defs/AosIdentity"
                     },
@@ -1855,6 +1848,22 @@
                 "nodeId": {
                     "$ref": "#/$defs/AosIdentity",
                     "description": "The identification of the node."
+                },
+                "nodeStates": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "$ref": "#/$defs/AosNodeState"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "List of AosEdge unit monitoring got from node states.",
+                    "title": "Nodestates"
                 },
                 "items": {
                     "description": "List of the monitoring records.",
@@ -3057,7 +3066,7 @@
             "title": "AosUpdateItemInfo",
             "type": "object"
         },
-        "AosUpdateItemStateData": {
+        "AosUpdateItemInstanceStateData": {
             "description": "Service instance state information.",
             "properties": {
                 "timestamp": {
@@ -3082,7 +3091,7 @@
                 "timestamp",
                 "state"
             ],
-            "title": "AosUpdateItemStateData",
+            "title": "AosUpdateItemInstanceStateData",
             "type": "object"
         },
         "AosUpdateStateV7": {

@@ -44,7 +44,7 @@ class AosLogFilterV7(BaseModel):
             default=None,
             alias='nodeIds',
             title='Nodes',
-            description='The optional list of the Nodes to look for logs. The absense means all nodes.',
+            description='The optional list of the Nodes to look for logs. If field ia omitted all nodes are used.',
         ),
     ]
 

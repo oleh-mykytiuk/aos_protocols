@@ -29,7 +29,7 @@ from .provisioning import (
 from .unit_status import AosUnitStatusV7
 from .desired_status import AosDesiredStatusV7
 from .header import AosUnitHeaderV7
-from ..certificates import (
+from .certificates import (
     AosRenewCertsNotification,
     AosIssuedUnitCertificates,
     AosIssueUnitCertificates,
