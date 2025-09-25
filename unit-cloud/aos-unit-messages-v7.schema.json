@@ -213,36 +213,10 @@
                     "title": "Tag",
                     "type": "string"
                 },
-                "targetType": {
-                    "decription": "Target type of the file.",
-                    "enum": [
-                        "component",
-                        "layer",
-                        "service"
-                    ],
-                    "title": "Targettype",
-                    "type": "string"
-                },
-                "targetId": {
-                    "decription": "Target ID of the file.",
-                    "title": "Targetid",
-                    "type": "string"
-                },
-                "version": {
-                    "description": "Version in format of the SemVer.",
-                    "title": "Version",
-                    "type": "string"
-                },
-                "message": {
-                    "description": "Error information retrieved for the alert.",
-                    "maxLength": 32768,
-                    "minLength": 1,
-                    "title": "Message",
-                    "type": "string"
-                },
-                "url": {
-                    "description": "URL of the downloading file.",
-                    "title": "Url",
+                "updateItemImageId": {
+                    "decription": "UUID from AosUpdateItemImageInfo.id",
+                    "format": "uuid4",
+                    "title": "Updateitemimageid",
                     "type": "string"
                 },
                 "downloadedBytes": {
@@ -261,11 +235,7 @@
             "required": [
                 "timestamp",
                 "tag",
-                "targetType",
-                "targetId",
-                "version",
-                "message",
-                "url",
+                "updateItemImageId",
                 "downloadedBytes",
                 "totalBytes"
             ],
@@ -384,60 +354,6 @@
             "title": "AosAlertResourceAllocateV7",
             "type": "object"
         },
-        "AosAlertServiceInstanceV7": {
-            "description": "Aos Unit service instance alert information.",
-            "properties": {
-                "timestamp": {
-                    "description": "Timestamp when alert was triggered in ISO8601 format.",
-                    "format": "date-time",
-                    "title": "Timestamp",
-                    "type": "string"
-                },
-                "tag": {
-                    "const": "serviceInstanceAlert",
-                    "description": "Type of the alert.",
-                    "title": "Tag",
-                    "type": "string"
-                },
-                "serviceId": {
-                    "$ref": "#/$defs/AosIdentity",
-                    "description": "Service ID."
-                },
-                "subjectId": {
-                    "$ref": "#/$defs/AosIdentity",
-                    "description": "Subject unique identifier.",
-                    "minLength": 1
-                },
-                "instance": {
-                    "description": "Instance number (starting from 0).",
-                    "title": "Instance",
-                    "type": "integer"
-                },
-                "version": {
-                    "description": "Version in format of the SemVer.",
-                    "title": "Version",
-                    "type": "string"
-                },
-                "message": {
-                    "description": "Error information retrieved for the alert.",
-                    "maxLength": 32768,
-                    "minLength": 1,
-                    "title": "Message",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "timestamp",
-                "tag",
-                "serviceId",
-                "subjectId",
-                "instance",
-                "version",
-                "message"
-            ],
-            "title": "AosAlertServiceInstanceV7",
-            "type": "object"
-        },
         "AosAlertSystemErrorV7": {
             "description": "Aos Unit system error alert information.",
             "properties": {
@@ -517,6 +433,60 @@
             "title": "AosAlertSystemQuotaV7",
             "type": "object"
         },
+        "AosAlertUpdateItemInstanceV7": {
+            "description": "Aos Unit service instance alert information.",
+            "properties": {
+                "timestamp": {
+                    "description": "Timestamp when alert was triggered in ISO8601 format.",
+                    "format": "date-time",
+                    "title": "Timestamp",
+                    "type": "string"
+                },
+                "tag": {
+                    "const": "serviceInstanceAlert",
+                    "description": "Type of the alert.",
+                    "title": "Tag",
+                    "type": "string"
+                },
+                "updateItemId": {
+                    "$ref": "#/$defs/AosIdentity",
+                    "description": "Update item identity."
+                },
+                "subjectId": {
+                    "$ref": "#/$defs/AosIdentity",
+                    "description": "Subject unique identifier.",
+                    "minLength": 1
+                },
+                "instance": {
+                    "description": "Instance number (starting from 0).",
+                    "title": "Instance",
+                    "type": "integer"
+                },
+                "version": {
+                    "description": "Version in format of the SemVer.",
+                    "title": "Version",
+                    "type": "string"
+                },
+                "message": {
+                    "description": "Error information retrieved for the alert.",
+                    "maxLength": 32768,
+                    "minLength": 1,
+                    "title": "Message",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "timestamp",
+                "tag",
+                "updateItemId",
+                "subjectId",
+                "instance",
+                "version",
+                "message"
+            ],
+            "title": "AosAlertUpdateItemInstanceV7",
+            "type": "object"
+        },
         "AosAlertsV7": {
             "properties": {
                 "messageType": {
@@ -534,7 +504,7 @@
                                 "deviceAllocateAlert": "#/$defs/AosAlertResourceAllocateV7",
                                 "downloadProgressAlert": "#/$defs/AosAlertDownloadProgress",
                                 "instanceQuotaAlert": "#/$defs/AosAlertInstanceQuotaV7",
-                                "serviceInstanceAlert": "#/$defs/AosAlertServiceInstanceV7",
+                                "serviceInstanceAlert": "#/$defs/AosAlertUpdateItemInstanceV7",
                                 "systemAlert": "#/$defs/AosAlertSystemErrorV7",
                                 "systemQuotaAlert": "#/$defs/AosAlertSystemQuotaV7"
                             },
@@ -554,7 +524,7 @@
                                 "$ref": "#/$defs/AosAlertInstanceQuotaV7"
                             },
                             {
-                                "$ref": "#/$defs/AosAlertServiceInstanceV7"
+                                "$ref": "#/$defs/AosAlertUpdateItemInstanceV7"
                             },
                             {
                                 "$ref": "#/$defs/AosAlertSystemErrorV7"
