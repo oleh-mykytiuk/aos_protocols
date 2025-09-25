@@ -3117,30 +3117,51 @@
                 "type": {
                     "description": "The channel protocol used to upload logs.",
                     "enum": [
-                        "amqps",
+                        "wss",
                         "https"
                     ],
                     "title": "Type of the channel",
                     "type": "string"
                 },
                 "url": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "default": null,
                     "description": "The base URL used to upload.",
-                    "title": "URL",
-                    "type": "string"
+                    "title": "URL"
                 },
                 "bearerToken": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "default": null,
                     "description": "The token to use in the `Authorization` header.",
-                    "title": "Bearer token",
-                    "type": "string"
+                    "title": "Bearer token"
                 },
                 "bearerTokenTtl": {
+                    "anyOf": [
+                        {
+                            "format": "date-time",
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "default": null,
                     "description": "Time to live of the token in ISO8601 format.",
-                    "format": "date-time",
-                    "title": "Bearer token TTL",
-                    "type": "string"
+                    "title": "Bearer token TTL"
                 }
             },
             "required": [
