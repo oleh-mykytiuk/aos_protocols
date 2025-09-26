@@ -374,10 +374,10 @@ class AosUpdateItemImageStatus(BaseModel):
 class AosUpdateItemInfo(BaseModel):
     """Update item info sent to the AosEdge Cloud."""
 
-    identifier: Annotated[
+    identity: Annotated[
         AosIdentity,
         Field(
-            alias='identifier',
+            alias='identity',
         )
     ]
 

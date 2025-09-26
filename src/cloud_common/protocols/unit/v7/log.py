@@ -48,20 +48,20 @@ class AosLogFilterV7(BaseModel):
         ),
     ]
 
-    service_id: Annotated[
+    service: Annotated[
         Optional[AosIdentity],
         Field(
             default=None,
-            alias='serviceId',
+            alias='service',
             description='The identification of the resource.',
         ),
     ]
 
-    subject_id: Annotated[
+    subject: Annotated[
         Optional[AosIdentity],
         Field(
             default=None,
-            alias='subjectId',
+            alias='subject',
             description='The identification of the resource.',
         ),
     ]
