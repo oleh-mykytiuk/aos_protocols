@@ -244,11 +244,11 @@ class AosUpdateItemDownloadInfo(BaseModel):
     identity: TypeAosIdentityMandatory
     version: TypeVersionMandatory
 
-    producer: Annotated[
+    owner: Annotated[
         AosIdentity,
         Field(
-            alias='producer',
-            description='The producer of the update item (OEM or SP identity).',
+            alias='owner',
+            description='The ID of the owner of the update item (OEM or SP identity).',
         ),
     ]
 
@@ -265,10 +265,10 @@ class AosUpdateItemDownloadInfo(BaseModel):
 class AosDesiredInstanceInfo(BaseModel):
     """Update item info sent from the AosEdge Cloud."""
 
-    identifier: Annotated[
+    identity: Annotated[
         AosIdentity,
         Field(
-            alias='identifier',
+            alias='identity',
         )
     ]
 
@@ -306,7 +306,7 @@ class AosDesiredInstanceInfo(BaseModel):
 class AosNodeDesiredState(BaseModel):
     """Desired node status."""
 
-    identifier: TypeAosIdentityMandatory
+    identity: TypeAosIdentityMandatory
     state: TypeNodeDesiredState
 
 

@@ -46,11 +46,11 @@ class AosStartProvisioningRequestV7(BaseModel):
         ),
     ]
 
-    node_id: Annotated[
+    node: Annotated[
         AosIdentity,
         Field(
-            alias='nodeId',
-            description='The identification of the naode.',
+            alias='node',
+            description='The identification of the node.',
         ),
     ]
 
@@ -76,11 +76,11 @@ class AosStartProvisioningResponseV7(BaseModel):
         ),
     ]
 
-    node_id: Annotated[
+    node: Annotated[
         AosIdentity,
         Field(
-            alias='nodeId',
-            description='The identification of the naode.',
+            alias='node',
+            description='The identification of the node.',
         ),
     ]
 
@@ -110,10 +110,10 @@ class AosFinishProvisioningRequestV7(BaseModel):
         ),
     ]
 
-    node_id: Annotated[
+    node: Annotated[
         AosIdentity,
         Field(
-            alias='nodeId',
+            alias='node',
             description='The identification of the naode.',
         ),
     ]
@@ -148,11 +148,11 @@ class AosFinishProvisioningResponseV7(BaseModel):
         ),
     ]
 
-    node_id: Annotated[
+    node: Annotated[
         AosIdentity,
         Field(
-            alias='nodeId',
-            description='The identification of the naode.',
+            alias='node',
+            description='The identification of the node.',
         ),
     ]
 
@@ -172,11 +172,11 @@ class AosDeProvisioningRequestV7(BaseModel):
         ),
     ]
 
-    node_id: Annotated[
+    node: Annotated[
         AosIdentity,
         Field(
-            alias='nodeId',
-            description='The identification of the naode.',
+            alias='node',
+            description='The identification of the node.',
         ),
     ]
 
@@ -202,11 +202,11 @@ class AosDeProvisioningResponseV7(BaseModel):
         ),
     ]
 
-    node_id: Annotated[
+    node: Annotated[
         AosIdentity,
         Field(
-            alias='nodeId',
-            description='The identification of the naode.',
+            alias='node',
+            description='The identification of the node.',
         ),
     ]
 

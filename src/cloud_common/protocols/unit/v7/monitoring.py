@@ -104,7 +104,13 @@ class AosMonitoringData(BaseModel):
 class AosNodeState(BaseModel):
     """AosEdge unit monitoring information."""
 
-    node_id: TypeNodeIdMandatory
+    node: Annotated[
+        AosIdentity,
+        Field(
+            alias='node',
+            description='The identification of the node.',
+        ),
+    ]
 
     timestamp: Annotated[
         datetime,
@@ -128,28 +134,28 @@ class AosNodeState(BaseModel):
 class AosInstanceMonitoringDataV7(BaseModel):
     """AosEdge unit monitoring data for service."""
 
-    item_id: Annotated[
+    identity: Annotated[
         AosIdentity,
         Field(
-            alias='itemId',
-            description='The identification of the service.',
+            alias='identity',
+            description='The identification of the update item.',
         ),
     ]
 
-    subject_id: Annotated[
+    subject: Annotated[
         AosIdentity,
         Field(
-            alias='subjectId',
+            alias='subject',
             description='The identification of the service.',
         ),
     ]
 
     instance: TypeInstanceNoMandatory
 
-    node_id: Annotated[
+    node: Annotated[
         AosIdentity,
         Field(
-            alias='nodeId',
+            alias='node',
             description='The identification of the node.',
         ),
     ]
@@ -174,10 +180,10 @@ class AosInstanceMonitoringDataV7(BaseModel):
 class AosNodeMonitoringDataV7(BaseModel):
     """AosEdge unit monitoring information."""
 
-    node_id: Annotated[
+    node: Annotated[
         AosIdentity,
         Field(
-            alias='nodeId',
+            alias='node',
             description='The identification of the node.',
         ),
     ]
@@ -214,15 +220,6 @@ class AosMonitoringV7(BaseModel):
         list[AosNodeMonitoringDataV7],
         Field(
             description='List of AosEdge unit monitoring items',
-        ),
-    ]
-
-    node_states: Annotated[
-        Optional[list[AosNodeState]],
-        Field(
-            default=None,
-            alias='nodeStates',
-            description='List of AosEdge unit monitoring got from node states.',
         ),
     ]
 

@@ -30,10 +30,10 @@ from .unit_status import AosUnitStatusV7
 from .desired_status import AosDesiredStatusV7
 from .header import AosUnitHeaderV7
 from .certificates import (
-    AosRenewCertsNotification,
-    AosIssuedUnitCertificates,
-    AosIssueUnitCertificates,
-    AosInstallUnitCertificatesConfirmation,
+    AosRenewCertsNotificationV7,
+    AosIssuedUnitCertificatesV7,
+    AosIssueUnitCertificatesV7,
+    AosInstallUnitCertificatesConfirmationV7,
 )
 
 
@@ -60,10 +60,10 @@ class AosUnitMessageV7(BaseModel):
             AosPushLogV7,
             AosOverrideEnvVarsRequestV7,
             AosOverrideEnvVarsStatusesV7,
-            AosRenewCertsNotification,
-            AosIssuedUnitCertificates,
-            AosIssueUnitCertificates,
-            AosInstallUnitCertificatesConfirmation,
+            AosRenewCertsNotificationV7,
+            AosIssuedUnitCertificatesV7,
+            AosIssueUnitCertificatesV7,
+            AosInstallUnitCertificatesConfirmationV7,
             AosStartProvisioningRequestV7,
             AosStartProvisioningResponseV7,
             AosFinishProvisioningRequestV7,

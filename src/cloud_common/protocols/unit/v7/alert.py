@@ -1,6 +1,7 @@
 #
 #  Copyright (c) 2018-2025 EPAM Systems Inc.
 #
+import uuid
 from datetime import datetime
 from typing import Annotated, Literal, Union
 
@@ -34,10 +35,10 @@ class AosAlertSystemErrorV7(AosBaseAlert):
         Field(description='Type of the alert.'),
     ]
 
-    node_id: Annotated[
+    node: Annotated[
         AosIdentity,
         Field(
-            alias='nodeId',
+            alias='node',
             description='Node ID of the alert.',
         ),
     ]
@@ -53,10 +54,10 @@ class AosAlertCoreV7(AosBaseAlert):
         Field(description='Type of the alert.'),
     ]
 
-    node_id: Annotated[
+    node: Annotated[
         AosIdentity,
         Field(
-            alias='nodeId',
+            alias='node',
             description='Node ID of the alert.',
         ),
     ]
@@ -73,15 +74,15 @@ class AosAlertResourceAllocateV7(AosBaseAlert):
         Field(description='Type of the alert.'),
     ]
 
-    service_id: Annotated[
+    identity: Annotated[
         AosIdentity,
         Field(
-            alias='serviceId',
-            description='Service unique identifier.',
+            alias='identity',
+            description='Update item unique identifier.',
         ),
     ]
 
-    subject_id: Annotated[
+    subject: Annotated[
         AosIdentity,
         Field(
             alias='subjectId',
@@ -96,11 +97,11 @@ class AosAlertResourceAllocateV7(AosBaseAlert):
         ),
     ]
 
-    node_id: Annotated[
+    node: Annotated[
         AosIdentity,
         Field(
-            alias='nodeId',
-            description='Node ID of the alert.',
+            alias='node',
+            description='Node ID where the alert occurs.',
         ),
     ]
 
@@ -116,10 +117,10 @@ class AosAlertSystemQuotaV7(AosBaseAlert):
         Field(description='Type of the alert.'),
     ]
 
-    node_id: Annotated[
+    node: Annotated[
         AosIdentity,
         Field(
-            alias='nodeId',
+            alias='node',
             description='Node ID of the alert.',
         ),
     ]
@@ -150,18 +151,18 @@ class AosAlertInstanceQuotaV7(AosBaseAlert):
         Field(description='Type of the alert.'),
     ]
 
-    service_id: Annotated[
+    identity: Annotated[
         AosIdentity,
         Field(
-            alias='serviceId',
-            description='Service unique identifier.',
+            alias='identity',
+            description='Identity of the item where conflict occurred.',
         ),
     ]
 
-    subject_id: Annotated[
+    subject: Annotated[
         AosIdentity,
         Field(
-            alias='subjectId',
+            alias='subject',
             description='Subject unique identifier.',
         ),
     ]
@@ -230,19 +231,19 @@ class AosAlertUpdateItemInstanceV7(AosBaseAlert):
     """Aos Unit service instance alert information."""
 
     tag: Annotated[
-        Literal['serviceInstanceAlert'],
+        Literal['updateItemInstanceAlert'],
         Field(description='Type of the alert.'),
     ]
 
-    update_item_id: Annotated[
+    identity: Annotated[
         AosIdentity,
         Field(
-            alias='updateItemId',
+            alias='identity',
             description='Update item identity.',
         ),
     ]
 
-    subject_id: Annotated[
+    subject: Annotated[
         AosIdentity,
         Field(
             alias='subjectId',

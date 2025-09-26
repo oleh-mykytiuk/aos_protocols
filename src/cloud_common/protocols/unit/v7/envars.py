@@ -18,7 +18,7 @@ from .types import TypeInstanceNoMandatory
 class AosEnvVarStatus(BaseModel):
     """The current status of the environment variable."""
 
-    envar_id: Annotated[
+    name: Annotated[
         str,
         Field(
             alias='name',
@@ -33,15 +33,15 @@ class AosEnvVarStatus(BaseModel):
 class AosEnvVarInstanceStatusV7(BaseModel):
     """The current status of the environment variable."""
 
-    item_id: Annotated[
+    identity: Annotated[
         AosIdentity,
         Field(
-            alias='itemId',
+            alias='identity',
             description='The identification of the update item.',
         ),
     ]
 
-    subject_id: Annotated[
+    subject: Annotated[
         AosIdentity,
         Field(
             alias='subjectId',
@@ -51,7 +51,7 @@ class AosEnvVarInstanceStatusV7(BaseModel):
 
     instance: TypeInstanceNoMandatory
 
-    envar_id: Annotated[
+    name: Annotated[
         str,
         Field(
             alias='name',
@@ -106,20 +106,20 @@ class AosEnvVar(BaseModel):
 class AosEnvVarV7(BaseModel):
     """The current status of the environment variable."""
 
-    item_id: Annotated[
+    identity: Annotated[
         Optional[AosIdentity],
         Field(
             default=None,
-            alias='itemId',
+            alias='identity',
             description='The identification of the update item.',
         ),
     ]
 
-    subject_id: Annotated[
+    subject: Annotated[
         Optional[AosIdentity],
         Field(
             default=None,
-            alias='subjectId',
+            alias='subject',
         ),
     ]
 

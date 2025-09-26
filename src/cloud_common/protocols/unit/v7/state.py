@@ -28,21 +28,21 @@ class AosNewStateV7(BaseModel):
         ),
     ]
 
-    service_id: Annotated[
+    service: Annotated[
         AosIdentity,
         Field(
             default=None,
-            alias='serviceId',
+            alias='service',
             description='The identification of the resource.',
         ),
     ]
 
-    subject_id: Annotated[
+    subject: Annotated[
         AosIdentity,
         Field(
             default=None,
-            alias='subjectId',
-            description='The identification of the resource.',
+            alias='subject',
+            description='The identification of the subject.',
         ),
     ]
 
@@ -112,12 +112,12 @@ class AosStateAcceptanceV7(BaseModel):
         ),
     ]
 
-    subject_id: Annotated[
+    subject: Annotated[
         AosIdentity,
         Field(
             default=None,
-            alias='subjectId',
-            description='The identification of the resource.',
+            alias='subject',
+            description='The identification of the subject.',
         ),
     ]
 
@@ -181,12 +181,12 @@ class AosStateRequestV7(BaseModel):
         ),
     ]
 
-    subject_id: Annotated[
+    subject: Annotated[
         AosIdentity,
         Field(
             default=None,
-            alias='subjectId',
-            description='The identification of the resource.',
+            alias='subject',
+            description='The identification of the subject.',
         ),
     ]
 

@@ -2,28 +2,34 @@
 #  Copyright (c) 2018-2024 Renesas Inc.
 #  Copyright (c) 2018-2024 EPAM Systems Inc.
 #
-import base64
 from datetime import datetime
 from typing import Annotated, Literal, Optional, Dict
 
 from pydantic import BaseModel, Field, field_serializer, SecretBytes, SecretStr
 
 from cloud_common.protocols.unit.types import (
-    AosSensitiveBytes,
     TypeCertificatesType,
-    TypeNodeIdMandatory,
     TypeStatusForNonExecutables,
 )
+from .common import AosIdentity
+from .types import TypeNodeTypeMandatory
 
 
-class AosCertificateIdentification(BaseModel):
+class AosCertificateIdentificationV7(BaseModel):
     """Certificate identification data."""
 
     type: TypeCertificatesType
-    node_id: TypeNodeIdMandatory
+
+    node: Annotated[
+        AosIdentity,
+        Field(
+            alias='node',
+            description='The identity of the node.',
+        ),
+    ]
 
 
-class AosCertificateIdentificationValidTill(AosCertificateIdentification):
+class AosCertificateIdentificationValidTillV7(AosCertificateIdentificationV7):
     """Certificate identification data with valid till."""
 
     serial: Annotated[
@@ -51,7 +57,7 @@ class AosCertificateIdentificationValidTill(AosCertificateIdentification):
         return valid_till.isoformat()
 
 
-class AosUnitSecretsData(BaseModel):
+class AosUnitSecretsDataV7(BaseModel):
     """Keeps the unit secret used to decode secure device information."""
 
     version: Annotated[
@@ -79,7 +85,7 @@ class AosUnitSecretsData(BaseModel):
     ]
 
 
-class AosRenewCertsNotification(BaseModel):
+class AosRenewCertsNotificationV7(BaseModel):
     """
     AosUnit protocol: 'renewCertificatesNotification' message.
 
@@ -96,7 +102,7 @@ class AosRenewCertsNotification(BaseModel):
     ]
 
     certificates: Annotated[
-        list[AosCertificateIdentificationValidTill],
+        list[AosCertificateIdentificationValidTillV7],
         Field(
             alias='certificates',
             title='Certificates',
@@ -105,7 +111,7 @@ class AosRenewCertsNotification(BaseModel):
     ]
 
     unit_secrets: Annotated[
-        AosUnitSecretsData,
+        AosUnitSecretsDataV7,
         Field(
             alias='unitSecrets',
             title='Unit Secrets',
@@ -123,7 +129,7 @@ class AosRenewCertsNotification(BaseModel):
     ]
 
 
-class AosIssuedUnitCerts(AosCertificateIdentification):
+class AosIssuedUnitCertsV7(AosCertificateIdentificationV7):
     """IssuedUnitCerts issued unit certificates info."""
 
     certificate_chain: Annotated[
@@ -136,7 +142,7 @@ class AosIssuedUnitCerts(AosCertificateIdentification):
     ]
 
 
-class AosIssuedUnitCertificates(BaseModel):
+class AosIssuedUnitCertificatesV7(BaseModel):
     """
     AosUnit protocol: 'issuedUnitCertificates' message.
 
@@ -153,7 +159,7 @@ class AosIssuedUnitCertificates(BaseModel):
     ]
 
     certificates: Annotated[
-        list[AosIssuedUnitCerts],
+        list[AosIssuedUnitCertsV7],
         Field(
             alias='certificates',
             title='Certificates',
@@ -162,7 +168,7 @@ class AosIssuedUnitCertificates(BaseModel):
     ]
 
 
-class AosIssueCertData(AosCertificateIdentification):
+class AosIssueCertData(AosCertificateIdentificationV7):
     """IssueCertData issue certificate data."""
 
     csr: Annotated[
@@ -175,7 +181,7 @@ class AosIssueCertData(AosCertificateIdentification):
     ]
 
 
-class AosIssueUnitCertificates(BaseModel):
+class AosIssueUnitCertificatesV7(BaseModel):
     """
     AosUnit protocol: 'issueUnitCertificates' message.
 
@@ -201,7 +207,7 @@ class AosIssueUnitCertificates(BaseModel):
     ]
 
 
-class AosInstallCertData(AosCertificateIdentification):
+class AosInstallCertDataV7(AosCertificateIdentificationV7):
     """InstallCertData install certificate data."""
 
     serial: Annotated[
@@ -224,7 +230,7 @@ class AosInstallCertData(AosCertificateIdentification):
     ]
 
 
-class AosInstallUnitCertificatesConfirmation(BaseModel):
+class AosInstallUnitCertificatesConfirmationV7(BaseModel):
     """
     AosUnit protocol: 'installUnitCertificatesConfirmation' message.
 
@@ -241,7 +247,7 @@ class AosInstallUnitCertificatesConfirmation(BaseModel):
     ]
 
     certificates: Annotated[
-        list[AosInstallCertData],
+        list[AosInstallCertDataV7],
         Field(
             alias='certificates',
             title='Request to issue certificates',
