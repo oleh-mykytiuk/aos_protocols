@@ -1,7 +1,6 @@
 #
 #  Copyright (c) 2018-2025 EPAM Systems Inc.
 #
-import uuid
 from datetime import datetime
 from typing import Annotated, Literal, Union
 
@@ -85,7 +84,7 @@ class AosAlertResourceAllocateV7(AosBaseAlert):
     subject: Annotated[
         AosIdentity,
         Field(
-            alias='subjectId',
+            alias='subject',
             description='Subject unique identifier.',
         ),
     ]
@@ -193,17 +192,17 @@ class AosAlertInstanceQuotaV7(AosBaseAlert):
 
 
 class AosAlertDownloadProgress(AosBaseAlert):
-    """Aos Unit download alert information."""
+    """Aos Unit downloads alert information."""
 
     tag: Annotated[
         Literal['downloadProgressAlert'],
         Field(description='Type of the alert.'),
     ]
 
-    update_item_image_id: Annotated[
+    image_id: Annotated[
         UUID4,
         Field(
-            alias='updateItemImageId',
+            alias='imageId',
             decription='UUID from AosUpdateItemImageInfo.id',
         ),
     ]

@@ -5,7 +5,6 @@ from typing import Annotated, Literal
 
 from pydantic import BaseModel, Field
 
-from cloud_common.protocols.unit.certificates import AosIssuedUnitCerts
 from cloud_common.protocols.unit.common import TypeAosErrorInfoOptional
 from cloud_common.protocols.unit.v7.common import AosIdentity
 
@@ -95,6 +94,28 @@ class AosStartProvisioningResponseV7(BaseModel):
     ]
 
 
+class AosIssuedCertificateV7(BaseModel):
+    """Aos issued certificate."""
+
+    certificate_type: Annotated[
+        str,
+        Field(
+            alias='type',
+            description='Type of the CSR',
+            examples=['online', 'offline'],
+        )
+    ]
+
+    certificate_chain: Annotated[
+        str,
+        Field(
+            alias='chain',
+            title='Chain of certificates',
+            description='Chain of certificates.',
+        ),
+    ]
+
+
 class AosFinishProvisioningRequestV7(BaseModel):
     """
     AosUnit protocol: 'finishProvisioningRequest' message.
@@ -119,7 +140,7 @@ class AosFinishProvisioningRequestV7(BaseModel):
     ]
 
     certificates: Annotated[
-        list[AosIssuedUnitCerts],
+        list[AosIssuedCertificateV7],
         Field(
             alias='certificates',
             description='The list of issued certificates',

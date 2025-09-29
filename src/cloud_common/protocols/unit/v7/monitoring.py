@@ -2,12 +2,12 @@
 #  Copyright (c) 2018-2025 EPAM Systems Inc.
 #
 from datetime import datetime
-from typing import Annotated, Literal, Union, Optional
+from typing import Annotated, Literal, Optional
 
 from pydantic import BaseModel, Field
 
 from .types import TypeUpdateItemInstanceState, TypeNodeState
-from ..types import TypeInstanceNoMandatory, TypeNodeIdMandatory
+from ..types import TypeInstanceNoMandatory
 from .common import AosIdentity
 
 
@@ -31,7 +31,7 @@ class AosPartitionUsage(BaseModel):
     ]
 
 
-class AosUpdateItemInstanceStateData(BaseModel):
+class AosInstanceStateData(BaseModel):
     """Service instance state information."""
 
     timestamp: Annotated[
@@ -161,7 +161,7 @@ class AosInstanceMonitoringDataV7(BaseModel):
     ]
 
     states: Annotated[
-        list[AosUpdateItemInstanceStateData],
+        list[AosInstanceStateData],
         Field(
             alias='itemStates',
             description='List of AosEdge update item state changes.',

@@ -199,7 +199,7 @@
             "type": "object"
         },
         "AosAlertDownloadProgress": {
-            "description": "Aos Unit download alert information.",
+            "description": "Aos Unit downloads alert information.",
             "properties": {
                 "timestamp": {
                     "description": "Timestamp when alert was triggered in ISO8601 format.",
@@ -213,10 +213,10 @@
                     "title": "Tag",
                     "type": "string"
                 },
-                "updateItemImageId": {
+                "imageId": {
                     "decription": "UUID from AosUpdateItemImageInfo.id",
                     "format": "uuid4",
-                    "title": "Updateitemimageid",
+                    "title": "Imageid",
                     "type": "string"
                 },
                 "downloadedBytes": {
@@ -235,7 +235,7 @@
             "required": [
                 "timestamp",
                 "tag",
-                "updateItemImageId",
+                "imageId",
                 "downloadedBytes",
                 "totalBytes"
             ],
@@ -315,7 +315,7 @@
                     "$ref": "#/$defs/AosIdentity",
                     "description": "Update item unique identifier."
                 },
-                "subjectId": {
+                "subject": {
                     "$ref": "#/$defs/AosIdentity",
                     "description": "Subject unique identifier."
                 },
@@ -345,7 +345,7 @@
                 "timestamp",
                 "tag",
                 "identity",
-                "subjectId",
+                "subject",
                 "instance",
                 "node",
                 "deviceId",
@@ -1054,7 +1054,7 @@
                 "certificates": {
                     "description": "The list of issued certificates",
                     "items": {
-                        "$ref": "#/$defs/AosIssuedUnitCerts"
+                        "$ref": "#/$defs/AosIssuedCertificateV7"
                     },
                     "title": "Certificates",
                     "type": "array"
@@ -1359,7 +1359,7 @@
                 "itemStates": {
                     "description": "List of AosEdge update item state changes.",
                     "items": {
-                        "$ref": "#/$defs/AosUpdateItemInstanceStateData"
+                        "$ref": "#/$defs/AosInstanceStateData"
                     },
                     "title": "Itemstates",
                     "type": "array"
@@ -1382,6 +1382,34 @@
                 "items"
             ],
             "title": "AosInstanceMonitoringDataV7",
+            "type": "object"
+        },
+        "AosInstanceStateData": {
+            "description": "Service instance state information.",
+            "properties": {
+                "timestamp": {
+                    "description": "Timestamp when unit monitoring was recorded in ISO8601 format",
+                    "format": "date-time",
+                    "title": "Timestamp",
+                    "type": "string"
+                },
+                "state": {
+                    "description": "The current (reported) state of the service instance.",
+                    "enum": [
+                        "activating",
+                        "active",
+                        "inactive",
+                        "failed"
+                    ],
+                    "title": "State",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "timestamp",
+                "state"
+            ],
+            "title": "AosInstanceStateData",
             "type": "object"
         },
         "AosInstancesInfo": {
@@ -1478,6 +1506,31 @@
             "title": "AosIssueUnitCertificatesV7",
             "type": "object"
         },
+        "AosIssuedCertificateV7": {
+            "description": "Aos issued certificate.",
+            "properties": {
+                "type": {
+                    "description": "Type of the CSR",
+                    "examples": [
+                        "online",
+                        "offline"
+                    ],
+                    "title": "Type",
+                    "type": "string"
+                },
+                "chain": {
+                    "description": "Chain of certificates.",
+                    "title": "Chain of certificates",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "type",
+                "chain"
+            ],
+            "title": "AosIssuedCertificateV7",
+            "type": "object"
+        },
         "AosIssuedUnitCertificatesV7": {
             "description": "AosUnit protocol: 'issuedUnitCertificates' message.\n\nCloud sends issued unit certificates info.",
             "properties": {
@@ -1501,44 +1554,6 @@
                 "certificates"
             ],
             "title": "AosIssuedUnitCertificatesV7",
-            "type": "object"
-        },
-        "AosIssuedUnitCerts": {
-            "description": "IssuedUnitCerts issued unit certificates info.",
-            "properties": {
-                "type": {
-                    "description": "Type of the certificate.",
-                    "enum": [
-                        "offline",
-                        "online",
-                        "um",
-                        "sm",
-                        "cm",
-                        "iam",
-                        "host-device",
-                        "remote-device",
-                        "azure-iot"
-                    ],
-                    "title": "Type of the certificate",
-                    "type": "string"
-                },
-                "nodeId": {
-                    "description": "Unique ID of the node.",
-                    "title": "Node ID",
-                    "type": "string"
-                },
-                "certificateChain": {
-                    "description": "Chain of certificates.",
-                    "title": "Chain of certificates",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "type",
-                "nodeId",
-                "certificateChain"
-            ],
-            "title": "AosIssuedUnitCerts",
             "type": "object"
         },
         "AosIssuedUnitCertsV7": {
@@ -1604,7 +1619,7 @@
                     "title": "Nodes",
                     "type": "array"
                 },
-                "service": {
+                "item": {
                     "anyOf": [
                         {
                             "$ref": "#/$defs/AosIdentity"
@@ -1729,10 +1744,10 @@
                     "title": "Message type",
                     "type": "string"
                 },
-                "service": {
+                "item": {
                     "$ref": "#/$defs/AosIdentity",
                     "default": null,
-                    "description": "The identification of the resource."
+                    "description": "The identification of the resource (service)."
                 },
                 "subject": {
                     "$ref": "#/$defs/AosIdentity",
@@ -1894,6 +1909,28 @@
                 "totalSize"
             ],
             "title": "AosNodePartitionInfo",
+            "type": "object"
+        },
+        "AosNodeSecretV7": {
+            "description": "Node related secret data.",
+            "properties": {
+                "node": {
+                    "$ref": "#/$defs/AosIdentity",
+                    "description": "The identity of the node."
+                },
+                "secret": {
+                    "description": "Secret value for a node.",
+                    "format": "password",
+                    "title": "Secret",
+                    "type": "string",
+                    "writeOnly": true
+                }
+            },
+            "required": [
+                "node",
+                "secret"
+            ],
+            "title": "AosNodeSecretV7",
             "type": "object"
         },
         "AosNodeState": {
@@ -2068,10 +2105,9 @@
                     "title": "Lod Request ID",
                     "type": "string"
                 },
-                "nodeId": {
-                    "description": "Unique ID of the node.",
-                    "title": "Node ID",
-                    "type": "string"
+                "node": {
+                    "$ref": "#/$defs/AosIdentity",
+                    "description": "The identification of the node."
                 },
                 "part": {
                     "default": null,
@@ -2112,7 +2148,7 @@
             "required": [
                 "messageType",
                 "logId",
-                "nodeId",
+                "node",
                 "status"
             ],
             "title": "AosPushLogV7",
@@ -2436,10 +2472,10 @@
                     "title": "Message type",
                     "type": "string"
                 },
-                "serviceId": {
+                "item": {
                     "$ref": "#/$defs/AosIdentity",
                     "default": null,
-                    "description": "The identification of the resource."
+                    "description": "The identification of the resource (service)."
                 },
                 "subject": {
                     "$ref": "#/$defs/AosIdentity",
@@ -2493,10 +2529,10 @@
                     "title": "Message type",
                     "type": "string"
                 },
-                "serviceId": {
+                "item": {
                     "$ref": "#/$defs/AosIdentity",
                     "default": null,
-                    "description": "The identification of the resource."
+                    "description": "The identification of the resource (service)."
                 },
                 "subject": {
                     "$ref": "#/$defs/AosIdentity",
@@ -2741,7 +2777,7 @@
             "description": "Keeps the unit secret used to decode secure device information.",
             "properties": {
                 "version": {
-                    "const": 1,
+                    "const": 7,
                     "description": "Version of the unit secrets structure.",
                     "title": "Version",
                     "type": "integer"
@@ -2749,24 +2785,14 @@
                 "nodes": {
                     "anyOf": [
                         {
-                            "additionalProperties": {
-                                "type": "string"
-                            },
-                            "type": "object"
+                            "$ref": "#/$defs/AosNodeSecretV7"
                         },
                         {
                             "type": "null"
                         }
                     ],
                     "default": null,
-                    "description": "Nodes and password map.",
-                    "examples": [
-                        {
-                            "Node0": "mega strong secret",
-                            "Node1": "super strong secret"
-                        }
-                    ],
-                    "title": "Nodes"
+                    "description": "Nodes and secrets list."
                 }
             },
             "required": [
@@ -3058,34 +3084,6 @@
             "title": "AosUpdateItemInfo",
             "type": "object"
         },
-        "AosUpdateItemInstanceStateData": {
-            "description": "Service instance state information.",
-            "properties": {
-                "timestamp": {
-                    "description": "Timestamp when unit monitoring was recorded in ISO8601 format",
-                    "format": "date-time",
-                    "title": "Timestamp",
-                    "type": "string"
-                },
-                "state": {
-                    "description": "The current (reported) state of the service instance.",
-                    "enum": [
-                        "activating",
-                        "active",
-                        "inactive",
-                        "failed"
-                    ],
-                    "title": "State",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "timestamp",
-                "state"
-            ],
-            "title": "AosUpdateItemInstanceStateData",
-            "type": "object"
-        },
         "AosUpdateStateV7": {
             "description": "AosUnit protocol: 'updateState' message.\n\nCloud reports service state changes using this message.",
             "properties": {
@@ -3095,10 +3093,10 @@
                     "title": "Message type",
                     "type": "string"
                 },
-                "service": {
+                "item": {
                     "$ref": "#/$defs/AosIdentity",
                     "default": null,
-                    "description": "The identification of the resource."
+                    "description": "The identification of the resource (service)."
                 },
                 "subject": {
                     "$ref": "#/$defs/AosIdentity",

@@ -110,14 +110,6 @@ TypeServiceIdMandatory = Annotated[
     ),
 ]
 
-TypeServiceServiceIdMandatory = Annotated[
-    str,
-    Field(
-        alias='serviceId',
-        title='Service ID',
-        description='Unique ID of the service.',
-    ),
-]
 
 TypeServiceServiceIdOptional = Annotated[
     str,
