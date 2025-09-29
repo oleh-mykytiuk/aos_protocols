@@ -48,11 +48,11 @@ class AosLogFilterV7(BaseModel):
         ),
     ]
 
-    service: Annotated[
+    item: Annotated[
         Optional[AosIdentity],
         Field(
             default=None,
-            alias='service',
+            alias='item',
             description='The identification of the resource.',
         ),
     ]
@@ -179,7 +179,14 @@ class AosPushLogV7(BaseModel):
     ]
 
     log_id: TypeAosLogId
-    node_id: TypeNodeIdMandatory
+
+    node: Annotated[
+        AosIdentity,
+        Field(
+            alias='node',
+            description='The identification of the node.',
+        ),
+    ]
 
     part: Annotated[
         int,

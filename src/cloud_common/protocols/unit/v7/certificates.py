@@ -1,18 +1,16 @@
 #
-#  Copyright (c) 2018-2024 Renesas Inc.
 #  Copyright (c) 2018-2024 EPAM Systems Inc.
 #
 from datetime import datetime
 from typing import Annotated, Literal, Optional, Dict
 
-from pydantic import BaseModel, Field, field_serializer, SecretBytes, SecretStr
+from pydantic import BaseModel, Field, field_serializer, SecretStr
 
 from cloud_common.protocols.unit.types import (
     TypeCertificatesType,
     TypeStatusForNonExecutables,
 )
 from .common import AosIdentity
-from .types import TypeNodeTypeMandatory
 
 
 class AosCertificateIdentificationV7(BaseModel):
@@ -57,11 +55,31 @@ class AosCertificateIdentificationValidTillV7(AosCertificateIdentificationV7):
         return valid_till.isoformat()
 
 
+class AosNodeSecretV7(BaseModel):
+    """Node related secret data."""
+
+    node: Annotated[
+        AosIdentity,
+        Field(
+            alias='node',
+            description='The identity of the node.',
+        ),
+    ]
+
+    secret: Annotated[
+        SecretStr,
+        Field(
+            alias='secret',
+            description='Secret value for a node.',
+        ),
+    ]
+
+
 class AosUnitSecretsDataV7(BaseModel):
     """Keeps the unit secret used to decode secure device information."""
 
     version: Annotated[
-        Literal[1],
+        Literal[7],
         Field(
             alias='version',
             title='Version',
@@ -70,17 +88,10 @@ class AosUnitSecretsDataV7(BaseModel):
     ]
 
     nodes: Annotated[
-        Optional[Dict[str, str]],
+        Optional[AosNodeSecretV7],
         Field(
-            alias='nodes',
             default=None,
-            description='Nodes and password map.',
-            examples=[
-                {
-                    'Node0': 'mega strong secret',
-                    'Node1': 'super strong secret',
-                },
-            ]
+            description='Nodes and secrets list.',
         ),
     ]
 
