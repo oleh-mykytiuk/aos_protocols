@@ -197,33 +197,6 @@ class AosTimetableItem(BaseModel):
     ]
 
 
-class AosScheduleRule(BaseModel):
-    """Aos schedule rule."""
-
-    ttl: Annotated[
-        int,
-        Field(
-            default=None,
-            description='TTL of the rule in seconds.',
-        ),
-    ]
-
-    type: Annotated[
-        Literal['force', 'trigger', 'timetable'],
-        Field(
-            description='Type of the Schedule rule.',
-        ),
-    ]
-
-    timetable: Annotated[
-        list[AosTimetableItem],
-        Field(
-            default=None,
-            description='Timetable when rule must work (only when the type is `timetable`).',
-        ),
-    ]
-
-
 class AosUpdateItemImageDownloadInfo(BaseModel):
 
     image: Annotated[
