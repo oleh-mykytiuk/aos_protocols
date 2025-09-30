@@ -10,9 +10,8 @@ from cloud_common.protocols.unit.common import TypeAosErrorInfoOptional
 from cloud_common.protocols.unit.types import (
     TypeAosLogId,
     TypeInstanceNoOptional,
-    TypeNodeIdMandatory,
 )
-from .common import AosIdentity
+from .common import AosIdentity, TypeItemOptional
 
 
 class AosLogFilterV7(BaseModel):
@@ -48,14 +47,7 @@ class AosLogFilterV7(BaseModel):
         ),
     ]
 
-    item: Annotated[
-        Optional[AosIdentity],
-        Field(
-            default=None,
-            alias='item',
-            description='The identification of the resource.',
-        ),
-    ]
+    item: TypeItemOptional
 
     subject: Annotated[
         Optional[AosIdentity],

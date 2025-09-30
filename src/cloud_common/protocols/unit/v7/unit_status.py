@@ -5,7 +5,7 @@ from typing import Annotated, Dict, Literal, Optional, List
 
 from pydantic import BaseModel, Field, UUID4
 
-from .common import AosIdentity, AosResourceInfo, AosArchInfo, AosOsInfo
+from .common import AosIdentity, AosResourceInfo, AosArchInfo, AosOsInfo, TypeItemMandatory, TypeSubjectMandatory
 from ..common import TypeAosErrorInfoOptional
 from .types import (
     TypeInstanceNoMandatory,
@@ -104,10 +104,10 @@ class AosNodeCPUInfo(BaseModel):
 
 class AosRuntimeInfo(BaseModel):
 
-    identifier: Annotated[
+    identity: Annotated[
         AosIdentity,
         Field(
-            alias='identifier',
+            alias='identity',
         ),
     ]
 
@@ -187,7 +187,7 @@ class AosRuntimeInfo(BaseModel):
 
 class AosUnitNodeInfo(BaseModel):
 
-    identifier: Annotated[
+    identity: Annotated[
         AosIdentity,
         Field(
             description='Identifier of the node.',
@@ -331,21 +331,8 @@ class AosInstanceInfo(BaseModel):
 class AosInstancesInfo(BaseModel):
     """Update item info sent to the AosEdge Cloud."""
 
-    identifier: Annotated[
-        AosIdentity,
-        Field(
-            alias='identifier',
-        )
-    ]
-
-    subject: Annotated[
-        AosIdentity,
-        Field(
-            alias='subject',
-            description='Subject for the update item. Layers have no subject.',
-        ),
-    ]
-
+    item: TypeItemMandatory
+    subject: TypeSubjectMandatory
     version: TypeVersionMandatory
 
     instances: Annotated[
@@ -374,13 +361,7 @@ class AosUpdateItemImageStatus(BaseModel):
 class AosUpdateItemInfo(BaseModel):
     """Update item info sent to the AosEdge Cloud."""
 
-    identity: Annotated[
-        AosIdentity,
-        Field(
-            alias='identity',
-        )
-    ]
-
+    item: TypeItemMandatory
     version: TypeVersionMandatory
 
     statuses: Annotated[
@@ -437,11 +418,11 @@ class AosUnitStatusV7(BaseModel):
         ),
     ]
 
-    update_items: Annotated[
+    items: Annotated[
         Optional[list[AosUpdateItemInfo]],
         Field(
             default=None,
-            alias='updateItems',
+            alias='items',
             description='List of the Aos update items.',
         ),
     ]
@@ -454,10 +435,10 @@ class AosUnitStatusV7(BaseModel):
         ),
     ]
 
-    unit_subjects: Annotated[
+    subjects: Annotated[
         Optional[list[AosIdentity]],
         Field(
             default=None,
-            alias='unitSubjects',
+            alias='subjects',
         ),
     ]

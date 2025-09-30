@@ -9,7 +9,7 @@ from cloud_common.protocols.unit.constants import DataSizes
 from cloud_common.protocols.unit.types import (
     TypeInstanceNoMandatory,
 )
-from .common import AosIdentity
+from .common import AosIdentity, TypeSubjectMandatory, TypeItemMandatory
 
 
 class AosNewStateV7(BaseModel):
@@ -103,24 +103,8 @@ class AosStateAcceptanceV7(BaseModel):
         ),
     ]
 
-    item: Annotated[
-        AosIdentity,
-        Field(
-            default=None,
-            alias='item',
-            description='The identification of the resource (service).',
-        ),
-    ]
-
-    subject: Annotated[
-        AosIdentity,
-        Field(
-            default=None,
-            alias='subject',
-            description='The identification of the subject.',
-        ),
-    ]
-
+    item: TypeItemMandatory
+    subject: TypeSubjectMandatory
     instance: TypeInstanceNoMandatory
 
     checksum: Annotated[
@@ -172,24 +156,8 @@ class AosStateRequestV7(BaseModel):
         ),
     ]
 
-    item: Annotated[
-        AosIdentity,
-        Field(
-            default=None,
-            alias='item',
-            description='The identification of the resource (service).',
-        ),
-    ]
-
-    subject: Annotated[
-        AosIdentity,
-        Field(
-            default=None,
-            alias='subject',
-            description='The identification of the subject.',
-        ),
-    ]
-
+    item: TypeItemMandatory
+    subject: TypeSubjectMandatory
     instance: TypeInstanceNoMandatory
 
     default: Annotated[

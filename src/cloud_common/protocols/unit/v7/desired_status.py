@@ -15,7 +15,7 @@ from cloud_common.protocols.unit.types import (
     TypeVersionMandatory,
 )
 
-from .common import AosIdentity, TypeAosIdentityMandatory, AosUpdateItemImageInfo
+from .common import AosIdentity, TypeAosIdentityMandatory, AosUpdateItemImageInfo, TypeItemMandatory
 from .types import TypeNodeDesiredState
 from .unit_config import UnitConfigV7
 
@@ -24,7 +24,10 @@ class AosDecryptInfo(BaseModel):
     """Information for the decryption."""
 
     block_alg: Annotated[
-        Literal['AES256/CBC/pkcs7'],
+        Literal[
+            'AES256/CBC/pkcs7',
+            'AES256/GCM/',
+        ],
         Field(
             default='AES256/CBC/pkcs7',
             alias='blockAlg',
@@ -241,7 +244,7 @@ class AosUpdateItemImageDownloadInfo(BaseModel):
 class AosUpdateItemDownloadInfo(BaseModel):
     """Update item info sent from the AosEdge Cloud."""
 
-    identity: TypeAosIdentityMandatory
+    item: TypeItemMandatory
     version: TypeVersionMandatory
 
     owner: Annotated[
@@ -265,13 +268,7 @@ class AosUpdateItemDownloadInfo(BaseModel):
 class AosDesiredInstanceInfo(BaseModel):
     """Update item info sent from the AosEdge Cloud."""
 
-    identity: Annotated[
-        AosIdentity,
-        Field(
-            alias='identity',
-        )
-    ]
-
+    item: TypeItemMandatory
     subject: AosIdentity
 
     priority: Annotated[
@@ -282,7 +279,7 @@ class AosDesiredInstanceInfo(BaseModel):
             lt=1000000,  # noqa: WPS432
             description='Priority of the service instance.',
         ),
-    ]
+    ] = 0
 
     num_instances: Annotated[
         int,
@@ -292,7 +289,7 @@ class AosDesiredInstanceInfo(BaseModel):
             gt=0,
             description='Number of service instances to run.',
         ),
-    ]
+    ] = 1
 
     labels: Annotated[
         Optional[list[str]],
@@ -306,7 +303,7 @@ class AosDesiredInstanceInfo(BaseModel):
 class AosNodeDesiredState(BaseModel):
     """Desired node status."""
 
-    identity: TypeAosIdentityMandatory
+    item: TypeItemMandatory
     state: TypeNodeDesiredState
 
 
@@ -343,12 +340,12 @@ class AosDesiredStatusV7(BaseModel):
         ),
     ]
 
-    update_items: Annotated[
+    items: Annotated[
         list[AosUpdateItemDownloadInfo],
         Field(
             default=None,
-            alias='updateItems',
-            description='List of the desired services. If absent or null - do nothing.',
+            alias='items',
+            description='List of the desired update items. If absent or null - do nothing.',
         ),
     ]
 
@@ -356,7 +353,7 @@ class AosDesiredStatusV7(BaseModel):
         list[AosDesiredInstanceInfo],
         Field(
             default=None,
-            description='List of the desired services instances. If absent or null - do nothing.',
+            description='List of the desired update item instances. If absent or null - do nothing.',
         ),
     ]
 

@@ -257,9 +257,9 @@
                     "title": "Tag",
                     "type": "string"
                 },
-                "identity": {
+                "item": {
                     "$ref": "#/$defs/AosIdentity",
-                    "description": "Identity of the item where conflict occurred."
+                    "description": "Update item identifier."
                 },
                 "subject": {
                     "$ref": "#/$defs/AosIdentity",
@@ -287,7 +287,7 @@
             "required": [
                 "timestamp",
                 "tag",
-                "identity",
+                "item",
                 "subject",
                 "instance",
                 "parameter",
@@ -311,9 +311,9 @@
                     "title": "Tag",
                     "type": "string"
                 },
-                "identity": {
+                "item": {
                     "$ref": "#/$defs/AosIdentity",
-                    "description": "Update item unique identifier."
+                    "description": "Update item identifier."
                 },
                 "subject": {
                     "$ref": "#/$defs/AosIdentity",
@@ -344,7 +344,7 @@
             "required": [
                 "timestamp",
                 "tag",
-                "identity",
+                "item",
                 "subject",
                 "instance",
                 "node",
@@ -448,9 +448,9 @@
                     "title": "Tag",
                     "type": "string"
                 },
-                "identity": {
+                "item": {
                     "$ref": "#/$defs/AosIdentity",
-                    "description": "Update item identity."
+                    "description": "Update item identifier."
                 },
                 "subjectId": {
                     "$ref": "#/$defs/AosIdentity",
@@ -478,7 +478,7 @@
             "required": [
                 "timestamp",
                 "tag",
-                "identity",
+                "item",
                 "subjectId",
                 "instance",
                 "version",
@@ -749,9 +749,12 @@
             "description": "Information for the decryption.",
             "properties": {
                 "blockAlg": {
-                    "const": "AES256/CBC/pkcs7",
                     "default": "AES256/CBC/pkcs7",
                     "description": "Used block cipher in form: `cipher/mode/padding`.",
+                    "enum": [
+                        "AES256/CBC/pkcs7",
+                        "AES256/GCM/"
+                    ],
                     "title": "Blockalg",
                     "type": "string"
                 },
@@ -778,8 +781,9 @@
         "AosDesiredInstanceInfo": {
             "description": "Update item info sent from the AosEdge Cloud.",
             "properties": {
-                "identity": {
-                    "$ref": "#/$defs/AosIdentity"
+                "item": {
+                    "$ref": "#/$defs/AosIdentity",
+                    "description": "Update item identifier."
                 },
                 "subject": {
                     "$ref": "#/$defs/AosIdentity"
@@ -817,7 +821,7 @@
                 }
             },
             "required": [
-                "identity",
+                "item",
                 "subject"
             ],
             "title": "AosDesiredInstanceInfo",
@@ -846,18 +850,18 @@
                     "default": null,
                     "description": "Desired unit config dictionary."
                 },
-                "updateItems": {
+                "items": {
                     "default": null,
-                    "description": "List of the desired services. If absent or null - do nothing.",
+                    "description": "List of the desired update items. If absent or null - do nothing.",
                     "items": {
                         "$ref": "#/$defs/AosUpdateItemDownloadInfo"
                     },
-                    "title": "Updateitems",
+                    "title": "Items",
                     "type": "array"
                 },
                 "instances": {
                     "default": null,
-                    "description": "List of the desired services instances. If absent or null - do nothing.",
+                    "description": "List of the desired update item instances. If absent or null - do nothing.",
                     "items": {
                         "$ref": "#/$defs/AosDesiredInstanceInfo"
                     },
@@ -933,9 +937,9 @@
         "AosEnvVarInstanceStatusV7": {
             "description": "The current status of the environment variable.",
             "properties": {
-                "identity": {
+                "item": {
                     "$ref": "#/$defs/AosIdentity",
-                    "description": "The identification of the update item."
+                    "description": "Update item identifier."
                 },
                 "subjectId": {
                     "$ref": "#/$defs/AosIdentity",
@@ -958,7 +962,7 @@
                 }
             },
             "required": [
-                "identity",
+                "item",
                 "subjectId",
                 "instance",
                 "name"
@@ -969,7 +973,7 @@
         "AosEnvVarV7": {
             "description": "The current status of the environment variable.",
             "properties": {
-                "identity": {
+                "item": {
                     "anyOf": [
                         {
                             "$ref": "#/$defs/AosIdentity"
@@ -979,7 +983,7 @@
                         }
                     ],
                     "default": null,
-                    "description": "The identification of the update item."
+                    "description": "Update item identifier."
                 },
                 "subject": {
                     "anyOf": [
@@ -1339,13 +1343,14 @@
         "AosInstanceMonitoringDataV7": {
             "description": "AosEdge unit monitoring data for service.",
             "properties": {
-                "identity": {
+                "item": {
                     "$ref": "#/$defs/AosIdentity",
-                    "description": "The identification of the update item."
+                    "description": "Update item identifier."
                 },
                 "subject": {
                     "$ref": "#/$defs/AosIdentity",
-                    "description": "The identification of the service."
+                    "description": "Unique ID of the subject.",
+                    "title": "Subject ID"
                 },
                 "instance": {
                     "description": "The instance number of the service. Starts from 0.",
@@ -1374,7 +1379,7 @@
                 }
             },
             "required": [
-                "identity",
+                "item",
                 "subject",
                 "instance",
                 "node",
@@ -1415,12 +1420,14 @@
         "AosInstancesInfo": {
             "description": "Update item info sent to the AosEdge Cloud.",
             "properties": {
-                "identifier": {
-                    "$ref": "#/$defs/AosIdentity"
+                "item": {
+                    "$ref": "#/$defs/AosIdentity",
+                    "description": "Update item identifier."
                 },
                 "subject": {
                     "$ref": "#/$defs/AosIdentity",
-                    "description": "Subject for the update item. Layers have no subject."
+                    "description": "Unique ID of the subject.",
+                    "title": "Subject ID"
                 },
                 "version": {
                     "description": "Version in format of the SemVer.",
@@ -1436,7 +1443,7 @@
                 }
             },
             "required": [
-                "identifier",
+                "item",
                 "subject",
                 "version",
                 "instances"
@@ -1629,7 +1636,7 @@
                         }
                     ],
                     "default": null,
-                    "description": "The identification of the resource."
+                    "description": "Update item identifier."
                 },
                 "subject": {
                     "anyOf": [
@@ -1824,9 +1831,9 @@
         "AosNodeDesiredState": {
             "description": "Desired node status.",
             "properties": {
-                "identity": {
+                "item": {
                     "$ref": "#/$defs/AosIdentity",
-                    "description": "The identification of the resource."
+                    "description": "Update item identifier."
                 },
                 "state": {
                     "description": "The desired state of the node.",
@@ -1839,7 +1846,7 @@
                 }
             },
             "required": [
-                "identity",
+                "item",
                 "state"
             ],
             "title": "AosNodeDesiredState",
@@ -2266,7 +2273,7 @@
         },
         "AosRuntimeInfo": {
             "properties": {
-                "identifier": {
+                "identity": {
                     "$ref": "#/$defs/AosIdentity"
                 },
                 "runtimeType": {
@@ -2346,7 +2353,7 @@
                 }
             },
             "required": [
-                "identifier",
+                "identity",
                 "runtimeType",
                 "archInfo",
                 "osInfo",
@@ -2474,13 +2481,12 @@
                 },
                 "item": {
                     "$ref": "#/$defs/AosIdentity",
-                    "default": null,
-                    "description": "The identification of the resource (service)."
+                    "description": "Update item identifier."
                 },
                 "subject": {
                     "$ref": "#/$defs/AosIdentity",
-                    "default": null,
-                    "description": "The identification of the subject."
+                    "description": "Unique ID of the subject.",
+                    "title": "Subject ID"
                 },
                 "instance": {
                     "description": "The instance number of the service. Starts from 0.",
@@ -2512,6 +2518,8 @@
             },
             "required": [
                 "messageType",
+                "item",
+                "subject",
                 "instance",
                 "checksum",
                 "result",
@@ -2531,13 +2539,12 @@
                 },
                 "item": {
                     "$ref": "#/$defs/AosIdentity",
-                    "default": null,
-                    "description": "The identification of the resource (service)."
+                    "description": "Update item identifier."
                 },
                 "subject": {
                     "$ref": "#/$defs/AosIdentity",
-                    "default": null,
-                    "description": "The identification of the subject."
+                    "description": "Unique ID of the subject.",
+                    "title": "Subject ID"
                 },
                 "instance": {
                     "description": "The instance number of the service. Starts from 0.",
@@ -2552,6 +2559,8 @@
             },
             "required": [
                 "messageType",
+                "item",
+                "subject",
                 "instance",
                 "default"
             ],
@@ -2612,7 +2621,7 @@
         },
         "AosUnitNodeInfo": {
             "properties": {
-                "identifier": {
+                "identity": {
                     "$ref": "#/$defs/AosIdentity",
                     "description": "Identifier of the node.",
                     "examples": [
@@ -2762,7 +2771,7 @@
                 }
             },
             "required": [
-                "identifier",
+                "identity",
                 "nodeGroupSubject",
                 "maxDmips",
                 "totalRam",
@@ -2859,7 +2868,7 @@
                     "description": "The list of attached to the Unit nodes.",
                     "title": "Nodes"
                 },
-                "updateItems": {
+                "items": {
                     "anyOf": [
                         {
                             "items": {
@@ -2873,7 +2882,7 @@
                     ],
                     "default": null,
                     "description": "List of the Aos update items.",
-                    "title": "Updateitems"
+                    "title": "Items"
                 },
                 "instances": {
                     "anyOf": [
@@ -2890,7 +2899,7 @@
                     "default": null,
                     "title": "Instances"
                 },
-                "unitSubjects": {
+                "subjects": {
                     "anyOf": [
                         {
                             "items": {
@@ -2903,7 +2912,7 @@
                         }
                     ],
                     "default": null,
-                    "title": "Unitsubjects"
+                    "title": "Subjects"
                 }
             },
             "required": [
@@ -2915,9 +2924,9 @@
         "AosUpdateItemDownloadInfo": {
             "description": "Update item info sent from the AosEdge Cloud.",
             "properties": {
-                "identity": {
+                "item": {
                     "$ref": "#/$defs/AosIdentity",
-                    "description": "The identification of the resource."
+                    "description": "Update item identifier."
                 },
                 "version": {
                     "description": "Version in format of the SemVer.",
@@ -2939,7 +2948,7 @@
                 }
             },
             "required": [
-                "identity",
+                "item",
                 "version",
                 "owner",
                 "images"
@@ -3058,8 +3067,9 @@
         "AosUpdateItemInfo": {
             "description": "Update item info sent to the AosEdge Cloud.",
             "properties": {
-                "identity": {
-                    "$ref": "#/$defs/AosIdentity"
+                "item": {
+                    "$ref": "#/$defs/AosIdentity",
+                    "description": "Update item identifier."
                 },
                 "version": {
                     "description": "Version in format of the SemVer.",
@@ -3077,7 +3087,7 @@
                 }
             },
             "required": [
-                "identity",
+                "item",
                 "version",
                 "statuses"
             ],
