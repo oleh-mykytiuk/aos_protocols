@@ -2,7 +2,7 @@
 #  Copyright (c) 2018-2025 EPAM Systems Inc.
 #
 from datetime import datetime
-from typing import Annotated, Literal, Union
+from typing import Annotated, Literal, Union, Optional
 
 from pydantic import BaseModel, Discriminator, Field, UUID4
 
@@ -14,6 +14,7 @@ from cloud_common.protocols.unit.types import (
     TypeVersionMandatory,
 )
 from .common import AosIdentity, TypeItemMandatory
+from ..common import TypeAosErrorInfoOptional
 
 
 class AosBaseAlert(BaseModel):
@@ -179,7 +180,8 @@ class AosAlertInstanceQuotaV7(AosBaseAlert):
     ]
 
 
-class AosAlertDownloadProgress(AosBaseAlert):
+
+class AosAlertDownloadProgressV7(AosBaseAlert):
     """Aos Unit downloads alert information."""
 
     tag: Annotated[
@@ -192,6 +194,15 @@ class AosAlertDownloadProgress(AosBaseAlert):
         Field(
             alias='imageId',
             decription='UUID from AosUpdateItemImageInfo.id',
+        ),
+    ]
+
+    url: Annotated[
+        Optional[str],
+        Field(
+            alias='url',
+            default=None,
+            description='URL of the file.',
         ),
     ]
 
@@ -212,6 +223,28 @@ class AosAlertDownloadProgress(AosBaseAlert):
             description='Total size in bytes of the file.',
         ),
     ]
+
+    state: Annotated[
+        Literal[
+            'started',
+            'paused',
+            'interrupted',
+            'finished',
+        ],
+        Field(
+            description='State of the download.',
+        ),
+    ]
+
+    reason: Annotated[
+        Optional[str],
+        Field(
+            default=None,
+            description='Reason of the download state.',
+        ),
+    ] = None
+
+    error_info: TypeAosErrorInfoOptional
 
 
 class AosAlertUpdateItemInstanceV7(AosBaseAlert):
@@ -258,7 +291,7 @@ class AosAlertsV7(BaseModel):
                 Union[
                     AosAlertCoreV7,
                     AosAlertResourceAllocateV7,
-                    AosAlertDownloadProgress,
+                    AosAlertDownloadProgressV7,
                     AosAlertInstanceQuotaV7,
                     AosAlertUpdateItemInstanceV7,
                     AosAlertSystemErrorV7,

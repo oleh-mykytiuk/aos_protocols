@@ -198,7 +198,7 @@
             "title": "AosAlertCoreV7",
             "type": "object"
         },
-        "AosAlertDownloadProgress": {
+        "AosAlertDownloadProgressV7": {
             "description": "Aos Unit downloads alert information.",
             "properties": {
                 "timestamp": {
@@ -219,6 +219,19 @@
                     "title": "Imageid",
                     "type": "string"
                 },
+                "url": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "URL of the file.",
+                    "title": "Url"
+                },
                 "downloadedBytes": {
                     "description": "Downloaded bytes at the specified moment.",
                     "minimum": 0,
@@ -230,6 +243,35 @@
                     "minimum": 0,
                     "title": "Totalbytes",
                     "type": "integer"
+                },
+                "state": {
+                    "description": "State of the download.",
+                    "enum": [
+                        "started",
+                        "paused",
+                        "interrupted",
+                        "finished"
+                    ],
+                    "title": "State",
+                    "type": "string"
+                },
+                "reason": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Reason of the download state.",
+                    "title": "Reason"
+                },
+                "errorInfo": {
+                    "$ref": "#/$defs/AosErrorInfo",
+                    "default": null,
+                    "description": "Error information. Absense means no error."
                 }
             },
             "required": [
@@ -237,9 +279,10 @@
                 "tag",
                 "imageId",
                 "downloadedBytes",
-                "totalBytes"
+                "totalBytes",
+                "state"
             ],
-            "title": "AosAlertDownloadProgress",
+            "title": "AosAlertDownloadProgressV7",
             "type": "object"
         },
         "AosAlertInstanceQuotaV7": {
@@ -502,7 +545,7 @@
                             "mapping": {
                                 "coreAlert": "#/$defs/AosAlertCoreV7",
                                 "deviceAllocateAlert": "#/$defs/AosAlertResourceAllocateV7",
-                                "downloadProgressAlert": "#/$defs/AosAlertDownloadProgress",
+                                "downloadProgressAlert": "#/$defs/AosAlertDownloadProgressV7",
                                 "instanceQuotaAlert": "#/$defs/AosAlertInstanceQuotaV7",
                                 "systemAlert": "#/$defs/AosAlertSystemErrorV7",
                                 "systemQuotaAlert": "#/$defs/AosAlertSystemQuotaV7",
@@ -518,7 +561,7 @@
                                 "$ref": "#/$defs/AosAlertResourceAllocateV7"
                             },
                             {
-                                "$ref": "#/$defs/AosAlertDownloadProgress"
+                                "$ref": "#/$defs/AosAlertDownloadProgressV7"
                             },
                             {
                                 "$ref": "#/$defs/AosAlertInstanceQuotaV7"
