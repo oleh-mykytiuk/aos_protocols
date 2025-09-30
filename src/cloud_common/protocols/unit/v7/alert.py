@@ -13,7 +13,7 @@ from cloud_common.protocols.unit.types import (
     TypeDeviceMandatory,
     TypeVersionMandatory,
 )
-from .common import AosIdentity
+from .common import AosIdentity, TypeItemMandatory
 
 
 class AosBaseAlert(BaseModel):
@@ -73,13 +73,7 @@ class AosAlertResourceAllocateV7(AosBaseAlert):
         Field(description='Type of the alert.'),
     ]
 
-    identity: Annotated[
-        AosIdentity,
-        Field(
-            alias='identity',
-            description='Update item unique identifier.',
-        ),
-    ]
+    item: TypeItemMandatory
 
     subject: Annotated[
         AosIdentity,
@@ -150,13 +144,7 @@ class AosAlertInstanceQuotaV7(AosBaseAlert):
         Field(description='Type of the alert.'),
     ]
 
-    identity: Annotated[
-        AosIdentity,
-        Field(
-            alias='identity',
-            description='Identity of the item where conflict occurred.',
-        ),
-    ]
+    item: TypeItemMandatory
 
     subject: Annotated[
         AosIdentity,
@@ -234,13 +222,7 @@ class AosAlertUpdateItemInstanceV7(AosBaseAlert):
         Field(description='Type of the alert.'),
     ]
 
-    identity: Annotated[
-        AosIdentity,
-        Field(
-            alias='identity',
-            description='Update item identity.',
-        ),
-    ]
+    item: TypeItemMandatory
 
     subject: Annotated[
         AosIdentity,

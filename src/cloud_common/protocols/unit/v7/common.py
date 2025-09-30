@@ -188,6 +188,15 @@ TypeAosIdentityMandatory = Annotated[
 ]
 
 
+TypeItemMandatory = Annotated[
+    AosIdentity,
+    Field(
+        alias='item',
+        description='Update item identifier.',
+    ),
+]
+
+
 TypeAosIdentityOptional = Annotated[
     Optional[AosIdentity],
     Field(
@@ -196,6 +205,27 @@ TypeAosIdentityOptional = Annotated[
         description='The identification of the resource.',
     ),
 ]
+
+
+TypeItemOptional = Annotated[
+    Optional[AosIdentity],
+    Field(
+        default=None,
+        alias='item',
+        description='Update item identifier.',
+    ),
+]
+
+
+TypeSubjectMandatory = Annotated[
+    AosIdentity,
+    Field(
+        alias='subject',
+        title='Subject ID',
+        description='Unique ID of the subject.',
+    ),
+]
+
 
 
 __all__ = (
@@ -208,4 +238,7 @@ __all__ = (
     'AosUpdateItemImageInfo',
     'TypeAosIdentityMandatory',
     'TypeAosIdentityOptional',
+    'TypeItemMandatory',
+    'TypeItemOptional',
+    'TypeSubjectMandatory',
 )

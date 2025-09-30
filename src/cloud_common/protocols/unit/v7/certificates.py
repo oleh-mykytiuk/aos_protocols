@@ -229,7 +229,9 @@ class AosInstallCertDataV7(AosCertificateIdentificationV7):
             description='Serial of the Certificate.',
         ),
     ]
+
     status: TypeStatusForNonExecutables
+
     description: Annotated[
         str,
         Field(

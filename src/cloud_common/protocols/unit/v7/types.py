@@ -102,25 +102,6 @@ TypeLayerIdMandatory = Annotated[
     ),
 ]
 
-TypeServiceIdMandatory = Annotated[
-    str,
-    Field(
-        alias='id',
-        description='Unique ID of the service',
-    ),
-]
-
-
-TypeServiceServiceIdOptional = Annotated[
-    str,
-    Field(
-        default=None,
-        alias='serviceId',
-        title='Service ID',
-        description='Unique ID of the service.',
-    ),
-]
-
 TypeSubjectIdMandatory = Annotated[
     str,
     Field(
