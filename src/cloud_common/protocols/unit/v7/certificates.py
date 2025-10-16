@@ -11,6 +11,7 @@ from cloud_common.protocols.unit.types import (
     TypeStatusForNonExecutables,
 )
 from .common import AosIdentity
+from ..common import TypeAosErrorInfoOptional
 
 
 class AosCertificateIdentificationV7(BaseModel):
@@ -230,10 +231,8 @@ class AosInstallCertDataV7(AosCertificateIdentificationV7):
         ),
     ]
 
-    status: TypeStatusForNonExecutables
-
     description: Annotated[
-        str,
+        Optional[str],
         Field(
             default=None,
             alias='description',
@@ -241,6 +240,8 @@ class AosInstallCertDataV7(AosCertificateIdentificationV7):
             description='Description of the Certificate Installation',
         ),
     ]
+
+    error_info: TypeAosErrorInfoOptional
 
 
 class AosInstallUnitCertificatesConfirmationV7(BaseModel):

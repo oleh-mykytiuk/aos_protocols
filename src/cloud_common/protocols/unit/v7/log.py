@@ -129,7 +129,7 @@ class AosRequestLogV7(BaseModel):
     log_id: TypeAosLogId
 
     log_type: Annotated[
-        Literal['systemLog', 'serviceLog', 'crashLog'],
+        Literal['systemLog', 'instanceLog', 'crashLog'],
         Field(
             alias='logType',
             description='The type of requested logs.',

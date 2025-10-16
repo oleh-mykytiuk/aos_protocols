@@ -104,14 +104,6 @@ class AosMonitoringData(BaseModel):
 class AosNodeState(BaseModel):
     """AosEdge unit monitoring information."""
 
-    node: Annotated[
-        AosIdentity,
-        Field(
-            alias='node',
-            description='The identification of the node.',
-        ),
-    ]
-
     timestamp: Annotated[
         datetime,
         Field(
@@ -193,6 +185,7 @@ class AosNodeMonitoringDataV7(BaseModel):
 
 
 class AosMonitoringV7(BaseModel):
+    """AosEdge unit monitoring message."""
 
     message_type: Annotated[
         Literal['monitoringData'],

@@ -58,7 +58,7 @@ class AosAlertCoreV7(AosBaseAlert):
         AosIdentity,
         Field(
             alias='node',
-            description='Node ID of the alert.',
+            description='Node identification of the alert.',
         ),
     ]
 

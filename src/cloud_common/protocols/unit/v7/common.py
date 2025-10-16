@@ -32,6 +32,7 @@ class AosIdentity(BaseModel):
             'subject',
             'oem',
             'sp',
+            'node',
             'runtime',
         ]],
         Field(
