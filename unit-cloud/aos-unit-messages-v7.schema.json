@@ -171,7 +171,7 @@
                 },
                 "node": {
                     "$ref": "#/$defs/AosIdentity",
-                    "description": "Node ID of the alert."
+                    "description": "Node identification of the alert."
                 },
                 "coreComponent": {
                     "description": "Error information retrieved for the alert.",
@@ -1174,6 +1174,7 @@
                                 "subject",
                                 "oem",
                                 "sp",
+                                "node",
                                 "runtime"
                             ],
                             "type": "string"
@@ -1270,29 +1271,29 @@
                     "title": "Serial of the Certificate",
                     "type": "string"
                 },
-                "status": {
-                    "description": "current status of the item",
-                    "enum": [
-                        "installed",
-                        "downloading",
-                        "failed",
-                        "error"
-                    ],
-                    "title": "Status",
-                    "type": "string"
-                },
                 "description": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
                     "default": null,
                     "description": "Description of the Certificate Installation",
-                    "title": "Description",
-                    "type": "string"
+                    "title": "Description"
+                },
+                "errorInfo": {
+                    "$ref": "#/$defs/AosErrorInfo",
+                    "default": null,
+                    "description": "Error information. Absense means no error."
                 }
             },
             "required": [
                 "type",
                 "node",
-                "serial",
-                "status"
+                "serial"
             ],
             "title": "AosInstallCertDataV7",
             "type": "object"
@@ -1753,6 +1754,7 @@
             "type": "object"
         },
         "AosMonitoringV7": {
+            "description": "AosEdge unit monitoring message.",
             "properties": {
                 "messageType": {
                     "const": "monitoringData",
@@ -1986,10 +1988,6 @@
         "AosNodeState": {
             "description": "AosEdge unit monitoring information.",
             "properties": {
-                "node": {
-                    "$ref": "#/$defs/AosIdentity",
-                    "description": "The identification of the node."
-                },
                 "timestamp": {
                     "description": "Timestamp when the node state change was recorded in ISO8601 format",
                     "format": "date-time",
@@ -2014,7 +2012,6 @@
                 }
             },
             "required": [
-                "node",
                 "timestamp",
                 "provisioned",
                 "state"
@@ -2071,7 +2068,7 @@
             "type": "object"
         },
         "AosOverrideEnvVarsRequestV7": {
-            "description": "AosUnit protocol: 'overrideEnvVars' message.\n\nUnit reports EnvVar changes using this message.",
+            "description": "AosUnit protocol: 'overrideEnvVars' message.\n\nCloud requests EnvVar changes using this message.",
             "properties": {
                 "messageType": {
                     "const": "overrideEnvVars",
@@ -2262,7 +2259,7 @@
                     "description": "The type of requested logs.",
                     "enum": [
                         "systemLog",
-                        "serviceLog",
+                        "instanceLog",
                         "crashLog"
                     ],
                     "title": "Logtype",

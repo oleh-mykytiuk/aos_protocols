@@ -125,7 +125,7 @@ class AosOverrideEnvVarsRequestV7(BaseModel):
     """
     AosUnit protocol: 'overrideEnvVars' message.
 
-    Unit reports EnvVar changes using this message.
+    Cloud requests EnvVar changes using this message.
     """
 
     message_type: Annotated[
