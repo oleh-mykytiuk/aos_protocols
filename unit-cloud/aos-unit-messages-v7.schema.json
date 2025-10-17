@@ -1271,19 +1271,6 @@
                     "title": "Serial of the Certificate",
                     "type": "string"
                 },
-                "description": {
-                    "anyOf": [
-                        {
-                            "type": "string"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "default": null,
-                    "description": "Description of the Certificate Installation",
-                    "title": "Description"
-                },
                 "errorInfo": {
                     "$ref": "#/$defs/AosErrorInfo",
                     "default": null,

@@ -231,16 +231,6 @@ class AosInstallCertDataV7(AosCertificateIdentificationV7):
         ),
     ]
 
-    description: Annotated[
-        Optional[str],
-        Field(
-            default=None,
-            alias='description',
-            title='Description',
-            description='Description of the Certificate Installation',
-        ),
-    ]
-
     error_info: TypeAosErrorInfoOptional
 
 
