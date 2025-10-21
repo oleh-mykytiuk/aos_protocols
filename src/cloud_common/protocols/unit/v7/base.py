@@ -10,6 +10,7 @@ from .envars import (
     AosOverrideEnvVarsRequestV7,
     AosOverrideEnvVarsStatusesV7,
 )
+from .service_messages import AosAckV7, AosNackV7
 from .state import (
     AosNewStateV7,
     AosStateAcceptanceV7,
@@ -48,6 +49,8 @@ class AosUnitMessageV7(BaseModel):
     ]
     data: Annotated[  # noqa: WPS110
         Union[
+            AosAckV7,
+            AosNackV7,
             AosAlertsV7,
             AosMonitoringV7,
             AosUnitStatusV7,
