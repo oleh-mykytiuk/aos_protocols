@@ -308,17 +308,11 @@ class AosInstanceInfo(BaseModel):
         ),
     ]
 
-    arch_info: Annotated[
-        AosArchInfo,
+    image_id: Annotated[
+        UUID4,
         Field(
-            alias='archInfo',
-        ),
-    ]
-
-    os_info: Annotated[
-        AosOsInfo,
-        Field(
-            alias='osInfo',
+            alias='imageId',
+            decription='UUID from AosUpdateItemImageInfo.id',
         ),
     ]
 
