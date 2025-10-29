@@ -1333,11 +1333,11 @@
                 "runtime": {
                     "$ref": "#/$defs/AosIdentity"
                 },
-                "archInfo": {
-                    "$ref": "#/$defs/AosArchInfo"
-                },
-                "osInfo": {
-                    "$ref": "#/$defs/AosOsInfo"
+                "imageId": {
+                    "decription": "UUID from AosUpdateItemImageInfo.id",
+                    "format": "uuid4",
+                    "title": "Imageid",
+                    "type": "string"
                 },
                 "instance": {
                     "description": "The instance number of the service. Starts from 0.",
@@ -1378,8 +1378,7 @@
             "required": [
                 "node",
                 "runtime",
-                "archInfo",
-                "osInfo",
+                "imageId",
                 "instance",
                 "state"
             ],
