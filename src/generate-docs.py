@@ -2,8 +2,10 @@ import json
 import os.path
 import subprocess
 import uuid
+from typing import Dict, Any
 
 import click
+from pydantic import BaseModel
 
 from cloud_common.protocols.unit import base
 from cloud_common.protocols.unit.v7.base import AosUnitMessageV7
@@ -11,6 +13,7 @@ from cloud_common.protocols.unit.v7.common import AosIdentity
 from cloud_common.schemas.service_config.aos_config import AosConfigSchema
 from cloud_common.schemas.unit_update.aos_update import AosUpdateSchema
 from cloud_common.protocols.unit.unit_config import UnitConfig
+from cloud_common.schemas.v2.cloud_income import AosUploadMetaConfig
 
 DOCS_BASE_DIR = os.path.abspath(os.path.join(
     os.path.dirname(__file__),
@@ -18,15 +21,23 @@ DOCS_BASE_DIR = os.path.abspath(os.path.join(
     'unit-cloud',
 ))
 
-def generate_unitconfig_schema() -> str:
-    schema = UnitConfig.model_json_schema()
-    schema_filename = os.path.join(DOCS_BASE_DIR, 'aos-unit-config.schema.json')
+
+def generate_schema_file(schema: Dict[str, Any], filename: str) -> str:
+    schema_filename = os.path.join(DOCS_BASE_DIR, filename)
     with open(schema_filename, 'wt') as file_handler:
         file_handler.write(json.dumps(schema, indent=4))
         file_handler.write('\n')
     print(f'Schema generated at {schema_filename}')
 
     return schema_filename
+
+
+def generate_cloud_income_schema() -> str:
+    return generate_schema_file(AosUploadMetaConfig.model_json_schema(), 'aos-cloud-income.schema.json')
+
+
+def generate_unitconfig_schema() -> str:
+    return generate_schema_file(UnitConfig.model_json_schema(), 'aos-unit-config.schema.json')
 
 
 def generate_schema() -> str:
@@ -133,9 +144,10 @@ def both():
 @cli.command()
 def schemas():
     schema_filenames = [
-        generate_service_schema(),
-        generate_update_schema(),
-        generate_unitconfig_schema(),
+        # generate_service_schema(),
+        # generate_update_schema(),
+        # generate_unitconfig_schema(),
+        generate_cloud_income_schema(),
     ]
 
     for schema_filename in schema_filenames:
