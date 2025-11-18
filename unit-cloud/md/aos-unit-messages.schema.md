@@ -4601,7 +4601,7 @@ Must be one of:
 | **Type**   | `string` |
 | **Format** | `base64` |
 
-**Description:** SHA3-256 digest of the target
+**Description:** SHA3-256 digest of the encrypted target
 
 ###### <a name="data_oneOf_i3_components_items_size"></a>Property `AosUnitMessage > data > oneOf > AosDesiredStatus > components > AosDesiredComponentInfo > size`
 
@@ -4933,7 +4933,7 @@ Must be one of:
 | **Type**   | `string` |
 | **Format** | `base64` |
 
-**Description:** SHA3-256 digest of the target
+**Description:** SHA3-256 digest of the encrypted target
 
 ###### <a name="data_oneOf_i3_layers_items_size"></a>Property `AosUnitMessage > data > oneOf > AosDesiredStatus > layers > AosDesiredLayerInfo > size`
 
@@ -5082,7 +5082,7 @@ Must be one of:
 | **Type**   | `string` |
 | **Format** | `base64` |
 
-**Description:** SHA3-256 digest of the target
+**Description:** SHA3-256 digest of the encrypted target
 
 ###### <a name="data_oneOf_i3_services_items_size"></a>Property `AosUnitMessage > data > oneOf > AosDesiredStatus > services > AosDesiredServiceInfo > size`
 
@@ -8005,4 +8005,4 @@ Specific value: `"deprovisioningResponse"`
 **Description:** Text of the error description.
 
 ----------------------------------------------------------------------------------------------------------------------------
-Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2025-07-23 at 12:31:42 +0300
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2025-11-18 at 18:43:12 +0200

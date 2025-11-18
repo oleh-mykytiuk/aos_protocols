@@ -155,7 +155,7 @@ class AosArchInfo(BaseModel):
 
 class AosUpdateItemImageInfo(BaseModel):
 
-    id: Annotated[
+    digest: Annotated[
         UUID4,
         Field(
             alias='id',
@@ -176,6 +176,25 @@ class AosUpdateItemImageInfo(BaseModel):
         Field(
             alias='osInfo',
             description='The OS of the update item image.',
+        ),
+    ]
+
+
+class AosSubject(BaseModel):
+
+    identity: Annotated[
+        AosIdentity,
+        Field(
+            alias='identity',
+            description='The identification of the subject.',
+        ),
+    ]
+
+    type: Annotated[
+        Literal['group', 'user'],
+        Field(
+            alias='type',
+            description='The type of the subject.',
         ),
     ]
 

@@ -228,10 +228,9 @@
                     "title": "Tag",
                     "type": "string"
                 },
-                "imageId": {
-                    "decription": "UUID from AosUpdateItemImageInfo.id",
-                    "format": "uuid4",
-                    "title": "Imageid",
+                "digest": {
+                    "decription": "Digest from AosUpdateItemBlobInfo.digest",
+                    "title": "Digest",
                     "type": "string"
                 },
                 "url": {
@@ -292,7 +291,7 @@
             "required": [
                 "timestamp",
                 "tag",
-                "imageId",
+                "digest",
                 "downloadedBytes",
                 "totalBytes",
                 "state"
@@ -909,13 +908,31 @@
                     "description": "Desired unit config dictionary."
                 },
                 "items": {
-                    "default": null,
+                    "default": [],
                     "description": "List of the desired update items. If absent or null - do nothing.",
                     "items": {
-                        "$ref": "#/$defs/AosUpdateItemDownloadInfo"
+                        "$ref": "#/$defs/cloud_common__protocols__unit__v7__desired_status__AosUpdateItemInfo"
                     },
+                    "minItems": 0,
                     "title": "Items",
                     "type": "array"
+                },
+                "blobs": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "$ref": "#/$defs/AosUpdateItemBlobInfo"
+                            },
+                            "minItems": 1,
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "List of the encrypted BLOBs to download.",
+                    "title": "Blobs"
                 },
                 "instances": {
                     "default": null,
@@ -934,6 +951,15 @@
                     },
                     "maxItems": 32,
                     "title": "Certificates",
+                    "type": "array"
+                },
+                "subjects": {
+                    "default": null,
+                    "description": "The list of the used subjects",
+                    "items": {
+                        "$ref": "#/$defs/AosSubject"
+                    },
+                    "title": "Subjects",
                     "type": "array"
                 },
                 "certificateChains": {
@@ -2629,6 +2655,29 @@
             "title": "AosStateRequestV7",
             "type": "object"
         },
+        "AosSubject": {
+            "properties": {
+                "identity": {
+                    "$ref": "#/$defs/AosIdentity",
+                    "description": "The identification of the subject."
+                },
+                "type": {
+                    "description": "The type of the subject.",
+                    "enum": [
+                        "group",
+                        "user"
+                    ],
+                    "title": "Type",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "identity",
+                "type"
+            ],
+            "title": "AosSubject",
+            "type": "object"
+        },
         "AosUnitConfigStatus": {
             "properties": {
                 "version": {
@@ -2940,7 +2989,7 @@
                     "anyOf": [
                         {
                             "items": {
-                                "$ref": "#/$defs/AosUpdateItemInfo"
+                                "$ref": "#/$defs/cloud_common__protocols__unit__v7__unit_status__AosUpdateItemInfo"
                             },
                             "type": "array"
                         },
@@ -2989,46 +3038,15 @@
             "title": "AosUnitStatusV7",
             "type": "object"
         },
-        "AosUpdateItemDownloadInfo": {
-            "description": "Update item info sent from the AosEdge Cloud.",
+        "AosUpdateItemBlobInfo": {
             "properties": {
-                "item": {
-                    "$ref": "#/$defs/AosIdentity",
-                    "description": "Update item identifier."
-                },
-                "version": {
-                    "description": "Version in format of the SemVer.",
-                    "title": "Version",
+                "digest": {
+                    "description": "The identification of the update item BLOB. Format same as OCI spec format",
+                    "examples": [
+                        "sha256:3c3a4604a545cdc127456d94e421cd355bca5b528f4a9c1905b15da2eb4a4c6b"
+                    ],
+                    "title": "Digest",
                     "type": "string"
-                },
-                "owner": {
-                    "$ref": "#/$defs/AosIdentity",
-                    "description": "The ID of the owner of the update item (OEM or SP identity)."
-                },
-                "images": {
-                    "description": "Image infos of the update items.",
-                    "items": {
-                        "$ref": "#/$defs/AosUpdateItemImageDownloadInfo"
-                    },
-                    "minItems": 1,
-                    "title": "Images",
-                    "type": "array"
-                }
-            },
-            "required": [
-                "item",
-                "version",
-                "owner",
-                "images"
-            ],
-            "title": "AosUpdateItemDownloadInfo",
-            "type": "object"
-        },
-        "AosUpdateItemImageDownloadInfo": {
-            "properties": {
-                "image": {
-                    "$ref": "#/$defs/AosUpdateItemImageInfo",
-                    "description": "The identification of the image."
                 },
                 "urls": {
                     "description": "the list of urls pointer to the same target",
@@ -3040,7 +3058,7 @@
                     "type": "array"
                 },
                 "sha256": {
-                    "description": "SHA3-256 digest of the target",
+                    "description": "SHA3-256 digest of the encrypted target",
                     "format": "base64",
                     "title": "Sha256",
                     "type": "string"
@@ -3060,39 +3078,14 @@
                 }
             },
             "required": [
-                "image",
+                "digest",
                 "urls",
                 "sha256",
                 "size",
                 "decryptInfo",
                 "signInfo"
             ],
-            "title": "AosUpdateItemImageDownloadInfo",
-            "type": "object"
-        },
-        "AosUpdateItemImageInfo": {
-            "properties": {
-                "id": {
-                    "description": "The identification of the update item image.",
-                    "format": "uuid4",
-                    "title": "Id",
-                    "type": "string"
-                },
-                "archInfo": {
-                    "$ref": "#/$defs/AosArchInfo",
-                    "description": "The architecture of the update item image."
-                },
-                "osInfo": {
-                    "$ref": "#/$defs/AosOsInfo",
-                    "description": "The OS of the update item image."
-                }
-            },
-            "required": [
-                "id",
-                "archInfo",
-                "osInfo"
-            ],
-            "title": "AosUpdateItemImageInfo",
+            "title": "AosUpdateItemBlobInfo",
             "type": "object"
         },
         "AosUpdateItemImageStatus": {
@@ -3130,36 +3123,6 @@
                 "state"
             ],
             "title": "AosUpdateItemImageStatus",
-            "type": "object"
-        },
-        "AosUpdateItemInfo": {
-            "description": "Update item info sent to the AosEdge Cloud.",
-            "properties": {
-                "item": {
-                    "$ref": "#/$defs/AosIdentity",
-                    "description": "Update item identifier."
-                },
-                "version": {
-                    "description": "Version in format of the SemVer.",
-                    "title": "Version",
-                    "type": "string"
-                },
-                "statuses": {
-                    "description": "The list of image statuses.",
-                    "items": {
-                        "$ref": "#/$defs/AosUpdateItemImageStatus"
-                    },
-                    "minItems": 1,
-                    "title": "Statuses",
-                    "type": "array"
-                }
-            },
-            "required": [
-                "item",
-                "version",
-                "statuses"
-            ],
-            "title": "AosUpdateItemInfo",
             "type": "object"
         },
         "AosUpdateStateV7": {
@@ -3390,6 +3353,68 @@
                 "nodes"
             ],
             "title": "UnitConfigV7",
+            "type": "object"
+        },
+        "cloud_common__protocols__unit__v7__desired_status__AosUpdateItemInfo": {
+            "description": "Update item info sent from the AosEdge Cloud.",
+            "properties": {
+                "item": {
+                    "$ref": "#/$defs/AosIdentity",
+                    "description": "Update item identifier."
+                },
+                "version": {
+                    "description": "Version in format of the SemVer.",
+                    "title": "Version",
+                    "type": "string"
+                },
+                "owner": {
+                    "$ref": "#/$defs/AosIdentity",
+                    "description": "The ID of the owner of the update item (OEM or SP identity)."
+                },
+                "indexDigest": {
+                    "description": "Digest of the index.json file for the update item.",
+                    "minLength": 1,
+                    "title": "Indexdigest",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "item",
+                "version",
+                "owner",
+                "indexDigest"
+            ],
+            "title": "AosUpdateItemInfo",
+            "type": "object"
+        },
+        "cloud_common__protocols__unit__v7__unit_status__AosUpdateItemInfo": {
+            "description": "Update item info sent to the AosEdge Cloud.",
+            "properties": {
+                "item": {
+                    "$ref": "#/$defs/AosIdentity",
+                    "description": "Update item identifier."
+                },
+                "version": {
+                    "description": "Version in format of the SemVer.",
+                    "title": "Version",
+                    "type": "string"
+                },
+                "statuses": {
+                    "description": "The list of image statuses.",
+                    "items": {
+                        "$ref": "#/$defs/AosUpdateItemImageStatus"
+                    },
+                    "minItems": 1,
+                    "title": "Statuses",
+                    "type": "array"
+                }
+            },
+            "required": [
+                "item",
+                "version",
+                "statuses"
+            ],
+            "title": "AosUpdateItemInfo",
             "type": "object"
         }
     },

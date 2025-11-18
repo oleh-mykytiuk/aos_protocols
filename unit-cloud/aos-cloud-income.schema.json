@@ -798,9 +798,17 @@
                     "description": "Identity of the update item."
                 },
                 "sourceFolder": {
-                    "description": "Source folder for the item.",
-                    "title": "Sourcefolder",
-                    "type": "string"
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Source folder for the item. If absent, codename from identity will be used.",
+                    "title": "Sourcefolder"
                 },
                 "images": {
                     "description": "List of images for different architectures.",
@@ -842,7 +850,6 @@
             },
             "required": [
                 "identity",
-                "sourceFolder",
                 "images"
             ],
             "title": "AosUpdateItem",

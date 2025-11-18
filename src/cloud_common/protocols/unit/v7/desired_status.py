@@ -15,7 +15,8 @@ from cloud_common.protocols.unit.types import (
     TypeVersionMandatory,
 )
 
-from .common import AosIdentity, TypeAosIdentityMandatory, AosUpdateItemImageInfo, TypeItemMandatory
+from .common import AosIdentity, TypeAosIdentityMandatory, AosUpdateItemImageInfo, TypeItemMandatory, AosArchInfo, \
+    AosOsInfo, AosSubject
 from .types import TypeNodeDesiredState
 from .unit_config import UnitConfigV7
 
@@ -197,13 +198,14 @@ class AosTimetableItem(BaseModel):
     ]
 
 
-class AosUpdateItemImageDownloadInfo(BaseModel):
+class AosUpdateItemBlobInfo(BaseModel):
 
-    image: Annotated[
-        AosUpdateItemImageInfo,
+    digest: Annotated[
+        str,
         Field(
-            alias='image',
-            description='The identification of the image.',
+            alias='digest',
+            description='The identification of the update item BLOB. Format same as OCI spec format',
+            examples=['sha256:3c3a4604a545cdc127456d94e421cd355bca5b528f4a9c1905b15da2eb4a4c6b']
         ),
     ]
 
@@ -214,7 +216,7 @@ class AosUpdateItemImageDownloadInfo(BaseModel):
     sign_info: TypeAosSignInfo
 
 
-class AosUpdateItemDownloadInfo(BaseModel):
+class AosUpdateItemInfo(BaseModel):
     """Update item info sent from the AosEdge Cloud."""
 
     item: TypeItemMandatory
@@ -228,12 +230,12 @@ class AosUpdateItemDownloadInfo(BaseModel):
         ),
     ]
 
-    images: Annotated[
-        List[AosUpdateItemImageDownloadInfo],
+    index_digest: Annotated[
+        str,
         Field(
-            alias='images',
+            alias='indexDigest',
             min_length=1,
-            description='Image infos of the update items.',
+            description='Digest of the index.json file for the update item.',
         ),
     ]
 
@@ -314,13 +316,24 @@ class AosDesiredStatusV7(BaseModel):
     ]
 
     items: Annotated[
-        list[AosUpdateItemDownloadInfo],
+        list[AosUpdateItemInfo],
         Field(
-            default=None,
+            default=[],
             alias='items',
             description='List of the desired update items. If absent or null - do nothing.',
+            min_length=0,
         ),
     ]
+
+    blobs: Annotated[
+        Optional[List[AosUpdateItemBlobInfo]],
+        Field(
+            default=None,
+            alias='blobs',
+            min_length=1,
+            description='List of the encrypted BLOBs to download.',
+        ),
+    ] = None
 
     instances: Annotated[
         list[AosDesiredInstanceInfo],
@@ -337,6 +350,14 @@ class AosDesiredStatusV7(BaseModel):
             description='The list of the used certificates',
             max_length=32,
         ),
+    ]
+
+    subjects: Annotated[
+        list[AosSubject],
+        Field(
+            default=None,
+            description='The list of the used subjects',
+        )
     ]
 
     certificate_chains: Annotated[
