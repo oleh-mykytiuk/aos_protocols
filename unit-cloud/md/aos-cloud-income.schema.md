@@ -42,6 +42,8 @@
         - [Property `AosUploadMetaConfig > items > AosUpdateItem > identity > urn > anyOf > item 0`](#items_items_identity_urn_anyOf_i0)
         - [Property `AosUploadMetaConfig > items > AosUpdateItem > identity > urn > anyOf > item 1`](#items_items_identity_urn_anyOf_i1)
     - [Property `AosUploadMetaConfig > items > AosUpdateItem > sourceFolder`](#items_items_sourceFolder)
+      - [Property `AosUploadMetaConfig > items > AosUpdateItem > sourceFolder > anyOf > item 0`](#items_items_sourceFolder_anyOf_i0)
+      - [Property `AosUploadMetaConfig > items > AosUpdateItem > sourceFolder > anyOf > item 1`](#items_items_sourceFolder_anyOf_i1)
     - [Property `AosUploadMetaConfig > items > AosUpdateItem > images`](#items_items_images)
       - [AosUploadMetaConfig > items > AosUpdateItem > images > AosImage](#items_items_images_items)
         - [Property `AosUploadMetaConfig > items > AosUpdateItem > images > AosImage > sourceFolder`](#items_items_images_items_sourceFolder)
@@ -468,7 +470,7 @@ Specific value: `2`
 | Property                                       | Pattern | Type        | Deprecated | Definition             | Title/Description                 |
 | ---------------------------------------------- | ------- | ----------- | ---------- | ---------------------- | --------------------------------- |
 | + [identity](#items_items_identity )           | No      | object      | No         | In #/$defs/AosIdentity | AosIdentity                       |
-| + [sourceFolder](#items_items_sourceFolder )   | No      | string      | No         | -                      | Sourcefolder                      |
+| - [sourceFolder](#items_items_sourceFolder )   | No      | Combination | No         | -                      | Sourcefolder                      |
 | + [images](#items_items_images )               | No      | array       | No         | -                      | Images                            |
 | - [configuration](#items_items_configuration ) | No      | Combination | No         | -                      | Configuration of the update item. |
 | - [dependencies](#items_items_dependencies )   | No      | Combination | No         | -                      | Dependencies                      |
@@ -683,11 +685,30 @@ Must be one of:
 
 **Title:** Sourcefolder
 
+|                           |                                                                             |
+| ------------------------- | --------------------------------------------------------------------------- |
+| **Type**                  | `combining`                                                                 |
+| **Additional properties** | ![Any type: allowed](https://img.shields.io/badge/Any%20type-allowed-green) |
+| **Default**               | `null`                                                                      |
+
+**Description:** Source folder for the item. If absent, codename from identity will be used.
+
+| Any of(Option)                               |
+| -------------------------------------------- |
+| [item 0](#items_items_sourceFolder_anyOf_i0) |
+| [item 1](#items_items_sourceFolder_anyOf_i1) |
+
+##### <a name="items_items_sourceFolder_anyOf_i0"></a>Property `AosUploadMetaConfig > items > AosUpdateItem > sourceFolder > anyOf > item 0`
+
 |          |          |
 | -------- | -------- |
 | **Type** | `string` |
 
-**Description:** Source folder for the item.
+##### <a name="items_items_sourceFolder_anyOf_i1"></a>Property `AosUploadMetaConfig > items > AosUpdateItem > sourceFolder > anyOf > item 1`
+
+|          |        |
+| -------- | ------ |
+| **Type** | `null` |
 
 #### <a name="items_items_images"></a>Property `AosUploadMetaConfig > items > AosUpdateItem > images`
 
@@ -2746,4 +2767,4 @@ Must be one of:
 | **Type** | `null` |
 
 ----------------------------------------------------------------------------------------------------------------------------
-Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2025-11-12 at 15:27:58 +0200
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2025-11-18 at 17:33:55 +0200

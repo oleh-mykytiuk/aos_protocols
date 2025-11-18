@@ -189,11 +189,11 @@ class AosAlertDownloadProgressV7(AosBaseAlert):
         Field(description='Type of the alert.'),
     ]
 
-    image_id: Annotated[
-        UUID4,
+    digest: Annotated[
+        str,
         Field(
-            alias='imageId',
-            decription='UUID from AosUpdateItemImageInfo.id',
+            alias='digest',
+            decription='Digest from AosUpdateItemBlobInfo.digest',
         ),
     ]
 

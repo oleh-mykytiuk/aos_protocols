@@ -250,7 +250,7 @@ TypeAosSha256 = Annotated[
     Base64Bytes,
     Field(
         alias='sha256',
-        description='SHA3-256 digest of the target',
+        description='SHA3-256 digest of the encrypted target',
     ),
 ]
 
@@ -371,3 +371,4 @@ TypeLayerDigest = Annotated[
         description='Digest of the layer.',
     ),
 ]
+
