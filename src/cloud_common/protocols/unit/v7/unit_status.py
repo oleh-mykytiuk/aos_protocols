@@ -308,13 +308,7 @@ class AosInstanceInfo(BaseModel):
         ),
     ]
 
-    image_id: Annotated[
-        UUID4,
-        Field(
-            alias='imageId',
-            decription='UUID from AosUpdateItemImageInfo.id',
-        ),
-    ]
+    item: TypeItemMandatory
 
     instance: TypeInstanceNoMandatory
     state_checksum: TypeStateChecksumOptional

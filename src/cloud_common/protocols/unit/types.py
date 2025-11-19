@@ -371,4 +371,3 @@ TypeLayerDigest = Annotated[
         description='Digest of the layer.',
     ),
 ]
-

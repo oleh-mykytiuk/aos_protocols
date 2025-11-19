@@ -28,7 +28,7 @@ from .provisioning import (
     AosDeProvisioningResponseV7,
 )
 from .unit_status import AosUnitStatusV7
-from .desired_status import AosDesiredStatusV7
+from .desired_status import AosDesiredStatusV7, AosRequestBlobUrlsV7, AosBlobUrlsV7
 from .header import AosUnitHeaderV7
 from .certificates import (
     AosRenewCertsNotificationV7,
@@ -55,6 +55,8 @@ class AosUnitMessageV7(BaseModel):
             AosMonitoringV7,
             AosUnitStatusV7,
             AosDesiredStatusV7,
+            AosRequestBlobUrlsV7,
+            AosBlobUrlsV7,
             AosNewStateV7,
             AosStateRequestV7,
             AosStateAcceptanceV7,
