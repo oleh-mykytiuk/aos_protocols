@@ -3088,43 +3088,6 @@
             "title": "AosUpdateItemBlobInfo",
             "type": "object"
         },
-        "AosUpdateItemImageStatus": {
-            "description": "Update item image status sent to the AosEdge Cloud.",
-            "properties": {
-                "imageId": {
-                    "description": "The identification of the image.",
-                    "format": "uuid4",
-                    "title": "Imageid",
-                    "type": "string"
-                },
-                "state": {
-                    "description": "The current (reported) state of the update item.",
-                    "enum": [
-                        "unknown",
-                        "downloading",
-                        "pending",
-                        "installing",
-                        "installed",
-                        "removing",
-                        "removed",
-                        "failed"
-                    ],
-                    "title": "State",
-                    "type": "string"
-                },
-                "errorInfo": {
-                    "$ref": "#/$defs/AosErrorInfo",
-                    "default": null,
-                    "description": "Error information. Absense means no error."
-                }
-            },
-            "required": [
-                "imageId",
-                "state"
-            ],
-            "title": "AosUpdateItemImageStatus",
-            "type": "object"
-        },
         "AosUpdateStateV7": {
             "description": "AosUnit protocol: 'updateState' message.\n\nCloud reports service state changes using this message.",
             "properties": {
@@ -3399,20 +3362,31 @@
                     "title": "Version",
                     "type": "string"
                 },
-                "statuses": {
-                    "description": "The list of image statuses.",
-                    "items": {
-                        "$ref": "#/$defs/AosUpdateItemImageStatus"
-                    },
-                    "minItems": 1,
-                    "title": "Statuses",
-                    "type": "array"
+                "state": {
+                    "description": "The current (reported) state of the update item.",
+                    "enum": [
+                        "unknown",
+                        "downloading",
+                        "pending",
+                        "installing",
+                        "installed",
+                        "removing",
+                        "removed",
+                        "failed"
+                    ],
+                    "title": "State",
+                    "type": "string"
+                },
+                "errorInfo": {
+                    "$ref": "#/$defs/AosErrorInfo",
+                    "default": null,
+                    "description": "Error information. Absense means no error."
                 }
             },
             "required": [
                 "item",
                 "version",
-                "statuses"
+                "state"
             ],
             "title": "AosUpdateItemInfo",
             "type": "object"

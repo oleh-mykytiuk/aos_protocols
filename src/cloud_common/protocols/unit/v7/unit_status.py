@@ -337,35 +337,14 @@ class AosInstancesInfo(BaseModel):
     ]
 
 
-class AosUpdateItemImageStatus(BaseModel):
-    """Update item image status sent to the AosEdge Cloud."""
-
-    image_id: Annotated[
-        UUID4,
-        Field(
-            alias='imageId',
-            description='The identification of the image.',
-        ),
-    ]
-
-    state: TypeUpdateItemState
-    error_info: TypeAosErrorInfoOptional
-
-
 class AosUpdateItemInfo(BaseModel):
     """Update item info sent to the AosEdge Cloud."""
 
     item: TypeItemMandatory
     version: TypeVersionMandatory
 
-    statuses: Annotated[
-        List[AosUpdateItemImageStatus],
-        Field(
-            alias='statuses',
-            min_length=1,
-            description='The list of image statuses.',
-        ),
-    ]
+    state: TypeUpdateItemState
+    error_info: TypeAosErrorInfoOptional
 
 
 class AosUnitStatusV7(BaseModel):
