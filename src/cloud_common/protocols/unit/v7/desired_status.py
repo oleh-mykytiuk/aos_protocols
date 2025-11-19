@@ -15,8 +15,7 @@ from cloud_common.protocols.unit.types import (
     TypeVersionMandatory,
 )
 
-from .common import AosIdentity, TypeAosIdentityMandatory, AosUpdateItemImageInfo, TypeItemMandatory, AosArchInfo, \
-    AosOsInfo, AosSubject
+from .common import AosIdentity, TypeItemMandatory, AosSubject
 from .types import TypeNodeDesiredState
 from .unit_config import UnitConfigV7
 
@@ -367,5 +366,42 @@ class AosDesiredStatusV7(BaseModel):
             alias='certificateChains',
             description='Certificate chains info for checking signs.',
             max_length=8,
+        ),
+    ]
+
+
+class AosRequestBlobUrlsV7(BaseModel):
+    message_type: Annotated[
+        Literal['requestBlobUrls'],
+        Field(
+            alias='messageType',
+            description='Type of the message body.',
+        ),
+    ]
+
+    digests: Annotated[
+        list[str],
+        Field(
+            alias='digests',
+            description='The identification of the update item BLOB. Format same as OCI spec format',
+            examples=[['sha256:3c3a4604a545cdc127456d94e421cd355bca5b528f4a9c1905b15da2eb4a4c6b']]
+        ),
+    ]
+
+
+class AosBlobUrlsV7(BaseModel):
+    message_type: Annotated[
+        Literal['blobUrls'],
+        Field(
+            alias='messageType',
+            description='Type of the message body.',
+        ),
+    ]
+
+    items: Annotated[
+        list[AosUpdateItemBlobInfo],
+        Field(
+            alias='items',
+            description='The identification of the update item BLOB. Format same as OCI spec format',
         ),
     ]

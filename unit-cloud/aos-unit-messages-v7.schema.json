@@ -634,6 +634,30 @@
             "title": "AosArchInfo",
             "type": "object"
         },
+        "AosBlobUrlsV7": {
+            "properties": {
+                "messageType": {
+                    "const": "blobUrls",
+                    "description": "Type of the message body.",
+                    "title": "Messagetype",
+                    "type": "string"
+                },
+                "items": {
+                    "description": "The identification of the update item BLOB. Format same as OCI spec format",
+                    "items": {
+                        "$ref": "#/$defs/AosUpdateItemBlobInfo"
+                    },
+                    "title": "Items",
+                    "type": "array"
+                }
+            },
+            "required": [
+                "messageType",
+                "items"
+            ],
+            "title": "AosBlobUrlsV7",
+            "type": "object"
+        },
         "AosCSR": {
             "description": "Aos Certificate Sign Request.",
             "properties": {
@@ -1359,11 +1383,9 @@
                 "runtime": {
                     "$ref": "#/$defs/AosIdentity"
                 },
-                "imageId": {
-                    "decription": "UUID from AosUpdateItemImageInfo.id",
-                    "format": "uuid4",
-                    "title": "Imageid",
-                    "type": "string"
+                "item": {
+                    "$ref": "#/$defs/AosIdentity",
+                    "description": "Update item identifier."
                 },
                 "instance": {
                     "description": "The instance number of the service. Starts from 0.",
@@ -1404,7 +1426,7 @@
             "required": [
                 "node",
                 "runtime",
-                "imageId",
+                "item",
                 "instance",
                 "state"
             ],
@@ -2287,6 +2309,35 @@
                 "unitSecrets"
             ],
             "title": "AosRenewCertsNotificationV7",
+            "type": "object"
+        },
+        "AosRequestBlobUrlsV7": {
+            "properties": {
+                "messageType": {
+                    "const": "requestBlobUrls",
+                    "description": "Type of the message body.",
+                    "title": "Messagetype",
+                    "type": "string"
+                },
+                "digests": {
+                    "description": "The identification of the update item BLOB. Format same as OCI spec format",
+                    "examples": [
+                        [
+                            "sha256:3c3a4604a545cdc127456d94e421cd355bca5b528f4a9c1905b15da2eb4a4c6b"
+                        ]
+                    ],
+                    "items": {
+                        "type": "string"
+                    },
+                    "title": "Digests",
+                    "type": "array"
+                }
+            },
+            "required": [
+                "messageType",
+                "digests"
+            ],
+            "title": "AosRequestBlobUrlsV7",
             "type": "object"
         },
         "AosRequestLogV7": {
@@ -3404,6 +3455,7 @@
                 "mapping": {
                     "ack": "#/$defs/AosAckV7",
                     "alerts": "#/$defs/AosAlertsV7",
+                    "blobUrls": "#/$defs/AosBlobUrlsV7",
                     "deprovisioningRequest": "#/$defs/AosDeProvisioningRequestV7",
                     "deprovisioningResponse": "#/$defs/AosDeProvisioningResponseV7",
                     "desiredStatus": "#/$defs/AosDesiredStatusV7",
@@ -3419,6 +3471,7 @@
                     "overrideEnvVarsStatus": "#/$defs/AosOverrideEnvVarsStatusesV7",
                     "pushLog": "#/$defs/AosPushLogV7",
                     "renewCertificatesNotification": "#/$defs/AosRenewCertsNotificationV7",
+                    "requestBlobUrls": "#/$defs/AosRequestBlobUrlsV7",
                     "requestLog": "#/$defs/AosRequestLogV7",
                     "startProvisioningRequest": "#/$defs/AosStartProvisioningRequestV7",
                     "startProvisioningResponse": "#/$defs/AosStartProvisioningResponseV7",
@@ -3447,6 +3500,12 @@
                 },
                 {
                     "$ref": "#/$defs/AosDesiredStatusV7"
+                },
+                {
+                    "$ref": "#/$defs/AosRequestBlobUrlsV7"
+                },
+                {
+                    "$ref": "#/$defs/AosBlobUrlsV7"
                 },
                 {
                     "$ref": "#/$defs/AosNewStateV7"
