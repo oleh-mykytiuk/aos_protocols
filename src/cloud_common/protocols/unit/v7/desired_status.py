@@ -218,7 +218,7 @@ class AosUpdateItemBlobInfo(BaseModel):
 class AosUpdateItemInfo(BaseModel):
     """Update item info sent from the AosEdge Cloud."""
 
-    item: TypeItemMandatory
+    identity: TypeItemMandatory
     version: TypeVersionMandatory
 
     owner: Annotated[
@@ -324,30 +324,11 @@ class AosDesiredStatusV7(BaseModel):
         ),
     ]
 
-    blobs: Annotated[
-        Optional[List[AosUpdateItemBlobInfo]],
-        Field(
-            default=None,
-            alias='blobs',
-            min_length=1,
-            description='List of the encrypted BLOBs to download.',
-        ),
-    ] = None
-
     instances: Annotated[
         list[AosDesiredInstanceInfo],
         Field(
             default=None,
             description='List of the desired update item instances. If absent or null - do nothing.',
-        ),
-    ]
-
-    certificates: Annotated[
-        list[AosCertificateInfo],
-        Field(
-            default=None,
-            description='The list of the used certificates',
-            max_length=32,
         ),
     ]
 
@@ -357,6 +338,15 @@ class AosDesiredStatusV7(BaseModel):
             default=None,
             description='The list of the used subjects',
         )
+    ]
+
+    certificates: Annotated[
+        list[AosCertificateInfo],
+        Field(
+            default=None,
+            description='The list of the used certificates',
+            max_length=32,
+        ),
     ]
 
     certificate_chains: Annotated[
