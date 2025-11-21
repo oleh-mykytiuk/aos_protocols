@@ -941,23 +941,6 @@
                     "title": "Items",
                     "type": "array"
                 },
-                "blobs": {
-                    "anyOf": [
-                        {
-                            "items": {
-                                "$ref": "#/$defs/AosUpdateItemBlobInfo"
-                            },
-                            "minItems": 1,
-                            "type": "array"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "default": null,
-                    "description": "List of the encrypted BLOBs to download.",
-                    "title": "Blobs"
-                },
                 "instances": {
                     "default": null,
                     "description": "List of the desired update item instances. If absent or null - do nothing.",
@@ -965,6 +948,15 @@
                         "$ref": "#/$defs/AosDesiredInstanceInfo"
                     },
                     "title": "Instances",
+                    "type": "array"
+                },
+                "subjects": {
+                    "default": null,
+                    "description": "The list of the used subjects",
+                    "items": {
+                        "$ref": "#/$defs/AosSubject"
+                    },
+                    "title": "Subjects",
                     "type": "array"
                 },
                 "certificates": {
@@ -975,15 +967,6 @@
                     },
                     "maxItems": 32,
                     "title": "Certificates",
-                    "type": "array"
-                },
-                "subjects": {
-                    "default": null,
-                    "description": "The list of the used subjects",
-                    "items": {
-                        "$ref": "#/$defs/AosSubject"
-                    },
-                    "title": "Subjects",
                     "type": "array"
                 },
                 "certificateChains": {
