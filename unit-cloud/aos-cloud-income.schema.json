@@ -927,6 +927,19 @@
                     "title": "Balancingpolicy",
                     "type": "string"
                 },
+                "baseLayerIsNodeRootfs": {
+                    "anyOf": [
+                        {
+                            "type": "boolean"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": true,
+                    "description": "Whether the base layer is the node rootfs or not.",
+                    "title": "Baselayerisnoderootfs"
+                },
                 "hostname": {
                     "anyOf": [
                         {
