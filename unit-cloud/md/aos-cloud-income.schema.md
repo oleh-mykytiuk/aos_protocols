@@ -94,6 +94,9 @@
           - [Property `AosUploadMetaConfig > items > AosUpdateItem > configuration > anyOf > AosUpdateItemConfiguration > cmd > anyOf > item 1`](#items_items_configuration_anyOf_i0_cmd_anyOf_i1)
         - [Property `AosUploadMetaConfig > items > AosUpdateItem > configuration > anyOf > AosUpdateItemConfiguration > skipResourceLimits`](#items_items_configuration_anyOf_i0_skipResourceLimits)
         - [Property `AosUploadMetaConfig > items > AosUpdateItem > configuration > anyOf > AosUpdateItemConfiguration > balancingPolicy`](#items_items_configuration_anyOf_i0_balancingPolicy)
+        - [Property `AosUploadMetaConfig > items > AosUpdateItem > configuration > anyOf > AosUpdateItemConfiguration > baseLayerIsNodeRootfs`](#items_items_configuration_anyOf_i0_baseLayerIsNodeRootfs)
+          - [Property `AosUploadMetaConfig > items > AosUpdateItem > configuration > anyOf > AosUpdateItemConfiguration > baseLayerIsNodeRootfs > anyOf > item 0`](#items_items_configuration_anyOf_i0_baseLayerIsNodeRootfs_anyOf_i0)
+          - [Property `AosUploadMetaConfig > items > AosUpdateItem > configuration > anyOf > AosUpdateItemConfiguration > baseLayerIsNodeRootfs > anyOf > item 1`](#items_items_configuration_anyOf_i0_baseLayerIsNodeRootfs_anyOf_i1)
         - [Property `AosUploadMetaConfig > items > AosUpdateItem > configuration > anyOf > AosUpdateItemConfiguration > hostname`](#items_items_configuration_anyOf_i0_hostname)
           - [Property `AosUploadMetaConfig > items > AosUpdateItem > configuration > anyOf > AosUpdateItemConfiguration > hostname > anyOf > item 0`](#items_items_configuration_anyOf_i0_hostname_anyOf_i0)
           - [Property `AosUploadMetaConfig > items > AosUpdateItem > configuration > anyOf > AosUpdateItemConfiguration > hostname > anyOf > item 1`](#items_items_configuration_anyOf_i0_hostname_anyOf_i1)
@@ -1076,24 +1079,25 @@ Must be one of:
 | **Additional properties** | ![Any type: allowed](https://img.shields.io/badge/Any%20type-allowed-green) |
 | **Defined in**            | #/$defs/AosUpdateItemConfiguration                                          |
 
-| Property                                                                        | Pattern | Type             | Deprecated | Definition | Title/Description                |
-| ------------------------------------------------------------------------------- | ------- | ---------------- | ---------- | ---------- | -------------------------------- |
-| - [env](#items_items_configuration_anyOf_i0_env )                               | No      | Combination      | No         | -          | Env                              |
-| - [workingDir](#items_items_configuration_anyOf_i0_workingDir )                 | No      | Combination      | No         | -          | Workingdir                       |
-| - [instances](#items_items_configuration_anyOf_i0_instances )                   | No      | Combination      | No         | -          | Instances info.                  |
-| - [cmd](#items_items_configuration_anyOf_i0_cmd )                               | No      | Combination      | No         | -          | Cmd                              |
-| - [skipResourceLimits](#items_items_configuration_anyOf_i0_skipResourceLimits ) | No      | boolean          | No         | -          | Skipresourcelimits               |
-| - [balancingPolicy](#items_items_configuration_anyOf_i0_balancingPolicy )       | No      | enum (of string) | No         | -          | Balancingpolicy                  |
-| - [hostname](#items_items_configuration_anyOf_i0_hostname )                     | No      | Combination      | No         | -          | Hostname                         |
-| - [exposedPorts](#items_items_configuration_anyOf_i0_exposedPorts )             | No      | Combination      | No         | -          | Exposedports                     |
-| - [runtimes](#items_items_configuration_anyOf_i0_runtimes )                     | No      | array            | No         | -          | Runtimes                         |
-| - [runParameters](#items_items_configuration_anyOf_i0_runParameters )           | No      | Combination      | No         | -          | Run parameters for the Aos item. |
-| - [offlineTTL](#items_items_configuration_anyOf_i0_offlineTTL )                 | No      | Combination      | No         | -          | Offlinettl                       |
-| - [resources](#items_items_configuration_anyOf_i0_resources )                   | No      | Combination      | No         | -          | Resources                        |
-| - [allowedConnections](#items_items_configuration_anyOf_i0_allowedConnections ) | No      | Combination      | No         | -          | Allowedconnections               |
-| - [quotas](#items_items_configuration_anyOf_i0_quotas )                         | No      | Combination      | No         | -          | Quotas for the service.          |
-| - [alertRules](#items_items_configuration_anyOf_i0_alertRules )                 | No      | Combination      | No         | -          | Alert rules for the service.     |
-| - [permissions](#items_items_configuration_anyOf_i0_permissions )               | No      | Combination      | No         | -          | Permissions                      |
+| Property                                                                              | Pattern | Type             | Deprecated | Definition | Title/Description                |
+| ------------------------------------------------------------------------------------- | ------- | ---------------- | ---------- | ---------- | -------------------------------- |
+| - [env](#items_items_configuration_anyOf_i0_env )                                     | No      | Combination      | No         | -          | Env                              |
+| - [workingDir](#items_items_configuration_anyOf_i0_workingDir )                       | No      | Combination      | No         | -          | Workingdir                       |
+| - [instances](#items_items_configuration_anyOf_i0_instances )                         | No      | Combination      | No         | -          | Instances info.                  |
+| - [cmd](#items_items_configuration_anyOf_i0_cmd )                                     | No      | Combination      | No         | -          | Cmd                              |
+| - [skipResourceLimits](#items_items_configuration_anyOf_i0_skipResourceLimits )       | No      | boolean          | No         | -          | Skipresourcelimits               |
+| - [balancingPolicy](#items_items_configuration_anyOf_i0_balancingPolicy )             | No      | enum (of string) | No         | -          | Balancingpolicy                  |
+| - [baseLayerIsNodeRootfs](#items_items_configuration_anyOf_i0_baseLayerIsNodeRootfs ) | No      | Combination      | No         | -          | Baselayerisnoderootfs            |
+| - [hostname](#items_items_configuration_anyOf_i0_hostname )                           | No      | Combination      | No         | -          | Hostname                         |
+| - [exposedPorts](#items_items_configuration_anyOf_i0_exposedPorts )                   | No      | Combination      | No         | -          | Exposedports                     |
+| - [runtimes](#items_items_configuration_anyOf_i0_runtimes )                           | No      | array            | No         | -          | Runtimes                         |
+| - [runParameters](#items_items_configuration_anyOf_i0_runParameters )                 | No      | Combination      | No         | -          | Run parameters for the Aos item. |
+| - [offlineTTL](#items_items_configuration_anyOf_i0_offlineTTL )                       | No      | Combination      | No         | -          | Offlinettl                       |
+| - [resources](#items_items_configuration_anyOf_i0_resources )                         | No      | Combination      | No         | -          | Resources                        |
+| - [allowedConnections](#items_items_configuration_anyOf_i0_allowedConnections )       | No      | Combination      | No         | -          | Allowedconnections               |
+| - [quotas](#items_items_configuration_anyOf_i0_quotas )                               | No      | Combination      | No         | -          | Quotas for the service.          |
+| - [alertRules](#items_items_configuration_anyOf_i0_alertRules )                       | No      | Combination      | No         | -          | Alert rules for the service.     |
+| - [permissions](#items_items_configuration_anyOf_i0_permissions )                     | No      | Combination      | No         | -          | Permissions                      |
 
 ###### <a name="items_items_configuration_anyOf_i0_env"></a>Property `AosUploadMetaConfig > items > AosUpdateItem > configuration > anyOf > AosUpdateItemConfiguration > env`
 
@@ -1342,6 +1346,35 @@ Must be one of:
 Must be one of:
 * "enabled"
 * "disabled"
+
+###### <a name="items_items_configuration_anyOf_i0_baseLayerIsNodeRootfs"></a>Property `AosUploadMetaConfig > items > AosUpdateItem > configuration > anyOf > AosUpdateItemConfiguration > baseLayerIsNodeRootfs`
+
+**Title:** Baselayerisnoderootfs
+
+|                           |                                                                             |
+| ------------------------- | --------------------------------------------------------------------------- |
+| **Type**                  | `combining`                                                                 |
+| **Additional properties** | ![Any type: allowed](https://img.shields.io/badge/Any%20type-allowed-green) |
+| **Default**               | `true`                                                                      |
+
+**Description:** Whether the base layer is the node rootfs or not.
+
+| Any of(Option)                                                               |
+| ---------------------------------------------------------------------------- |
+| [item 0](#items_items_configuration_anyOf_i0_baseLayerIsNodeRootfs_anyOf_i0) |
+| [item 1](#items_items_configuration_anyOf_i0_baseLayerIsNodeRootfs_anyOf_i1) |
+
+###### <a name="items_items_configuration_anyOf_i0_baseLayerIsNodeRootfs_anyOf_i0"></a>Property `AosUploadMetaConfig > items > AosUpdateItem > configuration > anyOf > AosUpdateItemConfiguration > baseLayerIsNodeRootfs > anyOf > item 0`
+
+|          |           |
+| -------- | --------- |
+| **Type** | `boolean` |
+
+###### <a name="items_items_configuration_anyOf_i0_baseLayerIsNodeRootfs_anyOf_i1"></a>Property `AosUploadMetaConfig > items > AosUpdateItem > configuration > anyOf > AosUpdateItemConfiguration > baseLayerIsNodeRootfs > anyOf > item 1`
+
+|          |        |
+| -------- | ------ |
+| **Type** | `null` |
 
 ###### <a name="items_items_configuration_anyOf_i0_hostname"></a>Property `AosUploadMetaConfig > items > AosUpdateItem > configuration > anyOf > AosUpdateItemConfiguration > hostname`
 
@@ -2767,4 +2800,4 @@ Must be one of:
 | **Type** | `null` |
 
 ----------------------------------------------------------------------------------------------------------------------------
-Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2025-11-18 at 17:33:55 +0200
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2025-11-25 at 16:31:25 +0200

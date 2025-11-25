@@ -408,6 +408,15 @@ class AosUpdateItemConfiguration(BaseModel):
         ),
     ] = 'enabled'
 
+    base_layer_is_node_rootfs: Annotated[
+        Optional[bool],
+        Field(
+            alias='baseLayerIsNodeRootfs',
+            default=True,
+            description='Whether the base layer is the node rootfs or not.',
+        ),
+    ] = True
+
     hostname: Annotated[
         Optional[str],
         Field(
