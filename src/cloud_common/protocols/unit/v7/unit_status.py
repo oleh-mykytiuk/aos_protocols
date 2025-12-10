@@ -281,11 +281,11 @@ class AosUnitNodeInfo(BaseModel):
         ),
     ]
 
-    provisioned: Annotated[
+    is_connected: Annotated[
         bool,
         Field(
-            alias='provisioned',
-            description='Flag to indicate if the node is provisioned.',
+            alias='isConnected',
+            description='Flag to indicate if the node is connected to main node.',
         ),
     ]
 
