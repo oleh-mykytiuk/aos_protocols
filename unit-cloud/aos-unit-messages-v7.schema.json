@@ -2134,8 +2134,8 @@
                 "state": {
                     "description": "The current (reported) status of the node.",
                     "enum": [
-                        "offline",
-                        "online",
+                        "unprovisioned",
+                        "provisioned",
                         "error",
                         "paused"
                     ],
@@ -2890,16 +2890,23 @@
                     "type": "string"
                 },
                 "txn": {
-                    "description": "Transmission ID of the message (for acknowledgements and tracing purposes).",
-                    "title": "Txn",
-                    "type": "string"
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "description": "Correlation ID of the request.",
+                    "title": "Txn"
                 }
             },
             "required": [
                 "version",
                 "systemId",
-                "createdAt",
-                "txn"
+                "createdAt"
             ],
             "title": "AosUnitHeaderV7",
             "type": "object"
@@ -3033,16 +3040,16 @@
                     "description": "List of available resources.",
                     "title": "Resources"
                 },
-                "provisioned": {
-                    "description": "Flag to indicate if the node is provisioned.",
-                    "title": "Provisioned",
+                "isConnected": {
+                    "description": "Flag to indicate if the node is connected to main node.",
+                    "title": "Isconnected",
                     "type": "boolean"
                 },
                 "state": {
                     "description": "The current (reported) status of the node.",
                     "enum": [
-                        "offline",
-                        "online",
+                        "unprovisioned",
+                        "provisioned",
                         "error",
                         "paused"
                     ],
@@ -3061,7 +3068,7 @@
                 "maxDmips",
                 "totalRam",
                 "osInfo",
-                "provisioned",
+                "isConnected",
                 "state"
             ],
             "title": "AosUnitNodeInfo",
