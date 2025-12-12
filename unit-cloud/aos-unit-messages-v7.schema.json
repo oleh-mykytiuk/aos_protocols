@@ -2126,16 +2126,16 @@
                     "title": "Timestamp",
                     "type": "string"
                 },
-                "provisioned": {
-                    "description": "Flag to indicate if the node is provisioned.",
-                    "title": "Provisioned",
+                "connected": {
+                    "description": "Flag to indicate if the node is connected to main.",
+                    "title": "Connected",
                     "type": "boolean"
                 },
                 "state": {
                     "description": "The current (reported) status of the node.",
                     "enum": [
-                        "offline",
-                        "online",
+                        "unprovisioned",
+                        "provisioned",
                         "error",
                         "paused"
                     ],
@@ -2145,7 +2145,7 @@
             },
             "required": [
                 "timestamp",
-                "provisioned",
+                "connected",
                 "state"
             ],
             "title": "AosNodeState",
@@ -3033,16 +3033,16 @@
                     "description": "List of available resources.",
                     "title": "Resources"
                 },
-                "provisioned": {
-                    "description": "Flag to indicate if the node is provisioned.",
-                    "title": "Provisioned",
+                "isConnected": {
+                    "description": "Flag to indicate if the node is connected to main node.",
+                    "title": "Isconnected",
                     "type": "boolean"
                 },
                 "state": {
                     "description": "The current (reported) status of the node.",
                     "enum": [
-                        "offline",
-                        "online",
+                        "unprovisioned",
+                        "provisioned",
                         "error",
                         "paused"
                     ],
@@ -3061,7 +3061,7 @@
                 "maxDmips",
                 "totalRam",
                 "osInfo",
-                "provisioned",
+                "isConnected",
                 "state"
             ],
             "title": "AosUnitNodeInfo",
