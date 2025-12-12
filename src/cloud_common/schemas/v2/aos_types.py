@@ -580,6 +580,14 @@ class AosUpdateItem(BaseModel):
         ),
     ]
 
+    version: Annotated[
+        str,
+        Field(
+            alias='version',
+            description='Version in SemVer format of the update item.',
+        ),
+    ]
+
     source_folder: Annotated[
         Optional[str],
         Field(

@@ -23,8 +23,8 @@
                 "minThreshold": {
                     "anyOf": [
                         {
-                            "maximum": 100,
-                            "minimum": 0,
+                            "maximum": 100.0,
+                            "minimum": 0.0,
                             "type": "number"
                         },
                         {
@@ -37,8 +37,8 @@
                 "maxThreshold": {
                     "anyOf": [
                         {
-                            "maximum": 100,
-                            "minimum": 0,
+                            "maximum": 100.0,
+                            "minimum": 0.0,
                             "type": "number"
                         },
                         {
@@ -797,6 +797,11 @@
                     "$ref": "#/$defs/AosIdentity",
                     "description": "Identity of the update item."
                 },
+                "version": {
+                    "description": "Version in SemVer format of the update item.",
+                    "title": "Version",
+                    "type": "string"
+                },
                 "sourceFolder": {
                     "anyOf": [
                         {
@@ -850,6 +855,7 @@
             },
             "required": [
                 "identity",
+                "version",
                 "images"
             ],
             "title": "AosUpdateItem",
