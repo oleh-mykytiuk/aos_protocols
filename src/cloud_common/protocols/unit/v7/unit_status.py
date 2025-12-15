@@ -3,10 +3,17 @@
 #
 from typing import Annotated, Dict, Literal, Optional, List
 
-from pydantic import BaseModel, Field, UUID4
+from pydantic import BaseModel, Field
 
-from .common import AosIdentity, AosResourceInfo, AosArchInfo, AosOsInfo, TypeItemMandatory, TypeSubjectMandatory, \
-    AosBaseModel
+from .common import (
+    AosIdentity,
+    AosResourceInfo,
+    AosArchInfo,
+    AosOsInfo,
+    TypeItemMandatory,
+    TypeSubjectMandatory,
+    AosBaseModel,
+)
 from ..common import TypeAosErrorInfoOptional
 from .types import (
     TypeInstanceNoMandatory,
@@ -124,7 +131,7 @@ class AosRuntimeInfo(BaseModel):
                 'break_system_controllers_bs351',
                 'bios',
                 '',
-            ]
+            ],
         ),
     ]
 
@@ -193,7 +200,7 @@ class AosUnitNodeInfo(BaseModel):
         Field(
             description='Identifier of the node.',
             examples=[{"codename": "node-1398431", "title": "DomD"}],
-        )
+        ),
     ]
 
     node_group_subject: Annotated[

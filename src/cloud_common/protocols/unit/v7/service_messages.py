@@ -35,5 +35,5 @@ class AosNackV7(AosBaseModel):
             default=500,
             alias='retryAfter',
             description='Retry after time in milliseconds.',
-        )
+        ),
     ]

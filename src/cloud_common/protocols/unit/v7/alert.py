@@ -4,7 +4,7 @@
 from datetime import datetime
 from typing import Annotated, Literal, Union, Optional
 
-from pydantic import BaseModel, Discriminator, Field, UUID4
+from pydantic import BaseModel, Discriminator, Field
 
 from cloud_common.protocols.unit.constants import DataSizes
 from cloud_common.protocols.unit.types import (
@@ -178,7 +178,6 @@ class AosAlertInstanceQuotaV7(AosBaseAlert):
             description='Triggered value of the parameter.',
         ),
     ]
-
 
 
 class AosAlertDownloadProgressV7(AosBaseAlert):

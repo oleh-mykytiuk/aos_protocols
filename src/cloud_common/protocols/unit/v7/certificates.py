@@ -2,13 +2,12 @@
 #  Copyright (c) 2018-2024 EPAM Systems Inc.
 #
 from datetime import datetime
-from typing import Annotated, Literal, Optional, Dict
+from typing import Annotated, Literal, Optional
 
 from pydantic import BaseModel, Field, field_serializer, SecretStr
 
 from cloud_common.protocols.unit.types import (
     TypeCertificatesType,
-    TypeStatusForNonExecutables,
 )
 from .common import AosIdentity, AosBaseModel
 from ..common import TypeAosErrorInfoOptional
@@ -135,8 +134,8 @@ class AosRenewCertsNotificationV7(AosBaseModel):
                         'Node0': 'mega strong secret',
                         'Node1': 'super strong secret',
                     },
-                }
-            ]
+                },
+            ],
         ),
     ]
 

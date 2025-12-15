@@ -100,7 +100,6 @@ class AosMonitoringData(BaseModel):
     ]
 
 
-
 class AosNodeState(BaseModel):
     """AosEdge unit monitoring information."""
 

@@ -19,13 +19,14 @@ class AosBaseModel(BaseModel):
         Field(
             alias='correlationId',
             description='Correlation ID of the request.',
-        )
+        ),
     ]
+
 
 class AosIdentity(BaseModel):
     """Aos objects identifier."""
 
-    id:  Annotated[
+    id: Annotated[
         Optional[UUID4],
         Field(
             default=None,
@@ -130,7 +131,7 @@ class AosOsInfo(BaseModel):
             alias='version',
             description='The version of the OS.',
             examples=['6.8.0'],
-        )
+        ),
     ] = None
 
     features: Annotated[
@@ -149,7 +150,8 @@ class AosArchInfo(BaseModel):
         str,
         Field(
             alias='architecture',
-            description='The architecture of the CPU. Refer to the "https://github.com/opencontainers/image-spec/blob/main/config.md#properties"',
+            description='The architecture of the CPU. '
+                        'Refer to the "https://github.com/opencontainers/image-spec/blob/main/config.md#properties"',
             examples=['amd64', 'arm64', 'arm'],
         ),
     ]
@@ -159,7 +161,8 @@ class AosArchInfo(BaseModel):
         Field(
             default=None,
             alias='variant',
-            description='The variant of the specified CPU architecture. Refer to the "https://github.com/opencontainers/image-spec/blob/main/config.md#properties"'
+            description='The variant of the specified CPU architecture. '
+                        'Refer to the "https://github.com/opencontainers/image-spec/blob/main/config.md#properties"',
         ),
     ]
 
@@ -256,7 +259,6 @@ TypeSubjectMandatory = Annotated[
         description='Unique ID of the subject.',
     ),
 ]
-
 
 
 __all__ = (

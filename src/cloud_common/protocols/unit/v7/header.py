@@ -34,6 +34,5 @@ class AosUnitHeaderV7(BaseModel):
         Field(
             alias='txn',
             description='Transmission ID of the message (for acknowledgements and tracing purposes).',
-        )
+        ),
     ]
-

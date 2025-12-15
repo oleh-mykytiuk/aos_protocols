@@ -18,7 +18,7 @@ class AosCSR(BaseModel):
             alias='type',
             description='Type of the CSR',
             examples=['online', 'offline'],
-        )
+        ),
     ]
 
     csr: Annotated[
@@ -90,7 +90,7 @@ class AosStartProvisioningResponseV7(AosBaseModel):
         Field(
             alias='csrs',
             description='List of the CSRs.',
-        )
+        ),
     ]
 
 
@@ -103,7 +103,7 @@ class AosIssuedCertificateV7(BaseModel):
             alias='type',
             description='Type of the CSR',
             examples=['online', 'offline'],
-        )
+        ),
     ]
 
     certificate_chain: Annotated[

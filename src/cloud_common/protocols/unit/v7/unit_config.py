@@ -195,7 +195,7 @@ class AlertRules(BaseModel):
             default=None,
             alias='download',
             description='Alert rules for incoming network traffic(in bytes).',
-        )
+        ),
     ]
 
     upload: Annotated[
@@ -204,7 +204,7 @@ class AlertRules(BaseModel):
             default=None,
             alias='upload',
             description='Alert rules for outgoing network traffic(in bytes).',
-        )
+        ),
     ]
 
 
@@ -322,7 +322,8 @@ class UnitConfigV7(BaseModel):
         str,
         Field(
             alias='version',
-            description='Version identifies the configuration itself. It is automatically incremented with every configuration update.',
+            description='Version identifies the configuration itself. '
+                        'It is automatically incremented with every configuration update.',
         ),
     ]
 
@@ -331,7 +332,8 @@ class UnitConfigV7(BaseModel):
         Field(
             alias='formatVersion',
             title="Format Version",
-            description='JSON format of the unit configuration may change over time. This field identifies current format of unit configuration. Cloud sets it automatically.',
+            description='JSON format of the unit configuration may change over time. '
+                        'This field identifies current format of unit configuration. Cloud sets it automatically.',
         ),
     ]
 

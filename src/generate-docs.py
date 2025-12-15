@@ -5,10 +5,9 @@ import uuid
 from typing import Dict, Any
 
 import click
-from pydantic import BaseModel
 
 from cloud_common.protocols.unit import base
-from cloud_common.protocols.unit.v7.base import AosUnitMessageV7
+from cloud_common.protocols.unit.v7.message import AosUnitMessageV7
 from cloud_common.protocols.unit.v7.common import AosIdentity
 from cloud_common.schemas.service_config.aos_config import AosConfigSchema
 from cloud_common.schemas.unit_update.aos_update import AosUpdateSchema
