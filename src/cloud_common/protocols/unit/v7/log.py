@@ -8,7 +8,6 @@ from pydantic import Base64Bytes, BaseModel, Field, field_serializer
 
 from cloud_common.protocols.unit.common import TypeAosErrorInfoOptional
 from cloud_common.protocols.unit.types import (
-    TypeAosLogId,
     TypeInstanceNoOptional,
 )
 from .common import AosIdentity, TypeItemOptional, AosBaseModel

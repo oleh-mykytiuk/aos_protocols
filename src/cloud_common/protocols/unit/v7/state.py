@@ -3,7 +3,7 @@
 #
 from typing import Annotated, Literal
 
-from pydantic import BaseModel, Field
+from pydantic import Field
 
 from cloud_common.protocols.unit.constants import DataSizes
 from cloud_common.protocols.unit.types import (

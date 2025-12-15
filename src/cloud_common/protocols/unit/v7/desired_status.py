@@ -3,7 +3,7 @@
 #
 import base64
 from datetime import time
-from typing import Annotated, Literal, Optional, List
+from typing import Annotated, Literal, Optional
 
 from pydantic import Base64Bytes, BaseModel, Field, field_serializer
 
@@ -204,7 +204,7 @@ class AosUpdateItemBlobInfo(BaseModel):
         Field(
             alias='digest',
             description='The identification of the update item BLOB. Format same as OCI spec format',
-            examples=['sha256:3c3a4604a545cdc127456d94e421cd355bca5b528f4a9c1905b15da2eb4a4c6b']
+            examples=['sha256:3c3a4604a545cdc127456d94e421cd355bca5b528f4a9c1905b15da2eb4a4c6b'],
         ),
     ]
 
@@ -337,7 +337,7 @@ class AosDesiredStatusV7(AosBaseModel):
         Field(
             default=None,
             description='The list of the used subjects',
-        )
+        ),
     ]
 
     certificates: Annotated[
@@ -374,7 +374,7 @@ class AosRequestBlobUrlsV7(AosBaseModel):
         Field(
             alias='digests',
             description='The identification of the update item BLOB. Format same as OCI spec format',
-            examples=[['sha256:3c3a4604a545cdc127456d94e421cd355bca5b528f4a9c1905b15da2eb4a4c6b']]
+            examples=[['sha256:3c3a4604a545cdc127456d94e421cd355bca5b528f4a9c1905b15da2eb4a4c6b']],
         ),
     ]
 
