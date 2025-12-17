@@ -3,27 +3,29 @@
 #
 from typing import Annotated, Optional, Literal, List
 
-from pydantic import BaseModel, Field, UUID4
+from pydantic import Field, UUID4
 
+from .types import AosBaseModel
 from ..common import (
     AosErrorInfo,
     AosHostRecord,
 )
 
 
-class AosBaseModel(BaseModel):
+class AosBaseDataModel(AosBaseModel):
     """Base model for Aos objects."""
 
     correlation_id: Annotated[
-        str,
+        Optional[str],
         Field(
+            default=None,
             alias='correlationId',
             description='Correlation ID of the request.',
         ),
-    ]
+    ] = None
 
 
-class AosIdentity(BaseModel):
+class AosIdentity(AosBaseModel):
     """Aos objects identifier."""
 
     id: Annotated[
@@ -93,7 +95,7 @@ class AosIdentity(BaseModel):
     ] = None
 
 
-class AosResourceInfo(BaseModel):
+class AosResourceInfo(AosBaseModel):
 
     name: Annotated[
         str,
@@ -114,7 +116,7 @@ class AosResourceInfo(BaseModel):
     ]
 
 
-class AosOsInfo(BaseModel):
+class AosOsInfo(AosBaseModel):
 
     os: Annotated[
         str,
@@ -144,7 +146,7 @@ class AosOsInfo(BaseModel):
     ] = None
 
 
-class AosArchInfo(BaseModel):
+class AosArchInfo(AosBaseModel):
 
     architecture: Annotated[
         str,
@@ -167,7 +169,7 @@ class AosArchInfo(BaseModel):
     ]
 
 
-class AosUpdateItemImageInfo(BaseModel):
+class AosUpdateItemImageInfo(AosBaseModel):
 
     digest: Annotated[
         UUID4,
@@ -194,7 +196,7 @@ class AosUpdateItemImageInfo(BaseModel):
     ]
 
 
-class AosSubject(BaseModel):
+class AosSubject(AosBaseModel):
 
     identity: Annotated[
         AosIdentity,
@@ -262,7 +264,7 @@ TypeSubjectMandatory = Annotated[
 
 
 __all__ = (
-    'AosBaseModel',
+    'AosBaseDataModel',
     'AosArchInfo',
     'AosOsInfo',
     'AosIdentity',
@@ -274,5 +276,6 @@ __all__ = (
     'TypeAosIdentityOptional',
     'TypeItemMandatory',
     'TypeItemOptional',
+    'AosSubject',
     'TypeSubjectMandatory',
 )

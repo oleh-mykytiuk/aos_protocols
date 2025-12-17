@@ -9,10 +9,10 @@ from cloud_common.protocols.unit.constants import DataSizes
 from cloud_common.protocols.unit.types import (
     TypeInstanceNoMandatory,
 )
-from .common import AosIdentity, TypeSubjectMandatory, TypeItemMandatory, AosBaseModel
+from .common import AosIdentity, AosBaseDataModel, TypeSubjectMandatory, TypeItemMandatory
 
 
-class AosNewStateV7(AosBaseModel):
+class AosNewStateV7(AosBaseDataModel):
     """
     AosUnit protocol: 'newState' message.
 
@@ -87,7 +87,7 @@ class AosUpdateStateV7(AosNewStateV7):
     ]
 
 
-class AosStateAcceptanceV7(AosBaseModel):
+class AosStateAcceptanceV7(AosBaseDataModel):
     """
     AosUnit protocol: 'stateAcceptance' message.
 
@@ -138,7 +138,7 @@ class AosStateAcceptanceV7(AosBaseModel):
     ]
 
 
-class AosStateRequestV7(AosBaseModel):
+class AosStateRequestV7(AosBaseDataModel):
     """
     AosUnit protocol: 'newState' message.
 

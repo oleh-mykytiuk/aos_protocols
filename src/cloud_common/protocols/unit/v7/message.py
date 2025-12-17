@@ -3,7 +3,7 @@
 #
 from typing import Annotated, Union
 
-from pydantic import BaseModel, Discriminator, Field
+from pydantic import Discriminator, Field
 
 from .alert import AosAlertsV7
 from .envars import (
@@ -27,6 +27,7 @@ from .provisioning import (
     AosDeProvisioningRequestV7,
     AosDeProvisioningResponseV7,
 )
+from .types import AosBaseModel
 from .unit_status import AosUnitStatusV7
 from .desired_status import AosDesiredStatusV7, AosRequestBlobUrlsV7, AosBlobUrlsV7
 from .header import AosUnitHeaderV7
@@ -38,7 +39,7 @@ from .certificates import (
 )
 
 
-class AosUnitMessageV7(BaseModel):
+class AosUnitMessageV7(AosBaseModel):
     """Unit message model."""
 
     header: Annotated[

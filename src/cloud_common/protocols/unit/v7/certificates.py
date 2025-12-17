@@ -4,16 +4,17 @@
 from datetime import datetime
 from typing import Annotated, Literal, Optional
 
-from pydantic import BaseModel, Field, field_serializer, SecretStr
+from pydantic import Field, field_serializer, SecretStr
 
 from cloud_common.protocols.unit.types import (
     TypeCertificatesType,
 )
-from .common import AosIdentity, AosBaseModel
+from .common import AosIdentity, AosBaseDataModel
+from .types import AosBaseModel
 from ..common import TypeAosErrorInfoOptional
 
 
-class AosCertificateIdentificationV7(BaseModel):
+class AosCertificateIdentificationV7(AosBaseModel):
     """Certificate identification data."""
 
     type: TypeCertificatesType
@@ -55,7 +56,7 @@ class AosCertificateIdentificationValidTillV7(AosCertificateIdentificationV7):
         return valid_till.isoformat()
 
 
-class AosNodeSecretV7(BaseModel):
+class AosNodeSecretV7(AosBaseModel):
     """Node related secret data."""
 
     node: Annotated[
@@ -75,7 +76,7 @@ class AosNodeSecretV7(BaseModel):
     ]
 
 
-class AosUnitSecretsDataV7(BaseModel):
+class AosUnitSecretsDataV7(AosBaseModel):
     """Keeps the unit secret used to decode secure device information."""
 
     version: Annotated[
@@ -96,7 +97,7 @@ class AosUnitSecretsDataV7(BaseModel):
     ]
 
 
-class AosRenewCertsNotificationV7(AosBaseModel):
+class AosRenewCertsNotificationV7(AosBaseDataModel):
     """
     AosUnit protocol: 'renewCertificatesNotification' message.
 
@@ -153,7 +154,7 @@ class AosIssuedUnitCertsV7(AosCertificateIdentificationV7):
     ]
 
 
-class AosIssuedUnitCertificatesV7(AosBaseModel):
+class AosIssuedUnitCertificatesV7(AosBaseDataModel):
     """
     AosUnit protocol: 'issuedUnitCertificates' message.
 
@@ -192,7 +193,7 @@ class AosIssueCertData(AosCertificateIdentificationV7):
     ]
 
 
-class AosIssueUnitCertificatesV7(AosBaseModel):
+class AosIssueUnitCertificatesV7(AosBaseDataModel):
     """
     AosUnit protocol: 'issueUnitCertificates' message.
 
@@ -233,7 +234,7 @@ class AosInstallCertDataV7(AosCertificateIdentificationV7):
     error_info: TypeAosErrorInfoOptional
 
 
-class AosInstallUnitCertificatesConfirmationV7(AosBaseModel):
+class AosInstallUnitCertificatesConfirmationV7(AosBaseDataModel):
     """
     AosUnit protocol: 'installUnitCertificatesConfirmation' message.
 

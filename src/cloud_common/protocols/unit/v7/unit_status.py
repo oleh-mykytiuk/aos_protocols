@@ -3,19 +3,20 @@
 #
 from typing import Annotated, Dict, Literal, Optional, List
 
-from pydantic import BaseModel, Field
+from pydantic import Field
 
 from .common import (
     AosIdentity,
+    AosBaseDataModel,
     AosResourceInfo,
     AosArchInfo,
     AosOsInfo,
     TypeItemMandatory,
     TypeSubjectMandatory,
-    AosBaseModel,
 )
 from ..common import TypeAosErrorInfoOptional
 from .types import (
+    AosBaseModel,
     TypeInstanceNoMandatory,
     TypeNodeState,
     TypeUpdateItemInstanceState,
@@ -26,7 +27,7 @@ from .types import (
 )
 
 
-class AosUnitConfigStatus(BaseModel):
+class AosUnitConfigStatus(AosBaseModel):
     version: TypeVersionOptional
     state: Annotated[
         Literal[
@@ -41,7 +42,7 @@ class AosUnitConfigStatus(BaseModel):
     error_info: TypeAosErrorInfoOptional
 
 
-class AosNodePartitionInfo(BaseModel):
+class AosNodePartitionInfo(AosBaseModel):
     """Aos node partition info."""
 
     name: Annotated[
@@ -69,7 +70,7 @@ class AosNodePartitionInfo(BaseModel):
     ]
 
 
-class AosNodeCPUInfo(BaseModel):
+class AosNodeCPUInfo(AosBaseModel):
 
     cpu_model_name: Annotated[
         str,
@@ -110,7 +111,7 @@ class AosNodeCPUInfo(BaseModel):
     ] = None
 
 
-class AosRuntimeInfo(BaseModel):
+class AosRuntimeInfo(AosBaseModel):
 
     identity: Annotated[
         AosIdentity,
@@ -193,7 +194,7 @@ class AosRuntimeInfo(BaseModel):
     ]
 
 
-class AosUnitNodeInfo(BaseModel):
+class AosUnitNodeInfo(AosBaseModel):
 
     identity: Annotated[
         AosIdentity,
@@ -300,7 +301,7 @@ class AosUnitNodeInfo(BaseModel):
     error_info: TypeAosErrorInfoOptional
 
 
-class AosInstanceInfo(BaseModel):
+class AosInstanceInfo(AosBaseModel):
 
     node: Annotated[
         AosIdentity,
@@ -322,7 +323,7 @@ class AosInstanceInfo(BaseModel):
     error_info: TypeAosErrorInfoOptional
 
 
-class AosInstancesInfo(BaseModel):
+class AosInstancesInfo(AosBaseModel):
     """Update item info sent to the AosEdge Cloud."""
 
     item: TypeItemMandatory
@@ -337,7 +338,7 @@ class AosInstancesInfo(BaseModel):
     ]
 
 
-class AosUpdateItemInfo(BaseModel):
+class AosUpdateItemInfo(AosBaseModel):
     """Update item info sent to the AosEdge Cloud."""
 
     item: TypeItemMandatory
@@ -347,7 +348,7 @@ class AosUpdateItemInfo(BaseModel):
     error_info: TypeAosErrorInfoOptional
 
 
-class AosUnitStatusV7(AosBaseModel):
+class AosUnitStatusV7(AosBaseDataModel):
     """
     AosUnit protocol: 'unitStatus' message.
 

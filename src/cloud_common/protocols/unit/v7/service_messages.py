@@ -5,10 +5,10 @@ from typing import Annotated, Literal
 
 from pydantic import Field
 
-from .common import AosBaseModel
+from .common import AosBaseDataModel
 
 
-class AosAckV7(AosBaseModel):
+class AosAckV7(AosBaseDataModel):
     message_type: Annotated[
         Literal['ack'],
         Field(
@@ -16,10 +16,10 @@ class AosAckV7(AosBaseModel):
             title='Message type',
             description='Message body type.',
         ),
-    ]
+    ] = 'ack'
 
 
-class AosNackV7(AosBaseModel):
+class AosNackV7(AosBaseDataModel):
     message_type: Annotated[
         Literal['nack'],
         Field(
@@ -27,7 +27,7 @@ class AosNackV7(AosBaseModel):
             title='Message type',
             description='Message body type.',
         ),
-    ]
+    ] = 'nack'
 
     retry_after: Annotated[
         int,
@@ -36,4 +36,4 @@ class AosNackV7(AosBaseModel):
             alias='retryAfter',
             description='Retry after time in milliseconds.',
         ),
-    ]
+    ] = 500

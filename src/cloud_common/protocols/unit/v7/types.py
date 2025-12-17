@@ -3,9 +3,17 @@
 #
 from typing import Annotated, Literal, Optional
 
-from pydantic import Base64Bytes, Field, Secret, UUID4
+from pydantic import Base64Bytes, Field, Secret, UUID4, BaseModel, ConfigDict
 
 from cloud_common.protocols.unit.constants import DataSizes
+
+
+class AosBaseModel(BaseModel):
+
+    model_config = ConfigDict(
+        validate_by_name=True,
+        serialize_by_alias=True,
+    )
 
 
 TypeIdentifierIdOptional = Annotated[
