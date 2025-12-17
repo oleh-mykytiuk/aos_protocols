@@ -4,7 +4,7 @@
 from datetime import datetime
 from typing import Annotated, Literal
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 
 from cloud_common.protocols.unit.types import TypeAosSystemIdMandatory
 
@@ -12,13 +12,20 @@ from cloud_common.protocols.unit.types import TypeAosSystemIdMandatory
 class AosUnitHeaderV7(BaseModel):
     """Aos Unit message header."""
 
+    model_config = ConfigDict(
+        validate_by_name=True,
+        serialize_by_alias=True,
+    )
+
     version: Annotated[
         Literal[7],
         Field(
+            default=7,
             title='Protocol version',
             description='The version of Unit-Cloud protocol.',
         ),
-    ]
+    ] = 7
+
     system_id: TypeAosSystemIdMandatory
 
     created_at: Annotated[

@@ -4,14 +4,14 @@
 from datetime import datetime
 from typing import Annotated, Literal, Optional
 
-from pydantic import BaseModel, Field
+from pydantic import Field
 
-from .types import TypeUpdateItemInstanceState, TypeNodeState
+from .types import AosBaseModel, TypeUpdateItemInstanceState, TypeNodeState
 from ..types import TypeInstanceNoMandatory
-from .common import AosIdentity, TypeItemMandatory, TypeSubjectMandatory, AosBaseModel
+from .common import AosIdentity, AosBaseDataModel, TypeItemMandatory, TypeSubjectMandatory
 
 
-class AosPartitionUsage(BaseModel):
+class AosPartitionUsage(AosBaseModel):
     """PartitionUsage partition usage information."""
 
     name: Annotated[
@@ -31,7 +31,7 @@ class AosPartitionUsage(BaseModel):
     ]
 
 
-class AosInstanceStateData(BaseModel):
+class AosInstanceStateData(AosBaseModel):
     """Service instance state information."""
 
     timestamp: Annotated[
@@ -45,7 +45,7 @@ class AosInstanceStateData(BaseModel):
     state: TypeUpdateItemInstanceState
 
 
-class AosMonitoringData(BaseModel):
+class AosMonitoringData(AosBaseModel):
     """AosEdge monitoring data."""
 
     timestamp: Annotated[
@@ -100,7 +100,7 @@ class AosMonitoringData(BaseModel):
     ]
 
 
-class AosNodeState(BaseModel):
+class AosNodeState(AosBaseModel):
     """AosEdge unit monitoring information."""
 
     timestamp: Annotated[
@@ -122,7 +122,7 @@ class AosNodeState(BaseModel):
     state: TypeNodeState
 
 
-class AosInstanceMonitoringDataV7(BaseModel):
+class AosInstanceMonitoringDataV7(AosBaseModel):
     """AosEdge unit monitoring data for service."""
 
     item: TypeItemMandatory
@@ -154,7 +154,7 @@ class AosInstanceMonitoringDataV7(BaseModel):
     ]
 
 
-class AosNodeMonitoringDataV7(BaseModel):
+class AosNodeMonitoringDataV7(AosBaseModel):
     """AosEdge unit monitoring information."""
 
     node: Annotated[
@@ -183,7 +183,7 @@ class AosNodeMonitoringDataV7(BaseModel):
     ]
 
 
-class AosMonitoringV7(AosBaseModel):
+class AosMonitoringV7(AosBaseDataModel):
     """AosEdge unit monitoring message."""
 
     message_type: Annotated[

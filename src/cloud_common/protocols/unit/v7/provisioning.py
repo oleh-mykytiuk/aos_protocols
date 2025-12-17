@@ -3,13 +3,15 @@
 #
 from typing import Annotated, Literal
 
-from pydantic import BaseModel, Field
+from pydantic import Field
 
 from cloud_common.protocols.unit.common import TypeAosErrorInfoOptional
-from cloud_common.protocols.unit.v7.common import AosIdentity, AosBaseModel
+
+from .common import AosIdentity, AosBaseDataModel
+from .types import AosBaseModel
 
 
-class AosCSR(BaseModel):
+class AosCSR(AosBaseModel):
     """Aos Certificate Sign Request."""
 
     csr_type: Annotated[
@@ -30,7 +32,7 @@ class AosCSR(BaseModel):
     ]
 
 
-class AosStartProvisioningRequestV7(AosBaseModel):
+class AosStartProvisioningRequestV7(AosBaseDataModel):
     """
     AosUnit protocol: 'startProvisioningRequest' message.
 
@@ -62,7 +64,7 @@ class AosStartProvisioningRequestV7(AosBaseModel):
     ]
 
 
-class AosStartProvisioningResponseV7(AosBaseModel):
+class AosStartProvisioningResponseV7(AosBaseDataModel):
     """
     AosUnit protocol: 'startProvisioningResponse' message.
     """
@@ -94,7 +96,7 @@ class AosStartProvisioningResponseV7(AosBaseModel):
     ]
 
 
-class AosIssuedCertificateV7(BaseModel):
+class AosIssuedCertificateV7(AosBaseModel):
     """Aos issued certificate."""
 
     certificate_type: Annotated[
@@ -116,7 +118,7 @@ class AosIssuedCertificateV7(BaseModel):
     ]
 
 
-class AosFinishProvisioningRequestV7(AosBaseModel):
+class AosFinishProvisioningRequestV7(AosBaseDataModel):
     """
     AosUnit protocol: 'finishProvisioningRequest' message.
 
@@ -156,7 +158,7 @@ class AosFinishProvisioningRequestV7(AosBaseModel):
     ]
 
 
-class AosFinishProvisioningResponseV7(AosBaseModel):
+class AosFinishProvisioningResponseV7(AosBaseDataModel):
     """
     AosUnit protocol: 'finishProvisioningResponse' message.
     """
@@ -180,7 +182,7 @@ class AosFinishProvisioningResponseV7(AosBaseModel):
     error_info: TypeAosErrorInfoOptional
 
 
-class AosDeProvisioningRequestV7(AosBaseModel):
+class AosDeProvisioningRequestV7(AosBaseDataModel):
     """
     AosUnit protocol: 'deprovisioningRequest' message.
     """
@@ -210,7 +212,7 @@ class AosDeProvisioningRequestV7(AosBaseModel):
     ]
 
 
-class AosDeProvisioningResponseV7(AosBaseModel):
+class AosDeProvisioningResponseV7(AosBaseDataModel):
     """
     AosUnit protocol: 'deprovisioningResponse' message.
     """

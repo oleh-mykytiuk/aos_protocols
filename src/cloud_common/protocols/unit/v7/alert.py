@@ -4,7 +4,7 @@
 from datetime import datetime
 from typing import Annotated, Literal, Union, Optional
 
-from pydantic import BaseModel, Discriminator, Field
+from pydantic import Discriminator, Field
 
 from cloud_common.protocols.unit.constants import DataSizes
 from cloud_common.protocols.unit.types import (
@@ -13,11 +13,12 @@ from cloud_common.protocols.unit.types import (
     TypeDeviceMandatory,
     TypeVersionMandatory,
 )
-from .common import AosIdentity, TypeItemMandatory, AosBaseModel
+from .common import AosIdentity, AosBaseDataModel, TypeItemMandatory
+from .types import AosBaseModel
 from ..common import TypeAosErrorInfoOptional
 
 
-class AosBaseAlert(BaseModel):
+class AosBaseAlert(AosBaseModel):
     timestamp: Annotated[
         datetime,
         Field(
@@ -190,10 +191,7 @@ class AosAlertDownloadProgressV7(AosBaseAlert):
 
     digest: Annotated[
         str,
-        Field(
-            alias='digest',
-            decription='Digest from AosUpdateItemBlobInfo.digest',
-        ),
+        Field(decription='Digest from AosUpdateItemBlobInfo.digest'),
     ]
 
     url: Annotated[
@@ -276,7 +274,7 @@ class AosAlertUpdateItemInstanceV7(AosBaseAlert):
     message: TypeAlertMessageMandatory
 
 
-class AosAlertsV7(AosBaseModel):
+class AosAlertsV7(AosBaseDataModel):
     message_type: Annotated[
         Literal['alerts'],
         Field(

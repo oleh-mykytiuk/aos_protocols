@@ -3,16 +3,17 @@
 #
 from typing import Annotated, Optional
 
-from pydantic import BaseModel, Field
+from pydantic import Field
 
 from cloud_common.protocols.unit.common import (
     AosFileSystemMount,
     AosHostRecord,
 )
-from cloud_common.protocols.unit.v7.common import AosIdentity
+from .common import AosIdentity
+from .types import AosBaseModel
 
 
-class AlertRulePercents(BaseModel):
+class AlertRulePercents(AosBaseModel):
     """
     Information about the threshold.
 
@@ -78,7 +79,7 @@ class AlertRulePercentsOfDisk(AlertRulePercents):
     ]
 
 
-class AlertRulePoints(BaseModel):
+class AlertRulePoints(AosBaseModel):
     """
     Information about the threshold in points.
 
@@ -117,7 +118,7 @@ class AlertRulePoints(BaseModel):
     ]
 
 
-class ResourceRatiosInfo(BaseModel):
+class ResourceRatiosInfo(AosBaseModel):
     """
     The default resource ratio allocated for a service.
     """
@@ -158,7 +159,7 @@ class ResourceRatiosInfo(BaseModel):
     ]
 
 
-class AlertRules(BaseModel):
+class AlertRules(AosBaseModel):
     """
     The default thresholds for services running on the node.
     """
@@ -208,7 +209,7 @@ class AlertRules(BaseModel):
     ]
 
 
-class ResourceInfo(BaseModel):
+class ResourceInfo(AosBaseModel):
 
     name: Annotated[
         str,
@@ -255,7 +256,7 @@ class ResourceInfo(BaseModel):
     ]
 
 
-class NodeConfig(BaseModel):
+class NodeConfig(AosBaseModel):
     """Node configuration parameters."""
 
     node_group_subject: Annotated[
@@ -315,7 +316,7 @@ class NodeConfig(BaseModel):
     ]
 
 
-class UnitConfigV7(BaseModel):
+class UnitConfigV7(AosBaseModel):
     """Configuration parameters for a unit."""
 
     version: Annotated[

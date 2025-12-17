@@ -4,18 +4,18 @@
 from datetime import datetime
 from typing import Annotated, Literal, Optional
 
-from pydantic import BaseModel, Field, field_serializer
+from pydantic import Field, field_serializer
 
 from cloud_common.protocols.unit.common import TypeAosErrorInfoOptional
 from cloud_common.protocols.unit.constants import DataSizes
 from cloud_common.protocols.unit.types import (
     TypeInstanceNoOptional,
 )
-from .common import AosIdentity, TypeItemMandatory, TypeItemOptional, AosBaseModel
-from .types import TypeInstanceNoMandatory
+from .common import AosIdentity, AosBaseDataModel, TypeItemMandatory, TypeItemOptional
+from .types import AosBaseModel, TypeInstanceNoMandatory
 
 
-class AosEnvVarStatus(BaseModel):
+class AosEnvVarStatus(AosBaseModel):
     """The current status of the environment variable."""
 
     name: Annotated[
@@ -30,7 +30,7 @@ class AosEnvVarStatus(BaseModel):
     error_info: TypeAosErrorInfoOptional
 
 
-class AosEnvVarInstanceStatusV7(BaseModel):
+class AosEnvVarInstanceStatusV7(AosBaseModel):
     """The current status of the environment variable."""
 
     item: TypeItemMandatory
@@ -57,7 +57,7 @@ class AosEnvVarInstanceStatusV7(BaseModel):
     error_info: TypeAosErrorInfoOptional
 
 
-class AosEnvVar(BaseModel):
+class AosEnvVar(AosBaseModel):
 
     name: Annotated[
         str,
@@ -97,7 +97,7 @@ class AosEnvVar(BaseModel):
         return ttl.isoformat()
 
 
-class AosEnvVarV7(BaseModel):
+class AosEnvVarV7(AosBaseModel):
     """The current status of the environment variable."""
 
     item: TypeItemOptional
@@ -121,7 +121,7 @@ class AosEnvVarV7(BaseModel):
     ]
 
 
-class AosOverrideEnvVarsRequestV7(AosBaseModel):
+class AosOverrideEnvVarsRequestV7(AosBaseDataModel):
     """
     AosUnit protocol: 'overrideEnvVars' message.
 
@@ -146,7 +146,7 @@ class AosOverrideEnvVarsRequestV7(AosBaseModel):
     ]
 
 
-class AosOverrideEnvVarsStatusesV7(AosBaseModel):
+class AosOverrideEnvVarsStatusesV7(AosBaseDataModel):
     """
     AosUnit protocol: 'overrideEnvVarsStatus' message.
 

@@ -4,16 +4,17 @@
 from datetime import datetime
 from typing import Annotated, Literal, Optional
 
-from pydantic import Base64Bytes, BaseModel, Field, field_serializer
+from pydantic import Base64Bytes, Field, field_serializer
 
 from cloud_common.protocols.unit.common import TypeAosErrorInfoOptional
 from cloud_common.protocols.unit.types import (
     TypeInstanceNoOptional,
 )
-from .common import AosIdentity, TypeItemOptional, AosBaseModel
+from .common import AosIdentity, AosBaseDataModel, TypeItemOptional
+from .types import AosBaseModel
 
 
-class AosLogFilterV7(BaseModel):
+class AosLogFilterV7(AosBaseModel):
     """The filter options applied to logs."""
 
     from_timestamp: Annotated[
@@ -68,7 +69,7 @@ class AosLogFilterV7(BaseModel):
         return till_timestamp.isoformat('T', 'seconds')
 
 
-class AosUploadLogOptions(BaseModel):
+class AosUploadLogOptions(AosBaseModel):
     """The description of used channel to upload logs."""
 
     type: Annotated[
@@ -109,7 +110,7 @@ class AosUploadLogOptions(BaseModel):
     ]
 
 
-class AosRequestLogV7(AosBaseModel):
+class AosRequestLogV7(AosBaseDataModel):
     """
     AosUnit protocol: 'requestLog' message.
 
@@ -151,7 +152,7 @@ class AosRequestLogV7(AosBaseModel):
     ]
 
 
-class AosPushLogV7(AosBaseModel):
+class AosPushLogV7(AosBaseDataModel):
     """
     AosUnit protocol: 'pushLog' message.
 
